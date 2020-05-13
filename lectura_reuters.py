@@ -19,7 +19,7 @@ def read_reuters():
     token_dict = {}
     stemmer = PorterStemmer()
 
-    print("HOLA HOLA HOLA HOLA")
+    print("HOLA HOLA HOLA HOLA HOLA")
     # Número total de categorías
     cats = reuters.categories()
     print("Categorias: ", cats)
