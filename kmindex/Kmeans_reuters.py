@@ -26,7 +26,7 @@ normaliza = False
 
 
 # DATOS DE ENTRADA: lectura del fichero reuters
-tfs, info_cat = lr.read_reuters(3)
+tfs, info_cat = lr.read_reuters(1)
 tfs_ordenado = tfs.copy()   #guardamos la matriz original
 
 # print("tfs_ordenado")

@@ -80,7 +80,7 @@ def read_reuters(encoding):
     # ((total * 1.0) / len(cats)))
 
     # Elegimos las categorías con las que nos quedamos:
-    categories = ['ipi', 'iron-steel']  # ['earn', 'acq'] ['acq', 'alum']
+    categories = ['bop', 'cpi']  # ['earn', 'acq'] ['acq', 'alum']
                                      # ['alum', 'barley']
                                      # barley y alum son muy parecidas en tamaño
     # Estructura en la que voy almacenar el índice del primer
@@ -111,9 +111,9 @@ def read_reuters(encoding):
 # print("Arts. en categoría 'acq' de test: ", num_test)
 
     if encoding == 1:
-        #########
-        # TFIDF #
-        #########
+        ####################
+        # TFIDF con steming#
+        ####################
         # Create tokens dict from docs stems
         for file in reuters.fileids(categories):
             # Filter only training docs
@@ -146,6 +146,15 @@ def read_reuters(encoding):
         tf_idf = TfidfVectorizer(stop_words='english', input='content')
         # tfs será una matriz dispersa con clave (doc_id, term) y valor el tf_idf
         tfs = tf_idf.fit_transform([" ".join(l) for l in token_dict.values()])
+
+        ####################
+        # TFIDF sin steming#
+        ####################
+        files = [f for f in reuters.fileids(categories) if 'training' in f]
+        text = [reuters.raw(fileids=[f]) for f in files]
+        tf_idf = TfidfVectorizer(stop_words='english', input='content')
+        tfs = tf_idf.fit_transform(text)
+
     else:
         ####################
         # FREQUENCY VECTOR #
