@@ -163,7 +163,7 @@ while continuar:
 
     # Pinto las nubes de puntos originales junto con los centroides sacados
     #if iter>0:
-    dt.pinta(coordx, coordy, puntos_capa[id_capa-1])
+    dt.pinta(coordx, coordy, puntos_capa[id_capa-1], 8, 200)
     # dt.pinta_info_nube(coordx, coordy, puntos_capa, grupos_capa, labels_capa)
 
     # Pinto los clustters resultado del proceso de construcción:
@@ -294,13 +294,13 @@ while continuar:
     nubes_puntos, puntos_nube, nnubes = util.identifica_nube(vector_ordenado, vector_original)
 
     #print([elem for elem in lcorrespond])
-    print("Porcentage de aciertos en la iteración ", iter, ": ", aciertos*100/(cant_ptos*8))
+    print("Porcentaje de aciertos en la iteración ", iter, ": ", aciertos*100/(cant_ptos*8))
     # 18-07-2019. Calculamos el error práctio (número ptos erroneos/número ptos totales)
     error = fallos*100/(8 * cant_ptos)
-    print("Porcentage de fallos (error) en la iteración ", iter, ": ", error)
+    print("Porcentaje de fallos (error) en la iteración ", iter, ": ", error)
     if fallos==0 or iter==10:
         continuar = False
-    elif error>=(error_ant-error_ant*0.1) and error<=(error_ant+error_ant*0.1):
+    elif error>=(error_ant-error_ant*0.01) and error<=(error_ant+error_ant*0.01):
         continuar = False
     else:
         iter+=1

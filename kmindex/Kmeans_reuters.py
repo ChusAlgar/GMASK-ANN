@@ -1,24 +1,19 @@
-from sklearn.cluster import KMeans
-import numpy as np
-from sklearn.metrics.pairwise import pairwise_distances
-from sklearn import preprocessing
-import utilities as util
-import data_test as dt
-import lectura_reuters as lr
-from scipy.sparse import csr_matrix
-from sklearn.utils import shuffle
-from random import shuffle
 from random import seed
+from random import shuffle
 
-
-
+import lectura_reuters as lr
+import numpy as np
+import utilities as util
+from scipy.sparse import csr_matrix
+from sklearn.cluster import KMeans
+from sklearn.metrics.pairwise import pairwise_distances
 
 # PARÁMETROS DE ENTRADA
 #tam = 4  # longitud de las palabras
-tam_grupo = 16  # tamaño del grupo (depende de la capacidad computacional).
+tam_grupo = 40  # tamaño del grupo (depende de la capacidad computacional).
 # Los grupos se cogen por filas completas de la matriz dtm.
 #pctg = 0.2  # porcentaje de reducción para calcular el número de centroides de cada etapa
-n_centroides = 8 #int((tam_grupo * (4 ** tam) * pctg) / 100)
+n_centroides = 20 #int((tam_grupo * (4 ** tam) * pctg) / 100)
 opcion = 'kmeans'
 normaliza = False
 # cant_ptos = 200  #200 # número de puntos de cada nube

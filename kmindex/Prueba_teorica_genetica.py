@@ -4,6 +4,7 @@ from sklearn.metrics.pairwise import pairwise_distances
 from sklearn import preprocessing
 import utilities as util
 import data_test as dt
+from timeit import default_timer as timer
 
 
 
@@ -13,18 +14,24 @@ import data_test as dt
 tam_grupo = 16  # tamaño del grupo (depende de la capacidad computacional).
 # Los grupos se cogen por filas completas de la matriz dtm.
 #pctg = 0.2  # porcentaje de reducción para calcular el número de centroides de cada etapa
-n_centroides = 8 #int((tam_grupo * (4 ** tam) * pctg) / 100)
+n_centroides = 8 # int((tam_grupo * (4 ** tam) * pctg) / 100)
 opcion = 'kmeans'
 normaliza = False
 cant_ptos = 200 # número de puntos de cada nube
 
 # Datos de entrada: nubes que siguen una distribución normal, en dos dimensiones.
-coordx, coordy = dt.generate_data_test2()
+#print("genera los datos")
+coordx, coordy = dt.generate_data_test2()  # las genera sin solape
+#coordx, coordy = dt.generate_data_test3()  # las genera con un poco de solape
 # coordx, coordy = dt.generate_data_test_overlap()
 vector_original=list(zip(coordx[0],coordy[0]))
 vector_ordenado = list(zip(coordx[0],coordy[0]))
+#print("empieza a desordena los datos")
 np.random.shuffle(vector_original) #desordenamos los datos
+#print("termina de desordena los datos")
+#print("empieza la identificación de las nubes")
 nubes_puntos, puntos_nube,_ = util.identifica_nube(vector_ordenado, vector_original)
+#print("termina la identificación de las nubes")
 """cont = 0
 nubes=[]
 nubes_ord=[]
@@ -43,6 +50,8 @@ for i in range(8*200):
 
 
 # Inicio del proceso iterativo de construcción-deconstrucción.
+start_time_constr = timer()
+
 vector = vector_original
 for iter in range(1):
     if normaliza:
@@ -120,10 +129,14 @@ for iter in range(1):
 
     print("FIN PROCESO CONSTRUCCIÓN")
 
+    end_time_constr = timer()
+    print("--- %s seconds ---", end_time_constr-start_time_constr)
+
     # Pinto las nubes de puntos originales junto con los centroides sacados
-    dt.pinta(coordx, coordy, puntos_capa[id_capa-1])
+    dt.pinta(coordx, coordy, puntos_capa[id_capa-1], 8, 200)
     # dt.pinta_info_nube(coordx, coordy, puntos_capa, grupos_capa, labels_capa)
 
+    start_time_deconstr = timer()
 
     print("********************PROCESO DECONSTRUCCIÓN*********************")
     n_capas = id_capa-1
@@ -208,8 +221,11 @@ for iter in range(1):
             fallos+=1
 
     vector = vector_aux
-    print("Porcentage de aciertos en la iteración ", iter, ": ", aciertos*100/(cant_ptos*8))
-    print("Porcentage de fallos en la iteración ", iter, ": ", fallos*100/(cant_ptos*8))
+    print("Porcentaje de aciertos en la iteración ", iter, ": ", aciertos*100/(cant_ptos*8))
+    print("Porcentaje de fallos en la iteración ", iter, ": ", fallos*100/(cant_ptos*8))
+
+end_time_deconstr = timer()
+print("--- %s seconds ---", end_time_deconstr-start_time_deconstr)
 
 """ Representación del resultado de la deconstrucción"""
 clustters = []
@@ -224,6 +240,6 @@ for pareja in lcorrespond:
 for clustter in clustters:
     print("Tamaño clustter: ", len(clustter))
 
-dt.pinta_result(clustters)
+# dt.pinta_result(clustters)
 
 print("FIN PROCESO DECONSTRUCCIÓN")

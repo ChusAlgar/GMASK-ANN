@@ -80,7 +80,7 @@ def read_reuters(encoding):
     # ((total * 1.0) / len(cats)))
 
     # Elegimos las categorías con las que nos quedamos:
-    categories = ['bop', 'cpi']  # ['earn', 'acq'] ['acq', 'alum']
+    categories = ['money-supply', 'coffee', 'oilseed']  # ['earn', 'acq'] ['acq', 'alum']
                                      # ['alum', 'barley']
                                      # barley y alum son muy parecidas en tamaño
     # Estructura en la que voy almacenar el índice del primer

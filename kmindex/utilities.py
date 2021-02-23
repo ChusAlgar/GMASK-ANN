@@ -108,6 +108,7 @@ def identifica_nube(vector_ordenado, vector_desordenado):
     nubes_puntos = [[] for i in range(nnubes)]
     puntos_nube = np.zeros(len(vector_desordenado), dtype=int)
     correspondencia = []
+    #cont = 0
     for idordenado in range(len(vector_ordenado)):
         iddesordenado = 0
         encontrado = False
@@ -116,6 +117,8 @@ def identifica_nube(vector_ordenado, vector_desordenado):
                 encontrado = True
                 correspondencia.append((idordenado, iddesordenado))
             iddesordenado += 1
+        #cont += 1
+        #print("identifica_nube", cont)
 
     for pareja in correspondencia:
         ido = pareja[0]
@@ -125,6 +128,19 @@ def identifica_nube(vector_ordenado, vector_desordenado):
         puntos_nube[idd] = idnube
 
     return nubes_puntos, puntos_nube, nnubes
+
+
+def identifica_nube_opt(vector_desordenado):
+    puntos_nube = np.zeros(len(vector_desordenado), dtype=int)
+    cont = 0
+    vector_resultado = []
+    for elem in vector_desordenado:
+        puntos_nube[cont]=elem[2]
+        punto = (elem[0], elem[1])
+        vector_resultado.append(punto)
+        cont += 1
+
+    return vector_resultado, puntos_nube
 
 def obten_num_ptos(list_nptos, ncentroides):
     num_ptos = 0

@@ -99,57 +99,108 @@ print('x:', cx.shape)
 print('y:', cy.shape)
 print(cx)"""
 
-def generate_data_test_overlap():
+def generate_data_foverlap(nclouds, npc):
     np.random.seed(2)
-    cant_ptos = 200
-    x1 = np.random.normal(loc=3, scale=3.5, size=cant_ptos)+17
-    y1 = np.random.normal(loc=3, scale=2.5, size=cant_ptos)+29
 
-    x2 = np.random.normal(loc=2.5, scale=2.5, size=cant_ptos)+26
-    y2 = np.random.normal(loc=2.5, scale=2.5, size=cant_ptos)+27
+    listx = []
+    listy = []
+    listind = []
+    loc_tuple = ((3, 3), (2.5, 2.5), (2.5, 3), (2.5, 2), (3, 3), (3, 2.5), (2, 2), (3.5, 2.5))
+    scalex = 1.5
+    scaley = 1.5
+    desplaz_tuple = ((15, 28), (20, 25), (23, 21), (20, 17), (15, 13), (10, 17), (8, 21), (10, 25))
+    for indcloud in range(nclouds):
+        locx, locy = loc_tuple[indcloud]
+        desplazx, desplazy = desplaz_tuple[indcloud]
+        x = np.random.normal(loc=locx, scale=scalex, size=npc) + desplazx
+        y = np.random.normal(loc=locy, scale=scaley, size=npc) + desplazy
+        ind = np.ones(npc) * (indcloud + 1)
+        listx.append(x)
+        listy.append(y)
+        listind.append(ind)
 
-    x3 = np.random.normal(loc=4.5, scale=2.75, size=cant_ptos)+28
-    y3 = np.random.normal(loc=4, scale=3.5, size=cant_ptos)+17
+    coordx = np.asarray(listx)
+    coordx = np.reshape(coordx, (1, nclouds * npc))
+    coordy = np.asarray(listy)
+    coordy = np.reshape(coordy, (1, nclouds * npc))
+    indices = np.asarray(listind)
+    indices = np.reshape(indices, (1, nclouds * npc))
 
-    x4 = np.random.normal(loc=4, scale=3, size=cant_ptos)+26
-    y4 = np.random.normal(loc=3.5, scale=2.5, size=cant_ptos)+8
+    return coordx, coordy, indices
 
-    x5 = np.random.normal(loc=3, scale=3, size=cant_ptos)+17
-    y5 = np.random.normal(loc=3, scale=3, size=cant_ptos)+4
 
-    x6 = np.random.normal(loc=5, scale=2.5, size=cant_ptos)+4
-    y6 = np.random.normal(loc=5.5, scale=3, size=cant_ptos)+6
+def generate_data_noverlap(nclouds, npc):
+    np.random.seed(2)
 
-    x7 = np.random.normal(loc=2, scale=2.25, size=cant_ptos)+3
-    y7 = np.random.normal(loc=2, scale=3.75, size=cant_ptos)+18
+    listx = []
+    listy = []
+    listind = []
+    loc_tuple = ((3,3),(2.5,2.5),(2.5,3),(2.5,2),(3,3),(3,2.5),(2,2),(3.5,2.5))
+    scale_tuple = ((1.5,1.5),(1.5,1.5),(1,1),(1.5,1.5),(1,1.5),(1.5,1),(1.25,1.25),(1.25,1))
+    desplaz_tuple = ((15,34),(22,26),(27,18),(22,10),(15,2),(8,10),(3,18),(8,26))
+    for indcloud in range(nclouds):
+        locx, locy = loc_tuple[indcloud]
+        scalex, scaley = scale_tuple[indcloud]
+        desplazx, desplazy = desplaz_tuple[indcloud]
+        x = np.random.normal(loc=locx, scale=scalex, size=npc) + desplazx
+        y = np.random.normal(loc=locy, scale=scaley, size=npc) + desplazy
+        ind = np.ones(npc)*(indcloud+1)
+        listx.append(x)
+        listy.append(y)
+        listind.append(ind)
 
-    x8 = np.random.normal(loc=3.5, scale=2.25, size=cant_ptos)+6
-    y8 = np.random.normal(loc=2.5, scale=3.0, size=cant_ptos)+28
+    coordx = np.asarray(listx)
+    coordx = np.reshape(coordx, (1, nclouds * npc))
+    coordy = np.asarray(listy)
+    coordy = np.reshape(coordy, (1, nclouds * npc))
+    indices = np.asarray(listind)
+    indices = np.reshape(indices, (1, nclouds * npc))
 
-    coordx = np.array([x1, x2, x3, x4, x5, x6, x7, x8])
-    coordy = np.array([y1, y2, y3, y4, y5, y6, y7, y8])
-    coordx = np.reshape(coordx, (1, 8 * cant_ptos))
-    coordy = np.reshape(coordy, (1, 8 * cant_ptos))
-    #coordx = np.array([x1, x2])
-    #coordy = np.array([y1, y2])
-    #coordx = np.reshape(coordx, (1, 2 * cant_ptos))
-    #coordy = np.reshape(coordy, (1, 2 * cant_ptos))
+    return coordx, coordy, indices
 
-    return coordx, coordy
 
-#cx, cy = generate_data_test_overlap()
-#cx = np.reshape(cx, (8, 200))
-#cy = np.reshape(cy, (8, 200))
-#colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#7f7f7f']
-#fig, ax = plt.subplots()
-#for i in range(8):
-#    leyenda = "nube "+ str(i)
-#    ax.scatter(cx[i], cy[i], marker='o', color=colors[i], alpha=0.6, label=leyenda)
+def generate_data_overlap(nclouds, npc):
+    np.random.seed(2)
 
-#ax.legend(bbox_to_anchor=(-0.12, -0.18, 1.2, .10), loc='upper center', ncol=8, mode="expand",
-#          borderaxespad=0., fontsize='x-small')
-#plt.title("Representación nubes con solape")
-#plt.show()
+    listx = []
+    listy = []
+    listind = []
+    loc_tuple = ((3, 3), (2.5, 2.5), (4.5, 4), (4, 3.5), (3, 3), (5, 5.5), (2, 2), (3.5, 2.5))
+    scale_tuple = ((3.5, 2.5), (2.5, 2.5), (2.75, 3.5), (3, 2.5), (3, 3), (2.5, 3), (2.25, 3.75), (2.25, 3))
+    desplaz_tuple = ((17, 20), (26, 23), (24, 17), (24, 10), (17, 10), (8, 8), (8, 18), (10, 22))
+    for indcloud in range(nclouds):
+        locx, locy = loc_tuple[indcloud]
+        scalex, scaley = scale_tuple[indcloud]
+        desplazx, desplazy = desplaz_tuple[indcloud]
+        x = np.random.normal(loc=locx, scale=scalex, size=npc) + desplazx
+        y = np.random.normal(loc=locy, scale=scaley, size=npc) + desplazy
+        ind = np.ones(npc) * (indcloud + 1)
+        listx.append(x)
+        listy.append(y)
+        listind.append(ind)
+
+    coordx = np.asarray(listx)
+    coordx = np.reshape(coordx, (1, nclouds * npc))
+    coordy = np.asarray(listy)
+    coordy = np.reshape(coordy, (1, nclouds * npc))
+    indices = np.asarray(listind)
+    indices = np.reshape(indices, (1, nclouds * npc))
+
+    return coordx, coordy, indices
+
+
+# cx, cy = generate_data_test_overlap()
+# cx = np.reshape(cx, (8, 200))
+# cy = np.reshape(cy, (8, 200))
+# colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#7f7f7f']
+# fig, ax = plt.subplots()
+# for i in range(8):
+#     leyenda = "nube "+ str(i)
+#     ax.scatter(cx[i], cy[i], marker='o', color=colors[i], alpha=0.6, label=leyenda)
+# ax.legend(bbox_to_anchor=(-0.12, -0.18, 1.2, .10), loc='upper center', ncol=8, mode="expand",
+#           borderaxespad=0., fontsize='x-small')
+# plt.title("Representación nubes con solape")
+# plt.show()
 
 def pinta_vant (centroides):
     nubes = generate_data_test()
@@ -172,17 +223,17 @@ def pinta_vant (centroides):
     plt.title("Representación nubes y centroides")
     plt.show()
 
-def pinta(coordx, coordy, centroides):
-    cant_ptos = 200
-    coordx = np.reshape(coordx, (8, cant_ptos))
-    coordy = np.reshape(coordy, (8, cant_ptos))
+def pinta(coordx, coordy, centroides, npc, nclouds):
+    #cant_ptos = 100000
+    coordx = np.reshape(coordx, (nclouds, npc))
+    coordy = np.reshape(coordy, (nclouds, npc))
     colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#7f7f7f']
     # '#bcbd22', '#17becf', '#1a55FF']
 
     # Set the plot curve with markers and a title
     fig, ax = plt.subplots()
 
-    for i in range(8):
+    for i in range(nclouds):
         leyenda = "nube "+ str(i)
         ax.scatter(coordx[i], coordy[i], marker='o', color=colors[i], label=leyenda)
         #ax.legend(bbox_to_anchor=(1.05, 1), loc='upper left', borderaxespad=0.)
