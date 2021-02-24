@@ -42,6 +42,6 @@ logging.info(' ')
 npc = 100000
 logging.info('------------------------------------------------------------------------')
 logging.info(' ')
-logging.info('Sub Text 4, npc=',npc)
+logging.info('Sub Text 4, npc=%s',npc)
 kt.kmeans_tree(nclouds,npc,tam_grupo,n_centroides,overlap)
 logging.info(' ')
