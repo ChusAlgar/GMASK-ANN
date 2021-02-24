@@ -2,7 +2,7 @@ import logging
 import kmeans_tree as kt
 
 
-logging.basicConfig(filename='result_npcNoverlap.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s',
+logging.basicConfig(filename='result_npcNoverlap.log', filemode='w', format='%(asctime)s - %(name)s - %(message)s',
                     level=logging.INFO)
 
 # Parámetros de entrada comunes a todas las simulaciones:
