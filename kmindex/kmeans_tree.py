@@ -148,6 +148,7 @@ def kmeans_tree(nclouds, npc, tam_grupo, n_centroides, overlap):
 
         print("********************PROCESO DECONSTRUCCIÓN*********************")
         n_capas = id_capa-1
+        logging.info('tree-depth=%s', n_capas)
 
         lcorrespond = []
         aciertos = 0
