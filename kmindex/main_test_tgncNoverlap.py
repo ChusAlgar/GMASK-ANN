@@ -8,7 +8,6 @@ logging.basicConfig(filename='result_tgncNoverlap.log', filemode='w', format='%(
 # Parámetros de entrada comunes a todas las simulaciones:
 nclouds = 8
 npc = 10000
-# cant_ptos = nclouds * npc
 overlap = False
 
 
