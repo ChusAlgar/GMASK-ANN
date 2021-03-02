@@ -2,7 +2,7 @@ import logging
 import kmeans_tree as kt
 
 
-logging.basicConfig(filename='result_tgncNoverlap.log', filemode='w', format='%(asctime)s - %(name)s - %(message)s',
+logging.basicConfig(filename='result_tgncOverlap.log', filemode='w', format='%(asctime)s - %(name)s - %(message)s',
                     level=logging.INFO)
 
 # Parámetros de entrada comunes a todas las simulaciones:
@@ -12,7 +12,7 @@ npc = 10000
 overlap = True
 
 
-#SubText 1_npc=200
+#SubText 1
 tam_grupo = 10
 n_centroides = 5
 logging.info('------------------------------------------------------------------------')
@@ -21,7 +21,7 @@ logging.info('Sub Text 1, tam_grupo=%s  n_centroides=%s', tam_grupo, n_centroide
 kt.kmeans_tree(nclouds,npc,tam_grupo,n_centroides,overlap)
 logging.info(' ')
 
-#SubText 2_npc=1000
+#SubText 2
 tam_grupo = 30
 n_centroides = 15
 logging.info('------------------------------------------------------------------------')
@@ -30,7 +30,7 @@ logging.info('Sub Text 2, tam_grupo=%s  n_centroides=%s', tam_grupo, n_centroide
 kt.kmeans_tree(nclouds,npc,tam_grupo,n_centroides,overlap)
 logging.info(' ')
 
-#SubText 3_npc=1000
+#SubText 3
 tam_grupo = 50
 n_centroides = 25
 logging.info('------------------------------------------------------------------------')
@@ -40,7 +40,7 @@ kt.kmeans_tree(nclouds,npc,tam_grupo,n_centroides,overlap)
 logging.info(' ')
 
 
-#SubText 4_npc=10000
+#SubText 4
 tam_grupo = 70
 n_centroides = 35
 logging.info('------------------------------------------------------------------------')
@@ -50,7 +50,7 @@ kt.kmeans_tree(nclouds,npc,tam_grupo,n_centroides,overlap)
 logging.info(' ')
 
 
-#SubText 5_npc=10000
+#SubText 5
 tam_grupo = 90
 n_centroides = 45
 logging.info('------------------------------------------------------------------------')
@@ -60,7 +60,7 @@ kt.kmeans_tree(nclouds,npc,tam_grupo,n_centroides,overlap)
 logging.info(' ')
 
 
-#SubText 6_npc=10000
+#SubText 6
 tam_grupo = 110
 n_centroides = 55
 logging.info('------------------------------------------------------------------------')
