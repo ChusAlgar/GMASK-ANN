@@ -8,6 +8,7 @@ from timeit import default_timer as timer
 import logging
 
 
+logger = logging.getLogger(__name__)
 
 def kmeans_tree(nclouds, npc, tam_grupo, n_centroides, overlap):
     # Parámetros de entada:
@@ -138,7 +139,7 @@ def kmeans_tree(nclouds, npc, tam_grupo, n_centroides, overlap):
 
         end_time_constr = timer()
         #print("--- %s seconds ---", end_time_constr-start_time_constr)
-        logging.info('tree time=%s seconds', end_time_constr-start_time_constr)
+        logger.info('tree time=%s seconds', end_time_constr-start_time_constr)
 
         # Pinto las nubes de puntos originales junto con los centroides sacados
         dt.pinta(coordx, coordy, puntos_capa[id_capa-1], npc, nclouds)
@@ -148,7 +149,7 @@ def kmeans_tree(nclouds, npc, tam_grupo, n_centroides, overlap):
 
         print("********************PROCESO DECONSTRUCCIÓN*********************")
         n_capas = id_capa-1
-        logging.info('tree-depth=%s', n_capas)
+        logger.info('tree-depth=%s', n_capas)
 
         lcorrespond = []
         aciertos = 0
@@ -238,12 +239,12 @@ def kmeans_tree(nclouds, npc, tam_grupo, n_centroides, overlap):
         vector = vector_aux
         print("Porcentaje de aciertos en la iteración ", iter, ": ", aciertos*100/(npc*nclouds))
         print("Porcentaje de fallos en la iteración ", iter, ": ", fallos*100/(npc*nclouds))
-        logging.info('Porcentaje de aciertos= %s', aciertos * 100 / (npc * nclouds))
-        logging.info('Porcentaje de fallos= %s', fallos * 100 / (npc * nclouds))
+        logger.info('Porcentaje de aciertos= %s', aciertos * 100 / (npc * nclouds))
+        logger.info('Porcentaje de fallos= %s', fallos * 100 / (npc * nclouds))
 
     end_time_deconstr = timer()
     #print("--- %s seconds ---", end_time_deconstr-start_time_deconstr)
-    logging.info('search time= %s seconds', end_time_deconstr-start_time_deconstr)
+    logger.info('search time= %s seconds', end_time_deconstr-start_time_deconstr)
 
     """ Representación del resultado de la deconstrucción"""
     '''17-02-2021   clustters = []
