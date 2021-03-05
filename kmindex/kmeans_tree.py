@@ -10,6 +10,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+
 def kmeans_tree(nclouds, npc, tam_grupo, n_centroides, overlap):
     # Parámetros de entada:
     # tam_grupo = tamaño del grupo para bombardear con los centroides (depende de la capacidad computacional).
@@ -18,28 +19,30 @@ def kmeans_tree(nclouds, npc, tam_grupo, n_centroides, overlap):
     opcion = 'kmeans'
     normaliza = False
 
+    cant_ptos = nclouds * npc
 
     # Datos de entrada: nubes que siguen una distribución normal, en dos dimensiones.
-    #print("genera los datos")
+    # print("genera los datos")
     if overlap:
-        coordx, coordy, indices = dt.generate_data_foverlap(nclouds, npc) # las genera con un poco de solpae
-        # coordx, coordy, indices = dt.generate_data_overlap(nclouds, npc) #las genera con mucho solape
+        coordx, coordy, indices = dt.generate_data_foverlap(nclouds, npc)  # las genera con un poco de solpae
+        # coordx, coordy, indices = dt.generate_data_overlap(nclouds, npc)  #las genera con mucho solape
     else:
         # coordx, coordy = dt.generate_data_test2()  # las genera sin solape
-        coordx, coordy, indices = dt.generate_data_noverlap(nclouds, npc) # las genera sin solape optimizando la pertenencia a la nube
+        coordx, coordy, indices = dt.generate_data_noverlap(nclouds, npc)  # las genera sin solape optimizando la
+                                                                           # pertenencia a la nube
 
     vector_original=list(zip(coordx[0],coordy[0],indices[0]))
     vector_ordenado = list(zip(coordx[0],coordy[0],indices[0]))
 
-    #print("empieza a desordena los datos")
+    # print("empieza a desordena los datos")
     np.random.shuffle(vector_original) #desordenamos los datos
 
-    vector_original, puntos_nube = util.identifica_nube_opt(vector_original) # optimización de la pertenencia a la nube
+    vector_original, puntos_nube = util.identifica_nube_opt(vector_original)  # optimización de la pertenencia a la nube
 
-    #print("termina de desordenar los datos")
-    #print("empieza la identificación de las nubes")
-    #nubes_puntos, puntos_nube,_ = util.identifica_nube(vector_ordenado, vector_original)
-    #print("termina la identificación de las nubes")
+    # print("termina de desordenar los datos")
+    # print("empieza la identificación de las nubes")
+    # nubes_puntos, puntos_nube,_ = util.identifica_nube(vector_ordenado, vector_original)
+    # print("termina la identificación de las nubes")
     """cont = 0
     nubes=[]
     nubes_ord=[]
@@ -66,12 +69,17 @@ def kmeans_tree(nclouds, npc, tam_grupo, n_centroides, overlap):
             vector = preprocessing.normalize(vector, axis=0, norm='l2')
 
         print("calculo de grupos")
-        # Calculamos el número de grupos que vamos a formar en la capa 0:
-        nfilas = len(vector)
-        ncolumnas = 2
-        ngrupos = int(nfilas / tam_grupo)
-        if (nfilas % tam_grupo) != 0:
+        # Calculamos el número de grupos que vamos a formar en la capa 0 (se obtiene a partir del número de puntos
+        # total):
+        # Inicio 03-03-2021
+        # nfilas = len(vector)
+        # ncolumnas = 2
+        # ngrupos = int(nfilas / tam_grupo)
+        # if (nfilas % tam_grupo) != 0:
+        ngrupos = int(cant_ptos / tam_grupo)
+        if (cant_ptos % tam_grupo) != 0:
             ngrupos += 1
+        # Fin 03-03-2021
 
 
 
@@ -79,24 +87,33 @@ def kmeans_tree(nclouds, npc, tam_grupo, n_centroides, overlap):
         print("INICIO PROCESO CONSTRUCCIÓN")
         puntos_capa = []  # estructura en la que almacenamos los centroides de todas las capas
         labels_capa = []  # estructura en la que almacenamos las etiquetas de los puntos
-        grupos_capa = []  # estructura en la que almacenamos una lista, para cada capa, que contiene el número de elementos de cada grupo
-        #grupos_capa.append(ngrupos)
+        grupos_capa = []  # estructura en la que almacenamos una lista, para cada capa, que contiene el número de
+                          # elementos de cada grupo
+        # grupos_capa.append(ngrupos)
         id_capa = 0
         while ngrupos >= 1:
             # Capa n:
             inicio = 0
             puntos_grupo = []
             labels_grupo = []
+            cont_ptos = 0  # 03-03-2021. Contador de los puntos en cada capa
             npuntos = []
             for id_grupo in range(ngrupos):
                 fin = inicio + tam_grupo
-                if fin>len(vector):
-                    fin = len(vector)
+                # Inicio 03-03-2021. Control del último grupo (no tiene cantidad de puntos suficientes para formar
+                # grupo
+                # if fin > len(vector):
+                if fin > cant_ptos:
+                    # fin = len(vector)
+                    fin = cant_ptos
+                # Fin 03-03-2021
                 npuntos.append(fin-inicio)
                 if ((fin-inicio)>n_centroides):
                     if opcion == 'kmeans':
                         kmeans = KMeans(n_clusters=n_centroides).fit(vector[inicio:fin])
-                        puntos_grupo.append(kmeans.cluster_centers_)  # aquí tenemos almacenados los puntos de la siguiente capa para cada grupo
+                        puntos_grupo.append(kmeans.cluster_centers_)  # aquí tenemos almacenados los puntos de la
+                                                                      # siguiente capa para cada grupo
+                        cont_ptos += n_centroides  # 03-03-20021
                         labels_grupo.append(kmeans.labels_)
                     else:
                         data = vector[inicio:fin]
@@ -106,11 +123,16 @@ def kmeans_tree(nclouds, npc, tam_grupo, n_centroides, overlap):
                         for point_idx in M:
                             list_centroides.append(data[point_idx])
                         puntos_grupo.append(np.array(list_centroides))
+                        cont_ptos += n_centroides  # 03-03-20021
                         labels_grupo.append(M)
                     inicio = fin
                 else:
                     # Si los puntos que tenemos en el grupo no es mayor que el número de centroides, no hacemos culster
-                    puntos_grupo.append(vector[inicio:fin])  # aquí tenemos almacenados los puntos de la siguiente capa para cada grupo
+                    # 03-03-2021  puntos_grupo.append(vector[inicio:fin])  # aquí tenemos almacenados los puntos de la
+                                                                          # siguiente capa para cada grupo
+                    puntos_grupo.append(np.array(vector[inicio:fin]))  # aquí tenemos almacenados los puntos de la
+                                                                       # siguiente capa para cada grupo
+                    cont_ptos = cont_ptos + (fin - inicio)  # 03-03-2021
                     etiquetas = []
                     for i in range((fin-inicio)):
                         etiquetas.append(i)
@@ -123,22 +145,24 @@ def kmeans_tree(nclouds, npc, tam_grupo, n_centroides, overlap):
             # Guardamos las etiquetas de los puntos (índice del centroide con el que están asociados):
             array2 = np.array(labels_grupo)
             labels_capa.append(array2)
+            # Almacenamos en vector los puntos de la siguiente capa
+            # 03-03-2021 vector = array.reshape(-1, array.shape[-1])
+            vector = np.concatenate(puntos_grupo).ravel().tolist()  # 03-03-2021
+            vector = np.array(vector)
+            vector = vector.reshape(cont_ptos, 2)
             # Calculamos el numero de grupos de la siguiente capa
-            vector = array.reshape(-1, array.shape[-1])
-            nfilas, ncolumnas = vector.shape
-            ngrupos = int(nfilas / tam_grupo)
-            #if id_capa == 3:
-            #    print("para aquí")
+            ngrupos = int(cont_ptos / tam_grupo)    # 03-03-2021  nfilas, ncolumnas = vector.shape
             if ngrupos != 0:
-                if (nfilas % tam_grupo) != 0:
+                if (cont_ptos % tam_grupo) != 0:    # 03-03-2021 if (nfilas % tam_grupo) != 0:
                     ngrupos += 1
-                #grupos_capa.append(ngrupos)
+                # grupos_capa.append(ngrupos)
+            cant_ptos = cont_ptos  # 03-03-2021 Actualizamos cant_ptos con el número de puntos del siguiente nivel
             id_capa +=1
 
         print("FIN PROCESO CONSTRUCCIÓN")
 
         end_time_constr = timer()
-        #print("--- %s seconds ---", end_time_constr-start_time_constr)
+        # print("--- %s seconds ---", end_time_constr-start_time_constr)
         logger.info('tree time=%s seconds', end_time_constr-start_time_constr)
 
         # Pinto las nubes de puntos originales junto con los centroides sacados
@@ -158,18 +182,21 @@ def kmeans_tree(nclouds, npc, tam_grupo, n_centroides, overlap):
         for i in range(len(vector_original)):
             seq_buscada = np.array(vector_original[i])
             seq_buscada = np.reshape(seq_buscada, (1, 2))
-            #seq_buscada = np.reshape(seq_buscada, (1, 3))
-            #indice = seq_buscada[0,2]
-            #coordx = seq_buscada[0,0]
-            #coordy = seq_buscada[0,1]
-            #seq_buscada = np.array([coordx, coordy])
-
-            #if i == 6:
-            #    print("para aquí")
+            # seq_buscada = np.reshape(seq_buscada, (1, 3))
+            # indice = seq_buscada[0,2]
+            # coordx = seq_buscada[0,0]
+            # coordy = seq_buscada[0,1]
+            # seq_buscada = np.array([coordx, coordy])
 
             for id_capa in range(n_capas, -1, -1):
-                centroides = puntos_capa[id_capa]
-                centroides = centroides.reshape(-1, centroides.shape[-1])
+                # 03-03-2021 Obtenemos los centroides de la capa
+                # centroides = puntos_capa[id_capa]
+                centroides = np.array(puntos_capa[id_capa])
+                # centroides = centroides.reshape(-1, centroides.shape[-1])
+                centroides = np.concatenate(centroides).ravel().tolist()
+                dim = int(len(centroides) / 2)
+                centroides = np.array(centroides)
+                centroides = centroides.reshape(dim, 2)
                 if id_capa < n_capas:
                     # seleccionamos solo los puntos que están asociados con ese centroide
                     centroidesb = []
@@ -194,20 +221,20 @@ def kmeans_tree(nclouds, npc, tam_grupo, n_centroides, overlap):
                 else:
                     id_centroide = columna - 1
                     id_grupo = 0
-                #print(id_centroide)
+                # print(id_centroide)
                 lista_pos = []
-                #ngrupos, npuntos = labels_capa[id_capa].shape
+                # ngrupos, npuntos = labels_capa[id_capa].shape
                 ngrupos = len(grupos_capa[id_capa])
                 npuntos = grupos_capa[id_capa][id_grupo]
-                #for id_grupo in range(ngrupos):
-                #fin = labels_capa[id_capa][id_grupo].size
-                #for pos in range(fin):
+                # for id_grupo in range(ngrupos):
+                # fin = labels_capa[id_capa][id_grupo].size
+                # for pos in range(fin):
                 for pos in range(npuntos):
                     if labels_capa[id_capa][id_grupo][pos] == id_centroide:
                         desplaz = 0
                         for id in range(id_grupo):
                             desplaz += grupos_capa[id_capa][id]
-                        #lista_pos.append(pos + id_grupo * npuntos)
+                        # lista_pos.append(pos + id_grupo * npuntos)
                         lista_pos.append(pos + desplaz)
                 # id_capa=id_capa-1
 
@@ -220,13 +247,14 @@ def kmeans_tree(nclouds, npc, tam_grupo, n_centroides, overlap):
             D = pairwise_distances(puntos_dist, metric='euclidean')
             columna = util.busca_dist_menor(D)
             id_punto = lista_pos[columna - 1]
-            #print("Punto encontrado: ", id_punto,seq_buscada[0],vector_original[id_punto])
-            #17-02-2021  lcorrespond.append((id_punto, puntos_nube[id_punto])) #id_punto//cant_ptos)) # guardamos el índice del punto encontrado y el índice del clustter al que pertenece
-            #Metemos el punto que se le asigna en un vector auxiliar (este vector auxiliar será sobre el que volvamos a aplicar el proceso de
-            #construcción y deconstrucción:
+            # print("Punto encontrado: ", id_punto,seq_buscada[0],vector_original[id_punto])
+            # guardamos el índice del punto encontrado y el índice del clustter al que pertenece
+            # 17-02-2021  lcorrespond.append((id_punto, puntos_nube[id_punto])) #id_punto//cant_ptos))
+            # Metemos el punto que se le asigna en un vector auxiliar (este vector auxiliar será sobre el que volvamos a
+            # aplicar el proceso de construcción y deconstrucción:
             vector_aux.append(vector_original[id_punto])
 
-            #Contamos los aciertos y los fallos
+            # Contamos los aciertos y los fallos
             '''if D[0, 1:].min() == 0.0:
                 aciertos+=1
             else:
@@ -243,7 +271,7 @@ def kmeans_tree(nclouds, npc, tam_grupo, n_centroides, overlap):
         logger.info('Porcentaje de fallos= %s', fallos * 100 / (npc * nclouds))
 
     end_time_deconstr = timer()
-    #print("--- %s seconds ---", end_time_deconstr-start_time_deconstr)
+    # print("--- %s seconds ---", end_time_deconstr-start_time_deconstr)
     logger.info('search time= %s seconds', end_time_deconstr-start_time_deconstr)
 
     """ Representación del resultado de la deconstrucción"""
