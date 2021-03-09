@@ -180,7 +180,6 @@ def kmeans_tree(nclouds, npc, tam_grupo, n_centroides, overlap):
         fallos = 0
         vector_aux = []
         for i in range(len(vector_original)):
-            print("Busco punto: ", i)
             seq_buscada = np.array(vector_original[i])
             seq_buscada = np.reshape(seq_buscada, (1, 2))
             # seq_buscada = np.reshape(seq_buscada, (1, 3))
