@@ -11,7 +11,7 @@ tam_grupo = 16
 n_centroides = 8
 overlap = False
 
-
+'''
 # SubText 1_npc=200
 npc = 200
 logging.info('------------------------------------------------------------------------')
@@ -36,7 +36,7 @@ logging.info('------------------------------------------------------------------
 logging.info(' ')
 logging.info('Sub Text 3, npc=%s',npc)
 kt.kmeans_tree(nclouds,npc,tam_grupo,n_centroides,overlap)
-logging.info(' ')
+logging.info(' ')'''
 
 
 # SubText 4_npc=10000

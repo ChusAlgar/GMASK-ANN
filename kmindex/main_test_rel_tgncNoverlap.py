@@ -101,3 +101,4 @@ logging.info(' ')
 logging.info('Sub Text 90_72, tam_grupo=%s  n_centroides=%s', tam_grupo, n_centroides)
 kt.kmeans_tree(nclouds,npc,tam_grupo,n_centroides,overlap)
 logging.info(' ')
+

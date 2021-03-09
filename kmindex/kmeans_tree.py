@@ -108,7 +108,7 @@ def kmeans_tree(nclouds, npc, tam_grupo, n_centroides, overlap):
                     fin = cant_ptos
                 # Fin 03-03-2021
                 npuntos.append(fin-inicio)
-                if ((fin-inicio)>n_centroides):
+                if ((fin-inicio)>=n_centroides):
                     if opcion == 'kmeans':
                         kmeans = KMeans(n_clusters=n_centroides).fit(vector[inicio:fin])
                         puntos_grupo.append(kmeans.cluster_centers_)  # aquí tenemos almacenados los puntos de la
@@ -180,6 +180,7 @@ def kmeans_tree(nclouds, npc, tam_grupo, n_centroides, overlap):
         fallos = 0
         vector_aux = []
         for i in range(len(vector_original)):
+            print("Busco punto: ", i)
             seq_buscada = np.array(vector_original[i])
             seq_buscada = np.reshape(seq_buscada, (1, 2))
             # seq_buscada = np.reshape(seq_buscada, (1, 3))
@@ -203,6 +204,7 @@ def kmeans_tree(nclouds, npc, tam_grupo, n_centroides, overlap):
                     for pos in lista_pos:
                         centroidesb.append(centroides[pos])
                     centroides = centroidesb
+
                 puntos_dist = np.concatenate([seq_buscada, centroides])
                 D = pairwise_distances(puntos_dist, metric='euclidean')
                 columna = util.busca_dist_menor(D)
@@ -219,8 +221,18 @@ def kmeans_tree(nclouds, npc, tam_grupo, n_centroides, overlap):
                     # etiquetas = etiquetas.reshape(-1, etiquetas.shape[-1])
                     # id_centroide = etiquetas[0][pos_centroide]
                 else:
-                    id_centroide = columna - 1
-                    id_grupo = 0
+                    # 08-03-2021. Corrección para cuando la última capa del arbol tiene más de un grupo
+                    if len(grupos_capa[n_capas])>1:
+                        if (columna-1) >= n_centroides:
+                            id_grupo = int((columna-1)/n_centroides)
+                            id_centroide = (columna-1) - (id_grupo*n_centroides)
+                        else:
+                            id_centroide = columna - 1
+                            id_grupo = 0
+                    # 08-03-2021. Fin.
+                    else:
+                        id_centroide = columna - 1
+                        id_grupo = 0
                 # print(id_centroide)
                 lista_pos = []
                 # ngrupos, npuntos = labels_capa[id_capa].shape
