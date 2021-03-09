@@ -91,3 +91,13 @@ logging.info(' ')
 logging.info('Sub Text 90_45, tam_grupo=%s  n_centroides=%s', tam_grupo, n_centroides)
 kt.kmeans_tree(nclouds,npc,tam_grupo,n_centroides,overlap)
 logging.info(' ')
+
+
+# SubText 90_72
+tam_grupo = 90
+n_centroides = 72
+logging.info('------------------------------------------------------------------------')
+logging.info(' ')
+logging.info('Sub Text 90_72, tam_grupo=%s  n_centroides=%s', tam_grupo, n_centroides)
+kt.kmeans_tree(nclouds,npc,tam_grupo,n_centroides,overlap)
+logging.info(' ')
