@@ -1,8 +1,8 @@
 import logging
-import kmeans_tree as kt
+import error_kmeans_tree as kt
 
 
-logging.basicConfig(filename='result_npcNoverlap.log', filemode='w', format='%(asctime)s - %(name)s - %(message)s',
+logging.basicConfig(filename='result_npcNoverlap100000.log', filemode='w', format='%(asctime)s - %(name)s - %(message)s',
                     level=logging.INFO)
 
 # Parámetros de entrada comunes a todas las simulaciones:
