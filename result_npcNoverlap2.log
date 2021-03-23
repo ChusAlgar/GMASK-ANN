@@ -1,0 +1,36 @@
+2021-03-04 15:06:35,698 - root - ------------------------------------------------------------------------
+2021-03-04 15:06:35,698 - root -  
+2021-03-04 15:06:35,698 - root - Sub Text 1, npc=200
+2021-03-04 15:06:39,820 - kmeans_tree - tree time=4.1189877 seconds
+2021-03-04 15:06:39,957 - kmeans_tree - tree-depth=7
+2021-03-04 15:06:41,919 - kmeans_tree - Porcentaje de aciertos= 100.0
+2021-03-04 15:06:41,919 - kmeans_tree - Porcentaje de fallos= 0.0
+2021-03-04 15:06:41,919 - kmeans_tree - search time= 1.9622155999999995 seconds
+2021-03-04 15:06:41,920 - root -  
+2021-03-04 15:06:41,920 - root - ------------------------------------------------------------------------
+2021-03-04 15:06:41,920 - root -  
+2021-03-04 15:06:41,920 - root - Sub Text 2, npc=1000
+2021-03-04 15:07:01,980 - kmeans_tree - tree time=20.054967299999998 seconds
+2021-03-04 15:07:02,125 - kmeans_tree - tree-depth=9
+2021-03-04 15:07:22,724 - kmeans_tree - Porcentaje de aciertos= 99.8875
+2021-03-04 15:07:22,724 - kmeans_tree - Porcentaje de fallos= 0.1125
+2021-03-04 15:07:22,724 - kmeans_tree - search time= 20.598833999999997 seconds
+2021-03-04 15:07:22,726 - root -  
+2021-03-04 15:07:22,726 - root - ------------------------------------------------------------------------
+2021-03-04 15:07:22,726 - root -  
+2021-03-04 15:07:22,726 - root - Sub Text 3, npc=10000
+2021-03-04 15:10:56,682 - kmeans_tree - tree time=213.8755453 seconds
+2021-03-04 15:10:57,118 - kmeans_tree - tree-depth=13
+2021-03-04 15:37:09,888 - kmeans_tree - Porcentaje de aciertos= 99.7775
+2021-03-04 15:37:09,889 - kmeans_tree - Porcentaje de fallos= 0.2225
+2021-03-04 15:37:09,889 - kmeans_tree - search time= 1572.7714166 seconds
+2021-03-04 15:37:09,913 - root -  
+2021-03-18 17:51:10,689 - root - ------------------------------------------------------------------------
+2021-03-18 17:51:10,689 - root -  
+2021-03-18 17:51:10,689 - root - Sub Text 4, npc=100000
+2021-03-18 18:38:26,536 - kmeans_tree - tree time=2834.719391810002 seconds
+2021-03-18 18:38:26,677 - kmeans_tree - tree-depth=16
+2021-03-18 22:32:52,104 - kmeans_tree - Porcentaje de aciertos= 99.949
+2021-03-18 22:32:52,104 - kmeans_tree - Porcentaje de fallos= 0.051
+2021-03-18 22:32:52,104 - kmeans_tree - search time= 14065.427778801 seconds
+2021-03-18 22:32:52,636 - root -  

@@ -1,0 +1,54 @@
+2021-03-05 10:11:09,384 - root - ------------------------------------------------------------------------
+2021-03-05 10:11:09,384 - root -  
+2021-03-05 10:11:09,384 - root - Sub Text 1, tam_grupo=10  n_centroides=5
+2021-03-05 10:16:33,916 - kmeans_tree - tree time=324.43278894899413 seconds
+2021-03-05 10:16:33,976 - kmeans_tree - tree-depth=13
+2021-03-05 10:56:05,913 - kmeans_tree - Porcentaje de aciertos= 99.84125
+2021-03-05 10:56:05,913 - kmeans_tree - Porcentaje de fallos= 0.15875
+2021-03-05 10:56:05,913 - kmeans_tree - search time= 2371.93720609101 seconds
+2021-03-05 10:56:05,959 - root -  
+2021-03-05 10:56:05,960 - root - ------------------------------------------------------------------------
+2021-03-05 10:56:05,960 - root -  
+2021-03-05 10:56:05,960 - root - Sub Text 2, tam_grupo=30  n_centroides=15
+2021-03-05 11:00:23,252 - kmeans_tree - tree time=257.1890302839456 seconds
+2021-03-05 11:00:23,319 - kmeans_tree - tree-depth=12
+2021-03-05 11:27:10,252 - kmeans_tree - Porcentaje de aciertos= 99.80125
+2021-03-05 11:27:10,252 - kmeans_tree - Porcentaje de fallos= 0.19875
+2021-03-05 11:27:10,252 - kmeans_tree - search time= 1606.933153743972 seconds
+2021-03-05 11:27:10,292 - root -  
+2021-03-05 11:27:10,292 - root - ------------------------------------------------------------------------
+2021-03-05 11:27:10,292 - root -  
+2021-03-05 11:27:10,292 - root - Sub Text 3, tam_grupo=50  n_centroides=25
+2021-03-05 11:32:20,221 - kmeans_tree - tree time=309.7637560439762 seconds
+2021-03-05 11:32:20,334 - kmeans_tree - tree-depth=11
+2021-03-05 12:08:25,833 - kmeans_tree - Porcentaje de aciertos= 99.91
+2021-03-05 12:08:25,833 - kmeans_tree - Porcentaje de fallos= 0.09
+2021-03-05 12:08:25,833 - kmeans_tree - search time= 2165.499559757998 seconds
+2021-03-05 12:08:25,898 - root -  
+2021-03-05 12:08:25,898 - root - ------------------------------------------------------------------------
+2021-03-05 12:08:25,898 - root -  
+2021-03-05 12:08:25,898 - root - Sub Text 4, tam_grupo=70  n_centroides=35
+2021-03-05 12:13:42,346 - kmeans_tree - tree time=316.3160960240057 seconds
+2021-03-05 12:13:42,482 - kmeans_tree - tree-depth=11
+2021-03-05 12:49:04,212 - kmeans_tree - Porcentaje de aciertos= 99.9375
+2021-03-05 12:49:04,212 - kmeans_tree - Porcentaje de fallos= 0.0625
+2021-03-05 12:49:04,212 - kmeans_tree - search time= 2121.730281847995 seconds
+2021-03-05 12:49:04,284 - root -  
+2021-03-05 12:49:04,285 - root - ------------------------------------------------------------------------
+2021-03-05 12:49:04,285 - root -  
+2021-03-05 12:49:04,285 - root - Sub Text 5, tam_grupo=90  n_centroides=45
+2021-03-05 12:54:15,008 - kmeans_tree - tree time=310.5857525320025 seconds
+2021-03-05 12:54:15,167 - kmeans_tree - tree-depth=10
+2021-03-05 13:30:06,943 - kmeans_tree - Porcentaje de aciertos= 99.93375
+2021-03-05 13:30:06,943 - kmeans_tree - Porcentaje de fallos= 0.06625
+2021-03-05 13:30:06,943 - kmeans_tree - search time= 2151.777117270045 seconds
+2021-03-05 13:30:07,013 - root -  
+2021-03-05 13:30:07,014 - root - ------------------------------------------------------------------------
+2021-03-05 13:30:07,014 - root -  
+2021-03-05 13:30:07,014 - root - Sub Text 6, tam_grupo=110  n_centroides=55
+2021-03-05 13:36:38,845 - kmeans_tree - tree time=391.6988335029455 seconds
+2021-03-05 13:36:39,027 - kmeans_tree - tree-depth=10
+2021-03-05 14:10:41,874 - kmeans_tree - Porcentaje de aciertos= 99.94875
+2021-03-05 14:10:41,874 - kmeans_tree - Porcentaje de fallos= 0.05125
+2021-03-05 14:10:41,874 - kmeans_tree - search time= 2042.8475306590553 seconds
+2021-03-05 14:10:41,943 - root -  
