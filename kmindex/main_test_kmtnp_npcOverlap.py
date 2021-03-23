@@ -9,7 +9,7 @@ logging.basicConfig(filename='result_kmtnp_npcOverlap.log', filemode='w', format
 nclouds = 8
 tam_grupo = 16
 n_centroides = 8
-overlap = False
+overlap = True
 
 
 # SubText 1_npc=20
