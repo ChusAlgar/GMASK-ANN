@@ -1,4 +1,6 @@
 import numpy as np
+from sklearn.cluster import KMeans
+from sklearn.metrics.pairwise import pairwise_distances
 
 def split_seq(seq, size):
     """Divide una secuencia en trozos de tamaño size con solapamiento"""
@@ -182,3 +184,154 @@ def obten_idgrupo(id_punto, grupos):
             fin = fin+grupos[id_grupo]
 
     return id_grupo
+
+
+### OPERACIONES PARA LA REAGRUPACIÓN DE GRUPOS DESPUÉS DE LA 1º DECONSTRUCCIÓN ###
+
+def myFunc(e):
+  return len(e)
+
+def busca_candidato(D, id_grupo):
+    '''filaini = D[id_grupo, 0:id_grupo]
+    filafin = D[id_grupo, (id_grupo+1):]
+    if len(filaini) == 0:
+        fila = filafin
+    elif len(filafin) == 0:
+        fila = filaini
+    else:
+        fila = filaini + filafin
+    elem_min = fila.min()
+    fila = fila.tolist()
+    indice = fila.index(elem_min)'''
+    fila = D[id_grupo, : ].tolist()
+    filaOrd = sorted(fila)
+    minimo = filaOrd[1]
+    indice = fila.index(minimo)
+    return indice
+
+def hay_grupos_peq(vector, tam_grupo):
+    bandera = False
+    cont = 0
+    for elem in vector:
+        if (len(elem) < tam_grupo):
+            cont += 1
+
+    if cont == len(vector):
+        bandera = True
+
+    return bandera
+
+def  cluster_points(points, number_of_clusters):
+    '''This function should take a list of points (in two dimensions) and return a list of clusters,
+    each of which is a list of points. For example, if you passed in [(0, 0), (-0.1, 0.1), (2,3), (2.1, 3)]
+    with number_of_clusters set to 2, it should return [[(0, 0), (-0.1, 0.1)], [(2,3), (2.1, 3)]].'''
+
+    model = KMeans(n_clusters=number_of_clusters, random_state=0)
+    distMat = model.fit_transform(points)
+    resultList = [[] for i in range(number_of_clusters)]
+    for i, rowList in enumerate(distMat):
+        minIndex = min(enumerate(rowList), key = lambda x: x[1])[0]
+        resultList[minIndex].append(points[i])
+    return resultList
+
+def reagrupacion(vector, tam_grupo):
+
+    # Primero: reagrupación de grupos pequeños (numero de puntos < tam_grupo)
+    # Ordenamos el vector colocando en las primeras posiciones los grupos más pequeños
+    vector.sort(key=myFunc)
+    cont = 0
+    # lista en la que vamos a meter un representante de cada grupo para calcular sus distancias
+    representantes = []
+    for elem in vector:
+        if len(elem) < tam_grupo:
+            kmeans = KMeans(n_clusters=1, random_state=0).fit(elem)
+            representantes.append(kmeans.cluster_centers_)
+            cont += 1
+
+    # Calculamos la matriz de distancias de los representantes
+    representantes = np.concatenate(representantes).ravel().tolist()
+    representantes = np.array(representantes)
+    representantes = representantes.reshape(cont, 2)
+    D = pairwise_distances(representantes, metric='euclidean')
+
+    # Empezando por el grupo mas pequeño, reagrupamos con el más cercano hasta obtener un grupo con numero de puntos
+    # mayor que tam_grupo
+    lista_agrupaciones = np.empty((len(representantes),), dtype=object)
+    for id_grupo in range(len(representantes)):
+        id_candidatos = np.argsort(D[id_grupo, : ])
+        npuntos = len(vector[id_grupo])
+        cont = 1
+        id_agrupados = []
+        while npuntos < tam_grupo:
+            id = id_candidatos[cont]
+            npuntos += len(vector[id])
+            id_agrupados.append(id)
+            cont += 1
+
+        lista_agrupaciones[id_grupo]=id_agrupados
+
+    # Contamos el número de grupos que tenemos que hacer (ngrupos) y guardamos sus índices en conj_agrupados
+    ngrupos = 0
+    conj_agrupados = [[]]*len(lista_agrupaciones)
+    lista = [[0], lista_agrupaciones[0]]
+    # Aplanamos la lista (quitamos una dimensión)
+    lista = sum(lista, [])
+    conj_agrupados[0]= lista
+    for id in range(1, len(lista_agrupaciones)):
+        if not(any(id in sublist for sublist in conj_agrupados)):
+            cuenta = 0
+            indices = lista_agrupaciones[id]
+            for id_cand in range(len(indices)):
+                elem_to_find = indices[id_cand]
+                if any(elem_to_find in sublist for sublist in conj_agrupados):
+                    cuenta += 1
+            if cuenta == len(indices):
+                # Sus cercanos están en conj_agrupados
+                conj_agrupados[ngrupos].append(id)
+            else:
+                # Sus cercano ni él están en conj_agrupados, tenemos que meterlos todos
+                ngrupos += 1
+                lista = [[id], lista_agrupaciones[id]]
+                lista = sum(lista, [])
+                conj_agrupados[ngrupos] = lista
+
+
+    vector_intermedio = []
+    # Metemos los grupos que acabamos de hacer
+    for id in range(ngrupos+1):
+        agrupados = conj_agrupados[id]
+        puntos = []
+        for elem in agrupados:
+            puntos = puntos + vector[elem]
+        vector_intermedio.append(puntos)
+
+
+
+    # Segundo: dividimos los grupos grandes (numero de puntos < 2*tam_grupo)
+    vector_final = []
+    # Metemos los grupos grandes que no hemos tocado
+    for elem in vector:
+        if (len(elem) > tam_grupo):
+            if len(elem) > (2 * tam_grupo):
+                ndivisiones = int(len(elem) / tam_grupo)
+                # Con el KMeans formamos el ndivisiones grupos
+                list_points = cluster_points(elem, ndivisiones)
+                # Guardamos los puntos asociados a cada ndivision en vector
+                for cluster in list_points:
+                    vector_final.append(cluster)
+            else:
+                vector_final.append(elem)
+
+    for elem in vector_intermedio:
+        if (len(elem) > (2*tam_grupo)):
+            ndivisiones = int(len(elem)/tam_grupo)
+            # Con el KMeans formamos el ndivisiones grupos
+            # kmeans = KMeans(n_clusters=ndivisiones, random_state=0).fit(elem)
+            list_points =cluster_points(elem, ndivisiones)
+            # Guardamos los puntos asociados a cada ndivision en vector
+            for cluster in list_points:
+                vector_final.append(cluster)
+        else:
+            vector_final.append(elem)
+
+    return vector_final

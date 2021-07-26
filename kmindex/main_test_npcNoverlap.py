@@ -1,6 +1,6 @@
 import logging
 # import error_kmeans_tree as kt
-import kmeans_tree as kt
+import kmeans_tree_nparray as kt
 
 
 logging.basicConfig(filename='result_npcNoverlap.log', filemode='w', format='%(asctime)s - %(name)s - %(message)s',

@@ -234,17 +234,18 @@ def pinta(coordx, coordy, centroides, npc, nclouds):
     fig, ax = plt.subplots()
 
     for i in range(nclouds):
-        leyenda = "nube "+ str(i)
-        ax.scatter(coordx[i], coordy[i], marker='o', color=colors[i], label=leyenda)
+        leyenda = "cloud "+ str(i)
+        ax.scatter(coordx[i], coordy[i], marker='o', color=colors[i], label=leyenda, alpha=0.5)
         #ax.legend(bbox_to_anchor=(1.05, 1), loc='upper left', borderaxespad=0.)
 
-    centroides = centroides[0]
+    '''centroides = centroides[0]
     for i in range(len(centroides)):
-        ax.scatter(centroides[i,0], centroides[i,1], marker='*', color='black')
+        ax.scatter(centroides[i,0], centroides[i,1], marker='*', color='black')'''
 
     ax.legend(bbox_to_anchor=(-0.12, -0.18, 1.2, .10), loc='upper center', ncol=8, mode="expand",
               borderaxespad=0., fontsize='x-small')
-    plt.title("Representación nubes")
+    plt.title("Gaussian clouds (overlap case)")
+    plt.savefig('gaussian_clouds_overlap.eps', format='eps')
     return plt.show()
 
 def pinta_result(clustters):
@@ -392,3 +393,87 @@ def pinta_clustters(puntos, labels_capa, puntos_capa):
     plt.title("Representación una nube")
 
     return plt.show()
+
+
+def pinta_geo(coordx, coordy):
+    cant_ptos = 10
+    colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#7f7f7f',
+            '#bcbd22', '#17becf']
+
+    # Set the plot curve with markers and a title
+    fig, ax = plt.subplots()
+
+    inicio = 0
+    for grupo in range(10):
+    #    leyenda = "cloud "+ str(i)
+    #    ax.scatter(coordx[i], coordy[i], marker='o', color=colors[i], label=leyenda, alpha=0.5)
+        #ax.legend(bbox_to_anchor=(1.05, 1), loc='upper left', borderaxespad=0.)
+    # ax.scatter(coordx, coordy, marker='.', alpha=0.5)
+        ax.scatter(coordx[inicio:(inicio+10)], coordy[inicio:(inicio+10)], s=8, color=colors[grupo], alpha=0.5)
+        inicio += 10
+
+    ax.legend(bbox_to_anchor=(-0.12, -0.18, 1.2, .10), loc='upper center', ncol=8, mode="expand",
+              borderaxespad=0., fontsize='x-small')
+    plt.title("Geographical data (the whole set of points)")
+    #plt.savefig('data_geo.eps', format='eps')   # el formato eps es mejor para meterlo en overleaf
+    plt.savefig('data_geo_colorgroups.png')  # el formato eps es mejor para meterlo en overleaf
+    return plt.show()
+
+
+def pinta_geo_clustter(coord, id_grupo, id_capa, ncentroides, centroides, etiquetas, iter):
+    #cant_ptos = 100
+    colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#7f7f7f',
+            '#bcbd22', '#17becf']
+
+    # Set the plot curve with markers and a title
+    fig, ax = plt.subplots()
+
+    cont = 0
+    for punto in coord:
+        etiqueta = etiquetas[cont]
+        ax.scatter(punto[0], punto[1], s=20, marker='o', color=colors[etiqueta], alpha=0.3)
+        cont +=1
+
+    # Pinto los centroides:
+    for idcentroide in range(ncentroides):
+        leyenda = "centroide" + str(idcentroide)
+        coord_centroide = centroides[idcentroide]
+        ax.scatter(coord_centroide[0], coord_centroide[1], s=4, marker='*', color=colors[idcentroide],
+                   alpha=0.8, label=leyenda)
+
+    ax.legend(bbox_to_anchor=(-0.12, -0.18, 1.2, .10), loc='upper center', ncol=8, mode="expand",
+              borderaxespad=0., fontsize='x-small')
+    title = "Cluster layer_" + str(id_capa)+" group_"+str(id_grupo)+' iter'+str(iter)
+    plt.title(title)
+    name = 'data_geo_cluster'+str(id_capa)+str(id_grupo)+'_iter'+str(iter)+'.png'
+    plt.savefig(name)
+    return
+
+def pinta_clustters_capa(coord, ngrupos, id_capa, centroides, iter):
+    #cant_ptos = 100
+    colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd']
+
+    # Set the plot curve with markers and a title
+    #fig, ax = plt.subplots()
+
+    for id_grupo in range (ngrupos):
+        # Pinto las coordenadas de los puntos de cada grupo
+        for punto in coord[id_grupo]:
+            plt.scatter(punto[0], punto[1], s=20, marker='o', color=colors[id_grupo], alpha=0.3)
+
+        # Pinto los centroides:
+        for idcentroide in range(len(centroides[id_grupo])):
+            leyenda = "cent" + str(idcentroide)
+            coord_centroide = centroides[id_grupo][idcentroide]
+            plt.scatter(coord_centroide[0], coord_centroide[1], s=4, marker='*', color=colors[id_grupo], label=leyenda,
+                       alpha=0.8)
+
+    plt.legend(bbox_to_anchor=(-0.1, -0.18, 1.2, .10), loc='upper center', ncol=8, mode="expand",
+              borderaxespad=0., fontsize='x-small')
+
+    title = "Cluster in the layer"+str(id_capa)+' iter'+str(iter)
+    plt.title(title)
+    name = 'data_cluster_layer'+str(id_capa)+'_iter'+str(iter)+'.png'
+    plt.savefig(name)
+    return
+
