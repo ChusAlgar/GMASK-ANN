@@ -35,10 +35,9 @@ def kmeans_tree(tam_grupo, n_centroides):
         # pertenencia a la nube'''
     # datos = pd.read_csv('D:/URJC_Investigacion/REVISTA/GENETICA/Kmeans-index/data/geo_data/MUNICIPIOS-utf8.csv',
     #                    sep=';')
-    datos = pd.read_csv('../data/geo_data/MUNICIPIOS-utf8.csv',
-                        sep=';')
+    datos = pd.read_csv('../data/geo_data/MUNICIPIOS-utf8.csv', sep=';')
     datos_geo = pd.DataFrame(datos, columns=['LONGITUD_ETRS89','LATITUD_ETRS89'])
-    datos_geo = datos_geo.sample(100, random_state=1)
+    # datos_geo = datos_geo.sample(100, random_state=1)
     # datos_geo1 = datos_geo.iloc[2128:2138, :] # A Coruña
     # datos_geo2 = datos_geo.iloc[4471:4481, :] # Madrid
     # datos_geo3 = datos_geo.iloc[4292:4302, :] # Málaga
@@ -149,7 +148,7 @@ def kmeans_tree(tam_grupo, n_centroides):
         # elementos de cada grupo
         # grupos_capa.append(ngrupos)
         id_capa = 0
-        while ((ngrupos >= 1) and (id_capa < 2)):
+        while ((ngrupos >= 1) and (id_capa < 1)):
         # for id_capa in range(2):
             # Capa n:
             inicio = 0
