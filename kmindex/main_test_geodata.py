@@ -21,7 +21,7 @@ logging.info(' ')
 logging.info('------------------------------------------------------------------------')
 logging.info(' ')
 tam_grupo = 400   #16
-n_centroides = 380    #8
+n_centroides = 360    #8
 logging.info('Sub Text 2, tam_grupo=%s, n_centroides=%s',tam_grupo, n_centroides)
 kt.kmeans_tree(tam_grupo,n_centroides)
 logging.info(' ')
@@ -31,7 +31,7 @@ logging.info(' ')
 logging.info('------------------------------------------------------------------------')
 logging.info(' ')
 tam_grupo = 400   #16
-n_centroides = 360    #8
+n_centroides = 320    #8
 logging.info('Sub Text 3, tam_grupo=%s, n_centroides=%s',tam_grupo, n_centroides)
 kt.kmeans_tree(tam_grupo,n_centroides)
 logging.info(' ')
@@ -41,7 +41,7 @@ logging.info(' ')
 logging.info('------------------------------------------------------------------------')
 logging.info(' ')
 tam_grupo = 400   #16
-n_centroides = 340    #8
+n_centroides = 280    #8
 logging.info('Sub Text 4, tam_grupo=%s, n_centroides=%s',tam_grupo, n_centroides)
 kt.kmeans_tree(tam_grupo,n_centroides)
 logging.info(' ')
@@ -51,7 +51,7 @@ logging.info(' ')
 logging.info('------------------------------------------------------------------------')
 logging.info(' ')
 tam_grupo = 400   #16
-n_centroides = 320    #8
+n_centroides = 240    #8
 logging.info('Sub Text 5, tam_grupo=%s, n_centroides=%s',tam_grupo, n_centroides)
 kt.kmeans_tree(tam_grupo,n_centroides)
 logging.info(' ')
@@ -61,7 +61,7 @@ logging.info(' ')
 logging.info('------------------------------------------------------------------------')
 logging.info(' ')
 tam_grupo = 400   #16
-n_centroides = 300    #8
+n_centroides = 200    #8
 logging.info('Sub Text 6, tam_grupo=%s, n_centroides=%s',tam_grupo, n_centroides)
 kt.kmeans_tree(tam_grupo,n_centroides)
 logging.info(' ')
@@ -71,7 +71,7 @@ logging.info(' ')
 logging.info('------------------------------------------------------------------------')
 logging.info(' ')
 tam_grupo = 400   #16
-n_centroides = 280    #8
+n_centroides = 160    #8
 logging.info('Sub Text 7, tam_grupo=%s, n_centroides=%s',tam_grupo, n_centroides)
 kt.kmeans_tree(tam_grupo,n_centroides)
 logging.info(' ')
@@ -81,7 +81,7 @@ logging.info(' ')
 logging.info('------------------------------------------------------------------------')
 logging.info(' ')
 tam_grupo = 400   #16
-n_centroides = 260    #8
+n_centroides = 120    #8
 logging.info('Sub Text 8, tam_grupo=%s, n_centroides=%s',tam_grupo, n_centroides)
 kt.kmeans_tree(tam_grupo,n_centroides)
 logging.info(' ')
@@ -91,7 +91,7 @@ logging.info(' ')
 logging.info('------------------------------------------------------------------------')
 logging.info(' ')
 tam_grupo = 400   #16
-n_centroides = 240    #8
+n_centroides = 80    #8
 logging.info('Sub Text 9, tam_grupo=%s, n_centroides=%s',tam_grupo, n_centroides)
 kt.kmeans_tree(tam_grupo,n_centroides)
 logging.info(' ')
