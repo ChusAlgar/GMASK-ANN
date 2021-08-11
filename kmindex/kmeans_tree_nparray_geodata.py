@@ -148,7 +148,7 @@ def kmeans_tree(tam_grupo, n_centroides):
         # elementos de cada grupo
         # grupos_capa.append(ngrupos)
         id_capa = 0
-        while ((ngrupos >= 1) and (id_capa < 1)):
+        while ((ngrupos >= 1) and (id_capa < 2)):
         # for id_capa in range(2):
             # Capa n:
             inicio = 0
