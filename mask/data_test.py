@@ -245,7 +245,7 @@ def pinta(coordx, coordy, centroides, npc, nclouds):
     ax.legend(bbox_to_anchor=(-0.12, -0.18, 1.2, .10), loc='upper center', ncol=8, mode="expand",
               borderaxespad=0., fontsize='x-small')
     plt.title("Gaussian clouds (overlap case)")
-    plt.savefig('gaussian_clouds_overlap.eps', format='eps')
+    plt.savefig('gaussian_clouds_overlap.png', format='png')
     return plt.show()
 
 def pinta_result(clustters):
