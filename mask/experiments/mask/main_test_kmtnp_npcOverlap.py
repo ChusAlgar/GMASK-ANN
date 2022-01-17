@@ -1,19 +1,18 @@
 import logging
-# import error_kmeans_tree as kt
 import kmeans_tree_nparray as kt
 
 
-logging.basicConfig(filename='result_npcNoverlap.log', filemode='w', format='%(asctime)s - %(name)s - %(message)s',
+logging.basicConfig(filename='../../result_kmtnp_npcOverlap.log', filemode='w', format='%(asctime)s - %(name)s - %(message)s',
                     level=logging.INFO)
 
 # Parámetros de entrada comunes a todas las simulaciones:
 nclouds = 8
 tam_grupo = 16
 n_centroides = 8
-overlap = False
+overlap = True
 
 
-# SubText 1_npc=200
+# SubText 1_npc=20
 npc = 200
 logging.info('------------------------------------------------------------------------')
 logging.info(' ')
