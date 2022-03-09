@@ -1,8 +1,9 @@
 import logging
+# import error_kmeans_tree as kt
 import kmeans_tree_nparray as kt
 
 
-logging.basicConfig(filename='../../result_kmtnp_npcNoverlap.log', filemode='w', format='%(asctime)s - %(name)s - %(message)s',
+logging.basicConfig(filename='../../../logs/result_npcNoverlap.log', filemode='w', format='%(asctime)s - %(name)s - %(message)s',
                     level=logging.INFO)
 
 # Parámetros de entrada comunes a todas las simulaciones:
@@ -12,7 +13,7 @@ n_centroides = 8
 overlap = False
 
 
-# SubText 1_npc=20
+# SubText 1_npc=200
 npc = 200
 logging.info('------------------------------------------------------------------------')
 logging.info(' ')

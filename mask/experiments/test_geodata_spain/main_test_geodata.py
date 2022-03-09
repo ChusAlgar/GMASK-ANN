@@ -2,7 +2,7 @@ import logging
 import kmeans_tree_nparray_geodata as kt
 
 
-logging.basicConfig(filename='../../result_kmtnp_testCapacity1000-200-2layers_geodata.log', filemode='w', format='%(asctime)s - %(name)s - %(message)s',
+logging.basicConfig(filename='../../../logs/result_kmtnp_testCapacity1000-200-2layers_geodata.log', filemode='w', format='%(asctime)s - %(name)s - %(message)s',
                     level=logging.INFO)
 
 # Parámetros de entrada comunes a todas las simulaciones:
