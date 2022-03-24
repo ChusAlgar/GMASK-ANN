@@ -5,11 +5,74 @@ import numpy as np
 from sklearn.metrics.pairwise import pairwise_distances
 from sklearn import preprocessing
 import mask.utilities as util
-# import mask.data_test as dt
 from timeit import default_timer as timer
 import logging
 
+
 logger = logging.getLogger(__name__)
+
+def calculate_numcapas(cant_ptos, tam_grupo, n_centroides):
+
+    if cant_ptos < tam_grupo:
+        ncapas = 1
+    else:
+        cociente = int(cant_ptos / tam_grupo)
+        resto = cant_ptos % tam_grupo
+        grupos = cociente + resto
+        new_ptos = grupos * n_centroides
+        ncapas = 1
+        while new_ptos > n_centroides:
+            cociente = int(new_ptos / tam_grupo)
+            resto = new_ptos % tam_grupo
+            if resto == 0:
+                grupos = cociente
+            else:
+                grupos = cociente + 1
+            new_ptos = grupos * n_centroides
+            if new_ptos >= n_centroides:
+                ncapas += 1
+
+    return ncapas
+
+def built_estructuras_capa(cant_ptos, tam_grupo, n_centroides, n_capas):
+
+    labels_capa = np.empty(n_capas, object)
+    puntos_capa = np.empty(n_capas, object)
+    grupos_capa = np.empty(n_capas, object)
+
+    # Numero de grupos de la capa 0
+    ngrupos = int(cant_ptos / tam_grupo)
+    resto = cant_ptos % tam_grupo
+
+    for capa in range (n_capas):
+
+        if resto != 0:
+            # resto = cant_ptos - (ngrupos * tam_grupo)
+            ngrupos = ngrupos + 1
+            labels_grupo = np.empty(ngrupos, object)
+            for num in range(ngrupos - 1):
+                labels_grupo[num] = np.zeros(tam_grupo, dtype=int)
+            labels_grupo[ngrupos - 1] = np.zeros(resto, dtype=int)
+            labels_capa[capa] = labels_grupo
+            if (resto >= n_centroides):
+                puntos_grupo = np.zeros((ngrupos, n_centroides, 2), dtype=float)
+            else:
+                puntos_grupo = np.empty(ngrupos, object)
+                for num in range(ngrupos - 1):
+                    puntos_grupo[num] = np.zeros((ngrupos - 1, n_centroides, 2), dtype=float)
+                puntos_grupo[ngrupos - 1] = np.zeros((1, resto, 2), detype=float)
+            puntos_capa[capa] = puntos_grupo
+            grupos_capa[capa] = np.zeros(ngrupos, dtype=int)
+        else:
+            puntos_capa[capa] = np.zeros((ngrupos, n_centroides, 2), dtype=float)
+            labels_capa[capa] = np.zeros((ngrupos, tam_grupo), dtype=int)
+            grupos_capa[capa] = np.zeros(ngrupos, dtype=int)
+
+        resto = (ngrupos * n_centroides) % tam_grupo
+        ngrupos = int((ngrupos*n_centroides)/tam_grupo)
+
+
+    return puntos_capa, labels_capa, grupos_capa
 
 
 def kmeans_tree(cant_ptos, tam_grupo, n_centroides, metrica, vector_original):  #(nclouds, npc, tam_grupo, n_centroides, overlap):
@@ -57,7 +120,12 @@ def kmeans_tree(cant_ptos, tam_grupo, n_centroides, metrica, vector_original):  
     if normaliza:
         vector = preprocessing.normalize(vector, axis=0, norm='l2')
 
-    print("calculo de grupos")
+    # 23-03-2022
+    print("calculo del número de capas")
+    n_capas = calculate_numcapas(cant_ptos, tam_grupo, n_centroides)
+
+    print("calculo de las estructuras de almacenamiento")
+    puntos_capa, labels_capa, grupos_capa = built_estructuras_capa(cant_ptos, tam_grupo, n_centroides, n_capas)
     # Calculamos el número de grupos que vamos a formar en la capa 0 (se obtiene a partir del número de puntos
     # total):
     # Inicio 03-03-2021
@@ -65,36 +133,39 @@ def kmeans_tree(cant_ptos, tam_grupo, n_centroides, metrica, vector_original):  
     # ncolumnas = 2
     # ngrupos = int(nfilas / tam_grupo)
     # if (nfilas % tam_grupo) != 0:
-    ngrupos = int(cant_ptos / tam_grupo)
-    if (cant_ptos % tam_grupo) != 0:
-        resto = cant_ptos - (ngrupos * tam_grupo)
-        ngrupos = ngrupos + 1
-        labels_grupo = np.empty(ngrupos, object)
-        for num in range(ngrupos - 1):
-            labels_grupo[num] = np.zeros(tam_grupo, dtype=int)
-        labels_grupo[ngrupos - 1] = np.zeros(resto, dtype=int)
-        if (resto >= n_centroides):
-            puntos_grupo = np.zeros((ngrupos, n_centroides, 2), dtype=float)
-        else:
-            puntos_grupo = np.empty(ngrupos, object)
-            for num in range(ngrupos - 1):
-                puntos_grupo[num] = np.zeros((ngrupos - 1, n_centroides, 2))
-            puntos_grupo[ngrupos - 1] = np.zeros((1, resto, 2))
-    else:
-        puntos_grupo = np.zeros((ngrupos, n_centroides, 2), dtype=float)
-        labels_grupo = np.zeros((ngrupos, tam_grupo), dtype=int)
-    # Fin 03-03-2021
+    # ngrupos = int(cant_ptos / tam_grupo)
+    # if (cant_ptos % tam_grupo) != 0:
+    #     resto = cant_ptos - (ngrupos * tam_grupo)
+    #     ngrupos = ngrupos + 1
+    #     labels_grupo = np.empty(ngrupos, object)
+    #     for num in range(ngrupos - 1):
+    #         labels_grupo[num] = np.zeros(tam_grupo, dtype=int)
+    #     labels_grupo[ngrupos - 1] = np.zeros(resto, dtype=int)
+    #     if (resto >= n_centroides):
+    #         puntos_grupo = np.zeros((ngrupos, n_centroides, 2), dtype=float)
+    #     else:
+    #         puntos_grupo = np.empty(ngrupos, object)
+    #         for num in range(ngrupos - 1):
+    #             puntos_grupo[num] = np.zeros((ngrupos - 1, n_centroides, 2), dtype=float)
+    #         puntos_grupo[ngrupos - 1] = np.zeros((1, resto, 2), detype=float)
+    # else:
+    #     puntos_grupo = np.zeros((ngrupos, n_centroides, 2), dtype=float)
+    #     labels_grupo = np.zeros((ngrupos, tam_grupo), dtype=int)
+    # # Fin 03-03-2021
 
     # Proceso iterativo para aplicar el kmeans o el kmedoids:
+
     print("INICIO PROCESO CONSTRUCCIÓN")
-    puntos_capa = []  # estructura en la que almacenamos los centroides de todas las capas
-    labels_capa = []  # estructura en la que almacenamos las etiquetas de los puntos
-    grupos_capa = []  # estructura en la que almacenamos una lista, para cada capa, que contiene el número de
+    # puntos_capa = []  # estructura en la que almacenamos los centroides de todas las capas
+    # labels_capa = []  # estructura en la que almacenamos las etiquetas de los puntos
+    # grupos_capa = []  # estructura en la que almacenamos una lista, para cada capa, que contiene el número de
     # elementos de cada grupo
     # grupos_capa.append(ngrupos)
-    id_capa = 0
-    while ngrupos >= 1:
+    # id_capa = 0
+    # while ngrupos >= 1:
+    for id_capa in range(n_capas):
         # Capa n:
+        ngrupos = len(grupos_capa[id_capa])
         inicio = 0
         # 18-03-2021 puntos_grupo y labels_grupo ahora van a ser un np.array de tres dimensiones y los calculo
         # cuando calculo el número de grupos
@@ -102,7 +173,8 @@ def kmeans_tree(cant_ptos, tam_grupo, n_centroides, metrica, vector_original):  
         # labels_grupo = []
 
         cont_ptos = 0  # 03-03-2021. Contador de los puntos en cada capa
-        npuntos = []
+        # 23-03-2022    npuntos = []
+        npuntos = np.zeros(ngrupos, dtype=int)
         for id_grupo in range(ngrupos):
             fin = inicio + tam_grupo
             # Inicio 03-03-2021. Control del último grupo (no tiene cantidad de puntos suficientes para formar
@@ -112,20 +184,23 @@ def kmeans_tree(cant_ptos, tam_grupo, n_centroides, metrica, vector_original):  
                 # fin = len(vector)
                 fin = cant_ptos
             # Fin 03-03-2021
-            npuntos.append(fin - inicio)
+
+            npuntos[id_grupo] = fin-inicio
             if ((fin - inicio) >= n_centroides):
                 if opcion == 'kmeans':
                     initial_centers = kmeans_plusplus_initializer(vector[inicio:fin], n_centroides).initialize()
                     kmeans_instance = kmeans(vector[inicio:fin], initial_centers, metric=metric)
                     kmeans_instance.process()
-                    puntos_grupo[id_grupo] = kmeans_instance.get_centers()
+                    # 23-03-2022    puntos_grupo[id_grupo] = kmeans_instance.get_centers()
+                    puntos_capa[id_capa][id_grupo] = kmeans_instance.get_centers()
                     clusters = kmeans_instance.get_clusters()
                     for num in range(fin-inicio):
                         not_find = True
                         sublist = 0
                         while not_find:
                             if num in clusters[sublist]:
-                                labels_grupo[id_grupo][num] = sublist
+                                # 23-03-2022    labels_grupo[id_grupo][num] = sublist
+                                labels_capa[id_capa][id_grupo][num] = sublist
                                 not_find = False
                             sublist += 1
                     cont_ptos += n_centroides  # 03-03-20021
@@ -137,33 +212,39 @@ def kmeans_tree(cant_ptos, tam_grupo, n_centroides, metrica, vector_original):  
                     list_centroides = []
                     for point_idx in M:
                         list_centroides.append(data[point_idx])
-                    puntos_grupo.append(np.array(list_centroides))
-                    cont_ptos += n_centroides  # 03-03-20021
-                    labels_grupo.append(M)
+                        # 23-03-2022    puntos_grupo.append(np.array(list_centroides))
+                        puntos_capa[id_capa][id_grupo] = np.array(list_centroides)
+                        cont_ptos += n_centroides  # 03-03-20021
+                        # 23-03-2022    labels_grupo.append(M)
+                        labels_capa[id_capa][id_grupo] = M
                 inicio = fin
             else:
                 # Si los puntos que tenemos en el grupo no es mayor que el número de centroides, no hacemos culster
                 # 03-03-2021  puntos_grupo.append(vector[inicio:fin])  # aquí tenemos almacenados los puntos de la
                 # siguiente capa para cada grupo
                 # 18-03-2021 puntos_grupo.append(np.array(vector[inicio:fin]))  # aquí tenemos almacenados los puntos de la
-                puntos_grupo[id_grupo] = np.array(vector[inicio:fin])
+                # 23-03-2022 puntos_grupo[id_grupo] = np.array(vector[inicio:fin])
+                puntos_capa[id_capa][id_grupo] = np.array(vector[inicio:fin])
                 # siguiente capa para cada grupo
                 cont_ptos = cont_ptos + (fin - inicio)  # 03-03-2021
                 etiquetas = []
                 for i in range((fin - inicio)):
                     etiquetas.append(i)
                 # 18-03-2021 labels_grupo.append(np.array(etiquetas))
-                labels_grupo[id_grupo] = np.array(etiquetas)
-        grupos_capa.append(npuntos)
+                # 23-03-2022 labels_grupo[id_grupo] = np.array(etiquetas)
+                labels_capa[id_capa][id_grupo] = np.array(etiquetas)
+
+        # 23-03-2022    grupos_capa.append(npuntos)
+        grupos_capa[id_capa] = npuntos
 
         # Guardamos los centroides de la capa para poder hacer el proceso inverso
         # 18-03-2021 array = np.array(puntos_grupo)
         # 18-03-2021 puntos_capa.append(array)
-        puntos_capa.append(puntos_grupo)
+        # 23-03-2022    puntos_capa.append(puntos_grupo)
         # Guardamos las etiquetas de los puntos (índice del centroide con el que están asociados):
         # 18-03-2021 array2 = np.array(labels_grupo)
         # 18-03-2021 labels_capa.append(array2)
-        labels_capa.append(labels_grupo)
+        # 23-03-2022    labels_capa.append(labels_grupo)
         # Almacenamos en vector los puntos de la siguiente capa
         # 03-03-2021 vector = array.reshape(-1, array.shape[-1])
         # 18-03-2021 vector = np.concatenate(puntos_grupo).ravel().tolist()  # 03-03-2021
@@ -172,43 +253,52 @@ def kmeans_tree(cant_ptos, tam_grupo, n_centroides, metrica, vector_original):  
 
         # vector = puntos_grupo
         # vector = vector.reshape(-1, vector.shape[-1])
-        vector = np.concatenate(puntos_grupo).ravel().tolist()  # 03-03-2021
-        vector = np.array(vector)
+        # vector = np.concatenate(puntos_grupo).ravel().tolist()  # 03-03-2021
+        # vector = np.array(vector)
+        vector = puntos_capa[id_capa]
         vector = vector.reshape(cont_ptos, 2)
 
         # Calculamos el numero de grupos de la siguiente capa
-        ngrupos = int(cont_ptos / tam_grupo)  # 03-03-2021  nfilas, ncolumnas = vector.shape
-        if ngrupos != 0:
-            if (cont_ptos % tam_grupo) != 0:  # 03-03-2021 if (nfilas % tam_grupo) != 0:
-                resto = cont_ptos - (ngrupos * tam_grupo)
-                ngrupos = ngrupos + 1
-                labels_grupo = np.empty(ngrupos, object)
-                for num in range(ngrupos-1):
-                    labels_grupo[num] = np.zeros(tam_grupo, dtype=int)
-                labels_grupo[ngrupos-1] = np.zeros(resto, dtype=int)
-                if (resto >= n_centroides):
-                    puntos_grupo = np.zeros((ngrupos, n_centroides, 2), dtype=float)
-                else:
-                    puntos_grupo = np.empty(ngrupos, object)
-                    for num in range(ngrupos - 1):
-                        puntos_grupo[num] = np.zeros((ngrupos-1, n_centroides,2))
-                    puntos_grupo[ngrupos - 1] = np.zeros((1,resto,2))
-            else:
-                puntos_grupo = np.zeros((ngrupos, n_centroides, 2), dtype=float)
-                labels_grupo = np.zeros((ngrupos, tam_grupo), dtype=int)
-            # grupos_capa.append(ngrupos)
+        # ngrupos = int(cont_ptos / tam_grupo)  # 03-03-2021  nfilas, ncolumnas = vector.shape
+        # if ngrupos != 0:
+        #     if (cont_ptos % tam_grupo) != 0:  # 03-03-2021 if (nfilas % tam_grupo) != 0:
+        #         resto = cont_ptos - (ngrupos * tam_grupo)
+        #         ngrupos = ngrupos + 1
+        #         labels_grupo = np.empty(ngrupos, object)
+        #         for num in range(ngrupos-1):
+        #             labels_grupo[num] = np.zeros(tam_grupo, dtype=int)
+        #         labels_grupo[ngrupos-1] = np.zeros(resto, dtype=int)
+        #         if (resto >= n_centroides):
+        #             puntos_grupo = np.zeros((ngrupos, n_centroides, 2), dtype=float)
+        #         else:
+        #             puntos_grupo = np.empty(ngrupos, object)
+        #             for num in range(ngrupos - 1):
+        #                 puntos_grupo[num] = np.zeros((ngrupos-1, n_centroides,2), dtype=float)
+        #             puntos_grupo[ngrupos - 1] = np.zeros((1,resto,2), dtype=float)
+        #     else:
+        #         puntos_grupo = np.zeros((ngrupos, n_centroides, 2), dtype=float)
+        #         labels_grupo = np.zeros((ngrupos, tam_grupo), dtype=int)
+        #     # grupos_capa.append(ngrupos)
         cant_ptos = cont_ptos  # 03-03-2021 Actualizamos cant_ptos con el número de puntos del siguiente nivel
-        id_capa += 1
+        # id_capa += 1
 
     print("FIN PROCESO CONSTRUCCIÓN")
 
-    n_capas = id_capa - 1
+    # 23-03-2022    n_capas = id_capa - 1
     end_time_constr = timer()
     # print("--- %s seconds ---", end_time_constr-start_time_constr)
     logger.info('tree time=%s seconds', end_time_constr - start_time_constr)
 
     return n_capas, grupos_capa, puntos_capa, labels_capa
 
+
+
+def built_lista_pos(id_grupo, grupos_capa_compress, lista_pos):
+    desplaz = 0
+    for id in range(id_grupo):
+        desplaz += grupos_capa_compress[id]
+    result = lista_pos + desplaz
+    return result
 
 
 def kmeans_search(n_capas, n_centroides, vector_original, puntos_nube, metrica, grupos_capa, puntos_capa, labels_capa):
@@ -220,7 +310,9 @@ def kmeans_search(n_capas, n_centroides, vector_original, puntos_nube, metrica, 
     lcorrespond = []
     aciertos = 0
     fallos = 0
-    vector_aux = []
+    # vector_aux = []
+    vector_aux = np.empty((len(vector_original), 2), float)
+    lista_pos = np.empty(100, int)
     for i in range(len(vector_original)):
         # print('buscando punto ', i)
         seq_buscada = np.array(vector_original[i])
@@ -231,7 +323,7 @@ def kmeans_search(n_capas, n_centroides, vector_original, puntos_nube, metrica, 
         # coordy = seq_buscada[0,1]
         # seq_buscada = np.array([coordx, coordy])
 
-        for id_capa in range(n_capas, -1, -1):
+        for id_capa in range(n_capas-1, -1, -1):
             # 18-03-2021 Ahora puntos_capa es una list de ndarrays
             # 03-03-2021 Obtenemos los centroides de la capa
 
@@ -247,21 +339,24 @@ def kmeans_search(n_capas, n_centroides, vector_original, puntos_nube, metrica, 
             # centroides = centroides.reshape(dim, 2)
             # Fin 18-03-2021
 
-            if id_capa < n_capas:
+            # 23-03-2022    if id_capa < n_capas:
+            if id_capa < (n_capas - 1):
                 # seleccionamos solo los puntos que están asociados con ese centroide
-                centroidesb = np.zeros((len(lista_pos),2), dtype=float)
-                cont = 0
-                for pos in lista_pos:
-                    # centroidesb.append(centroides[pos])
-                    centroidesb[cont] = centroides[pos]
-                    cont += 1
-                centroides = centroidesb
+                # centroidesb = np.zeros((len(lista_pos),2), dtype=float)
+                # cont = 0
+                # for pos in lista_pos:
+                #     # centroidesb.append(centroides[pos])
+                #     centroidesb[cont] = centroides[pos]
+                #     cont += 1
+                # centroides = centroidesb
+                centroides = np.array(centroides[lista_pos])
 
             puntos_dist = np.concatenate([seq_buscada, centroides])
             D = pairwise_distances(puntos_dist, metric=metrica)     # euclidean, chebyshev, manhattan
             columna = util.busca_dist_menor(D)
             # Corrección del índice del centroide
-            if id_capa != n_capas:
+            # 23-03-2022    if id_capa != n_capas:
+            if id_capa != (n_capas - 1):
                 pos_centroide = lista_pos[columna - 1]
                 if pos_centroide >= n_centroides:
                     id_grupo = int(pos_centroide / n_centroides)
@@ -274,7 +369,8 @@ def kmeans_search(n_capas, n_centroides, vector_original, puntos_nube, metrica, 
                 # id_centroide = etiquetas[0][pos_centroide]
             else:
                 # 08-03-2021. Corrección para cuando la última capa del arbol tiene más de un grupo
-                if len(grupos_capa[n_capas]) > 1:
+                # 23-03-2022    if len(grupos_capa[n_capas]) > 1:
+                if len(grupos_capa[id_capa]) > 1:
                     if (columna - 1) >= n_centroides:
                         id_grupo = int((columna - 1) / n_centroides)
                         id_centroide = (columna - 1) - (id_grupo * n_centroides)
@@ -286,27 +382,31 @@ def kmeans_search(n_capas, n_centroides, vector_original, puntos_nube, metrica, 
                     id_centroide = columna - 1
                     id_grupo = 0
             # print(id_centroide)
-            lista_pos = []
+
+            lista_pos_aux = np.argwhere(labels_capa[id_capa][id_grupo][:] == id_centroide)
+            lista_pos = built_lista_pos(id_grupo, grupos_capa[id_capa][:], lista_pos_aux)
             # ngrupos, npuntos = labels_capa[id_capa].shape
-            ngrupos = len(grupos_capa[id_capa])
-            npuntos = grupos_capa[id_capa][id_grupo]
+            # ngrupos = len(grupos_capa[id_capa])
+            # npuntos = grupos_capa[id_capa][id_grupo]
             # for id_grupo in range(ngrupos):
             # fin = labels_capa[id_capa][id_grupo].size
             # for pos in range(fin):
-            for pos in range(npuntos):
-                if labels_capa[id_capa][id_grupo][pos] == id_centroide:
-                    desplaz = 0
-                    for id in range(id_grupo):
-                        desplaz += grupos_capa[id_capa][id]
-                    # lista_pos.append(pos + id_grupo * npuntos)
-                    lista_pos.append(pos + desplaz)
+            # for pos in range(npuntos):
+            #     if labels_capa[id_capa][id_grupo][pos] == id_centroide:
+            #         desplaz = 0
+            #         for id in range(id_grupo):
+            #             desplaz += grupos_capa[id_capa][id]
+            #         # lista_pos.append(pos + id_grupo * npuntos)
+            #         lista_pos.append(pos + desplaz)
             # id_capa=id_capa-1
+            lista_pos = lista_pos.ravel()
 
         # Capa de los datos:
-        puntos_seleccionados = []
-        for pos in lista_pos:
-            # Solo miramos la distancia con los que están en el mismo grupo
-            puntos_seleccionados.append(vector_original[pos])
+        # puntos_seleccionados = []
+        # for pos in lista_pos:
+        #     # Solo miramos la distancia con los que están en el mismo grupo
+        #     puntos_seleccionados.append(vector_original[pos])
+        puntos_seleccionados = np.array(vector_original[lista_pos])
         puntos_dist = np.concatenate([seq_buscada, puntos_seleccionados])
         D = pairwise_distances(puntos_dist, metric=metrica)
         columna = util.busca_dist_menor(D)
@@ -316,7 +416,8 @@ def kmeans_search(n_capas, n_centroides, vector_original, puntos_nube, metrica, 
         # 17-02-2021  lcorrespond.append((id_punto, puntos_nube[id_punto])) #id_punto//cant_ptos))
         # Metemos el punto que se le asigna en un vector auxiliar (este vector auxiliar será sobre el que volvamos a
         # aplicar el proceso de construcción y deconstrucción:
-        vector_aux.append(vector_original[id_punto])
+        # vector_aux.append(vector_original[id_punto])
+        vector_aux[i] = vector_original[id_punto]
 
         # Contamos los aciertos y los fallos
         '''if D[0, 1:].min() == 0.0:

@@ -11,7 +11,6 @@ def seq_count(sec, clav):
     """Cuenta el número de veces que aparece clav en sec"""
     return sec.count(clav)
 
-
 def busca_dist_menor(m):
     elem_min = m[0, 1:].min()
     filas, columnas = m.shape
