@@ -1,7 +1,8 @@
+# coding=utf-8
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import mask.utilities as util
+import utilities as util
 
 def generate_data_test():
     np.random.seed(2)
@@ -260,9 +261,9 @@ def pinta(coordx, coordy, centroides, npc, nclouds):
         ax.scatter(coordx[i], coordy[i], marker='o', color=colors[i], label=leyenda, alpha=0.5)
         #ax.legend(bbox_to_anchor=(1.05, 1), loc='upper left', borderaxespad=0.)
 
-    '''centroides = centroides[0]
+    centroides = centroides[0]
     for i in range(len(centroides)):
-        ax.scatter(centroides[i,0], centroides[i,1], marker='*', color='black')'''
+        ax.scatter(centroides[i,0], centroides[i,1], marker='*', color='black')
 
     ax.legend(bbox_to_anchor=(-0.12, -0.18, 1.2, .10), loc='upper center', ncol=8, mode="expand",
               borderaxespad=0., fontsize='x-small')

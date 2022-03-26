@@ -1,3 +1,4 @@
+# coding=utf-8
 import numpy as np
 from sklearn.cluster import KMeans
 from sklearn.metrics.pairwise import pairwise_distances
