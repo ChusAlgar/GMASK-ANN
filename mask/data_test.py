@@ -499,3 +499,80 @@ def pinta_clustters_capa(coord, ngrupos, id_capa, centroides, iter):
     plt.savefig(name)
     return
 
+
+def pinta_vecinos(vecpuntos, punto, vecinos, npc, nclouds, tam_grupo):
+
+    nptos = npc * nclouds
+    colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#7f7f7f',
+              '#bcbd22', '#17becf', '#ff9933', '#00ffff', '#6666ff', '#ff33ff', '#ff66b2', '#009900']
+
+    # coordx = np.reshape(coordx, (nclouds, npc))
+    # coordy = np.reshape(coordy, (nclouds, npc))
+    coordx = vecpuntos[:, 0]
+    coordy = vecpuntos[:, 1]
+
+    # Set the plot curve with markers and a title
+    fig, ax = plt.subplots()
+
+    ngrupos = int(nptos/tam_grupo) - 1
+    if nptos%tam_grupo:
+        ngrupos +=1
+    ini = 0
+    fin = ini+tam_grupo
+    for grupo in range(ngrupos):
+        leyenda = "group " + str(grupo)
+        for i in range(ini, fin):
+            ax.scatter(coordx[i], coordy[i], marker='o', color=colors[grupo], label=leyenda, alpha=0.5)
+        ini = fin
+        fin = ini+tam_grupo
+        if fin > nptos:
+            fin = nptos
+
+    # for i in range(nclouds):
+    #     leyenda = "cloud " + str(i)
+    #     ax.scatter(coordx[i], coordy[i], marker='o', color=colors[i], label=leyenda, alpha=0.5)
+
+    for i in range(len(vecinos)):
+        # pp = vecinos[i][0]
+        pp = vecpuntos[i]
+        ax.scatter(pp[0], pp[1], marker='o', alpha = 0.7, color='black')
+
+    ax.scatter(punto[0], punto[1], marker='*', color='black')
+
+    ax.legend(bbox_to_anchor=(-0.12, -0.18, 1.2, .10), loc='upper center', ncol=8, mode="expand",
+              borderaxespad=0., fontsize='x-small')
+    plt.title("K neighbours Gaussian clouds (overlap case)")
+    plt.savefig('D:/URJC_Investigacion/REVISTA/GENETICA/Kmeans-index/logs/kneighbours/kneighbours_gaussian_neighbours_overlap.png', format='png')
+    return plt.show()
+
+
+def pinta_grupos(vecpuntos, npc, nclouds, tam_grupo):
+    nptos = npc * nclouds
+    colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#7f7f7f',
+              '#bcbd22', '#17becf', '#ff9933', '#00ffff', '#6666ff', '#ff33ff', '#ff66b2', '#009900']
+
+    coordx = vecpuntos[:, 0]
+    coordy = vecpuntos[:, 1]
+
+    # Set the plot curve with markers and a title
+    fig, ax = plt.subplots()
+
+    ngrupos = int(nptos / tam_grupo) - 1
+    if nptos % tam_grupo:
+        ngrupos += 1
+    ini = 0
+    fin = ini + tam_grupo
+    for grupo in range(ngrupos):
+        leyenda = "group " + str(grupo)
+        for i in range(ini, fin):
+            ax.scatter(coordx[i], coordy[i], marker='o', color=colors[grupo], label=leyenda, alpha=0.5)
+        ini = fin
+        fin = ini + tam_grupo
+        if fin > nptos:
+            fin = nptos
+
+    ax.legend(bbox_to_anchor=(-0.12, -0.18, 1.2, .10), loc='upper center', ncol=8, mode="expand",
+              borderaxespad=0., fontsize='x-small')
+    plt.title("K neighbours Gaussian groups (overlap case)")
+    plt.savefig('D:/URJC_Investigacion/REVISTA/GENETICA/Kmeans-index/logs/kneighbours/kneighbours_gaussian_groups_overlap.png', format='png')
+    return plt.show()

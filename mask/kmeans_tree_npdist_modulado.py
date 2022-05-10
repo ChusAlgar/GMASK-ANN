@@ -7,13 +7,15 @@ from sklearn import preprocessing
 import mask.utilities as util
 from timeit import default_timer as timer
 import logging
+import mask.distances as dist
 
 
 logger = logging.getLogger(__name__)
 
+
 def calculate_numcapas(cant_ptos, tam_grupo, n_centroides):
 
-    if cant_ptos < tam_grupo:
+    if cant_ptos < tam_grupo or tam_grupo == n_centroides:
         ncapas = 1
     else:
         cociente = int(cant_ptos / tam_grupo)
@@ -26,13 +28,19 @@ def calculate_numcapas(cant_ptos, tam_grupo, n_centroides):
             resto = new_ptos % tam_grupo
             if resto == 0:
                 grupos = cociente
-            else:
+                new_ptos = grupos * n_centroides
+            elif resto < n_centroides:
+                new_ptos = (cociente * n_centroides) + resto
                 grupos = cociente + 1
-            new_ptos = grupos * n_centroides
+            elif resto >= n_centroides:
+                grupos = cociente + 1
+                new_ptos = grupos * n_centroides
+
             if new_ptos >= n_centroides:
                 ncapas += 1
 
     return ncapas
+
 
 def built_estructuras_capa(cant_ptos, tam_grupo, n_centroides, n_capas):
 
@@ -44,7 +52,7 @@ def built_estructuras_capa(cant_ptos, tam_grupo, n_centroides, n_capas):
     ngrupos = int(cant_ptos / tam_grupo)
     resto = cant_ptos % tam_grupo
 
-    for capa in range (n_capas):
+    for capa in range(n_capas):
 
         if resto != 0:
             # resto = cant_ptos - (ngrupos * tam_grupo)
@@ -56,21 +64,26 @@ def built_estructuras_capa(cant_ptos, tam_grupo, n_centroides, n_capas):
             labels_capa[capa] = labels_grupo
             if (resto >= n_centroides):
                 puntos_grupo = np.zeros((ngrupos, n_centroides, 2), dtype=float)
+                resto_nuevo = (ngrupos * n_centroides) % tam_grupo
+                ngrupos_nuevo = int((ngrupos * n_centroides) / tam_grupo)
             else:
                 puntos_grupo = np.empty(ngrupos, object)
                 for num in range(ngrupos - 1):
-                    puntos_grupo[num] = np.zeros((ngrupos - 1, n_centroides, 2), dtype=float)
-                puntos_grupo[ngrupos - 1] = np.zeros((1, resto, 2), detype=float)
+                    puntos_grupo[num] = np.zeros((ngrupos - 1, n_centroides, 2))
+                puntos_grupo[ngrupos - 1] = np.zeros((1, resto, 2))
+                resto_nuevo = ((ngrupos-1) * n_centroides + resto) % tam_grupo
+                ngrupos_nuevo = int(((ngrupos-1) * n_centroides + resto) / tam_grupo)
             puntos_capa[capa] = puntos_grupo
             grupos_capa[capa] = np.zeros(ngrupos, dtype=int)
         else:
             puntos_capa[capa] = np.zeros((ngrupos, n_centroides, 2), dtype=float)
             labels_capa[capa] = np.zeros((ngrupos, tam_grupo), dtype=int)
             grupos_capa[capa] = np.zeros(ngrupos, dtype=int)
+            resto_nuevo = (ngrupos * n_centroides) % tam_grupo
+            ngrupos_nuevo = int((ngrupos * n_centroides) / tam_grupo)
 
-        resto = (ngrupos * n_centroides) % tam_grupo
-        ngrupos = int((ngrupos*n_centroides)/tam_grupo)
-
+        resto = resto_nuevo
+        ngrupos = ngrupos_nuevo
 
     return puntos_capa, labels_capa, grupos_capa
 
@@ -89,6 +102,8 @@ def kmeans_tree(cant_ptos, tam_grupo, n_centroides, metrica, vector_original):  
         metric = distance_metric(type_metric.CHEBYSHEV)
     elif metrica == 'manhattan':
         metric = distance_metric(type_metric.MANHATTAN)
+    elif metrica == 'user':
+        metric = distance_metric(type_metric.USER_DEFINED, func=dist.euclidean)
 
 #    cant_ptos = nclouds * npc
 
@@ -256,7 +271,10 @@ def kmeans_tree(cant_ptos, tam_grupo, n_centroides, metrica, vector_original):  
         # vector = np.concatenate(puntos_grupo).ravel().tolist()  # 03-03-2021
         # vector = np.array(vector)
         vector = puntos_capa[id_capa]
+        vector = np.concatenate(vector).ravel().tolist()  # 03-03-2021
+        vector = np.array(vector)
         vector = vector.reshape(cont_ptos, 2)
+
 
         # Calculamos el numero de grupos de la siguiente capa
         # ngrupos = int(cont_ptos / tam_grupo)  # 03-03-2021  nfilas, ncolumnas = vector.shape
@@ -290,7 +308,6 @@ def kmeans_tree(cant_ptos, tam_grupo, n_centroides, metrica, vector_original):  
     logger.info('tree time=%s seconds', end_time_constr - start_time_constr)
 
     return n_capas, grupos_capa, puntos_capa, labels_capa
-
 
 
 def built_lista_pos(id_grupo, grupos_capa_compress, lista_pos):
@@ -436,8 +453,7 @@ def kmeans_search(n_capas, n_centroides, vector_original, puntos_nube, metrica, 
     # print("--- %s seconds ---", end_time_deconstr-start_time_deconstr)
     logger.info('search time= %s seconds', end_time_deconstr - start_time_deconstr)
 
-    return aciertos, fallos
-
+    return aciertos, fallos, vector
 
 
 """ Representación del resultado de la deconstrucción"""
