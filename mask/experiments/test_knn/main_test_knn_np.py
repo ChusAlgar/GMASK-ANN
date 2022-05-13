@@ -38,7 +38,7 @@ vector_original, coordx, coordy, puntos_nube = dt.generate_data_gaussian_clouds(
 
 # Separamos los puntos de test y training:
 vector_original = np.array(vector_original)
-index_testing = np.random.choice(len(vector_original), 10, replace=False)
+index_testing = np.random.choice(len(vector_original), 100, replace=False)
 vector_testing = vector_original[index_testing]
 index_complete = np.linspace(0, len(vector_original)-1, len(vector_original), dtype=int)
 index_training = np.setdiff1d(index_complete, index_testing)
