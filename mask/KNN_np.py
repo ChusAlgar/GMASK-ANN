@@ -379,6 +379,7 @@ def kmeans_search(n_capas, n_centroides, seq_buscada, vector_original, vecinos, 
     # seq_buscada = np.array(vector_original[i])
     # seq_buscada = np.reshape(seq_buscada, (1, 2))
 
+    seq_buscada = np.reshape(seq_buscada, (1, 2))
     for id_capa in range(n_capas-1, -1, -1):
         # 03-03-2021 Obtenemos los centroides de la capa
         centroides = puntos_capa[id_capa]
@@ -471,8 +472,10 @@ def kmeans_search(n_capas, n_centroides, seq_buscada, vector_original, vecinos, 
                 # No tengo más candidatos asociados a ese centriode. Hay que buscar un nuevo centroide y examinar
                 # sus candidatos
                 id_ult_vecino = vecinos[n-1][0]
-                id_punto, dist, id_grupo, new_id_centroide = search_near_centroid(id_grupo, id_centroide, id_ult_vecino,
-                         centroides_examinados, puntos_capa, labels_capa, grupos_capa, ids_vecinos, vector_original, metrica)
+                id_punto, dist, id_grupo, new_id_centroide = search_near_centroid(id_grupo, id_centroide,
+                                                            id_ult_vecino, centroides_examinados, puntos_capa,
+                                                            labels_capa, grupos_capa, ids_vecinos,
+                                                            vector_original, metrica)
                 vecino[0] = id_punto
                 vecino[1] = dist
                 vecino[2] = vector_original[id_punto]
