@@ -79,16 +79,22 @@ def kmeans_tree(nclouds, npc, tam_grupo, n_centroides, overlap):
             resto = cant_ptos - (ngrupos * tam_grupo)
             ngrupos = ngrupos + 1
             labels_grupo = np.empty(ngrupos, object)
-            alist = [np.zeros((ngrupos - 1, tam_grupo)), np.zeros((1, resto))]
-            for i, v in enumerate(alist):
-                labels_grupo[i] = v
+            # alist = [np.zeros((ngrupos - 1, tam_grupo)), np.zeros((1, resto))]
+            # for i, v in enumerate(alist):
+            #     labels_grupo[i] = v
+            for num in range(ngrupos - 1):
+                labels_grupo[num] = np.zeros(tam_grupo, dtype=int)
+            labels_grupo[ngrupos - 1] = np.zeros(resto, dtype=int)
             if (resto >= n_centroides):
                 puntos_grupo = np.zeros((ngrupos, n_centroides, 2), dtype=float)
             else:
                 puntos_grupo = np.empty(ngrupos, object)
-                alist = [np.zeros((ngrupos - 1, n_centroides, 2)), np.zeros((1, resto, 2))]
-                for i, v in enumerate(alist):
-                    puntos_grupo[i] = v
+                # alist = [np.zeros((ngrupos - 1, n_centroides, 2)), np.zeros((1, resto, 2))]
+                # for i, v in enumerate(alist):
+                #     puntos_grupo[i] = v
+                for num in range(ngrupos - 1):
+                    puntos_grupo[num] = np.zeros((ngrupos - 1, n_centroides, 2))
+                puntos_grupo[ngrupos - 1] = np.zeros((1, resto, 2))
         else:
             puntos_grupo = np.zeros((ngrupos, n_centroides, 2), dtype=float)
             labels_grupo = np.zeros((ngrupos, tam_grupo), dtype=int)
@@ -186,16 +192,22 @@ def kmeans_tree(nclouds, npc, tam_grupo, n_centroides, overlap):
                     resto = cont_ptos - (ngrupos * tam_grupo)
                     ngrupos = ngrupos + 1
                     labels_grupo = np.empty(ngrupos, object)
-                    alist = [np.zeros((ngrupos-1,tam_grupo)), np.zeros((1,resto))]
-                    for i, v in enumerate(alist):
-                        labels_grupo[i] = v
+                    # alist = [np.zeros((ngrupos-1,tam_grupo)), np.zeros((1,resto))]
+                    # for i, v in enumerate(alist):
+                    #     labels_grupo[i] = v
+                    for num in range(ngrupos-1):
+                        labels_grupo[num] = np.zeros(tam_grupo, dtype=int)
+                    labels_grupo[ngrupos-1] = np.zeros(resto, dtype=int)
                     if (resto >= n_centroides):
                         puntos_grupo = np.zeros((ngrupos, n_centroides, 2), dtype=float)
                     else:
                         puntos_grupo = np.empty(ngrupos, object)
-                        alist = [np.zeros((ngrupos - 1, n_centroides,2)), np.zeros((1,resto,2))]
-                        for i, v in enumerate(alist):
-                            puntos_grupo[i] = v
+                        # alist = [np.zeros((ngrupos - 1, n_centroides,2)), np.zeros((1,resto,2))]
+                        # for i, v in enumerate(alist):
+                        #    puntos_grupo[i] = v
+                        for num in range(ngrupos - 1):
+                            puntos_grupo[num] = np.zeros((ngrupos-1, n_centroides,2))
+                        puntos_grupo[ngrupos - 1] = np.zeros((1,resto,2))
                 else:
                     puntos_grupo = np.zeros((ngrupos, n_centroides, 2), dtype=float)
                     labels_grupo = np.zeros((ngrupos, tam_grupo), dtype=int)
@@ -341,7 +353,8 @@ def kmeans_tree(nclouds, npc, tam_grupo, n_centroides, overlap):
     logger.info('search time= %s seconds', end_time_deconstr - start_time_deconstr)
 
     """ Representación del resultado de la deconstrucción"""
-    '''17-02-2021   clustters = []
+    '''17-02-2021
+    clustters = []
     for i in range (n_centroides):
         clustters.append([puntos_capa[n_capas][0][i]])
     for pareja in lcorrespond:
