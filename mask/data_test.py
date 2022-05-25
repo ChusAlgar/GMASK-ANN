@@ -102,7 +102,7 @@ print('y:', cy.shape)
 print(cx)"""
 
 def generate_data_foverlap(nclouds, npc):
-    np.random.seed(2)
+    np.random.seed(1234)
 
     listx = []
     listy = []
@@ -132,7 +132,7 @@ def generate_data_foverlap(nclouds, npc):
 
 
 def generate_data_noverlap(nclouds, npc):
-    np.random.seed(2)
+    np.random.seed(1234)
 
     listx = []
     listy = []
