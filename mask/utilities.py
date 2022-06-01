@@ -2,6 +2,7 @@
 import numpy as np
 from sklearn.cluster import KMeans
 from sklearn.metrics.pairwise import pairwise_distances
+import math as m
 
 def split_seq(seq, size):
     """Divide una secuencia en trozos de tamaño size con solapamiento"""
@@ -335,3 +336,12 @@ def reagrupacion(vector, tam_grupo):
             vector_final.append(elem)
 
     return vector_final
+
+
+def funcdist(punto, vector):
+    vecdist = np.empty(len(vector), float)
+    for i in range(len(vector)):
+        x = punto[0][0]-vector[i][0]
+        y = punto[0][1]-vector[i][1]
+        vecdist[i] = m.sqrt(x*x+y*y)
+    return vecdist

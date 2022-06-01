@@ -2,7 +2,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import utilities as util
+import mask.utilities as util
 
 def generate_data_test():
     np.random.seed(2)
