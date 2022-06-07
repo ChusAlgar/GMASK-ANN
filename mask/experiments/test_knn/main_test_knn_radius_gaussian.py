@@ -9,14 +9,14 @@ import other_algorithms.save_get_neighbors as sgn
 
 
 
-logging.basicConfig(filename='../../../logs/knn/gaussian/euclidean/result_k5_tg16_c8_npc200.log',
+logging.basicConfig(filename='../../../logs/knn/gaussian/euclidean/result_k5_tg1000_c500_npc100000.log',
                     filemode='w', format='%(asctime)s - %(name)s - %(message)s', level=logging.INFO)
 
 # Parámetros de entrada comunes a todas las simulaciones:
 nclouds = 8
-tam_grupo = 16
-n_centroides = 8
-npc = 200
+tam_grupo = 1000  # 16
+n_centroides = 500  # 8
+npc = 100000
 overlap = True
 
 k_vecinos = 5
