@@ -15,7 +15,7 @@ def FLANN_tree(dataset, ncentroids, distance_type, algorithm):
 
     # Store index built on disk to use it later on a file called 'index_'
     flann.save_index('index_')
-    print("Saving FLANN index at 'index_'")
+    print("\nSaving FLANN index at 'index_'")
 
     # Using kmeans, compute the ncentroids describing the data
     centroids = flann.kmeans(dataset, num_clusters=ncentroids, max_iterations=None, mdtype=None)
@@ -48,12 +48,13 @@ def FLANN_nn(dataset, seq_buscada, knn, distance_type, algorithm):
         coords = np.array(dataset[result])
 
     # Return knn and their distances with the query points
-    print ("\nK-Nearest Neighbors found using FLANN + " + distance_type + " distance + " + algorithm + " algorithm:")
-    print result
+    print ("\nK-Nearest Neighbors found using FLANN + " + distance_type + " distance + " + algorithm + " algorithm.")
+    #print result
 
     return result, coords, dists
 
-
+# Deprecated
+'''
 def benchmark(dataset, seq_buscada, nn, dists, distance_type):
 
     # Sets the distance type used. Possible values: euclidean, manhattan, minkowski, max_dist, hik, hellinger, cs, kl.
@@ -87,5 +88,5 @@ def benchmark(dataset, seq_buscada, nn, dists, distance_type):
     print("Porcentaje de fallos: " + str(miss_nn/nn.size * 100))
 
     return hit_nn, miss_nn
-
+'''
 

@@ -1,5 +1,5 @@
 from load_train_test_set import *
-from save_get_neighbors import *
+from neighbors_utils import *
 from brute_force_npdist import brute_force_nn
 
 # Set constants for experiments
@@ -13,26 +13,26 @@ distances = ['euclidean', 'manhattan', 'chebyshev']   # Possible values:
 
 # Load the train and test sets to carry on the experiment
 
-
+'''
 ####### Brute Force KNN with sintetic dataset (Gaussian Clouds)  ############
 # Generate dataset and generate train and test sets
 train_set, test_set = load_train_test_gaussian()
 dataset_name = "gaussian"
 
 
-'''
+
 ####### Brute Force KNN with Geographical Dataset (Municipios) ########
 # Load dataset and generate train and test sets
 train_set, test_set = load_train_test_municipios()
 dataset_name = "municipios"
 
 
-
+'''
 ####### Brute Force KNN with Image Dataset (MNist) ########
 # Load dataset and generate train and test sets
 train_set, test_set = load_train_test_MNIST()
 dataset_name = "MNIST"
-'''
+
 
 
 # Find the knn from the train_set of the elements contained in the test_set, using distances choosen
@@ -45,5 +45,8 @@ for d in distances:
     #knn = zip(indices, coords, dists)
 
     # Store indices, coords and dist into a hdf5 file
-    file_name = "../other_algorithms/NearestNeighbors/" + str(knn) + "nn_Brute_Force_" + str(dataset_name) + "_" + str(d) + ".hdf5"
-    save_neighbors(indices, coords, dists, file_name)
+    save_neighbors(indices, coords, dists, knn, "Brute_Force", dataset_name, d)
+
+    # Print
+    #print_knn(train_set, test_set, coords, knn, "Brute_Force", dataset_name, d)
+

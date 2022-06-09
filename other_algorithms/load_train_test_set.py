@@ -1,7 +1,7 @@
 import numpy as np
 import data_test as dt
 from sklearn import preprocessing
-from data_geo import *
+import pandas as pd
 np.set_printoptions(suppress=True)
 
 # Set constants for experiments
@@ -38,8 +38,13 @@ def load_train_test_gaussian():
 def load_train_test_municipios():
 
     # Read the complete dataset from a csv file and store it into a NumpyArray
-    data = pd.read_csv('../data/MUNICIPIOS-utf8.csv', sep=';')
-    municipios = processDataGeo(data).to_numpy()
+    datos = pd.read_csv('../data/MUNICIPIOS-utf8.csv', sep=';')
+    municipios = pd.DataFrame(datos, columns=['LONGITUD_ETRS89', 'LATITUD_ETRS89'])
+    #index = datos_geo.index
+    # cant_ptos = len(index)
+    municipios['LONGITUD_ETRS89'] = municipios['LONGITUD_ETRS89'].str.replace(',', '.').astype(np.float)
+    municipios['LATITUD_ETRS89'] = municipios['LATITUD_ETRS89'].str.replace(',', '.').astype(np.float)
+    municipios = municipios.to_numpy()
 
     # If normaliza, normalize the dataset
     if normaliza:
@@ -60,6 +65,7 @@ def load_train_test_municipios():
     #a_file.close()
 
     return train_set, test_set
+
 
 # Load Images Dataset (MNIST) dataset and generate train and test sets
 def load_train_test_MNIST():
