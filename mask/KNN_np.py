@@ -62,20 +62,20 @@ def built_estructuras_capa(cant_ptos, tam_grupo, n_centroides, n_capas):
             labels_grupo[ngrupos - 1] = np.zeros(resto, dtype=int)
             labels_capa[capa] = labels_grupo
             if (resto >= n_centroides):
-                puntos_grupo = np.zeros((ngrupos, n_centroides, 2), dtype=float)
+                puntos_grupo = np.zeros((ngrupos, n_centroides, 784), dtype=float)
                 resto_nuevo = (ngrupos * n_centroides) % tam_grupo
                 ngrupos_nuevo = int((ngrupos * n_centroides) / tam_grupo)
             else:
                 puntos_grupo = np.empty(ngrupos, object)
                 for num in range(ngrupos - 1):
-                    puntos_grupo[num] = np.zeros((ngrupos - 1, n_centroides, 2))
-                puntos_grupo[ngrupos - 1] = np.zeros((1, resto, 2))
+                    puntos_grupo[num] = np.zeros((ngrupos - 1, n_centroides, 784))
+                puntos_grupo[ngrupos - 1] = np.zeros((1, resto, 784))
                 resto_nuevo = ((ngrupos - 1) * n_centroides + resto) % tam_grupo
                 ngrupos_nuevo = int(((ngrupos - 1) * n_centroides + resto) / tam_grupo)
             puntos_capa[capa] = puntos_grupo
             grupos_capa[capa] = np.zeros(ngrupos, dtype=int)
         else:
-            puntos_capa[capa] = np.zeros((ngrupos, n_centroides, 2), dtype=float)
+            puntos_capa[capa] = np.zeros((ngrupos, n_centroides, 784), dtype=float)
             labels_capa[capa] = np.zeros((ngrupos, tam_grupo), dtype=int)
             grupos_capa[capa] = np.zeros(ngrupos, dtype=int)
             resto_nuevo = (ngrupos * n_centroides) % tam_grupo
@@ -228,7 +228,7 @@ def kmeans_tree(cant_ptos, tam_grupo, n_centroides, metrica, vector_original):
         vector = puntos_capa[id_capa]
         vector = np.concatenate(vector).ravel().tolist()  # 03-03-2021
         vector = np.array(vector)
-        vector = vector.reshape(cont_ptos, 2)
+        vector = vector.reshape(cont_ptos, 784)
 
         # Calculamos el numero de grupos de la siguiente capa
         # ngrupos = int(cont_ptos / tam_grupo)  # 03-03-2021  nfilas, ncolumnas = vector.shape
@@ -678,7 +678,7 @@ def kmeans_radius_search(n_centroides, seq_buscada, vector_original, k_vecinos, 
     # lista_ptos = []
     # aux_vecinos = np.empty(1, object)
 
-    seq_buscada = np.reshape(seq_buscada, (1, 2))
+    seq_buscada = np.reshape(seq_buscada, (1, 784))
 
     # Voy directamente a la capa 1 (la que está encima de los datos), establecemos como radio 3 veces la
     # distancia menor
@@ -691,7 +691,7 @@ def kmeans_radius_search(n_centroides, seq_buscada, vector_original, k_vecinos, 
     # dist_nearest_centroid = D[0, columna]
     D = util.funcdist(seq_buscada, centroides)
     dist_nearest_centroid = np.partition(D, 1)[1]
-    radius = 3 * dist_nearest_centroid  # 3 * dist_nearest_centroid
+    radius = 5 * dist_nearest_centroid  # 3 * dist_nearest_centroid
 
     # Para cada uno de los centroides con distancia menor a radius nos quedamos con k vecinos más cercanos
     # Primero almacenamos los índices de los centroides que cumplen la condición

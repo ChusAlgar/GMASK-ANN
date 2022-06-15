@@ -6,7 +6,7 @@ import numpy as np
 
 
 
-logging.basicConfig(filename='../../../logs/moduladov2/manhattan/result_km_overlap2.log', filemode='w', format='%(asctime)s - %(name)s - %(message)s',
+logging.basicConfig(filename='../../../logs/pynndescent_distances/euclidean/result_km_overlap4.log', filemode='w', format='%(asctime)s - %(name)s - %(message)s',
                     level=logging.INFO)
 
 # Parámetros de entrada comunes a todas las simulaciones:
@@ -34,7 +34,7 @@ logging.info('Sub Text MASK modulado con Numba, kmeans_tree_npdist_modulado')
 vector_original, coordx, coordy, puntos_nube = dt.generate_data_gaussian_clouds(nclouds, npc, overlap)
 
 # 2º Construimos el árbol
-metrica = 'manhattan'
+metrica = 'user'
 cant_ptos = nclouds * npc
 n_capas, grupos_capa, puntos_capa, labels_capa = ktd.kmeans_tree(cant_ptos, tam_grupo, n_centroides, metrica, vector_original)
 
