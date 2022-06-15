@@ -6,7 +6,7 @@ import numpy as np
 from timeit import default_timer as timer
 import pandas as pd
 import other_algorithms.load_train_test_set as lts
-import other_algorithms.save_get_neighbors as sgn
+import other_algorithms.neighbors_utils as sgn
 
 
 
@@ -67,8 +67,8 @@ for i in range(len(vector_testing)):
         coords[i, n, :] = puntos_nube[idx[n]][2]
         dists[i, n] = puntos_nube[idx[n]][1]
 
-file_name = '../../../logs/knn/mnist/euclidean/result_kradius5_MNIST_tg60_c30.hdf5'
-sgn.save_neighbors(indices, coords, dists, file_name)
+# file_name = '../../../logs/knn/mnist/euclidean/result_kradius5_MNIST_tg60_c30.hdf5'
+sgn.save_neighbors(indices, coords, dists, k_vecinos, 'MASK', 'mnist', 'euclidean')
 
 
 
