@@ -2,13 +2,22 @@ import os
 import h5py
 import numpy as np
 import matplotlib.pyplot as plt
+import seaborn as sb
+import csv
+
+
+# Store coordinates on a csv file
+def save_coordinates_csv(filename, coords):
+    with open(str(filename) + ".csv", 'w') as file:
+        writer = csv.writer(file)
+        writer.writerows(coords)
 
 
 # Store neighbors (indices, coords and dist) into a hdf5 file
-def save_neighbors(indices, coords, dists, knn, method, dataset_name, d):
+def save_neighbors(indices, coords, dists, dataset_name, d, method, knn):
 
     # Regarding the knn, method, dataset_name and distance choosen, set the file name to store the neighbors
-    file_name = "../other_algorithms/NearestNeighbors/" + str(knn) + "nn_" + method + "_" + str(dataset_name) + "_" + str(d) + ".hdf5"
+    file_name = "../other_algorithms/NearestNeighbors/" + method + "/" + str(dataset_name) + "_" + str(d) + "_" + method + "_" + str(knn) + "nn.hdf5"
 
     # Store the 3 different matrix on a hdf5 file
     with h5py.File(file_name, 'w') as f:
@@ -19,16 +28,19 @@ def save_neighbors(indices, coords, dists, knn, method, dataset_name, d):
 
 
 # Load neighbors (indices, coords and dist) from a hdf5 file
-def get_neighbors(knn, method, dataset_name, d):
+def load_neighbors(dataset_name, d, method, knn, tg, nc):
 
-    # Regarding the knn, method, dataset_name and distance choosed, set the file name to store the neighbors
-    file_name = "../other_algorithms/NearestNeighbors/" + str(knn) + "nn_" + method + "_" + str(
-        dataset_name) + "_" + str(d) + ".hdf5"
+    # Regarding the knn, method, dataset_name and distance choosen, set the file name to store the neighbors
+    if method is 'MASK':
+        file_name = "../other_algorithms/NearestNeighbors/" + method + "/tg" + str(tg) + "nc" + str(nc) + "/" + str(dataset_name) \
+                    + "_" + str(d) + "_" + method + "_" + str(knn) + "nn.hdf5"
+    else:
+        file_name = "../other_algorithms/NearestNeighbors/" + method + "/" + str(dataset_name) + "_" + str(d) + "_" + method + "_" + str(knn) + "nn.hdf5"
 
-    # Load indices, coords and dists as 3 independent matrix from the choosn file
+    # Load indices, coords and dists as 3 independent matrix from the choosen file
     if not os.path.exists(file_name):
         print("File " + file_name + " does not exist")
-        return 0, 0, 0
+        return None, None, None
     else:
         with h5py.File(file_name, 'r') as hdf5_file:
             print("Loading neighbors from " + file_name)
@@ -36,12 +48,12 @@ def get_neighbors(knn, method, dataset_name, d):
 
 
 # Print train set, test set and neighbors on a file
-def print_knn(train_set, test_set, neighbors, knn, method, dataset_name, d):
+def print_knn(train_set, test_set, neighbors, dataset_name, d, method, knn):
 
     # Plot with points, centroids and title
     fig, ax = plt.subplots()
-    title = str(knn) + "nn " + method + " " + str(dataset_name) + " " + str(d)
-    file_name = "../other_algorithms/NearestNeighbors/Graphics/" + str(knn) + "nn_" + method + "_" + str(dataset_name) + "_" + str(d) + ".eps"
+    title = str(dataset_name) + "_" + str(d) + "_" + method + "_" + str(knn) + "nn"
+    file_name = "../other_algorithms/NearestNeighbors/Graphics/" + str(dataset_name) + "_" + str(d) + "_" + method + "_" + str(knn) + "nn.eps"
     plt.title(title)
 
     train_set = zip(*train_set)
@@ -62,33 +74,79 @@ def print_knn(train_set, test_set, neighbors, knn, method, dataset_name, d):
 
 
 # Print train set, test set and neighbors loaded into a file
-def print_knn_fromfile(train_set, test_set, knn, method, dataset_name, d):
+def print_knn_fromfile(train_set, test_set, dataset_name, d, method, knn, tg, nc):
 
     # Load neighbors from a hdf5 file
-    indices, coords, dists = get_neighbors(knn, method, dataset_name, d)
+    indices, coords, dists = load_neighbors(dataset_name, d, method, knn, tg, nc)
 
     # Plot with points, centroids and title
-    return print_knn(train_set, test_set, coords, knn, method, dataset_name, d)
+    return print_knn(train_set, test_set, coords, dataset_name, d, method, knn)
+
 
 # Recall Benchmark
-def recall(knn, method, dataset_name, d):
+def recall(dataset_name, d, method, knn, tg, nc):
 
     # Load neighbors obtained through linear exploration
-    indices_le, coords_le, dists_le = get_neighbors(knn, "Brute_Force", dataset_name, d)
+    indices_le, coords_le, dists_le = load_neighbors(dataset_name, d, "Brute_Force", knn, tg, nc)
 
     # Load neighbors obtained through the method choosen
-    indices_mc, coords_mc, dists_mc = get_neighbors(knn, method, dataset_name, d)
+    indices_mc, coords_mc, dists_mc = load_neighbors(dataset_name, d, method, knn, tg, nc)
+
+    if indices_mc is None:
+        return None
+
+    hit = 0.0
+    for i in range(indices_mc.shape[0]):
+        hit = hit + len(np.intersect1d(indices_mc[i].astype(int), indices_le[i]))
+
+    # Recall: %  hit returned vs number of points
+    rec = hit/indices_mc.size * 100
+
+    # Show percentage of hit/miss on screen
+    print ("---- Case " + str(knn) + " nn applying " + method + " over " + str(dataset_name) + " dataset using " + str(d) + " distance. ----")
+    print("Correct neighbors rate: " + str(hit) + "/" + str(float(indices_mc.size)))
+    print("Hit percentage: " + str(rec) + "%\n\n")
+
+    return rec
+
+
+# Build a graph to show recall results
+def print_recall(dataset, distances, methods, knn, recalls):
+
+    fig, axs = plt.subplots(1, 3, figsize=(9, 4), sharey=True)
+    fig.subplots_adjust(top=0.75)
+
+    for i in range(len(distances)):
+        for j in range(len(methods)):
+            axs[i].plot(knn, recalls[i][j], label=methods[j], marker='o')
+            axs[i].set_title(distances[i], pad=7)
+
+    fig.legend(methods, loc='center right', title='Method')
+    fig.suptitle(dataset + " dataset recall (%)", fontsize=20, y= 0.95)
+    plt.ylim([0, 105])
+    plt.show()
+
+
+# Compare intersection percentage between neighbours found by two different methods
+def compare(dataset_name, d, method1, method2, knn, tg, nc):
+
+    # Load neighbors obtained through first method
+    indices_le, coords_le, dists_le = load_neighbors(dataset_name, d, method1, knn, tg, nc)
+
+    # Load neighbors obtained through the second method choosen
+    indices_mc, coords_mc, dists_mc = load_neighbors(dataset_name, d, method2, knn, tg, nc)
 
     hit = 0.0
     for i in range(indices_mc.shape[0]):
         hit = hit + len(np.intersect1d(indices_mc[i], indices_le[i]))
 
-    # Recall: %  hit returned vs number of points
+    # Compare: %  hit returned vs number of points
+    ip = hit/indices_mc.size * 100
     # Show percentage of hit/miss on screen
-    print ("---- Case " + str(knn) + " nn applying " + method + " over " + str(dataset_name) + " dataset using " + str(d) + " distance. ----")
-    print("Correct neighbors rate: " + str(hit) + "/" + str(float(indices_mc.size)))
-    print("Hit percentage: " + str(hit/indices_mc.size * 100) + "%\n\n")
+    print ("---- Case " + str(knn) + " nn within " + method1 + " and " + method2 + " over " + str(dataset_name) + " dataset using " + str(d) + " distance. ----")
+    print("Same neighbors rate: " + str(hit) + "/" + str(float(indices_mc.size)))
+    print("Intersection percentage: " + str(ip) + "%\n\n")
 
-
+    return ip
 
 
