@@ -338,10 +338,12 @@ def reagrupacion(vector, tam_grupo):
     return vector_final
 
 
-def funcdist(punto, vector):
+def funcdist(punto, vector, dim):
     vecdist = np.empty(len(vector), float)
     for i in range(len(vector)):
-        x = punto[0][0]-vector[i][0]
-        y = punto[0][1]-vector[i][1]
-        vecdist[i] = m.sqrt(x*x+y*y)
+        suma = 0.0
+        for n in range(dim):
+            difcoord = (punto[0][n]-vector[i][n])*(punto[0][n]-vector[i][n])
+            suma += difcoord
+        vecdist[i] = m.sqrt(suma)
     return vecdist

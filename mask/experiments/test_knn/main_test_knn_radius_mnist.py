@@ -7,15 +7,16 @@ from timeit import default_timer as timer
 import pandas as pd
 import other_algorithms.load_train_test_set as lts
 import other_algorithms.neighbors_utils as sgn
+from pickle import dump, load
 
 
 
-logging.basicConfig(filename='../../../logs/knn/mnist/euclidean/result_kradius5_MNIST_tg60_c30.log',
+logging.basicConfig(filename='./logs/result_kradius5_MNIST_tg1000_c500.log',
                     filemode='w', format='%(asctime)s - %(name)s - %(message)s', level=logging.INFO)
 
 # Parámetros de entrada comunes a todas las simulaciones:
-tam_grupo = 100    #200 #16
-n_centroides = 50 #150 #8
+tam_grupo = 1000    #200 #16
+n_centroides = 500 #150 #8
 
 k_vecinos = 5
 
@@ -30,8 +31,8 @@ logging.info('k_vecinos=%s', k_vecinos)
 
 # 1º Leemos los datos
 
-vector_training, vector_testing = lts.load_train_test_MNIST()
-
+# vector_training, vector_testing = lts.load_train_test_h5py(file_name="./data/MNIST_train_test_set.hdf5")
+vector_training, vector_testing = lts.load_train_test("MNIST")
 metrica = 'euclidean'
 cant_ptos = len(vector_training)
 
@@ -40,6 +41,9 @@ cant_ptos = len(vector_training)
 # 2º Generamos el árbol
 n_capas, grupos_capa, puntos_capa, labels_capa = knn.kmeans_tree(cant_ptos, tam_grupo, n_centroides,
                                                                  metrica, vector_training)
+
+#with open("./other_algorithms/MASK_MNIST" + str(k_vecinos) +".pickle", 'wb') as handle:
+#    dump((puntos_capa, labels_capa), handle)
 
 
 # 3º Buscamos los k vecinos de los puntos de testing
@@ -68,7 +72,12 @@ for i in range(len(vector_testing)):
         dists[i, n] = puntos_nube[idx[n]][1]
 
 # file_name = '../../../logs/knn/mnist/euclidean/result_kradius5_MNIST_tg60_c30.hdf5'
-sgn.save_neighbors(indices, coords, dists, k_vecinos, 'MASK', 'mnist', 'euclidean')
+
+# Regarding the knn, method, dataset_name and distance choosen, set the file name to store the neighbors
+file_name = "./NearestNeighbors/MASK/tg" + str(tam_grupo) + "nc" + str(
+        n_centroides) + "/MNIST_euclidean_MASK_" + str(knn) + "nn.hdf5"
+
+#sgn.save_neighbors(indices, coords, dists, file_name)
 
 
 

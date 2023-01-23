@@ -1,0 +1,15 @@
+2022-11-16 13:05:16,617 - root - ------------------------------------------------------------------------
+2022-11-16 13:05:16,617 - root -                           KNN Searching
+2022-11-16 13:05:16,618 - root - ------------------------------------------------------------------------
+
+2022-11-16 13:05:16,618 - root - 
+2022-11-16 13:05:16,618 - root - ---- Searching the 5 nearest neighbors within Brute_Force over GLOVE dataset using euclidean distance. ----
+2022-11-16 13:05:16,619 - root - Loading train and test set from ./data/GLOVE_train_test_set.hdf5
+
+2022-11-16 13:05:16,892 - root - Building index
+2022-11-16 13:05:16,892 - root - Index time= 0.0495131015778 seconds
+2022-11-16 13:05:19,207 - root - Search time= 2.31474494934 seconds
+
+2022-11-16 13:05:19,211 - root - Neighbors stored at ./other_algorithms/NearestNeighbors/knn_GLOVE_5_euclidean_Brute_Force.hdf5
+2022-11-16 13:05:19,212 - root - ------------------------------------------------------------------------
+

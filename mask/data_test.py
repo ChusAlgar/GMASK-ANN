@@ -1,8 +1,10 @@
 # coding=utf-8
 import numpy as np
 import pandas as pd
+import matplotlib
+matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
-import utilities as util
+import mask.utilities as util
 
 def generate_data_test():
     np.random.seed(2)
@@ -101,8 +103,9 @@ print('x:', cx.shape)
 print('y:', cy.shape)
 print(cx)"""
 
-def generate_data_foverlap(nclouds, npc):
-    np.random.seed(1234)
+
+def generate_data_foverlap(nclouds, npc, seed=1234):
+    np.random.seed(seed)
 
     listx = []
     listy = []
@@ -131,8 +134,8 @@ def generate_data_foverlap(nclouds, npc):
     return coordx, coordy, indices
 
 
-def generate_data_noverlap(nclouds, npc):
-    np.random.seed(1234)
+def generate_data_noverlap(nclouds, npc, seed=1234):
+    np.random.seed(seed)
 
     listx = []
     listy = []
@@ -204,15 +207,15 @@ def generate_data_overlap(nclouds, npc):
 # plt.title("Representación nubes con solape")
 # plt.show()
 
-def generate_data_gaussian_clouds(nclouds, npc, overlap):
+def generate_data_gaussian_clouds(nclouds, npc, overlap, seed=1234):
     # Datos de entrada: nubes que siguen una distribución normal, en dos dimensiones.
     # print("genera los datos")
     if overlap:
-        coordx, coordy, indices = generate_data_foverlap(nclouds, npc)  # las genera con un poco de solpae
+        coordx, coordy, indices = generate_data_foverlap(nclouds, npc, seed)  # las genera con un poco de solpae
         # coordx, coordy, indices = dt.generate_data_overlap(nclouds, npc)  #las genera con mucho solape
     else:
         # coordx, coordy = dt.generate_data_test2()  # las genera sin solape
-        coordx, coordy, indices = generate_data_noverlap(nclouds, npc)  # las genera sin solape optimizando la
+        coordx, coordy, indices = generate_data_noverlap(nclouds, npc, seed)  # las genera sin solape optimizando la
         # pertenencia a la nube
 
     vector_original = list(zip(coordx[0], coordy[0], indices[0]))

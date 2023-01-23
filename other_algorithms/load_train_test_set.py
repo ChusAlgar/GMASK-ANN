@@ -1,15 +1,16 @@
 import os
 import h5py
 import numpy as np
-import data_test as dt
+import mask.data_test as dt
 from sklearn import preprocessing
 import pandas as pd
+import logging
 np.set_printoptions(suppress=True)
 
-# Set constants for experiments
+# Set constants for dataset generation
 nclouds = 8
-npc = 100000
-
+# npc = 100000
+# overlap = True
 normaliza = False
 test_set_size = 100
 
@@ -17,10 +18,7 @@ test_set_size = 100
 
 
 # Store train and test set into a hdf5 file
-def save_train_test_h5py(dataset, train_set, test_set):
-
-    # Regarding the knn, method, dataset_name set the file name to store the train and test set
-    file_name = "../data/" + str(dataset) + "_train_test_set.hdf5"
+def save_train_test_h5py(train_set, test_set, file_name):
 
     # Store the 2 different sets on a hdf5 file
     with h5py.File(file_name, 'w') as f:
@@ -29,10 +27,7 @@ def save_train_test_h5py(dataset, train_set, test_set):
 
 
 # Load train and test set from a hdf5 file
-def load_train_test_h5py(dataset):
-
-    # Regarding the knn, method, dataset_name set the file name to store the train and test set
-    file_name = "../data/" + str(dataset) + "_train_test_set.hdf5"
+def load_train_test_h5py(file_name):
 
     # Load train and test set from the choosen file
     if not os.path.exists(file_name):
@@ -40,21 +35,23 @@ def load_train_test_h5py(dataset):
         return None, None
     else:
         with h5py.File(file_name, 'r') as hdf5_file:
-            print("\n ######### Loading train and test set from " + file_name + " #########")
+            # print("\n ######### Loading train and test set from " + file_name + " #########")
+            logging.info("Loading train and test set from " + file_name + "\n")
             return np.array(hdf5_file['train_set']), np.array(hdf5_file['test_set'])
 
 
 ####### Generate brand new train and test set #########
 
-def load_train_test(dataset_name):
+def load_train_test(dataset_name, npc=10000, overlap=True):
 
-    print("\n ######### Creating train and test set from " + dataset_name + " dataset #########")
+    # print("\n ######### Creating train and test set from " + dataset_name + " dataset #########")
+    logging.info("Creating train and test set from " + dataset_name + " dataset\n")
 
     # Generate Gaussian Clouds dataset and generate train and test sets
-    if dataset_name is "gaussian":
+    if dataset_name == "gaussian":
 
         # Generate n gaussian clouds and store them into a NumpyArray
-        gaussian_clouds, coordx, coordy, puntos_nube = dt.generate_data_gaussian_clouds(nclouds, npc, overlap=True)
+        gaussian_clouds, coordx, coordy, puntos_nube = dt.generate_data_gaussian_clouds(nclouds, npc, overlap)
         gaussian_clouds = np.array(gaussian_clouds)
 
         # If normaliza, normalize the dataset
@@ -72,10 +69,10 @@ def load_train_test(dataset_name):
         return train_set, test_set
 
     # Load Geographical Dataset (Municipios) dataset and generate train and test sets
-    elif dataset_name is "municipios":
+    elif dataset_name == "municipios":
 
         # Read the complete dataset from a csv file and store it into a NumpyArray
-        datos = pd.read_csv('../data/MUNICIPIOS-utf8.csv', sep=';')
+        datos = pd.read_csv('./data/MUNICIPIOS-utf8.csv', sep=';')
         municipios = pd.DataFrame(datos, columns=['LONGITUD_ETRS89', 'LATITUD_ETRS89'])
         # index = datos_geo.index
         # cant_ptos = len(index)
@@ -104,20 +101,21 @@ def load_train_test(dataset_name):
         return train_set, test_set
 
     # Load Images Dataset (MNIST) dataset and generate train and test sets
-    elif dataset_name is "MNIST":
+    elif dataset_name == "MNIST":
 
         # Read the train_set from a csv file and store it into a Numpy Array
-        data = pd.read_csv('../data/mnist_train.csv', delimiter=',', nrows=None)
+        data = pd.read_csv('./data/mnist_train.csv', delimiter=',', nrows=None)
         train_set = pd.DataFrame(data).drop(columns='label').to_numpy().astype(float)
 
         # Read the test_set from a csv file and store it into a Numpy Array
-        data = pd.read_csv('../data/mnist_test.csv', delimiter=',', nrows=None)
+        data = pd.read_csv('./data/mnist_test.csv', delimiter=',', nrows=None)
         test_set = pd.DataFrame(data).drop(columns='label').to_numpy().astype(float)
 
         # For this experiment, compose a reduced test_set of 100 elements
         np.random.seed(1234)
         index_testing = np.random.choice(len(test_set), test_set_size, replace=False)
         test_set = test_set[index_testing]
+        # n_test_set = test_set[0:10, :]
 
         # If normaliza, normalize the datasets
         if normaliza:
@@ -126,8 +124,65 @@ def load_train_test(dataset_name):
 
         return train_set, test_set
 
+    # Load pre-trained 100-dimensional vector representations for words (GLOVE) dataset and generate train and test sets
+    # English word vectors pre-trained on the combined Wikipedia 2014 +  Gigaword 5th Edition corpora (6B tokens, 400K vocab)
+    elif dataset_name == "GLOVE":
+
+        # Read the train_set and test_set from a hdf5 file and store it into Numpy Arrays
+        with h5py.File('./data/glove-100-angular.hdf5', 'r') as hdf5_file:
+            # print("Keys: %s" % hdf5_file.keys())
+            train_set = np.array(hdf5_file['train'])
+            test_set = np.array(hdf5_file['test'])
+
+        # For this experiment, compose a reduced test_set of 100 elements
+        np.random.seed(1234)
+        index_testing = np.random.choice(len(test_set), test_set_size, replace=False)
+        test_set = test_set[index_testing]
+        # n_test_set = train_set[1000:1099]
+
+        # If normaliza, normalize the datasets
+        if normaliza:
+            train_set = preprocessing.normalize(train_set, axis=0, norm='l2')
+            test_set = preprocessing.normalize(test_set, axis=0, norm='l2')
+
+        save_train_test_h5py(train_set, test_set, "./data/GLOVE_train_test_set.hdf5")
+
+        return train_set, test_set
+
+
+    # Load pre-trained 100-dimensional vector representations for words (GLOVE) dataset
+    # Compose a reduced train set of 100000 items
+    elif dataset_name == "GLOVE100000":
+
+        # Read the train_set and test_set from a hdf5 file and store it into Numpy Arrays
+        with h5py.File('./data/glove-100-angular.hdf5', 'r') as hdf5_file:
+            # print("Keys: %s" % hdf5_file.keys())
+            train_set = np.array(hdf5_file['train'])
+            test_set = np.array(hdf5_file['test'])
+
+        # For this experiment, compose a reduced train_set of 100000 elements
+        np.random.seed(1234)
+        index_training = np.random.choice(len(train_set), 100000, replace=False)
+        train_set = train_set[index_training]
+        # # n_train_set = train_set[0:999]
+
+        # For this experiment, compose a reduced test_set of 100 elements
+        np.random.seed(1234)
+        index_testing = np.random.choice(len(test_set), test_set_size, replace=False)
+        test_set = test_set[index_testing]
+        # n_test_set = train_set[1000:1099]
+
+        # If normaliza, normalize the datasets
+        if normaliza:
+            train_set = preprocessing.normalize(train_set, axis=0, norm='l2')
+            test_set = preprocessing.normalize(test_set, axis=0, norm='l2')
+
+        save_train_test_h5py(train_set, test_set, "./data/GLOVE100000_train_test_set.hdf5")
+
+        return train_set, test_set
+
     else:
 
         print("Dataset not found")
+        logging.info("Dataset not found\n")
         return None, None
-
