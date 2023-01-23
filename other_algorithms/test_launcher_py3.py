@@ -37,15 +37,13 @@ def main(args):
         print("Please, use test_launcher_py2")
 
     elif method == 'MASK':
-        print(method)
-        #MASK(config_file)
+        MASK(config_file)
 
     elif method == 'FLANN':
         print("Please, use test_launcher_py2")
 
     elif method == 'PYNN':
-        print(method)
-        #PYNN(config_file)
+        PYNN(config_file)
 
     else:
         print("Method not able")
