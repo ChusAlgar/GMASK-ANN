@@ -1,5 +1,3 @@
-from other_algorithms.BruteForce.main_test_bruteforce_config import BruteForce
-from other_algorithms.KDTree.main_test_KDTree_config import KDTree
 from other_algorithms.FLANN.main_test_FLANN_config import FLANN
 
 
@@ -35,10 +33,10 @@ def main(args):
 
 
     if method == 'BruteForce':
-        BruteForce(config_file)
+        print("Please, use test_launcher_py3")
 
     elif method == 'KDTree':
-        KDTree(config_file)
+        print("Please, use test_launcher_py3")
 
     elif method == 'MASK':
         print("Please, use test_launcher_py3")

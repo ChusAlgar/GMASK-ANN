@@ -4,7 +4,7 @@ from other_algorithms.BruteForce.bruteforce_npdist import bruteforce_nn_index, b
 import logging
 from timeit import default_timer as timer
 from pickle import dump, load
-import ConfigParser
+import configparser
 import io
 
 
@@ -13,13 +13,8 @@ def BruteForce(file):
     # Load the configuration file
     configfile_name = "./config/" + file
 
-
-    # def test_BruteForce(configfile_name):
-
-    with open(configfile_name) as f:
-        config_file = f.read()
-    config = ConfigParser.RawConfigParser(allow_no_value=True)
-    config.readfp(io.BytesIO(config_file))
+    config = configparser.ConfigParser()
+    config.read(configfile_name)
 
 
     # Read test parameters

@@ -4,7 +4,7 @@ from other_algorithms.KDTree.KDTree_npdist import KDTree_nn_index, KDTree_nn_sea
 import logging
 from timeit import default_timer as timer
 from pickle import dump, load
-import ConfigParser
+import configparser
 import io
 
 
@@ -13,10 +13,8 @@ def KDTree(file):
     # Load the configuration file
     configfile_name = "./config/" + file
 
-    with open(configfile_name) as f:
-        config_file = f.read()
-    config = ConfigParser.RawConfigParser(allow_no_value=True)
-    config.readfp(io.BytesIO(config_file))
+    config = configparser.ConfigParser()
+    config.read(configfile_name)
 
 
     # Read test parameters

@@ -76,8 +76,8 @@ for dataset_name in datasets:
             # Print
             # print_knn(train_set, test_set, coords, dataset_name, d, "PYNN", k)
 
-            file_name_le = "./NearestNeighbors/Brute_Force/" + str(dataset_name) + "_" + str(
-                d) + "_Brute_Force_" + str(k) + "nn.hdf5"
+            file_name_le = "./NearestNeighbors/BruteForce/" + str(dataset_name) + "_" + str(
+                d) + "_BruteForce_" + str(k) + "nn.hdf5"
             file_name = "./NearestNeighbors/PYNN/" + str(dataset_name) + "_" + str(
                 d) + "_PYNN_" + str(k) + "nn.hdf5"
 

@@ -1,3 +1,5 @@
+from other_algorithms.BruteForce.main_test_bruteforce_config import BruteForce
+from other_algorithms.KDTree.main_test_KDTree_config import KDTree
 from mask.experiments.test_knn.main_test_knn_radius_config import MASK
 from other_algorithms.Pynndescent.main_test_PYNN_config import PYNN
 
@@ -31,10 +33,10 @@ def main(args):
 
 
     if method == 'BruteForce':
-        print("Please, use test_launcher_py2")
+        BruteForce(config_file)
 
     elif method == 'KDTree':
-        print("Please, use test_launcher_py2")
+        KDTree(config_file)
 
     elif method == 'MASK':
         MASK(config_file)

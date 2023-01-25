@@ -175,7 +175,9 @@ def error_rate(dataset_name, d, method, knn, same_train_test=False, file_name_le
         '''
 
         # Count number of 1-neighbor which are the same as the point searched
-        hit = sum(map(lambda x, y: len(np.intersect1d(x.astype(int), y)), list(indices_mc), list(indices_le)))
+        # We set assume_unique=True at np.intersectid(...) to accelerate the calculation
+        # bc the compared lists are always uniques (any element would ever appear twice as neighbor for the same point)
+        hit = sum(map(lambda x, y: len(np.intersect1d(x.astype(int), y, assume_unique=True)), list(indices_mc), list(indices_le)))
 
     # Compare: % miss returned vs number of points
     er = (1 - hit / float(indices_mc.size)) * 100

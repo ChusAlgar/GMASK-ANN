@@ -77,7 +77,7 @@ def FLANN(file):
 
     '''
     # Obtain error rate of the K Nearest Neighbors found
-    file_name_le = "./NearestNeighbors/knn_" + dataset + "_" + str(k) + "_" + distance + "_Brute_Force.hdf5"
+    file_name_le = "./NearestNeighbors/knn_" + dataset + "_" + str(k) + "_" + distance + "_BruteForce.hdf5"
     file_name = "./NearestNeighbors/knn_" + dataset + "_" + str(k) + "_" + distance + "_" + method + ".hdf5"
     
     error_rate(dataset, distance, 'FLANN', k, False, file_name_le, file_name)

@@ -5,6 +5,7 @@ import mask.data_test as dt
 from sklearn import preprocessing
 import pandas as pd
 import logging
+import re
 np.set_printoptions(suppress=True)
 
 # Set constants for dataset generation
@@ -42,13 +43,21 @@ def load_train_test_h5py(file_name):
 
 ####### Generate brand new train and test set #########
 
-def load_train_test(dataset_name, npc=10000, overlap=True):
+# If test_eq_train=True, that means test set is going to be set the same as train one,
+# so a punctual search of any element contained on train dataset is going to be carry out
+# At first, it would only be relevant over little size gaussian sets to carry on some tests
+
+def load_train_test(dataset_name, test_eq_train=False):
 
     # print("\n ######### Creating train and test set from " + dataset_name + " dataset #########")
-    logging.info("Creating train and test set from " + dataset_name + " dataset\n")
+    logging.info("Creating train and test as " + dataset_name + " dataset\n")
 
     # Generate Gaussian Clouds dataset and generate train and test sets
-    if dataset_name == "gaussian":
+    if dataset_name.startswith("gaussian_clouds"):
+
+        # From dataset name, obtain information about clouds features
+        npc = int(re.sub("npc", "", re.split('_', dataset_name)[2]))
+        overlap = bool(re.split('_', dataset_name)[3])
 
         # Generate n gaussian clouds and store them into a NumpyArray
         gaussian_clouds, coordx, coordy, puntos_nube = dt.generate_data_gaussian_clouds(nclouds, npc, overlap)
@@ -58,13 +67,20 @@ def load_train_test(dataset_name, npc=10000, overlap=True):
         if normaliza:
             gaussian_clouds = preprocessing.normalize(gaussian_clouds, axis=0, norm='l2')
 
-        # For this experiment, compose the test_set (100 elements) and the train_set
-        np.random.seed(1234)
-        index_testing = np.random.choice(len(gaussian_clouds), test_set_size, replace=False)
-        test_set = gaussian_clouds[index_testing]
-        index_complete = np.linspace(0, len(gaussian_clouds) - 1, len(gaussian_clouds), dtype=int)
-        index_training = np.setdiff1d(index_complete, index_testing)
-        train_set = gaussian_clouds[index_training]
+        if test_eq_train:
+            train_set = gaussian_clouds
+            test_set = gaussian_clouds
+
+        else:
+            # For this experiment, compose the test_set (100 elements not contained on the train set) and the train_set
+            np.random.seed(1234)
+            index_testing = np.random.choice(len(gaussian_clouds), test_set_size, replace=False)
+            test_set = gaussian_clouds[index_testing]
+            index_complete = np.linspace(0, len(gaussian_clouds) - 1, len(gaussian_clouds), dtype=int)
+            index_training = np.setdiff1d(index_complete, index_testing)
+            train_set = gaussian_clouds[index_training]
+
+        save_train_test_h5py(train_set, test_set, "./data/" + dataset_name + "_train_test_set.hdf5")
 
         return train_set, test_set
 
@@ -98,6 +114,8 @@ def load_train_test(dataset_name, npc=10000, overlap=True):
         #    a_file.write((str(row[0]) + " " + str(row[1]) + "\n"))
         # a_file.close()
 
+        save_train_test_h5py(train_set, test_set, "./data/municipios_train_test_set.hdf5")
+
         return train_set, test_set
 
     # Load Images Dataset (MNIST) dataset and generate train and test sets
@@ -121,6 +139,8 @@ def load_train_test(dataset_name, npc=10000, overlap=True):
         if normaliza:
             train_set = preprocessing.normalize(train_set, axis=0, norm='l2')
             test_set = preprocessing.normalize(test_set, axis=0, norm='l2')
+
+        save_train_test_h5py(train_set, test_set, "./data/MNIST_train_test_set.hdf5")
 
         return train_set, test_set
 

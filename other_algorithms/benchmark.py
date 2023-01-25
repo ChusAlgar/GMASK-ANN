@@ -46,7 +46,7 @@ def benchmark_recall():
 
                     if m == 'MASK':
                         file_name = "./NearestNeighbors/knn_" + da + "_" + str(
-                            k) + "_" + di + "_" + m + "_tg" + str(tg) + "_nc" + str(nc) + "_" + str(r) + ".hdf5"
+                            k) + "_" + di + "_" + m + "_tg" + str(tg) + "_nc" + str(nc) + "_r" + str(r) + ".hdf5"
                     else:
                         file_name = "./NearestNeighbors/knn_" + da + "_" + str(
                             k) + "_" + di + "_" + m + ".hdf5"
@@ -134,7 +134,7 @@ def benchmark_execution_time():
 
 '''
 '''
-indices_le, coords_le, dists_le = get_neighbors('gaussian', 'euclidean', 'Brute_Force', 5)
+indices_le, coords_le, dists_le = get_neighbors('gaussian', 'euclidean', 'BruteForce', 5)
 indices_mc, coords_mc, dists_mc = get_neighbors('gaussian', 'euclidean', 'MASK', 5)
 
 print(coords_le)
