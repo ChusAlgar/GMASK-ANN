@@ -2,7 +2,7 @@ import logging
 import kmeans_tree_nparray as kt
 
 
-logging.basicConfig(filename='../../../logs/result_kmtnp_rel_tgncNoverlap.log', filemode='w', format='%(asctime)s - %(name)s - %(message)s',
+logging.basicConfig(filename='../../../experiments/logs/result_kmtnp_rel_tgncNoverlap.log', filemode='w', format='%(asctime)s - %(name)s - %(message)s',
                     level=logging.INFO)
 
 # Parámetros de entrada comunes a todas las simulaciones:

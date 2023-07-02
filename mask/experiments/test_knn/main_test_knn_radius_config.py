@@ -4,20 +4,11 @@ import mask.KNN_np as knn
 # import mask.data_test as dt
 import numpy as np
 from timeit import default_timer as timer
-import other_algorithms.load_train_test_set as lts
-import other_algorithms.neighbors_utils as sgn
-from pickle import dump, load
-import configparser
-import io
+import experiments.load_train_test_set as lts
+import experiments.neighbors_utils as sgn
 
 
-def MASK(file):
-
-    # Load the configuration file
-    configfile_name = "./config/" + file
-
-    config = configparser.ConfigParser()
-    config.read(configfile_name)
+def MASK(config):
 
     # Read test parameters
     dataset = config.get('test', 'dataset')
@@ -30,7 +21,7 @@ def MASK(file):
 
 
     # Set log configuration
-    logging.basicConfig(filename="./logs/test_knn_" + dataset + "_" + str(k_vecinos) + "_" + metrica + "_" + method + "_tg" + str(tam_grupo) + "_nc" + str(n_centroides) + "_r" + str(radio) + ".log", filemode='w', format='%(asctime)s - %(name)s - %(message)s', level=logging.INFO)
+    logging.basicConfig(filename="./experiments/logs/" + dataset + "/test_knn_" + dataset + "_" + str(k_vecinos) + "_" + metrica + "_" + method + "_tg" + str(tam_grupo) + "_nc" + str(n_centroides) + "_r" + str(radio) + ".log", filemode='w', format='%(asctime)s - %(name)s - %(message)s', level=logging.INFO)
     logging.info('------------------------------------------------------------------------')
     logging.info('                          KNN Searching')
     logging.info('------------------------------------------------------------------------\n')
@@ -108,7 +99,7 @@ def MASK(file):
     logging.info('Speed (points/s) = %s\n', vector_testing.shape[0]/(end_time_s - start_time_s))
 
     # Regarding the knn, method, dataset_name and distance choosen, set the file name to store the neighbors
-    file_name = "./NearestNeighbors/knn_" + dataset + "_" + str(k_vecinos) + "_" + metrica + "_" + method + "_tg" + str(tam_grupo) + "_nc" + str(n_centroides) + "_r" + str(radio) + ".hdf5"
+    file_name = "./experiments/NearestNeighbors/" + dataset + "/knn_" + dataset + "_" + str(k_vecinos) + "_" + metrica + "_" + method + "_tg" + str(tam_grupo) + "_nc" + str(n_centroides) + "_r" + str(radio) + ".hdf5"
 
     # Store indices, coords and dist into a hdf5 file
     sgn.save_neighbors(indices, coords, dists, file_name)

@@ -1,5 +1,5 @@
-from other_algorithms.load_train_test_set import *
-from other_algorithms.neighbors_utils import *
+from experiments.load_train_test_set import *
+from experiments.neighbors_utils import *
 from other_algorithms.BruteForce.bruteforce_npdist import bruteforce_nn_index, bruteforce_nn_search
 import logging
 from timeit import default_timer as timer
@@ -53,8 +53,8 @@ for dataset_name in datasets:
             logging.info('Search time= %s seconds\n', end_time_s - start_time_s)
 
             # Regarding the knn, method, dataset_name and distance choosen, set the file name to store the neighbors
-            file_name = "./NearestNeighbors/BruteForce/" + str(dataset_name) + "_" + str(
-                d) + "_BruteForce_" + str(k) + "nn.hdf5"
+            file_name = "./experiments/NearestNeighbors/" + str(dataset_name) + "/knn_" + str(dataset_name) + "_" + str(
+                k) + "_" + str(d) + "_BruteForce" + ".hdf5"
 
             # Store indices, coords and dist into a hdf5 file
             save_neighbors(indices, coords, dists, file_name)

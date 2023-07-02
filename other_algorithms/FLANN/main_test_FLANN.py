@@ -1,6 +1,5 @@
-import sys
-from other_algorithms.load_train_test_set import *
-from other_algorithms.neighbors_utils import *
+from experiments.load_train_test_set import *
+from experiments.neighbors_utils import *
 from other_algorithms.FLANN.FLANN_npdist_modulado import FLANN_nn_index, FLANN_nn_search
 import logging
 from timeit import default_timer as timer
@@ -19,7 +18,7 @@ distances = ['euclidean']   # Possible values euclidean, manhattan, minkowski, m
 for dataset_name in datasets:
 
     # Set log configuration
-    logging.basicConfig(filename="./logs/knn_" + dataset_name +"_FLANN.log",
+    logging.basicConfig(filename="./experiments/logs/" + dataset_name + "/knn_" + dataset_name +"_FLANN.log",
                         filemode='w', format='%(asctime)s - %(name)s - %(message)s', level=logging.INFO)
     logging.info('------------------------------------------------------------------------')
     logging.info('KNN Search using FLANN')
@@ -64,8 +63,8 @@ for dataset_name in datasets:
             # knn = zip(indices, coords, dists)
 
             # Regarding the knn, method, dataset_name and distance choosen, set the file name to store the neighbors
-            file_name = "./NearestNeighbors/FLANN/" + str(dataset_name) + "_" + str(
-                d) + "_FLANN_" + str(k) + "nn.hdf5"
+            file_name = "./experiments/NearestNeighbors/" + str(dataset_name) + "/knn_" + str(dataset_name) + "_" + str(
+                k) + "_" + str(d) + "_FLANN" + ".hdf5"
 
             # Store indices, coords and dist into a hdf5 file
             save_neighbors(indices, coords, dists, file_name)
@@ -73,9 +72,9 @@ for dataset_name in datasets:
             # Print
             # print_knn(train_set, test_set, coords, dataset_name, d, "FLANN", k)
 
-            file_name_le = "./NearestNeighbors/BruteForce/" + str(dataset_name) + "_" + str(
+            file_name_le = "./experiments/NearestNeighbors/" + str(dataset_name) + "/" + str(dataset_name) + "_" + str(
                 d) + "_BruteForce_" + str(k) + "nn.hdf5"
-            file_name = "./NearestNeighbors/FLANN/" + str(dataset_name) + "_" + str(
+            file_name = "./experiments/NearestNeighbors/" + str(dataset_name) + "/" + str(dataset_name) + "_" + str(
                 d) + "_FLANN_" + str(k) + "nn.hdf5"
 
 

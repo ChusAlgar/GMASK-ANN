@@ -1,5 +1,5 @@
 from other_algorithms.BruteForce.main_test_bruteforce_config import *
-from other_algorithms.load_train_test_set import *
+from experiments.load_train_test_set import *
 
 # Set gaussian clouds parameters
 nclouds = 8

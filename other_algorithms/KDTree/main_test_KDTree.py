@@ -1,9 +1,8 @@
-from other_algorithms.load_train_test_set import *
-from other_algorithms.neighbors_utils import *
+from experiments.load_train_test_set import *
+from experiments.neighbors_utils import *
 from other_algorithms.KDTree.KDTree_npdist import KDTree_nn_index, KDTree_nn_search
 import logging
 from timeit import default_timer as timer
-from pickle import dump, load
 
 # Set constants for experiments
 algorithm = 'kd_tree'  # Possible values 'auto', 'ball_tree', 'kd_tree', 'brute'
@@ -61,8 +60,8 @@ for dataset_name in datasets:
             logging.info('Speed (points/s) = %s\n', test_set.shape[0] / (end_time_s - start_time_s))
 
             # Regarding the knn, method, dataset_name and distance choosen, set the file name to store the neighbors
-            file_name = "./NearestNeighbors/KDTree/" + str(dataset_name) + "_" + str(
-                d) + "_KDTree_" + str(k) + "nn.hdf5"
+            file_name = "./experiments/NearestNeighbors/" + str(dataset_name) + "/knn_" + str(dataset_name) + "_" + str(
+                k) + "_" + str(d) + "_KDTree" + ".hdf5"
 
             # Store indices, coords and dist into a hdf5 file
             save_neighbors(indices, coords, dists, file_name)

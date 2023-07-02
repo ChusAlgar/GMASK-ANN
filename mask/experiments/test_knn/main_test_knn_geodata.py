@@ -8,7 +8,7 @@ import pandas as pd
 
 
 
-logging.basicConfig(filename='../../../logs/knn/geodata/euclidean/result_k5_MUNICIPIOSA_tg60_c30.log',
+logging.basicConfig(filename='../../../experiments/logs/knn/geodata/euclidean/result_k5_MUNICIPIOS_tg60_c30.log',
                     filemode='w', format='%(asctime)s - %(name)s - %(message)s', level=logging.INFO)
 
 # Parámetros de entrada comunes a todas las simulaciones:

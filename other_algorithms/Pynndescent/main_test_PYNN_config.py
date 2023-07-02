@@ -1,20 +1,11 @@
-from other_algorithms.load_train_test_set import *
-from other_algorithms.neighbors_utils import *
+from experiments.load_train_test_set import *
+from experiments.neighbors_utils import *
 from other_algorithms.Pynndescent.PYNN_npdist import PYNN_nn_index, PYNN_nn_search
 import logging
 from timeit import default_timer as timer
-from pickle import dump, load
-import configparser
-import io
 
 
-def PYNN(file):
-
-    # Load the configuration file
-    configfile_name = "./config/" + file
-
-    config = configparser.ConfigParser()
-    config.read(configfile_name)
+def PYNN(config):
 
     # Read test parameters
     dataset = config.get('test', 'dataset')
@@ -24,7 +15,7 @@ def PYNN(file):
 
 
     # Set log configuration
-    logging.basicConfig(filename="./logs/test_knn_" + dataset + "_" + str(k) + "_" + distance + "_" + method + ".log", filemode='w', format='%(asctime)s - %(name)s - %(message)s', level=logging.INFO)
+    logging.basicConfig(filename="./experiments/logs/" + dataset + "/test_knn_" + dataset + "_" + str(k) + "_" + distance + "_" + method + ".log", filemode='w', format='%(asctime)s - %(name)s - %(message)s', level=logging.INFO)
     logging.info('------------------------------------------------------------------------')
     logging.info('                          KNN Searching')
     logging.info('------------------------------------------------------------------------\n')
@@ -66,7 +57,8 @@ def PYNN(file):
     # knn = zip(indices, coords, dists)
 
     # Regarding the knn, method, dataset_name and distance choosen, set the file name to store the neighbors
-    file_name = "./NearestNeighbors/knn_" + dataset + "_" + str(k) + "_" + distance + "_" + method + ".hdf5"
+    file_name = "./experiments/NearestNeighbors/" + dataset + "/knn_" + dataset + "_" + str(
+        k) + "_" + distance + "_" + method + ".hdf5"
 
     # Store indices, coords and dist into a hdf5 file
     save_neighbors(indices, coords, dists, file_name)
@@ -76,8 +68,8 @@ def PYNN(file):
 
     '''
     # Obtain error rate of the K Nearest Neighbors found
-    file_name_le = "./NearestNeighbors/knn_" + dataset + "_" + str(k) + "_" + distance + "BruteForce.hdf5"
-    file_name = "./NearestNeighbors/knn_" + dataset + "_" + str(k) + "_" + distance + "_" + method + ".hdf5"
+    file_name_le = "./experiments/NearestNeighbors/" + dataset + "/knn_" + dataset + "_" + str(k) + "_" + distance + "KDTree.hdf5"
+    file_name = "./experiments/NearestNeighbors/" + dataset + "/knn_" + dataset + "_" + str(k) + "_" + distance + "_" + method + ".hdf5"
     
     error_rate(dataset, distance, 'FLANN', k, False, file_name_le, file_name)
     '''

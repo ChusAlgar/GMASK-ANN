@@ -1,4 +1,4 @@
-from other_algorithms.neighbors_utils import *
+from experiments.neighbors_utils import *
 from mask.experiments.test_knn.main_test_knn_radius_config import *
 
 # Set gaussian clouds parameters
@@ -39,7 +39,7 @@ for o in overlap:
 
         logging.info('-------------------------- Error rate  ------------------------------')
         # Exhaustive Point Query Error Rate
-        file_name_le = "./NearestNeighbors/knn_" + gaussian_clouds + "_" + str(k) + "_" + distance + "_BruteForce.hdf5"
-        file_name_mc = "./NearestNeighbors/knn_" + gaussian_clouds + "_" + mask_conf + ".hdf5"
+        file_name_le = "./experiments/NearestNeighbors/gaussian-clouds/knn_" + gaussian_clouds + "_" + str(k) + "_" + distance + "_BruteForce.hdf5"
+        file_name_mc = "./experiments/NearestNeighbors/gaussian-clouds/knn_" + gaussian_clouds + "_" + mask_conf + ".hdf5"
         print("\n")
         er = error_rate(gaussian_clouds, distance, method, k, same_train_test, file_name_le, file_name_mc)

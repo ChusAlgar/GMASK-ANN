@@ -1,21 +1,10 @@
-from other_algorithms.load_train_test_set import *
-from other_algorithms.neighbors_utils import *
+from experiments.load_train_test_set import *
+from experiments.neighbors_utils import *
 from other_algorithms.FLANN.FLANN_npdist_modulado import FLANN_nn_index, FLANN_nn_search
 import logging
 from timeit import default_timer as timer
-import ConfigParser
-import io
 
-def FLANN(file):
-
-    # Load the configuration file
-    configfile_name = "./config/" + file
-
-    with open(configfile_name) as f:
-        config_file = f.read()
-    config = ConfigParser.RawConfigParser(allow_no_value=True)
-    config.readfp(io.BytesIO(config_file))
-
+def FLANN(config):
 
     # Read test parameters
     dataset = config.get('test', 'dataset')
@@ -27,7 +16,7 @@ def FLANN(file):
 
 
     # Set log configuration
-    logging.basicConfig(filename="./logs/test_knn_"  + dataset + "_" + str(k) + "_" + distance + "_" + method + ".log",
+    logging.basicConfig(filename="./experiments/logs/" + dataset + "/test_knn_"  + dataset + "_" + str(k) + "_" + distance + "_" + method + ".log",
                         filemode='w', format='%(asctime)s - %(name)s - %(message)s', level=logging.INFO)
     logging.info('------------------------------------------------------------------------')
     logging.info('                          KNN Searching')
@@ -68,7 +57,7 @@ def FLANN(file):
     # knn = zip(indices, coords, dists)
 
     # Regarding the knn, method, dataset_name and distance choosen, set the file name to store the neighbors
-    file_name = "./NearestNeighbors/knn_" + dataset + "_" + str(k) + "_" + distance + "_" + method + ".hdf5"
+    file_name = "./experiments/NearestNeighbors/" + dataset + "/knn_" + dataset + "_" + str(k) + "_" + distance + "_" + method + ".hdf5"
     # Store indices, coords and dist into a hdf5 file
     save_neighbors(indices, coords, dists, file_name)
 
@@ -77,8 +66,8 @@ def FLANN(file):
 
     '''
     # Obtain error rate of the K Nearest Neighbors found
-    file_name_le = "./NearestNeighbors/knn_" + dataset + "_" + str(k) + "_" + distance + "_BruteForce.hdf5"
-    file_name = "./NearestNeighbors/knn_" + dataset + "_" + str(k) + "_" + distance + "_" + method + ".hdf5"
+    file_name_le = "./experiments/NearestNeighbors/" + dataset + "/knn_" + dataset + "_" + str(k) + "_" + distance + "_BruteForce.hdf5"
+    file_name = "./experiments/NearestNeighbors/" + dataset + "/knn_" + dataset + "_" + str(k) + "_" + distance + "_" + method + ".hdf5"
     
     error_rate(dataset, distance, 'FLANN', k, False, file_name_le, file_name)
     '''

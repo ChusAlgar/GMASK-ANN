@@ -1,21 +1,11 @@
-from other_algorithms.load_train_test_set import *
-from other_algorithms.neighbors_utils import *
+from experiments.load_train_test_set import *
+from experiments.neighbors_utils import *
 from other_algorithms.KDTree.KDTree_npdist import KDTree_nn_index, KDTree_nn_search
 import logging
 from timeit import default_timer as timer
-from pickle import dump, load
-import configparser
-import io
 
 
-def KDTree(file):
-
-    # Load the configuration file
-    configfile_name = "./config/" + file
-
-    config = configparser.ConfigParser()
-    config.read(configfile_name)
-
+def KDTree(config):
 
     # Read test parameters
     dataset = config.get('test', 'dataset')
@@ -29,7 +19,7 @@ def KDTree(file):
 
 
     # Set log configuration
-    logging.basicConfig(filename="./logs/test_knn_" + dataset + "_" + str(k) + "_" + distance + "_" + method + ".log", filemode='w', format='%(asctime)s - %(name)s - %(message)s', level=logging.INFO)
+    logging.basicConfig(filename="./experiments/logs/" + dataset + "/test_knn_" + dataset + "_" + str(k) + "_" + distance + "_" + method + ".log", filemode='w', format='%(asctime)s - %(name)s - %(message)s', level=logging.INFO)
     logging.info('------------------------------------------------------------------------')
     logging.info('                          KNN Searching')
     logging.info('------------------------------------------------------------------------\n')
@@ -68,7 +58,7 @@ def KDTree(file):
     logging.info('Speed (points/s) = %s\n', test_set.shape[0] / (end_time_s - start_time_s))
 
     # Regarding the knn, method, dataset_name and distance choosen, set the file name to store the neighbors
-    file_name = "./NearestNeighbors/knn_" + dataset + "_" + str(k) + "_" + distance + "_" + method + ".hdf5"
+    file_name = "./experiments/NearestNeighbors/" + dataset + "/knn_" + dataset + "_" + str(k) + "_" + distance + "_" + method + ".hdf5"
 
     # Store indices, coords and dist into a hdf5 file
     save_neighbors(indices, coords, dists, file_name)

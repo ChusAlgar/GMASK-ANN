@@ -1,5 +1,5 @@
 from other_algorithms.Pynndescent.main_test_PYNN_config import *
-from other_algorithms.neighbors_utils import *
+from experiments.neighbors_utils import *
 
 # Set gaussian clouds parameters
 overlap = [False, True]

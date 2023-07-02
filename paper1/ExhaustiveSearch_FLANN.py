@@ -1,5 +1,5 @@
 from other_algorithms.FLANN.main_test_FLANN_config import *
-from other_algorithms.neighbors_utils import *
+from experiments.neighbors_utils import *
 
 # Set gaussian clouds parameters
 overlap = [False, True]

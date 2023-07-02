@@ -6,7 +6,7 @@ import numpy as np
 
 
 
-logging.basicConfig(filename='../../../logs/pynndescent_distances/euclidean/result_km_overlap4.log', filemode='w', format='%(asctime)s - %(name)s - %(message)s',
+logging.basicConfig(filename='../../../experiments/logs/pynndescent_distances/euclidean/result_km_overlap4.log', filemode='w', format='%(asctime)s - %(name)s - %(message)s',
                     level=logging.INFO)
 
 # Parámetros de entrada comunes a todas las simulaciones:

@@ -7,7 +7,7 @@ from timeit import default_timer as timer
 
 
 
-logging.basicConfig(filename='../../../logs/knn/clouds/euclidean/result_k5_tg1600_c1200_npc100000.log',
+logging.basicConfig(filename='../../../experiments/logs/knn/clouds/euclidean/result_k5_tg1600_c1200_npc100000.log',
                     filemode='w', format='%(asctime)s - %(name)s - %(message)s', level=logging.INFO)
 
 # Parámetros de entrada comunes a todas las simulaciones:

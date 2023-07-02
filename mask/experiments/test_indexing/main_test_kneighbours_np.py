@@ -7,7 +7,7 @@ from timeit import default_timer as timer
 
 
 
-logging.basicConfig(filename='../../../logs/kneighbours/result_iter3k3_tg16_c8_npc200.log', filemode='w', format='%(asctime)s - %(name)s - %(message)s',
+logging.basicConfig(filename='../../../experiments/logs/kneighbours/result_iter3k3_tg16_c8_npc200.log', filemode='w', format='%(asctime)s - %(name)s - %(message)s',
                     level=logging.INFO)
 
 # Parámetros de entrada comunes a todas las simulaciones:
