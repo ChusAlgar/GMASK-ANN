@@ -1,0 +1,18 @@
+2023-07-02 22:24:41,584 - root - ------------------------------------------------------------------------
+2023-07-02 22:24:41,584 - root -                           KNN Searching
+2023-07-02 22:24:41,585 - root - ------------------------------------------------------------------------
+
+2023-07-02 22:24:41,585 - root - 
+2023-07-02 22:24:41,585 - root - ---- Searching the 15 nearest neighbors within FLANN over municipios dataset using euclidean distance. ----
+2023-07-02 22:24:41,585 - root - Loading train and test set from ./data/municipios_train_test_set.hdf5
+
+2023-07-02 22:24:41,870 - root - Saving FLANN index at 'index_'
+2023-07-02 22:24:41,870 - root - Index time= 0.283772945404 seconds
+2023-07-02 22:24:41,877 - root - Search time = 0.00681185722351 seconds
+
+2023-07-02 22:24:41,877 - root - Average time spent in searching a single point = 6.81185722351e-05
+2023-07-02 22:24:41,877 - root - Speed (points/s) = 14680.2842043
+
+2023-07-02 22:24:41,878 - root - Neighbors stored at ./experiments/NearestNeighbors/municipios/knn_municipios_15_euclidean_FLANN.hdf5
+2023-07-02 22:24:41,878 - root - ------------------------------------------------------------------------
+

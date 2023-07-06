@@ -1,0 +1,17 @@
+2023-07-03 11:54:45,539 - root - ------------------------------------------------------------------------
+2023-07-03 11:54:45,539 - root -                           KNN Searching
+2023-07-03 11:54:45,539 - root - ------------------------------------------------------------------------
+
+2023-07-03 11:54:45,539 - root - 
+2023-07-03 11:54:45,539 - root - ---- Searching the 15 nearest neighbors within PYNN over MNIST dataset using chebyshev distance. ----
+2023-07-03 11:54:45,540 - root - Loading train and test set from ./data/MNIST_train_test_set.hdf5
+
+2023-07-03 11:55:54,182 - root - Index time= 68.33678311854601 seconds
+2023-07-03 11:55:59,787 - root - Search time = 5.604459911584854 seconds
+
+2023-07-03 11:55:59,788 - root - Average time spended in searching a single point = 0.05604459911584854
+2023-07-03 11:55:59,788 - root - Speed (points/s) = 17.84293251759946
+
+2023-07-03 11:55:59,801 - root - Neighbors stored at ./experiments/NearestNeighbors/MNIST/knn_MNIST_15_chebyshev_PYNN.hdf5
+2023-07-03 11:55:59,802 - root - ------------------------------------------------------------------------
+

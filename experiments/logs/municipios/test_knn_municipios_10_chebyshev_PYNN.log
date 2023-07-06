@@ -1,0 +1,17 @@
+2023-07-02 22:01:30,937 - root - ------------------------------------------------------------------------
+2023-07-02 22:01:30,938 - root -                           KNN Searching
+2023-07-02 22:01:30,938 - root - ------------------------------------------------------------------------
+
+2023-07-02 22:01:30,938 - root - 
+2023-07-02 22:01:30,938 - root - ---- Searching the 10 nearest neighbors within PYNN over municipios dataset using chebyshev distance. ----
+2023-07-02 22:01:30,939 - root - Loading train and test set from ./data/municipios_train_test_set.hdf5
+
+2023-07-02 22:01:55,103 - root - Index time= 24.163207361474633 seconds
+2023-07-02 22:01:55,105 - root - Search time = 0.0022320616990327835 seconds
+
+2023-07-02 22:01:55,106 - root - Average time spended in searching a single point = 2.2320616990327837e-05
+2023-07-02 22:01:55,106 - root - Speed (points/s) = 44801.62893495859
+
+2023-07-02 22:01:55,107 - root - Neighbors stored at ./experiments/NearestNeighbors/municipios/knn_municipios_10_chebyshev_PYNN.hdf5
+2023-07-02 22:01:55,107 - root - ------------------------------------------------------------------------
+

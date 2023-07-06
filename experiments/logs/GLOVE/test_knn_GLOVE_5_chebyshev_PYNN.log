@@ -1,0 +1,17 @@
+2023-07-03 12:41:40,550 - root - ------------------------------------------------------------------------
+2023-07-03 12:41:40,550 - root -                           KNN Searching
+2023-07-03 12:41:40,550 - root - ------------------------------------------------------------------------
+
+2023-07-03 12:41:40,551 - root - 
+2023-07-03 12:41:40,551 - root - ---- Searching the 5 nearest neighbors within PYNN over GLOVE dataset using chebyshev distance. ----
+2023-07-03 12:41:40,551 - root - Loading train and test set from ./data/GLOVE_train_test_set.hdf5
+
+2023-07-03 12:49:32,920 - root - Index time= 472.03579979017377 seconds
+2023-07-03 12:49:32,977 - root - Search time = 0.057014050893485546 seconds
+
+2023-07-03 12:49:32,977 - root - Average time spended in searching a single point = 0.0005701405089348554
+2023-07-03 12:49:32,977 - root - Speed (points/s) = 1753.9536032410924
+
+2023-07-03 12:49:32,979 - root - Neighbors stored at ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_5_chebyshev_PYNN.hdf5
+2023-07-03 12:49:32,979 - root - ------------------------------------------------------------------------
+

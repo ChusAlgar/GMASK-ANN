@@ -1,0 +1,19 @@
+2023-07-05 02:01:11,069 - root - ------------------------------------------------------------------------
+2023-07-05 02:01:11,069 - root -                           KNN Searching
+2023-07-05 02:01:11,069 - root - ------------------------------------------------------------------------
+
+2023-07-05 02:01:11,069 - root - 
+2023-07-05 02:01:11,069 - root - ---- Searching the 15 nearest neighbors within MASK over GLOVE dataset using euclidean distance. ----
+2023-07-05 02:01:11,069 - root - 
+2023-07-05 02:01:11,069 - root - ---- MASK Parameters - tam_grupo=1000 - n_centroids=500 - radius=30 ----
+2023-07-05 02:01:11,070 - root - Loading train and test set from ./data/GLOVE_train_test_set.hdf5
+
+2023-07-05 04:18:55,708 - mask.KNN_np - tree time=8264.322296176993 seconds
+2023-07-05 17:13:21,741 - root - Search time = 46466.03148481001 seconds
+
+2023-07-05 17:13:21,741 - root - Average time spent in searching a single point = 464.6603148481001
+2023-07-05 17:13:21,741 - root - Speed (points/s) = 0.002152109762863879
+
+2023-07-05 17:13:21,744 - root - Neighbors stored at ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_15_euclidean_MASK_tg1000_nc500_r30.hdf5
+2023-07-05 17:13:21,744 - root - ------------------------------------------------------------------------
+

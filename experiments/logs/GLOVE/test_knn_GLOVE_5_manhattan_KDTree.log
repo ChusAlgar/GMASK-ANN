@@ -1,0 +1,18 @@
+2023-07-03 11:22:53,596 - root - ------------------------------------------------------------------------
+2023-07-03 11:22:53,596 - root -                           KNN Searching
+2023-07-03 11:22:53,596 - root - ------------------------------------------------------------------------
+
+2023-07-03 11:22:53,597 - root - 
+2023-07-03 11:22:53,597 - root - ---- Searching the 5 nearest neighbors within KDTree over GLOVE dataset using manhattan distance. ----
+2023-07-03 11:22:53,597 - root - Loading train and test set from ./data/GLOVE_train_test_set.hdf5
+
+2023-07-03 11:23:17,456 - root - Building index
+2023-07-03 11:23:17,456 - root - Index time= 23.550785966217518 seconds
+2023-07-03 11:23:46,891 - root - Search time = 29.43462573364377 seconds
+
+2023-07-03 11:23:46,891 - root - Average time spended in searching a single point = 0.2943462573364377
+2023-07-03 11:23:46,891 - root - Speed (points/s) = 3.397359317726946
+
+2023-07-03 11:23:46,893 - root - Neighbors stored at ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_5_manhattan_KDTree.hdf5
+2023-07-03 11:23:46,893 - root - ------------------------------------------------------------------------
+

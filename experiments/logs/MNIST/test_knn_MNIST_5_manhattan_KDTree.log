@@ -1,0 +1,18 @@
+2023-07-03 11:17:52,111 - root - ------------------------------------------------------------------------
+2023-07-03 11:17:52,111 - root -                           KNN Searching
+2023-07-03 11:17:52,111 - root - ------------------------------------------------------------------------
+
+2023-07-03 11:17:52,111 - root - 
+2023-07-03 11:17:52,111 - root - ---- Searching the 5 nearest neighbors within KDTree over MNIST dataset using manhattan distance. ----
+2023-07-03 11:17:52,112 - root - Loading train and test set from ./data/MNIST_train_test_set.hdf5
+
+2023-07-03 11:17:56,231 - root - Building index
+2023-07-03 11:17:56,231 - root - Index time= 3.884396543726325 seconds
+2023-07-03 11:18:02,359 - root - Search time = 6.127457974478602 seconds
+
+2023-07-03 11:18:02,359 - root - Average time spended in searching a single point = 0.06127457974478603
+2023-07-03 11:18:02,359 - root - Speed (points/s) = 16.319981371803564
+
+2023-07-03 11:18:02,362 - root - Neighbors stored at ./experiments/NearestNeighbors/MNIST/knn_MNIST_5_manhattan_KDTree.hdf5
+2023-07-03 11:18:02,362 - root - ------------------------------------------------------------------------
+

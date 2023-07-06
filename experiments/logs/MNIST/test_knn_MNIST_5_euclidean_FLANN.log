@@ -1,0 +1,18 @@
+2023-07-03 01:13:46,115 - root - ------------------------------------------------------------------------
+2023-07-03 01:13:46,115 - root -                           KNN Searching
+2023-07-03 01:13:46,115 - root - ------------------------------------------------------------------------
+
+2023-07-03 01:13:46,115 - root - 
+2023-07-03 01:13:46,115 - root - ---- Searching the 5 nearest neighbors within FLANN over MNIST dataset using euclidean distance. ----
+2023-07-03 01:13:46,116 - root - Loading train and test set from ./data/MNIST_train_test_set.hdf5
+
+2023-07-03 01:18:51,443 - root - Saving FLANN index at 'index_'
+2023-07-03 01:18:51,446 - root - Index time= 305.098466158 seconds
+2023-07-03 01:18:51,538 - root - Search time = 0.0910069942474 seconds
+
+2023-07-03 01:18:51,538 - root - Average time spent in searching a single point = 0.000910069942474
+2023-07-03 01:18:51,538 - root - Speed (points/s) = 1098.81664401
+
+2023-07-03 01:18:51,542 - root - Neighbors stored at ./experiments/NearestNeighbors/MNIST/knn_MNIST_5_euclidean_FLANN.hdf5
+2023-07-03 01:18:51,543 - root - ------------------------------------------------------------------------
+
