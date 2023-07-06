@@ -18,7 +18,7 @@ def BruteForce(config):
 
 
     # Set log configuration
-    logging.basicConfig(filename="./experiments/logs/" + dataset + "/test_knn" + dataset + "_" + str(k) + "_" + distance + "_" + method + ".log", filemode='w', format='%(asctime)s - %(name)s - %(message)s', level=logging.INFO)
+    logging.basicConfig(filename="./experiments/logs/" + dataset + "/test_knn_" + dataset + "_" + str(k) + "_" + distance + "_" + method + ".log", filemode='w', format='%(asctime)s - %(name)s - %(message)s', level=logging.INFO)
     logging.info('------------------------------------------------------------------------')
     logging.info('                          KNN Searching')
     logging.info('------------------------------------------------------------------------\n')

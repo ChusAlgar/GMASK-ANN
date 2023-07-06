@@ -60,6 +60,7 @@ def FLANN_nn_search(dataset, seq_buscada, k, distance_type, algorithm):
     for f in range(seq_buscada.shape[0]):
         # print("Point number " + str(f))
         indices, dists = flann.nn_index(seq_buscada[f], num_neighbors=k, algorithm=algorithm)
+        indices = indices.reshape(indices.size,)
         coords = np.array(dataset[indices])
 
         lista_indices.append(indices)

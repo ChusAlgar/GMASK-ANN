@@ -15,7 +15,14 @@ then
 	for archivo in $archivos_config
 	do
 		echo $archivo
-		$(python3 -m experiments.test_launcher_py3 $archivo)
-		$(python2 -m experiments.test_launcher_py2 $archivo)
+
+		metodo=$(echo "$archivo" | sed 's/.*_\(.*\)\.ini/\1/')
+		
+		if [ "$metodo" = "FLANN" ]
+		then
+			$(python2 -m experiments.test_launcher_py2 $archivo)
+		else
+			$(python3 -m experiments.test_launcher_py3 $archivo)
+		fi
 	done
 fi
