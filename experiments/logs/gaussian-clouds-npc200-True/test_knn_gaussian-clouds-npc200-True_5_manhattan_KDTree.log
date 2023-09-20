@@ -1,0 +1,18 @@
+2023-09-14 20:02:32,987 - root - ------------------------------------------------------------------------
+2023-09-14 20:02:32,987 - root -                           KNN Searching
+2023-09-14 20:02:32,987 - root - ------------------------------------------------------------------------
+
+2023-09-14 20:02:32,987 - root - 
+2023-09-14 20:02:32,987 - root - ---- Searching the 5 nearest neighbors within KDTree over gaussian-clouds-npc200-True dataset using manhattan distance. ----
+2023-09-14 20:02:32,988 - root - Loading train and test set from ./data/gaussian-clouds-npc200-True_train_test_set.hdf5
+
+2023-09-14 20:02:32,992 - root - Building index
+2023-09-14 20:02:32,992 - root - Index time= 0.000728105000000312 seconds
+2023-09-14 20:02:32,995 - root - Search time = 0.002560000000000784 seconds
+
+2023-09-14 20:02:32,995 - root - Average time spended in searching a single point = 1.60000000000049e-06
+2023-09-14 20:02:32,995 - root - Speed (points/s) = 624999.9999998086
+
+2023-09-14 20:02:32,997 - root - Neighbors stored at ./experiments/NearestNeighbors/gaussian-clouds-npc200-True/knn_gaussian-clouds-npc200-True_5_manhattan_KDTree.hdf5
+2023-09-14 20:02:32,997 - root - ------------------------------------------------------------------------
+

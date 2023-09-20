@@ -1,0 +1,31 @@
+2023-09-20 18:08:33,910 - root - ------------------------------------------------------------------------
+2023-09-20 18:08:33,910 - root -                        KNN over gaussian-clouds-npc200-True Dataset RECALL
+2023-09-20 18:08:33,910 - root - ------------------------------------------------------------------------
+2023-09-20 18:08:33,910 - root - Search of k neighbors over a choosen dataset, using different methods, benchmark.py
+2023-09-20 18:08:33,910 - root - ------------------------------------------------------------------------
+
+2023-09-20 18:08:33,910 - root - Distances: ['manhattan', 'euclidean'] 
+2023-09-20 18:08:33,910 - root - Methods: ['MASK']
+2023-09-20 18:08:33,910 - root - KNN: [5]
+2023-09-20 18:08:33,910 - root - MASK params: tg=16, nc=8, r=35, kmeans_implementation=kclust
+
+2023-09-20 18:08:33,911 - root - ------------  manhattan distance  --------------------
+
+2023-09-20 18:08:33,911 - root - -- MASK method --
+
+2023-09-20 18:08:33,912 - root - Loading neighbors from ./experiments/NearestNeighbors/gaussian-clouds-npc200-True/knn_gaussian-clouds-npc200-True_5_manhattan_KDTree.hdf5
+2023-09-20 18:08:33,916 - root - Loading neighbors from ./experiments/NearestNeighbors/gaussian-clouds-npc200-True/knn_gaussian-clouds-npc200-True_5_manhattan_MASK_tg16_nc8_r35_kclust.hdf5
+2023-09-20 18:08:33,948 - root - Correct neighbors rate: 7265/8000.0
+2023-09-20 18:08:33,948 - root - Hit percentage: 90.8125%
+
+
+2023-09-20 18:08:33,948 - root - ------------  euclidean distance  --------------------
+
+2023-09-20 18:08:33,948 - root - -- MASK method --
+
+2023-09-20 18:08:33,949 - root - Loading neighbors from ./experiments/NearestNeighbors/gaussian-clouds-npc200-True/knn_gaussian-clouds-npc200-True_5_euclidean_KDTree.hdf5
+2023-09-20 18:08:33,953 - root - Loading neighbors from ./experiments/NearestNeighbors/gaussian-clouds-npc200-True/knn_gaussian-clouds-npc200-True_5_euclidean_MASK_tg16_nc8_r35_kclust.hdf5
+2023-09-20 18:08:33,984 - root - Correct neighbors rate: 8000/8000.0
+2023-09-20 18:08:33,984 - root - Hit percentage: 100.0%
+
+

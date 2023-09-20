@@ -1,0 +1,19 @@
+2023-09-20 17:51:46,245 - root - ------------------------------------------------------------------------
+2023-09-20 17:51:46,245 - root -                           KNN Searching
+2023-09-20 17:51:46,245 - root - ------------------------------------------------------------------------
+
+2023-09-20 17:51:46,245 - root - 
+2023-09-20 17:51:46,245 - root - ---- Searching the 5 nearest neighbors within MASK over gaussian-clouds-npc200-True dataset using euclidean distance. ----
+2023-09-20 17:51:46,245 - root - 
+2023-09-20 17:51:46,245 - root - ---- MASK Parameters - tam_grupo=16 - n_centroids=8 - radius=35 - kmeans_implementation=kclust ----
+2023-09-20 17:51:46,247 - root - Loading train and test set from ./data/gaussian-clouds-npc200-True_train_test_set.hdf5
+
+2023-09-20 17:51:54,735 - mask.KNN_np - tree time=8.484635787000002 seconds
+2023-09-20 17:52:09,510 - root - Search time = 14.774423428999999 seconds
+
+2023-09-20 17:52:09,510 - root - Average time spent in searching a single point = 0.009234014643125
+2023-09-20 17:52:09,510 - root - Speed (points/s) = 108.29525820002138
+
+2023-09-20 17:52:09,523 - root - Neighbors stored at ./experiments/NearestNeighbors/gaussian-clouds-npc200-True/knn_gaussian-clouds-npc200-True_5_euclidean_MASK_tg16_nc8_r35_kclust.hdf5
+2023-09-20 17:52:09,525 - root - ------------------------------------------------------------------------
+

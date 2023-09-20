@@ -18,10 +18,11 @@ def MASK(config):
     tam_grupo = config.getint('method', 'tg')
     n_centroides = config.getint('method', 'nc')
     radio = config.get('method', 'r')
+    kmeans_implementation = config.get('kmeans', 'implementation')  # Possible values: pyclustering (elkan), sklearn (elkan), hammerly, kclust (?)
 
 
     # Set log configuration
-    logging.basicConfig(filename="./experiments/logs/" + dataset + "/test_knn_" + dataset + "_" + str(k_vecinos) + "_" + metrica + "_" + method + "_tg" + str(tam_grupo) + "_nc" + str(n_centroides) + "_r" + str(radio) + ".log", filemode='w', format='%(asctime)s - %(name)s - %(message)s', level=logging.INFO)
+    logging.basicConfig(filename="./experiments/logs/" + dataset + "/test_knn_" + dataset + "_" + str(k_vecinos) + "_" + metrica + "_" + method + "_tg" + str(tam_grupo) + "_nc" + str(n_centroides) + "_r" + str(radio) + "_" + str(kmeans_implementation) + ".log", filemode='w', format='%(asctime)s - %(name)s - %(message)s', level=logging.INFO)
     logging.info('------------------------------------------------------------------------')
     logging.info('                          KNN Searching')
     logging.info('------------------------------------------------------------------------\n')
@@ -29,7 +30,7 @@ def MASK(config):
     logging.info("---- Searching the " + str(k_vecinos) + " nearest neighbors within " + method + " over " + str(
         dataset) + " dataset using " + str(metrica) + " distance. ----")
     logging.info("")
-    logging.info('---- MASK Parameters - tam_grupo=%s - n_centroids=%s - radius=%s ----', tam_grupo, n_centroides, radio)
+    logging.info('---- MASK Parameters - tam_grupo=%s - n_centroids=%s - radius=%s - kmeans_implementation=%s ----', tam_grupo, n_centroides, radio, kmeans_implementation)
 
     # Regarding the dataset name, set the file name to load the train and test set
     file_name = "./data/" + str(dataset) + "_train_test_set.hdf5"
@@ -49,7 +50,7 @@ def MASK(config):
 
     # 2º Generamos el árbol
     n_capas, grupos_capa, puntos_capa, labels_capa = knn.kmeans_tree(cant_ptos, tam_grupo, n_centroides,
-                                                                     metrica, vector_training, dimensiones)
+                                                                     metrica, vector_training, dimensiones, kmeans_implementation)
 
     # Store index in a file
     # with open("./other_algorithms/MASK_MNIST" + str(k_vecinos) +".pickle", 'wb') as handle:
@@ -99,7 +100,7 @@ def MASK(config):
     logging.info('Speed (points/s) = %s\n', vector_testing.shape[0]/(end_time_s - start_time_s))
 
     # Regarding the knn, method, dataset_name and distance choosen, set the file name to store the neighbors
-    file_name = "./experiments/NearestNeighbors/" + dataset + "/knn_" + dataset + "_" + str(k_vecinos) + "_" + metrica + "_" + method + "_tg" + str(tam_grupo) + "_nc" + str(n_centroides) + "_r" + str(radio) + ".hdf5"
+    file_name = "./experiments/NearestNeighbors/" + dataset + "/knn_" + dataset + "_" + str(k_vecinos) + "_" + metrica + "_" + method + "_tg" + str(tam_grupo) + "_nc" + str(n_centroides) + "_r" + str(radio) + "_" + str(kmeans_implementation) + ".hdf5"
 
     # Store indices, coords and dist into a hdf5 file
     sgn.save_neighbors(indices, coords, dists, file_name)

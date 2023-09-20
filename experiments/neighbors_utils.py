@@ -6,6 +6,9 @@ import csv
 import logging
 import experiments.load_train_test_set as load_train_test_set
 import re
+import altair as alt
+import seaborn as sns
+import itertools
 
 
 # Store query points and its neighbors on a csv file
@@ -146,7 +149,7 @@ def recall(dataset_name, d, method, k, same_train_test=False, file_name_le=None,
 
 
 # Build a graph to show recall results
-def print_recall(dataset, distances, methods, k, recalls):
+def print_recall_graph(dataset, distances, methods, k, recalls):
 
     fig, axs = plt.subplots(1, 3, figsize=(9, 4), sharey=True)
     fig.subplots_adjust(top=0.75)
@@ -161,6 +164,74 @@ def print_recall(dataset, distances, methods, k, recalls):
     plt.ylim([0, 105])
     plt.show()
 
+# Build a heatmap to show recall results
+def print_recall_heatmap(dataset, distances, methods, k, recalls):
+
+
+    re_ma = np.asarray(list(itertools.chain(*recalls[0])))
+    re_eu = np.asarray(list(itertools.chain(*recalls[1])))
+    re_ch = np.asarray(list(itertools.chain(*recalls[2])))
+
+    # setting the dimensions of the plot
+    fig, ax = plt.subplots(figsize=(16, 16))
+
+    # Create a mask to hide null (np.nan) values from heatmap
+    mask = [re_ma, re_eu, re_ch]==np.nan
+
+    # Heatmap
+    h = sns.heatmap([re_ma, re_eu, re_ch], annot=True, annot_kws={"size": 20}, fmt='.3g', yticklabels=distances, xticklabels=k+k+k, cmap="crest", mask=mask)
+
+    #Colorbar
+    h.collections[0].colorbar.set_label('Recall (%)', labelpad=30, fontsize=25)
+    h.collections[0].colorbar.ax.tick_params(labelsize=20)
+
+    #Title
+    h.axes.set_title(str("Dataset " + dataset), fontsize=30, pad=35)
+
+    # Axis x and y (knn and distance)
+    h.set_xlabel("K-Neighbors", fontsize=25, labelpad=30)
+    h.set_ylabel("Distance", fontsize=25, labelpad=40)
+    h.tick_params(axis='both', which='major', labelsize=20)
+
+    # Axis twin (method)
+    hb = h.twiny()
+    hb.set_xticks(range(len(methods)))
+    #hb.set(xticklabels=methods)
+    hb.set_xticklabels(methods, ha='center')
+    hb.set_aspect(aspect=1.3)
+    hb.set_xlabel("Method", fontsize=25, labelpad=30)
+    hb.tick_params(axis='both', which='major', labelsize=20)
+    
+    
+
+
+    # Show heatmap
+    plt.show()
+
+    '''
+    fig, ax = plt.subplots()
+    im = ax.imshow([re_ma, re_eu, re_ch])
+
+    # Show all ticks and label them with the respective list entries
+    #ax.set_xticks(np.arange(len(farmers)), labels=farmers)
+    ax.set_yticks(np.arange(len(distances)), labels=distances)
+
+    # Rotate the tick labels and set their alignment.
+    plt.setp(ax.get_xticklabels(), rotation=45, ha="right",
+             rotation_mode="anchor")
+
+
+    # Loop over data dimensions and create text annotations.
+    for i in range(len(vegetables)):
+        for j in range(len(farmers)):
+            text = ax.text(j, i, harvest[i, j],
+                           ha="center", va="center", color="w")
+    
+    ax.set_title("Harvest of local farmers (in tons/year)")
+    fig.tight_layout()
+    plt.show()
+    
+    '''
 
 # Error rate
 def error_rate(dataset_name, d, method, knn, same_train_test=False, file_name_le=None, file_name=None):
