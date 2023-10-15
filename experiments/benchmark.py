@@ -4,14 +4,14 @@ from experiments.neighbors_utils import *
 import logging
 
 # Set var for experiments:
-datasets = ['municipios']
+datasets = ['GLOVE']
 distances = ['manhattan', 'euclidean', 'chebyshev']
 methods = ['FLANN', 'PYNN', 'MASK']
 baseline = 'KDTree'
 knn = [5, 10, 15]
-tg = 60
-nc = 30
-r = 25
+tg = 1000
+nc = 500
+r = 250
 kmeans_implementation = 'kclust'
 
 

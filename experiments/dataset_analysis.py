@@ -6,7 +6,7 @@ import experiments.load_train_test_set as lts
 
 
 # Set constants for experiments
-dataset = 'gaussian_clouds_npc200_True'
+dataset = 'municipios'
 
 
 # Set log configuration
@@ -43,6 +43,7 @@ da_cv = []
 da_kur = []
 da_asimetrias = []
 da_dist = []
+
 
 # Explore every dimension of the dataset to get relevant statistics
 for i in range(0, vector_training.shape[1]):
@@ -99,11 +100,14 @@ for i in range(0, vector_training.shape[1]):
     '''
 
     # Get distance between the point values in an specific dimension
+    # As it's a 1-d analysis, distance choosen has no impact. We use euclidean for simplicity
     # Calculation using scipy
     # dist = distance_matrix(dimension, np.transpose(dimension), p=2)
     dist = distance.pdist(dimension.reshape(-1, 1), metric='euclidean')
     mean_dist = np.sum(dist)/dist.size
     da_dist.append(mean_dist)
+
+
 
 logging.info("------- Descriptive analysis for each dimension of the dataset-------")
 logging.info("")
@@ -128,25 +132,59 @@ logging.info("")
 # Distance matrix
 
 # Distance Matrix - distance between every point in the dataset. Calculation using scipy
-distances = distance.cdist(vector_training, vector_training, metric='euclidean')
+distances_manhattan = np.array(distance.pdist(vector_training, metric='cityblock'))
+distances_euclidean = np.array(distance.pdist(vector_training, metric='euclidean'))
+distances_chebyshev = np.array(distance.pdist(vector_training, metric='chebyshev'))
 
 # Min and max distance between points (calculated over a flattened version of the distances matrix)
-minmax = (np.min(distances), np.max(distances))
+minmax_manhattan = (np.min(distances_manhattan), np.max(distances_manhattan))
+minmax_euclidean = (np.min(distances_euclidean), np.max(distances_euclidean))
+minmax_chebyshev = (np.min(distances_chebyshev), np.max(distances_chebyshev))
 
 # Mean distance between points
-mean_dist = np.sum(distances)/distances.size
+mean_dist_manhattan = np.sum(distances_manhattan)/distances_manhattan.size
+mean_dist_euclidean = np.sum(distances_euclidean)/distances_euclidean.size
+mean_dist_chebyshev = np.sum(distances_chebyshev)/distances_chebyshev.size
 
 # Quantiles of distances between points
-q1 = np.quantile(distances, 0.25)
-q2 = np.quantile(distances, 0.5)
-q3 = np.quantile(distances, 0.75)
+q1_manhattan = np.quantile(distances_manhattan, 0.25)
+q2_manhattan = np.quantile(distances_manhattan, 0.5)
+q3_manhattan = np.quantile(distances_manhattan, 0.75)
+
+q1_euclidean = np.quantile(distances_euclidean, 0.25)
+q2_euclidean = np.quantile(distances_euclidean, 0.5)
+q3_euclidean = np.quantile(distances_euclidean, 0.75)
+
+q1_chebyshev= np.quantile(distances_chebyshev, 0.25)
+q2_chebyshev = np.quantile(distances_chebyshev, 0.5)
+q3_chebyshev = np.quantile(distances_chebyshev, 0.75)
 
 logging.info("")
-logging.info("------------ Distance Matrix-----------")
+logging.info("------------ Distance Matrixes (built using several distance metrics)-----------")
 logging.info("")
-logging.info("MinMax distance: " + str(minmax))
+logging.info("-------- Manhattan distance --------")
 logging.info("")
-logging.info("Mean distance between points (all-d): " + str(mean_dist))
+logging.info("MinMax distance: " + str(minmax_manhattan))
 logging.info("")
-logging.info("Quantiles:  q1=" + str(q1) + "  -  q2=" + str(q2) + "  -  q3=" + str(q3))
+logging.info("Mean distance between points (all-d): " + str(mean_dist_manhattan))
+logging.info("")
+logging.info("Quantiles:  q1=" + str(q1_manhattan) + "  -  q2=" + str(q2_manhattan) + "  -  q3=" + str(q3_manhattan))
+
+logging.info("")
+logging.info("-------- Euclidean distance --------")
+logging.info("")
+logging.info("MinMax distance: " + str(minmax_euclidean))
+logging.info("")
+logging.info("Mean distance between points (all-d): " + str(mean_dist_euclidean))
+logging.info("")
+logging.info("Quantiles:  q1=" + str(q1_euclidean) + "  -  q2=" + str(q2_euclidean) + "  -  q3=" + str(q3_euclidean))
+
+logging.info("")
+logging.info("-------- Chebyshev distance --------")
+logging.info("")
+logging.info("MinMax distance: " + str(minmax_chebyshev))
+logging.info("")
+logging.info("Mean distance between points (all-d): " + str(mean_dist_chebyshev))
+logging.info("")
+logging.info("Quantiles:  q1=" + str(q1_chebyshev) + "  -  q2=" + str(q2_chebyshev) + "  -  q3=" + str(q3_chebyshev))
 logging.info("")

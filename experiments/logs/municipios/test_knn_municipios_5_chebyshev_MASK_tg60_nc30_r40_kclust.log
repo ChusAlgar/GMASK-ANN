@@ -1,0 +1,19 @@
+2023-10-11 18:59:25,301 - root - ------------------------------------------------------------------------
+2023-10-11 18:59:25,301 - root -                           KNN Searching
+2023-10-11 18:59:25,301 - root - ------------------------------------------------------------------------
+
+2023-10-11 18:59:25,301 - root - 
+2023-10-11 18:59:25,301 - root - ---- Searching the 5 nearest neighbors within MASK over municipios dataset using chebyshev distance. ----
+2023-10-11 18:59:25,301 - root - 
+2023-10-11 18:59:25,301 - root - ---- MASK Parameters - tam_grupo=60 - n_centroids=30 - radius=40 - kmeans_implementation=kclust ----
+2023-10-11 18:59:25,302 - root - Loading train and test set from ./data/municipios_train_test_set.hdf5
+
+2023-10-11 19:00:08,957 - mask.KNN_np - tree time=43.65416404698044 seconds
+2023-10-11 19:00:23,058 - root - Search time = 14.101242415141314 seconds
+
+2023-10-11 19:00:23,059 - root - Average time spent in searching a single point = 0.14101242415141313
+2023-10-11 19:00:23,059 - root - Speed (points/s) = 7.091573710740853
+
+2023-10-11 19:00:23,060 - root - Neighbors stored at ./experiments/NearestNeighbors/municipios/knn_municipios_5_chebyshev_MASK_tg60_nc30_r40_kclust.hdf5
+2023-10-11 19:00:23,060 - root - ------------------------------------------------------------------------
+

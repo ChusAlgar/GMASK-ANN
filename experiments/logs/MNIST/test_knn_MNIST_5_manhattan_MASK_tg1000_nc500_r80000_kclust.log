@@ -1,0 +1,19 @@
+2023-10-12 06:31:24,861 - root - ------------------------------------------------------------------------
+2023-10-12 06:31:24,861 - root -                           KNN Searching
+2023-10-12 06:31:24,861 - root - ------------------------------------------------------------------------
+
+2023-10-12 06:31:24,861 - root - 
+2023-10-12 06:31:24,861 - root - ---- Searching the 5 nearest neighbors within MASK over MNIST dataset using manhattan distance. ----
+2023-10-12 06:31:24,861 - root - 
+2023-10-12 06:31:24,861 - root - ---- MASK Parameters - tam_grupo=1000 - n_centroids=500 - radius=80000 - kmeans_implementation=kclust ----
+2023-10-12 06:31:24,862 - root - Loading train and test set from ./data/MNIST_train_test_set.hdf5
+
+2023-10-12 08:12:36,146 - mask.KNN_np - tree time=6071.046801337041 seconds
+2023-10-12 08:13:28,735 - root - Search time = 52.58406877378002 seconds
+
+2023-10-12 08:13:28,735 - root - Average time spent in searching a single point = 0.5258406877378001
+2023-10-12 08:13:28,735 - root - Speed (points/s) = 1.9017166668902383
+
+2023-10-12 08:13:28,738 - root - Neighbors stored at ./experiments/NearestNeighbors/MNIST/knn_MNIST_5_manhattan_MASK_tg1000_nc500_r80000_kclust.hdf5
+2023-10-12 08:13:28,738 - root - ------------------------------------------------------------------------
+

@@ -99,15 +99,6 @@ def kmeans_tree(cant_ptos, tam_grupo, n_centroides, metrica, vector_original, di
     opcion = 'kmeans'
     normaliza = False
 
-    if metrica == 'euclidean':
-        metric = distance_metric(type_metric.EUCLIDEAN)  # EUCLIDEAN, CHEBYSHEV, MANHATTAN)
-    elif metrica == 'chebyshev':
-        metric = distance_metric(type_metric.CHEBYSHEV)
-    elif metrica == 'manhattan':
-        metric = distance_metric(type_metric.MANHATTAN)
-    elif metrica == 'user':
-        metric = distance_metric(type_metric.USER_DEFINED, func=dist.euclidean)
-
     #    cant_ptos = nclouds * npc
 
         # Inicio del proceso iterativo de construcción-deconstrucción.
@@ -119,17 +110,17 @@ def kmeans_tree(cant_ptos, tam_grupo, n_centroides, metrica, vector_original, di
         vector = preprocessing.normalize(vector, axis=0, norm='l2')
 
     # 23-03-2022
-    print("calculo del número de capas")
+    #print("calculo del número de capas")
     n_capas = calculate_numcapas(cant_ptos, tam_grupo, n_centroides)
 
-    print("calculo de las estructuras de almacenamiento")
+    #print("calculo de las estructuras de almacenamiento")
     puntos_capa, labels_capa, grupos_capa = built_estructuras_capa(cant_ptos, tam_grupo, n_centroides, n_capas, dimensiones)
 
 
     # Proceso iterativo para aplicar el kmeans o el kmedoids:
-    print("INICIO PROCESO CONSTRUCCIÓN")
+    #print("INICIO PROCESO CONSTRUCCIÓN")
     for id_capa in range(n_capas):
-        print("id_capa", id_capa)
+        #print("id_capa", id_capa)
         # Capa n:
         ngrupos = len(grupos_capa[id_capa])
         inicio = 0
@@ -211,7 +202,7 @@ def kmeans_tree(cant_ptos, tam_grupo, n_centroides, metrica, vector_original, di
                 else:
                     # if opcion not 'kmeans'
                     data = vector[inicio:fin]
-                    D = pairwise_distances(data, metric=metrica)
+                    D = pairwise_distances(data, metric=metrica) # Considerar cambio por cdist, aunque nunca se accede
                     M, C = util.kMedoids(D, n_centroides)
                     list_centroides = []
                     for point_idx in M:
@@ -290,7 +281,7 @@ def kmeans_tree(cant_ptos, tam_grupo, n_centroides, metrica, vector_original, di
         cant_ptos = cont_ptos  # 03-03-2021 Actualizamos cant_ptos con el número de puntos del siguiente nivel
         # id_capa += 1
 
-    print("FIN PROCESO CONSTRUCCIÓN")
+    #print("FIN PROCESO CONSTRUCCIÓN")
 
     # 23-03-2022    n_capas = id_capa - 1
     end_time_constr = timer()
@@ -714,7 +705,9 @@ def kmeans_radius_search(n_centroides, punto_buscado, vector_original, k_vecinos
     ## la distancias entre puntos a la hora de buscar los mas cercanos ya si se calcula en base a la misma
     ## empleandola funcion de scipy cdist(punto, puntos, metrica)
 
-    print("********************PROCESO DECONSTRUCCIÓN*********************")
+    if metrica == 'manhattan':  metrica = 'cityblock'  # SCIPY - cdist (necesario traducir manhattan como cityblock)
+
+    #print("********************PROCESO DECONSTRUCCIÓN*********************")
     # logger.info('tree-depth=%s', n_capas)
 
     # lista_pos = np.empty(100, int)
@@ -733,13 +726,13 @@ def kmeans_radius_search(n_centroides, punto_buscado, vector_original, k_vecinos
     # D = pairwise_distances(puntos_dist, metric=metrica) # euclidean, chebyshev, manhattan
     # columna = util.busca_dist_menor(D)
     # dist_nearest_centroid = D[0, columna]
-    D = util.funcdist(punto_buscado, centroides, dimensiones)  # Distancia entre el punto buscado y cada uno de los centroides
+    # D = util.funcdist(punto_buscado, centroides, dimensiones)  # Distancia entre el punto buscado y cada uno de los centroides
+    D = distance.cdist(punto_buscado, centroides, metric=metrica)[0]
     # print(punto_buscado)
     # print (centroides.shape)
     # print(centroides[0])
     # print(D)
-    dist_nearest_centroid = np.partition(D, 1)[1]
-    # print(dist_nearest_centroid)
+    # dist_nearest_centroid = np.partition(D, 1)[1]
     radius = radio  # 3 * dist_nearest_centroid (1.15 glove completo, 3 glove100000, 5 MNIST)
 
     # Para cada uno de los centroides con distancia menor a radius nos quedamos con k vecinos más cercanos
@@ -747,7 +740,6 @@ def kmeans_radius_search(n_centroides, punto_buscado, vector_original, k_vecinos
     # filad = D[0, 1:]
     filad = D
     selec_centroides = np.array(np.flatnonzero(filad<=radius)) #+ 1
-    #selec_centroides = np.reshape(selec_centroides, (selec_centroides.size))
     # print("Centroides seleccionados: " + str(selec_centroides.shape))
     # coords_centroides = centroides[selec_centroides]
     ids_selec_centroides = np.empty(len(selec_centroides), tuple)
@@ -779,7 +771,6 @@ def kmeans_radius_search(n_centroides, punto_buscado, vector_original, k_vecinos
     #print("Puntos seleccionados: " + str(puntos_seleccionados.shape))
     #print("Punto buscado: " + str(punto_buscado.shape))
     #print("Distancia entre el punto buscado y los puntos seleccionados:")
-    if metrica == 'manhattan':  metrica = 'cityblock'  # SCIPY - cdist (necesario traducir manhattan como cityblock)
     dist = distance.cdist(np.array(punto_buscado), np.array(puntos_seleccionados), metric=metrica)
 
     aux_ids_points = np.array(np.nonzero(dist<=radius))    # +1
@@ -941,7 +932,7 @@ def kmeans_radius_search(n_centroides, punto_buscado, vector_original, k_vecinos
     #print("Numero de vecinos encontrados: " + str(len(vecinos)))
 
 
-    print("FIN PROCESO DECONSTRUCCIÓN\n")
+    #print("FIN PROCESO DECONSTRUCCIÓN\n")
     # end_time_deconstr = timer()
     # print("--- %s seconds ---", end_time_deconstr-start_time_deconstr)
     # logger.info('search time= %s seconds', end_time_deconstr - start_time_deconstr)
