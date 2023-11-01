@@ -1,15 +1,16 @@
 from pyclustering.utils.metric import distance_metric, type_metric
 from pyclustering.cluster.kmeans import kmeans
 from pyclustering.cluster.center_initializer import kmeans_plusplus_initializer
-from mask.kmeans_implementations import k_means_clust
+from mask.clustering_algorithms import k_means_clust
 import numpy as np
 from sklearn.metrics.pairwise import pairwise_distances
 from sklearn import preprocessing
 import mask.utilities as util
 from timeit import default_timer as timer
 import logging
-import mask.distances as dist
 from scipy.spatial import distance
+
+from sklearn_extra.cluster import KMedoids
 
 
 logger = logging.getLogger(__name__)
@@ -89,14 +90,13 @@ def built_estructuras_capa(cant_ptos, tam_grupo, n_centroides, n_capas, dimensio
 
 
 # (nclouds, npc, tam_grupo, n_centroides, overlap):
-def kmeans_tree(cant_ptos, tam_grupo, n_centroides, metrica, vector_original, dimensiones, kmeans_algorithm):
+def mask_tree(cant_ptos, tam_grupo, n_centroides, metrica, vector_original, dimensiones, algorithm, implementation):
 
     # Parámetros de entrada:
     # tam_grupo = tamaño del grupo para bombardear con los centroides (depende de la capacidad computacional).
     # n_centroides = número de centroides con los que se bombardea cada grupo
     # metric = métrica a utilizar a la hora de construir el arbol
 
-    opcion = 'kmeans'
     normaliza = False
 
     #    cant_ptos = nclouds * npc
@@ -141,9 +141,9 @@ def kmeans_tree(cant_ptos, tam_grupo, n_centroides, metrica, vector_original, di
 
             npuntos[id_grupo] = fin - inicio
             if ((fin - inicio) >= n_centroides):
-                if opcion == 'kmeans':
+                if algorithm == 'kmeans':
 
-                    if kmeans_algorithm == 'pyclustering':
+                    if implementation == 'pyclustering':
 
                         # PYCLUSTERING
                         print("En desuso")
@@ -163,7 +163,7 @@ def kmeans_tree(cant_ptos, tam_grupo, n_centroides, metrica, vector_original, di
                         #             not_find = False
                         #         sublist += 1
 
-                    elif kmeans_algorithm == 'sklearn':
+                    elif implementation == 'sklearn':
 
                         # SKLEARN
                         print("En desuso")
@@ -173,7 +173,7 @@ def kmeans_tree(cant_ptos, tam_grupo, n_centroides, metrica, vector_original, di
                         #puntos_capa[id_capa][id_grupo] = kmeans.cluster_centers_
                         #labels_capa[id_capa][id_grupo] = kmeans.labels_
 
-                    elif kmeans_algorithm == 'kclust':
+                    elif implementation == 'kclust':
 
                         # THEALGORITHMS    # 10-09-2023
                         # This alternative Kmeans implementation uses sklearn.metrics.pairwise_distances(x,centroids,metric'euclidean')
@@ -190,8 +190,13 @@ def kmeans_tree(cant_ptos, tam_grupo, n_centroides, metrica, vector_original, di
                         initial_centers_kclust = k_means_clust.get_initial_centroids(data=vector[inicio:fin], k=n_centroides).tolist()
                         initial_centers = list([np.array(x) for x in initial_centers_kclust])
 
-                        # Generate centrids and clusters using kmeans implementation provided by k_means_clust
+                        # Generate centroids and clusters using kmeans implementation provided by k_means_clust
                         kmeans = k_means_clust.kmeans(data=vector[inicio:fin], k=n_centroides, initial_centroids=initial_centers, metric=metrica)
+
+                        #if id_grupo==1:
+
+                            #print(kmeans[0])
+                            #print(kmeans[1])
 
                         puntos_capa[id_capa][id_grupo] = kmeans[0]
                         labels_capa[id_capa][id_grupo] = kmeans[1]
@@ -199,10 +204,26 @@ def kmeans_tree(cant_ptos, tam_grupo, n_centroides, metrica, vector_original, di
 
                     cont_ptos += n_centroides  # 03-03-2021
 
-                else:
-                    # if opcion not 'kmeans'
+                elif algorithm == 'kmedoids':
+
+                    if implementation == 'sklearnextra':
+
+                        #precomputed_data=pairwise_distances(vector[inicio:fin], vector[inicio:fin], metric=metrica)
+
+                        kmedoids = KMedoids(n_clusters=n_centroides, method='pam', metric=metrica).fit(vector[inicio:fin])
+
+                        #print(kmedoids.labels_)
+                        #print(kmedoids.cluster_centers_)
+
+                        puntos_capa[id_capa][id_grupo] = kmedoids.cluster_centers_
+                        labels_capa[id_capa][id_grupo] = kmedoids.labels_
+
+
+                    cont_ptos += n_centroides  # 03-03-2021
+
+                else:   # En principio, nunca se accede
                     data = vector[inicio:fin]
-                    D = pairwise_distances(data, metric=metrica) # Considerar cambio por cdist, aunque nunca se accede
+                    D = distance.pdist(data, metric=metrica)
                     M, C = util.kMedoids(D, n_centroides)
                     list_centroides = []
                     for point_idx in M:
@@ -301,6 +322,8 @@ def built_lista_pos(id_grupo, grupos_capa_compress, lista_pos):
 
 def search_near_centroid(id_grupo, id_centroide, id_ult_vecino, centroides_examinados, puntos_capa, labels_capa,
                          grupos_capa, ids_vecinos, vector_original, metrica):
+    # 01/11: Para optimizar rendimiento, considerar cambio de pairwisedistances por cdist
+
     D = pairwise_distances(puntos_capa[0][id_grupo], metric=metrica)
     # min1 = D[id_centroide, 0:id_centroide].min()
     menor = np.partition(D[id_centroide], 1)[1]
@@ -390,7 +413,7 @@ def search_near_centroid(id_grupo, id_centroide, id_ult_vecino, centroides_exami
     return id_punto, dist, id_grupo, new_id_centroide
 
 
-def kmeans_search(n_capas, n_centroides, seq_buscada, vector_original, vecinos, centroides_examinados,
+def mask_search(n_capas, n_centroides, seq_buscada, vector_original, vecinos, centroides_examinados,
                   n, metrica, grupos_capa, puntos_capa, labels_capa):
     print("********************PROCESO DECONSTRUCCIÓN*********************")
     # start_time_deconstr = timer()
@@ -696,14 +719,12 @@ def kmeans_search(n_capas, n_centroides, seq_buscada, vector_original, vecinos, 
     return almacenado
 
 
-def kmeans_radius_search(n_centroides, punto_buscado, vector_original, k_vecinos, metrica,
+def mask_radius_search(n_centroides, punto_buscado, vector_original, k_vecinos, metrica,
                          grupos_capa, puntos_capa, labels_capa, dimensiones, radio):
 
-    ## Importante tener en cuenta que, pese a estar preparada para recibir como parametro de entrada una metrica,
-    ## esta funcion solo esta preparada para trabajar con distancia euclidea
-    ## ACTUALIZACION 18/09 - Aunque NO puedo asegurar que se trabaje siempre con la metrica incluida como argumento,
-    ## la distancias entre puntos a la hora de buscar los mas cercanos ya si se calcula en base a la misma
-    ## empleandola funcion de scipy cdist(punto, puntos, metrica)
+    #ACTUALIZACION 30/09 - A la hora de buscar los mas vecinos más cercanos, se utiliza tambien la métrica
+    # que se pasa como arguymento y que teoricamente debe ser la misma con la que se construyó el arbol,
+    # calculando las distancias a traves de la función de scipy cdist(punto, puntos, metrica)
 
     if metrica == 'manhattan':  metrica = 'cityblock'  # SCIPY - cdist (necesario traducir manhattan como cityblock)
 
@@ -766,7 +787,7 @@ def kmeans_radius_search(n_centroides, punto_buscado, vector_original, k_vecinos
         ids_selec_points[ini:fin] = lista_pos
         ini = fin
 
-    # De todos los puntos seleccionados solo guardamos los que cumplen la condición de la distancia
+    # De todos los puntos seleccionados solo guardamos los que cumplen la condición de la distancia (puntos_cercanos)
     puntos_seleccionados = np.array(vector_original[ids_selec_points])
     #print("Puntos seleccionados: " + str(puntos_seleccionados.shape))
     #print("Punto buscado: " + str(punto_buscado.shape))
@@ -777,14 +798,15 @@ def kmeans_radius_search(n_centroides, punto_buscado, vector_original, k_vecinos
     aux_ids_points = aux_ids_points[1]
     ids_points = ids_selec_points[aux_ids_points]
     dist_points = dist[dist <= radius]
+
     #print("Puntos dentro del rango de distancia: " + str(dist_points.size))
     #print(dist_points)
 
-    vecinos = np.empty((len(ids_points),3), object)
+    puntos_cercanos = np.empty((len(ids_points),3), object)
     for i in range(len(ids_points)):
-        vecinos[i][0] = ids_points[i]
-        vecinos[i][1] = dist_points[i]
-        vecinos[i][2] = vector_original[ids_points[i]]
+        puntos_cercanos[i][0] = ids_points[i]
+        puntos_cercanos[i][1] = dist_points[i]
+        puntos_cercanos[i][2] = vector_original[ids_points[i]]
 
 
     # for id_capa in range(n_capas-1, -1, -1):
@@ -937,4 +959,23 @@ def kmeans_radius_search(n_centroides, punto_buscado, vector_original, k_vecinos
     # print("--- %s seconds ---", end_time_deconstr-start_time_deconstr)
     # logger.info('search time= %s seconds', end_time_deconstr - start_time_deconstr)
 
-    return vecinos
+    # Creamnos las estructuras para almacenar los datos relativos a los vecinos
+    indices_k_vecinos = np.empty(k_vecinos, dtype=int)
+    coords_k_vecinos = np.empty([k_vecinos, vector_original.shape[1]], dtype=float)
+    dists_k_vecinos = np.empty(k_vecinos, dtype=float)
+
+    # Completar el array de puntos cercanos  con None s hasta llegar al tamaño de vecinos deseado (k_vecinos)
+    # Esto evita el error index out of bounds
+    if len(puntos_cercanos) < k_vecinos:
+        puntos_cercanos= np.append(puntos_cercanos, np.full((k_vecinos - len(puntos_cercanos), 3), None), axis=0)
+
+    # Ordenamos los puntos en base a su distancia con el punto de query
+    idx = np.argsort(puntos_cercanos[:, 1])
+
+    # Designamos los k_vecinos puntos con menor distancia al punto de consulta como vecinos
+    for i in range(k_vecinos):
+        indices_k_vecinos[i] = puntos_cercanos[idx[i]][0]
+        coords_k_vecinos[i, :] = puntos_cercanos[idx[i]][2]
+        dists_k_vecinos[i] = puntos_cercanos[idx[i]][1]
+
+    return [indices_k_vecinos, coords_k_vecinos, dists_k_vecinos]

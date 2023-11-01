@@ -6,7 +6,6 @@ import csv
 import logging
 import experiments.load_train_test_set as load_train_test_set
 import re
-import altair as alt
 import seaborn as sns
 import itertools
 
@@ -111,7 +110,7 @@ def recall(dataset_name, d, method, k, same_train_test=False, file_name_le=None,
         '''
 
         # Count number of 1-neighbor which are the same as the point searched
-        hit = map(lambda x, y: x == y, list(indices_mc), range(indices_mc.shape[0])).count(True)
+        #hit = map(lambda x, y: x == y, list(indices_mc), range(indices_mc.shape[0])).count(True)
 
 
     # Recall in query points different from training set

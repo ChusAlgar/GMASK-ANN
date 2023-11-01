@@ -6,7 +6,7 @@ import experiments.load_train_test_set as lts
 
 
 # Set constants for experiments
-dataset = 'municipios'
+dataset = 'wdbc'
 
 
 # Set log configuration

@@ -13,7 +13,6 @@ nclouds = 8
 # npc = 100000
 # overlap = True
 normaliza = False
-test_set_size = 100
 
 ####### Load and store train and test set from a h5py file #########
 
@@ -52,6 +51,9 @@ def load_train_test(dataset_name, test_eq_train=False):
 
     # print("\n ######### Creating train and test set from " + dataset_name + " dataset #########")
     logging.info("Creating train and test as " + dataset_name + " dataset\n")
+
+    # Setting size of the test set
+    test_set_size = 100
 
     # Generate Gaussian Clouds dataset and generate train and test sets
     if dataset_name.startswith("gaussian_clouds"):
@@ -124,7 +126,7 @@ def load_train_test(dataset_name, test_eq_train=False):
 
         # Read the train_set from a csv file and store it into a Numpy Array
         data = pd.read_csv('./data/mnist_train.csv', delimiter=',', nrows=None)
-        train_set = pd.DataFrame(data).drop(columns='label').to_numpy().astype(float)
+        train_set = pd.DataFrame(data).to_numpy().astype(float)
 
         # Read the test_set from a csv file and store it into a Numpy Array
         data = pd.read_csv('./data/mnist_test.csv', delimiter=',', nrows=None)
@@ -135,6 +137,7 @@ def load_train_test(dataset_name, test_eq_train=False):
         index_testing = np.random.choice(len(test_set), test_set_size, replace=False)
         test_set = test_set[index_testing]
         # n_test_set = test_set[0:10, :]
+
 
         # If normaliza, normalize the datasets
         if normaliza:
@@ -202,6 +205,75 @@ def load_train_test(dataset_name, test_eq_train=False):
 
         return train_set, test_set
 
+    elif dataset_name == ("NYtaxis"):
+        datos = pd.read_parquet('./data/NYtaxis.parquet', engine='pyarrow')
+        NYtaxis = pd.DataFrame(datos, columns=['PULocationID', 'DOLocationID'])
+
+        # Drop duplicates
+        NYtaxis = NYtaxis.drop_duplicates()
+
+        # Convert into Numpy Array of int32 (lighter to process)
+        NYtaxis = NYtaxis.to_numpy()
+        NYtaxis=NYtaxis.astype(np.int32)
+
+        # If normaliza, normalize the dataset
+        if normaliza:
+            NYtaxis = preprocessing.normalize(NYtaxis, axis=0, norm='l2')
+
+        # For this experiment, compose the test_set (100 elements) and the train_set
+        np.random.seed(1234)
+        index_testing = np.random.choice(len(NYtaxis), test_set_size, replace=False)
+        test_set = NYtaxis[index_testing]
+        index_complete = np.linspace(0, len(NYtaxis) - 1, len(NYtaxis), dtype=int)
+        index_training = np.setdiff1d(index_complete, index_testing)
+        train_set = NYtaxis[index_training]
+
+        #Uncomment if we don't want to process the complete dataset, only a 1000000 sample
+        #index_training100000 = np.random.choice(len(index_training), 100000, replace=False)
+        #train_set = NYtaxis[index_training100000]
+
+
+        save_train_test_h5py(train_set, test_set, "./data/NYtaxis_train_test_set.hdf5")
+
+        return train_set, test_set
+
+
+    elif dataset_name == ("wdbc"):
+
+        datos = pd.DataFrame(pd.read_csv('./data/wdbc.data', sep=","))
+
+        # Drop first two columns (index and diagnoses)
+        datos = datos.drop(datos.columns[[0,1]], axis=1)
+
+        # Convert into Numpy Array
+        wdbc = datos.to_numpy()
+
+        # If normaliza, normalize the dataset
+        if normaliza:
+            #wdbc = preprocessing.normalize(wdbc, axis=0, norm='l2')
+            scaler = preprocessing.MinMaxScaler()
+            wdbc = scaler.fit_transform(wdbc)
+
+
+        # For this experiment, compose the test_set (10 elements) and the train_set
+        test_set_size = 100
+        np.random.seed(1234)
+        index_testing = np.random.choice(len(wdbc), test_set_size, replace=False)
+        test_set = wdbc[index_testing]
+        index_complete = np.linspace(0, len(wdbc) - 1, len(wdbc), dtype=int)
+        index_training = np.setdiff1d(index_complete, index_testing)
+        train_set = wdbc[index_training]
+
+        # Save train_set on a txt
+        # a_file = open("test.txt", "w")
+        # for row in train_set:
+        #    a_file.write((str(row[0]) + " " + str(row[1]) + "\n"))
+        # a_file.close()
+
+        save_train_test_h5py(train_set, test_set, "./data/wdbc_train_test_set.hdf5")
+
+        return train_set, test_set
+
     else:
 
         print("Dataset not found")
@@ -209,4 +281,4 @@ def load_train_test(dataset_name, test_eq_train=False):
         return None, None
 
 
-#load_train_test('')
+#load_train_test('NYtaxis')
