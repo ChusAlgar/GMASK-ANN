@@ -1,0 +1,19 @@
+2023-10-25 19:13:18,788 - root - ------------------------------------------------------------------------
+2023-10-25 19:13:18,788 - root -                           KNN Searching
+2023-10-25 19:13:18,788 - root - ------------------------------------------------------------------------
+
+2023-10-25 19:13:18,788 - root - 
+2023-10-25 19:13:18,788 - root - ---- Searching the 15 nearest neighbors within MASK over wdbc dataset using euclidean distance. ----
+2023-10-25 19:13:18,788 - root - 
+2023-10-25 19:13:18,788 - root - ---- MASK Parameters - tam_grupo=80 - n_centroids=40 - radius=7500 - algorithm=kmedoids - implementation=sklearnextra ----
+2023-10-25 19:13:18,790 - root - Loading train and test set from ./data/wdbc_train_test_set.hdf5
+
+2023-10-25 19:13:18,932 - mask.KNN_np - tree time=0.13877133799999974 seconds
+2023-10-25 19:13:19,481 - root - Search time = 0.549345355999999 seconds
+
+2023-10-25 19:13:19,482 - root - Average time spent in searching a single point = 0.00549345355999999
+2023-10-25 19:13:19,482 - root - Speed (points/s) = 182.03485095084736
+
+2023-10-25 19:13:19,485 - root - Neighbors stored at ./experiments/NearestNeighbors/wdbc/knn_wdbc_15_euclidean_MASK_tg80_nc40_r7500_kmedoids_sklearnextra.hdf5
+2023-10-25 19:13:19,485 - root - ------------------------------------------------------------------------
+

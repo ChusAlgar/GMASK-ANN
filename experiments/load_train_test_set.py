@@ -274,6 +274,57 @@ def load_train_test(dataset_name, test_eq_train=False):
 
         return train_set, test_set
 
+    elif dataset_name == "LastFM":
+
+        # Read the train_set and test_set from a hdf5 file and store it into Numpy Arrays
+        with h5py.File('./data/lastfm-64-dot.hdf5', 'r') as hdf5_file:
+            #print("Keys: %s" % hdf5_file.keys())
+            train_set = np.array(hdf5_file['train'])
+            test_set = np.array(hdf5_file['test'])
+
+        # For this experiment, compose a reduced test_set of 100 elements
+        np.random.seed(1234)
+        index_testing = np.random.choice(len(test_set), test_set_size, replace=False)
+        test_set = test_set[index_testing]
+
+        # If normaliza, normalize the datasets
+        if normaliza:
+            train_set = preprocessing.normalize(train_set, axis=0, norm='l2')
+            test_set = preprocessing.normalize(test_set, axis=0, norm='l2')
+
+        save_train_test_h5py(train_set, test_set, "./data/LastFM_train_test_set.hdf5")
+
+        return train_set, test_set
+
+    elif dataset_name == "LastFM100000":
+
+        # Read the train_set and test_set from a hdf5 file and store it into Numpy Arrays
+        with h5py.File('./data/lastfm-64-dot.hdf5', 'r') as hdf5_file:
+            # print("Keys: %s" % hdf5_file.keys())
+            train_set = np.array(hdf5_file['train'])
+            test_set = np.array(hdf5_file['test'])
+
+        # For this experiment, compose a reduced train_set of 100000 elements
+        np.random.seed(1234)
+        index_training = np.random.choice(len(train_set), 100000, replace=False)
+        train_set = train_set[index_training]
+        # # n_train_set = train_set[0:999]
+
+        # For this experiment, compose a reduced test_set of 100 elements
+        np.random.seed(1234)
+        index_testing = np.random.choice(len(test_set), test_set_size, replace=False)
+        test_set = test_set[index_testing]
+        # n_test_set = train_set[1000:1099]
+
+        # If normaliza, normalize the datasets
+        if normaliza:
+            train_set = preprocessing.normalize(train_set, axis=0, norm='l2')
+            test_set = preprocessing.normalize(test_set, axis=0, norm='l2')
+
+        save_train_test_h5py(train_set, test_set, "./data/LastFM100000_train_test_set.hdf5")
+
+        return train_set, test_set
+
     else:
 
         print("Dataset not found")
@@ -281,4 +332,4 @@ def load_train_test(dataset_name, test_eq_train=False):
         return None, None
 
 
-#load_train_test('NYtaxis')
+#load_train_test('LastFM')

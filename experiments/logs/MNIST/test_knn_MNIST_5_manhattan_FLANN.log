@@ -1,0 +1,18 @@
+2023-11-01 18:44:00,031 - root - ------------------------------------------------------------------------
+2023-11-01 18:44:00,032 - root -                           KNN Searching
+2023-11-01 18:44:00,032 - root - ------------------------------------------------------------------------
+
+2023-11-01 18:44:00,032 - root - 
+2023-11-01 18:44:00,032 - root - ---- Searching the 5 nearest neighbors within FLANN over MNIST dataset using manhattan distance. ----
+2023-11-01 18:44:00,032 - root - Loading train and test set from ./data/MNIST_train_test_set.hdf5
+
+2023-11-01 18:53:03,102 - root - Saving FLANN index at 'index_'
+2023-11-01 18:53:03,104 - root - Index time= 542.804060936 seconds
+2023-11-01 18:53:03,173 - root - Search time = 0.068216085434 seconds
+
+2023-11-01 18:53:03,173 - root - Average time spent in searching a single point = 0.00068216085434
+2023-11-01 18:53:03,173 - root - Speed (points/s) = 1465.92991028
+
+2023-11-01 18:53:03,177 - root - Neighbors stored at ./experiments/NearestNeighbors/MNIST/knn_MNIST_5_manhattan_FLANN.hdf5
+2023-11-01 18:53:03,177 - root - ------------------------------------------------------------------------
+

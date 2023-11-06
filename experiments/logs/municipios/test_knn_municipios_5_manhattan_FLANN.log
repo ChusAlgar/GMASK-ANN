@@ -1,0 +1,18 @@
+2023-11-01 17:45:47,004 - root - ------------------------------------------------------------------------
+2023-11-01 17:45:47,004 - root -                           KNN Searching
+2023-11-01 17:45:47,004 - root - ------------------------------------------------------------------------
+
+2023-11-01 17:45:47,004 - root - 
+2023-11-01 17:45:47,004 - root - ---- Searching the 5 nearest neighbors within FLANN over municipios dataset using manhattan distance. ----
+2023-11-01 17:45:47,005 - root - Loading train and test set from ./data/municipios_train_test_set.hdf5
+
+2023-11-01 17:45:47,274 - root - Saving FLANN index at 'index_'
+2023-11-01 17:45:47,275 - root - Index time= 0.268435001373 seconds
+2023-11-01 17:45:47,281 - root - Search time = 0.00676417350769 seconds
+
+2023-11-01 17:45:47,282 - root - Average time spent in searching a single point = 6.76417350769e-05
+2023-11-01 17:45:47,282 - root - Speed (points/s) = 14783.7721617
+
+2023-11-01 17:45:47,283 - root - Neighbors stored at ./experiments/NearestNeighbors/municipios/knn_municipios_5_manhattan_FLANN.hdf5
+2023-11-01 17:45:47,283 - root - ------------------------------------------------------------------------
+

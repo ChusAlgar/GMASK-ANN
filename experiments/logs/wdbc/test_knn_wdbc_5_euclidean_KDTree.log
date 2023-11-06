@@ -1,0 +1,18 @@
+2023-10-25 19:00:10,884 - root - ------------------------------------------------------------------------
+2023-10-25 19:00:10,884 - root -                           KNN Searching
+2023-10-25 19:00:10,884 - root - ------------------------------------------------------------------------
+
+2023-10-25 19:00:10,884 - root - 
+2023-10-25 19:00:10,884 - root - ---- Searching the 5 nearest neighbors within KDTree over wdbc dataset using euclidean distance. ----
+2023-10-25 19:00:10,886 - root - Loading train and test set from ./data/wdbc_train_test_set.hdf5
+
+2023-10-25 19:00:10,889 - root - Building index
+2023-10-25 19:00:10,889 - root - Index time= 0.0006754769999997023 seconds
+2023-10-25 19:00:10,890 - root - Search time = 0.0010915210000002062 seconds
+
+2023-10-25 19:00:10,890 - root - Average time spended in searching a single point = 1.0915210000002062e-05
+2023-10-25 19:00:10,890 - root - Speed (points/s) = 91615.2781302248
+
+2023-10-25 19:00:10,893 - root - Neighbors stored at ./experiments/NearestNeighbors/wdbc/knn_wdbc_5_euclidean_KDTree.hdf5
+2023-10-25 19:00:10,893 - root - ------------------------------------------------------------------------
+

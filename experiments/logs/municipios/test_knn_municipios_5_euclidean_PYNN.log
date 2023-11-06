@@ -1,0 +1,17 @@
+2023-11-01 17:54:04,386 - root - ------------------------------------------------------------------------
+2023-11-01 17:54:04,386 - root -                           KNN Searching
+2023-11-01 17:54:04,386 - root - ------------------------------------------------------------------------
+
+2023-11-01 17:54:04,386 - root - 
+2023-11-01 17:54:04,386 - root - ---- Searching the 5 nearest neighbors within PYNN over municipios dataset using euclidean distance. ----
+2023-11-01 17:54:04,387 - root - Loading train and test set from ./data/municipios_train_test_set.hdf5
+
+2023-11-01 17:54:32,757 - root - Index time= 28.368922321125865 seconds
+2023-11-01 17:54:32,760 - root - Search time = 0.002162629272788763 seconds
+
+2023-11-01 17:54:32,760 - root - Average time spended in searching a single point = 2.162629272788763e-05
+2023-11-01 17:54:32,760 - root - Speed (points/s) = 46240.01036989922
+
+2023-11-01 17:54:32,761 - root - Neighbors stored at ./experiments/NearestNeighbors/municipios/knn_municipios_5_euclidean_PYNN.hdf5
+2023-11-01 17:54:32,761 - root - ------------------------------------------------------------------------
+

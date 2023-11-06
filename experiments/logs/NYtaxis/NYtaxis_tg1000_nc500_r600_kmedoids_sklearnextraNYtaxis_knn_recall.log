@@ -1,0 +1,47 @@
+2023-10-30 20:21:21,366 - root - ------------------------------------------------------------------------
+2023-10-30 20:21:21,366 - root -                        KNN over NYtaxis Dataset RECALL
+2023-10-30 20:21:21,366 - root - ------------------------------------------------------------------------
+2023-10-30 20:21:21,366 - root - Search of k neighbors over a choosen dataset, using different methods, benchmark.py
+2023-10-30 20:21:21,366 - root - ------------------------------------------------------------------------
+
+2023-10-30 20:21:21,366 - root - Distances: ['manhattan', 'euclidean'] 
+2023-10-30 20:21:21,366 - root - Methods: ['PYNN', 'MASK']
+2023-10-30 20:21:21,366 - root - KNN: [5]
+2023-10-30 20:21:21,367 - root - MASK params: tg=1000, nc=500, r=600, algorithm=kmedoids, implementation=sklearnextra
+
+2023-10-30 20:21:21,367 - root - ------------  manhattan distance  --------------------
+
+2023-10-30 20:21:21,367 - root - -- PYNN method --
+
+2023-10-30 20:21:21,368 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtaxis/knn_NYtaxis_5_manhattan_KDTree.hdf5
+2023-10-30 20:21:21,371 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtaxis/knn_NYtaxis_5_manhattan_PYNN.hdf5
+2023-10-30 20:21:21,375 - root - Correct neighbors rate: 424/500.0
+2023-10-30 20:21:21,375 - root - Hit percentage: 84.8%
+
+
+2023-10-30 20:21:21,375 - root - -- MASK method --
+
+2023-10-30 20:21:21,376 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtaxis/knn_NYtaxis_5_manhattan_KDTree.hdf5
+2023-10-30 20:21:21,380 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtaxis/knn_NYtaxis_5_manhattan_MASK_tg1000_nc500_r600_kmedoids_sklearnextra.hdf5
+2023-10-30 20:21:21,383 - root - Correct neighbors rate: 422/500.0
+2023-10-30 20:21:21,383 - root - Hit percentage: 84.39999999999999%
+
+
+2023-10-30 20:21:21,383 - root - ------------  euclidean distance  --------------------
+
+2023-10-30 20:21:21,383 - root - -- PYNN method --
+
+2023-10-30 20:21:21,384 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtaxis/knn_NYtaxis_5_euclidean_KDTree.hdf5
+2023-10-30 20:21:21,387 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtaxis/knn_NYtaxis_5_euclidean_PYNN.hdf5
+2023-10-30 20:21:21,392 - root - Correct neighbors rate: 456/500.0
+2023-10-30 20:21:21,392 - root - Hit percentage: 91.2%
+
+
+2023-10-30 20:21:21,392 - root - -- MASK method --
+
+2023-10-30 20:21:21,392 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtaxis/knn_NYtaxis_5_euclidean_KDTree.hdf5
+2023-10-30 20:21:21,396 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtaxis/knn_NYtaxis_5_euclidean_MASK_tg1000_nc500_r600_kmedoids_sklearnextra.hdf5
+2023-10-30 20:21:21,399 - root - Correct neighbors rate: 462/500.0
+2023-10-30 20:21:21,399 - root - Hit percentage: 92.4%
+
+

@@ -4,14 +4,14 @@ from experiments.neighbors_utils import *
 import logging
 
 # Set var for experiments:
-datasets = ['municipios']
+datasets = ['MNIST']
 distances = ['manhattan', 'euclidean', 'chebyshev']
 methods = ['FLANN', 'PYNN', 'MASK']
 baseline = 'KDTree'
 knn = [5, 10, 15]
-tg = 60
-nc = 30
-r = 40
+tg = 1000
+nc = 500
+r = 80000
 algorithm = 'kmedoids'
 implementation = 'sklearnextra'
 

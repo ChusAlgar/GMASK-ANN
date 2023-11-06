@@ -1,0 +1,18 @@
+2023-10-30 11:56:30,633 - root - ------------------------------------------------------------------------
+2023-10-30 11:56:30,633 - root -                           KNN Searching
+2023-10-30 11:56:30,634 - root - ------------------------------------------------------------------------
+
+2023-10-30 11:56:30,634 - root - 
+2023-10-30 11:56:30,634 - root - ---- Searching the 5 nearest neighbors within KDTree over NYtaxis dataset using manhattan distance. ----
+2023-10-30 11:56:30,636 - root - Loading train and test set from ./data/NYtaxis_train_test_set.hdf5
+
+2023-10-30 11:56:30,645 - root - Building index
+2023-10-30 11:56:30,645 - root - Index time= 0.00715573399999947 seconds
+2023-10-30 11:56:30,646 - root - Search time = 0.0010939489999994834 seconds
+
+2023-10-30 11:56:30,647 - root - Average time spended in searching a single point = 1.0939489999994833e-05
+2023-10-30 11:56:30,647 - root - Speed (points/s) = 91411.93967913241
+
+2023-10-30 11:56:30,654 - root - Neighbors stored at ./experiments/NearestNeighbors/NYtaxis/knn_NYtaxis_5_manhattan_KDTree.hdf5
+2023-10-30 11:56:30,655 - root - ------------------------------------------------------------------------
+

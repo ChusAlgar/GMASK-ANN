@@ -1,0 +1,19 @@
+2023-11-02 00:16:00,467 - root - ------------------------------------------------------------------------
+2023-11-02 00:16:00,467 - root -                           KNN Searching
+2023-11-02 00:16:00,467 - root - ------------------------------------------------------------------------
+
+2023-11-02 00:16:00,467 - root - 
+2023-11-02 00:16:00,467 - root - ---- Searching the 10 nearest neighbors within MASK over MNIST dataset using euclidean distance. ----
+2023-11-02 00:16:00,467 - root - 
+2023-11-02 00:16:00,467 - root - ---- MASK Parameters - tam_grupo=1000 - n_centroids=500 - radius=80000 - algorithm=kmeans - implementation=kclust ----
+2023-11-02 00:16:00,468 - root - Loading train and test set from ./data/MNIST_train_test_set.hdf5
+
+2023-11-02 01:28:49,683 - mask.KNN_np - tree time=4368.951838108711 seconds
+2023-11-02 01:29:41,209 - root - Search time = 51.52079860959202 seconds
+
+2023-11-02 01:29:41,209 - root - Average time spent in searching a single point = 0.5152079860959202
+2023-11-02 01:29:41,209 - root - Speed (points/s) = 1.9409637020141655
+
+2023-11-02 01:29:41,214 - root - Neighbors stored at ./experiments/NearestNeighbors/MNIST/knn_MNIST_10_euclidean_MASK_tg1000_nc500_r80000_kmeans_kclust.hdf5
+2023-11-02 01:29:41,214 - root - ------------------------------------------------------------------------
+

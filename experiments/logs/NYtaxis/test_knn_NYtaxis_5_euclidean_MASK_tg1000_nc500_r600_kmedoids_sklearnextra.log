@@ -1,0 +1,19 @@
+2023-10-30 12:02:21,724 - root - ------------------------------------------------------------------------
+2023-10-30 12:02:21,724 - root -                           KNN Searching
+2023-10-30 12:02:21,724 - root - ------------------------------------------------------------------------
+
+2023-10-30 12:02:21,724 - root - 
+2023-10-30 12:02:21,725 - root - ---- Searching the 5 nearest neighbors within MASK over NYtaxis dataset using euclidean distance. ----
+2023-10-30 12:02:21,725 - root - 
+2023-10-30 12:02:21,725 - root - ---- MASK Parameters - tam_grupo=1000 - n_centroids=500 - radius=600 - algorithm=kmedoids - implementation=sklearnextra ----
+2023-10-30 12:02:21,726 - root - Loading train and test set from ./data/NYtaxis_train_test_set.hdf5
+
+2023-10-30 14:04:23,899 - mask.KNN_np - tree time=7321.949035912 seconds
+2023-10-30 14:04:53,707 - root - Search time = 29.711787348999678 seconds
+
+2023-10-30 14:04:53,707 - root - Average time spent in searching a single point = 0.2971178734899968
+2023-10-30 14:04:53,707 - root - Speed (points/s) = 3.3656675993733765
+
+2023-10-30 14:04:53,737 - root - Neighbors stored at ./experiments/NearestNeighbors/NYtaxis/knn_NYtaxis_5_euclidean_MASK_tg1000_nc500_r600_kmedoids_sklearnextra.hdf5
+2023-10-30 14:04:53,741 - root - ------------------------------------------------------------------------
+
