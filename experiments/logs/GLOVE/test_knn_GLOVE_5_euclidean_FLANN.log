@@ -1,0 +1,18 @@
+2023-11-07 00:16:56,181 - root - ------------------------------------------------------------------------
+2023-11-07 00:16:56,182 - root -                           KNN Searching
+2023-11-07 00:16:56,182 - root - ------------------------------------------------------------------------
+
+2023-11-07 00:16:56,182 - root - 
+2023-11-07 00:16:56,182 - root - ---- Searching the 5 nearest neighbors within FLANN over GLOVE dataset using euclidean distance. ----
+2023-11-07 00:16:56,183 - root - Loading train and test set from ./data/GLOVE_train_test_set.hdf5
+
+2023-11-07 02:09:46,978 - root - Saving FLANN index at 'index_'
+2023-11-07 02:09:47,000 - root - Index time= 6770.52789712 seconds
+2023-11-07 02:09:47,138 - root - Search time = 0.136998176575 seconds
+
+2023-11-07 02:09:47,138 - root - Average time spent in searching a single point = 0.00136998176575
+2023-11-07 02:09:47,138 - root - Speed (points/s) = 729.936722519
+
+2023-11-07 02:09:47,140 - root - Neighbors stored at ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_5_euclidean_FLANN.hdf5
+2023-11-07 02:09:47,140 - root - ------------------------------------------------------------------------
+

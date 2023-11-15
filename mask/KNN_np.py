@@ -10,7 +10,9 @@ from timeit import default_timer as timer
 import logging
 from scipy.spatial import distance
 
-from sklearn_extra.cluster import KMedoids
+
+import sklearn_extra.cluster as sklearnnextra_kmedoids
+import kmedoids as fast_kmedoids
 
 
 logger = logging.getLogger(__name__)
@@ -210,7 +212,18 @@ def mask_tree(cant_ptos, tam_grupo, n_centroides, metrica, vector_original, dime
 
                         #precomputed_data=pairwise_distances(vector[inicio:fin], vector[inicio:fin], metric=metrica)
 
-                        kmedoids = KMedoids(n_clusters=n_centroides, method='pam', metric=metrica).fit(vector[inicio:fin])
+                        kmedoids = sklearnnextra_kmedoids.KMedoids(n_clusters=n_centroides, method='pam', metric=metrica).fit(vector[inicio:fin])
+
+                        #print(kmedoids.labels_)
+                        #print(kmedoids.cluster_centers_)
+
+                        puntos_capa[id_capa][id_grupo] = kmedoids.cluster_centers_
+                        labels_capa[id_capa][id_grupo] = kmedoids.labels_
+
+
+                    elif implementation == 'fastkmedoids':
+
+                        kmedoids = fast_kmedoids.KMedoids(n_clusters=n_centroides, method='fasterpam', metric=metrica).fit(vector[inicio:fin])
 
                         #print(kmedoids.labels_)
                         #print(kmedoids.cluster_centers_)

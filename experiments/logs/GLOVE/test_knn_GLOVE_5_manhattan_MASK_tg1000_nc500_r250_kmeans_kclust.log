@@ -1,0 +1,19 @@
+2023-11-08 17:04:27,841 - root - ------------------------------------------------------------------------
+2023-11-08 17:04:27,841 - root -                           KNN Searching
+2023-11-08 17:04:27,841 - root - ------------------------------------------------------------------------
+
+2023-11-08 17:04:27,841 - root - 
+2023-11-08 17:04:27,841 - root - ---- Searching the 5 nearest neighbors within MASK over GLOVE dataset using manhattan distance. ----
+2023-11-08 17:04:27,841 - root - 
+2023-11-08 17:04:27,841 - root - ---- MASK Parameters - tam_grupo=1000 - n_centroids=500 - radius=250 - algorithm=kmeans - implementation=kclust ----
+2023-11-08 17:04:27,841 - root - Loading train and test set from ./data/GLOVE_train_test_set.hdf5
+
+2023-11-08 22:51:20,633 - mask.KNN_np - tree time=20812.457550391555 seconds
+2023-11-08 22:58:55,852 - root - Search time = 455.21821994893253 seconds
+
+2023-11-08 22:58:55,852 - root - Average time spent in searching a single point = 4.552182199489326
+2023-11-08 22:58:55,852 - root - Speed (points/s) = 0.21967486277508452
+
+2023-11-08 22:58:55,854 - root - Neighbors stored at ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_5_manhattan_MASK_tg1000_nc500_r250_kmeans_kclust.hdf5
+2023-11-08 22:58:55,854 - root - ------------------------------------------------------------------------
+

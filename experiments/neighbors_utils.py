@@ -178,7 +178,7 @@ def print_recall_heatmap(dataset, distances, methods, k, recalls):
     mask = [re_ma, re_eu, re_ch]==np.nan
 
     # Heatmap
-    h = sns.heatmap([re_ma, re_eu, re_ch], annot=True, annot_kws={"size": 20}, fmt='.3g', yticklabels=distances, xticklabels=k+k+k, cmap="crest", mask=mask)
+    h = sns.heatmap([re_ma, re_eu, re_ch], annot=True, annot_kws={"size": 20}, fmt='.3g', yticklabels=distances, xticklabels=k+k+k, cmap="icefire", mask=mask, vmin=0, vmax=100)
 
     #Colorbar
     h.collections[0].colorbar.set_label('Recall (%)', labelpad=30, fontsize=25)

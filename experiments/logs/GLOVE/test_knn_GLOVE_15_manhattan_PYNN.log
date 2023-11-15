@@ -1,0 +1,17 @@
+2023-11-08 04:15:28,364 - root - ------------------------------------------------------------------------
+2023-11-08 04:15:28,364 - root -                           KNN Searching
+2023-11-08 04:15:28,364 - root - ------------------------------------------------------------------------
+
+2023-11-08 04:15:28,364 - root - 
+2023-11-08 04:15:28,364 - root - ---- Searching the 15 nearest neighbors within PYNN over GLOVE dataset using manhattan distance. ----
+2023-11-08 04:15:28,365 - root - Loading train and test set from ./data/GLOVE_train_test_set.hdf5
+
+2023-11-08 04:23:55,934 - root - Index time= 507.2424680199474 seconds
+2023-11-08 04:23:56,217 - root - Search time = 0.2817028723657131 seconds
+
+2023-11-08 04:23:56,217 - root - Average time spended in searching a single point = 0.0028170287236571312
+2023-11-08 04:23:56,217 - root - Speed (points/s) = 354.98395582625693
+
+2023-11-08 04:23:56,219 - root - Neighbors stored at ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_15_manhattan_PYNN.hdf5
+2023-11-08 04:23:56,219 - root - ------------------------------------------------------------------------
+

@@ -13,7 +13,7 @@ tg = 1000
 nc = 500
 r = 80000
 algorithm = 'kmedoids'
-implementation = 'sklearnextra'
+implementation = 'fastkmedoids'
 
 
 def benchmark_recall():
@@ -21,7 +21,7 @@ def benchmark_recall():
     for da in datasets:
 
         # Set loging info
-        logging.basicConfig(filename='./experiments/logs/' + da + '/' + da + "_tg" + str(tg) + "_nc" + str(nc) + "_r" + str(r) + "_" + str(algorithm) + "_" + str(implementation) + da + '_knn_recall.log',
+        logging.basicConfig(filename='./experiments/logs/' + da + '/' + da + "_tg" + str(tg) + "_nc" + str(nc) + "_r" + str(r) + "_" + str(algorithm) + "_" + str(implementation) + '_recall.log',
                             filemode='w', format='%(asctime)s - %(name)s - %(message)s', level=logging.INFO)
         logging.info('------------------------------------------------------------------------')
         logging.info('                       KNN over %s Dataset RECALL', da)
@@ -68,8 +68,8 @@ def benchmark_recall():
 
         # Show results on a graph
         #print_recall_graph(da, distances, methods, knn, da_recalls)
-        #print_recall_heatmap(da, distances, methods, knn, da_recalls)
-        print(da_recalls)
+        print_recall_heatmap(da, distances, methods, knn, da_recalls)
+        #print(da_recalls)
 
 
 def benchmark_error_rate():

@@ -1,0 +1,19 @@
+2023-11-09 22:40:26,898 - root - ------------------------------------------------------------------------
+2023-11-09 22:40:26,899 - root -                           KNN Searching
+2023-11-09 22:40:26,899 - root - ------------------------------------------------------------------------
+
+2023-11-09 22:40:26,899 - root - 
+2023-11-09 22:40:26,899 - root - ---- Searching the 10 nearest neighbors within MASK over GLOVE dataset using chebyshev distance. ----
+2023-11-09 22:40:26,899 - root - 
+2023-11-09 22:40:26,899 - root - ---- MASK Parameters - tam_grupo=1000 - n_centroids=500 - radius=250 - algorithm=kmedoids - implementation=fastkmedoids ----
+2023-11-09 22:40:26,900 - root - Loading train and test set from ./data/GLOVE_train_test_set.hdf5
+
+2023-11-09 23:28:23,322 - mask.KNN_np - tree time=2876.0986409410834 seconds
+2023-11-10 01:27:44,571 - root - Search time = 7161.2474443130195 seconds
+
+2023-11-10 01:27:44,572 - root - Average time spent in searching a single point = 71.6124744431302
+2023-11-10 01:27:44,572 - root - Speed (points/s) = 0.013964047573780357
+
+2023-11-10 01:27:44,575 - root - Neighbors stored at ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_10_chebyshev_MASK_tg1000_nc500_r250_kmedoids_fastkmedoids.hdf5
+2023-11-10 01:27:44,575 - root - ------------------------------------------------------------------------
+
