@@ -172,23 +172,27 @@ def print_recall_heatmap(dataset, distances, methods, k, recalls):
     re_ch = np.asarray(list(itertools.chain(*recalls[2])))
 
     # setting the dimensions of the plot
-    fig, ax = plt.subplots(figsize=(16, 16))
+    fig, ax = plt.subplots(figsize=(16, 10.5))
 
     # Create a mask to hide null (np.nan) values from heatmap
     mask = [re_ma, re_eu, re_ch]==np.nan
 
     # Heatmap
-    h = sns.heatmap([re_ma, re_eu, re_ch], annot=True, annot_kws={"size": 20}, fmt='.3g', yticklabels=distances, xticklabels=k+k+k, cmap="icefire", mask=mask, vmin=0, vmax=100)
+    #h = sns.heatmap([re_ma, re_eu, re_ch], annot=True, annot_kws={"size": 20}, fmt='.3g', yticklabels=distances, xticklabels=k+k+k, cmap="icefire", mask=mask, vmin=0, vmax=100)
+    h = sns.heatmap([re_ma, re_eu, re_ch], annot=True, annot_kws={"size": 20}, fmt='.3g', yticklabels=distances,
+                    xticklabels=k + k + k, cmap="Oranges", mask=mask, vmin=0, vmax=100)
 
     #Colorbar
     h.collections[0].colorbar.set_label('Recall (%)', labelpad=30, fontsize=25)
     h.collections[0].colorbar.ax.tick_params(labelsize=20)
 
     #Title
-    h.axes.set_title(str("Dataset " + dataset), fontsize=30, pad=35)
+    if dataset=="municipios":
+        dataset="municipalities"
+    h.axes.set_title(str(dataset + " dataset"), fontsize=30, pad=35)
 
     # Axis x and y (knn and distance)
-    h.set_xlabel("K-Neighbors", fontsize=25, labelpad=30)
+    h.set_xlabel("k-nearest neighbors", fontsize=25, labelpad=30)
     h.set_ylabel("Distance", fontsize=25, labelpad=40)
     h.tick_params(axis='both', which='major', labelsize=20)
 
@@ -197,7 +201,7 @@ def print_recall_heatmap(dataset, distances, methods, k, recalls):
     hb.set_xticks(range(len(methods)))
     #hb.set(xticklabels=methods)
     hb.set_xticklabels(methods, ha='center')
-    hb.set_aspect(aspect=1.3)
+    hb.set_aspect(aspect=0.75)
     hb.set_xlabel("Method", fontsize=25, labelpad=30)
     hb.tick_params(axis='both', which='major', labelsize=20)
     
