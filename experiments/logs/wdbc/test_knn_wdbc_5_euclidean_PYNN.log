@@ -1,0 +1,17 @@
+2024-04-16 16:30:51,672 - root - ------------------------------------------------------------------------
+2024-04-16 16:30:51,672 - root -                           KNN Searching
+2024-04-16 16:30:51,672 - root - ------------------------------------------------------------------------
+
+2024-04-16 16:30:51,672 - root - 
+2024-04-16 16:30:51,673 - root - ---- Searching the 5 nearest neighbors within PYNN over wdbc dataset using euclidean distance. ----
+2024-04-16 16:30:51,673 - root - Loading train and test set from ./data/wdbc_train_test_set.hdf5
+
+2024-04-16 16:31:19,492 - root - Index time= 27.81815100897802 seconds
+2024-04-16 16:31:19,495 - root - Search time = 0.00223842600826174 seconds
+
+2024-04-16 16:31:19,495 - root - Average time spended in searching a single point = 2.23842600826174e-05
+2024-04-16 16:31:19,495 - root - Speed (points/s) = 44674.24861528278
+
+2024-04-16 16:31:19,496 - root - Neighbors stored at ./experiments/NearestNeighbors/wdbc/knn_wdbc_5_euclidean_PYNN.hdf5
+2024-04-16 16:31:19,496 - root - ------------------------------------------------------------------------
+

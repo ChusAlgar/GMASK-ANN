@@ -1,0 +1,17 @@
+2024-04-17 16:51:05,423 - root - ------------------------------------------------------------------------
+2024-04-17 16:51:05,423 - root -                           KNN Searching
+2024-04-17 16:51:05,423 - root - ------------------------------------------------------------------------
+
+2024-04-17 16:51:05,423 - root - 
+2024-04-17 16:51:05,423 - root - ---- Searching the 15 nearest neighbors within PYNN over NYtimes dataset using euclidean distance. ----
+2024-04-17 16:51:05,424 - root - Loading train and test set from ./data/NYtimes_train_test_set.hdf5
+
+2024-04-17 16:53:39,467 - root - Index time= 153.8505263889674 seconds
+2024-04-17 16:53:39,505 - root - Search time = 0.03750454302644357 seconds
+
+2024-04-17 16:53:39,506 - root - Average time spended in searching a single point = 0.0003750454302644357
+2024-04-17 16:53:39,506 - root - Speed (points/s) = 2666.343646141545
+
+2024-04-17 16:53:39,509 - root - Neighbors stored at ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_15_euclidean_PYNN.hdf5
+2024-04-17 16:53:39,509 - root - ------------------------------------------------------------------------
+

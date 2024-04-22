@@ -1,0 +1,17 @@
+2024-04-17 16:27:11,395 - root - ------------------------------------------------------------------------
+2024-04-17 16:27:11,395 - root -                           KNN Searching
+2024-04-17 16:27:11,395 - root - ------------------------------------------------------------------------
+
+2024-04-17 16:27:11,395 - root - 
+2024-04-17 16:27:11,395 - root - ---- Searching the 15 nearest neighbors within PYNN over NYtimes dataset using chebyshev distance. ----
+2024-04-17 16:27:11,395 - root - Loading train and test set from ./data/NYtimes_train_test_set.hdf5
+
+2024-04-17 16:29:44,963 - root - Index time= 153.3685671929852 seconds
+2024-04-17 16:29:45,110 - root - Search time = 0.1463438660139218 seconds
+
+2024-04-17 16:29:45,110 - root - Average time spended in searching a single point = 0.0014634386601392179
+2024-04-17 16:29:45,110 - root - Speed (points/s) = 683.322114713622
+
+2024-04-17 16:29:45,112 - root - Neighbors stored at ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_15_chebyshev_PYNN.hdf5
+2024-04-17 16:29:45,113 - root - ------------------------------------------------------------------------
+

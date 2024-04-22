@@ -1,0 +1,19 @@
+2024-04-17 15:59:04,396 - root - ------------------------------------------------------------------------
+2024-04-17 15:59:04,396 - root -                           KNN Searching
+2024-04-17 15:59:04,396 - root - ------------------------------------------------------------------------
+
+2024-04-17 15:59:04,396 - root - 
+2024-04-17 15:59:04,396 - root - ---- Searching the 10 nearest neighbors within GMASK over NYtimes dataset using euclidean distance. ----
+2024-04-17 15:59:04,396 - root - 
+2024-04-17 15:59:04,396 - root - ---- GMASK Parameters - tam_grupo=1000 - n_centroids=500 - radius=30 - algorithm=kmedoids - implementation=fastkmedoids ----
+2024-04-17 15:59:04,397 - root - Loading train and test set from ./data/NYtimes_train_test_set.hdf5
+
+2024-04-17 16:07:06,512 - gmask.KNN_np - tree time=481.91160260501783 seconds
+2024-04-17 16:19:55,106 - root - Search time = 768.5893374360166 seconds
+
+2024-04-17 16:19:55,106 - root - Average time spent in searching a single point = 7.685893374360166
+2024-04-17 16:19:55,106 - root - Speed (points/s) = 0.13010849244096465
+
+2024-04-17 16:19:55,109 - root - Neighbors stored at ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_10_euclidean_GMASK_tg1000_nc500_r30_kmedoids_fastkmedoids.hdf5
+2024-04-17 16:19:55,110 - root - ------------------------------------------------------------------------
+

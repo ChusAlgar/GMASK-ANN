@@ -1,0 +1,17 @@
+2024-04-16 16:25:14,017 - root - ------------------------------------------------------------------------
+2024-04-16 16:25:14,017 - root -                           KNN Searching
+2024-04-16 16:25:14,017 - root - ------------------------------------------------------------------------
+
+2024-04-16 16:25:14,017 - root - 
+2024-04-16 16:25:14,017 - root - ---- Searching the 10 nearest neighbors within PYNN over wdbc dataset using chebyshev distance. ----
+2024-04-16 16:25:14,017 - root - Loading train and test set from ./data/wdbc_train_test_set.hdf5
+
+2024-04-16 16:25:41,776 - root - Index time= 27.757377539004665 seconds
+2024-04-16 16:25:41,778 - root - Search time = 0.002130127977579832 seconds
+
+2024-04-16 16:25:41,778 - root - Average time spended in searching a single point = 2.130127977579832e-05
+2024-04-16 16:25:41,778 - root - Speed (points/s) = 46945.536161454525
+
+2024-04-16 16:25:41,780 - root - Neighbors stored at ./experiments/NearestNeighbors/wdbc/knn_wdbc_10_chebyshev_PYNN.hdf5
+2024-04-16 16:25:41,780 - root - ------------------------------------------------------------------------
+

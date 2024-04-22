@@ -1,0 +1,17 @@
+2024-04-17 16:54:19,118 - root - ------------------------------------------------------------------------
+2024-04-17 16:54:19,119 - root -                           KNN Searching
+2024-04-17 16:54:19,119 - root - ------------------------------------------------------------------------
+
+2024-04-17 16:54:19,119 - root - 
+2024-04-17 16:54:19,119 - root - ---- Searching the 15 nearest neighbors within PYNN over NYtimes dataset using manhattan distance. ----
+2024-04-17 16:54:19,119 - root - Loading train and test set from ./data/NYtimes_train_test_set.hdf5
+
+2024-04-17 16:56:49,442 - root - Index time= 150.12021294201259 seconds
+2024-04-17 16:56:49,492 - root - Search time = 0.04986676701810211 seconds
+
+2024-04-17 16:56:49,493 - root - Average time spended in searching a single point = 0.0004986676701810211
+2024-04-17 16:56:49,493 - root - Speed (points/s) = 2005.3435580393461
+
+2024-04-17 16:56:49,495 - root - Neighbors stored at ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_15_manhattan_PYNN.hdf5
+2024-04-17 16:56:49,495 - root - ------------------------------------------------------------------------
+

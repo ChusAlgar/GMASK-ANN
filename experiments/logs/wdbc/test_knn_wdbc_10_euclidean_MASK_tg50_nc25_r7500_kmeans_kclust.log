@@ -1,0 +1,19 @@
+2024-04-16 16:25:58,904 - root - ------------------------------------------------------------------------
+2024-04-16 16:25:58,904 - root -                           KNN Searching
+2024-04-16 16:25:58,904 - root - ------------------------------------------------------------------------
+
+2024-04-16 16:25:58,904 - root - 
+2024-04-16 16:25:58,904 - root - ---- Searching the 10 nearest neighbors within MASK over wdbc dataset using euclidean distance. ----
+2024-04-16 16:25:58,904 - root - 
+2024-04-16 16:25:58,904 - root - ---- MASK Parameters - tam_grupo=50 - n_centroids=25 - radius=7500 - algorithm=kmeans - implementation=kclust ----
+2024-04-16 16:25:58,904 - root - Loading train and test set from ./data/wdbc_train_test_set.hdf5
+
+2024-04-16 16:26:01,447 - mask.KNN_np - tree time=2.5414112680009566 seconds
+2024-04-16 16:26:01,606 - root - Search time = 0.1590557000017725 seconds
+
+2024-04-16 16:26:01,606 - root - Average time spent in searching a single point = 0.001590557000017725
+2024-04-16 16:26:01,606 - root - Speed (points/s) = 628.710571195409
+
+2024-04-16 16:26:01,608 - root - Neighbors stored at ./experiments/NearestNeighbors/wdbc/knn_wdbc_10_euclidean_MASK_tg50_nc25_r7500_kmeans_kclust.hdf5
+2024-04-16 16:26:01,608 - root - ------------------------------------------------------------------------
+

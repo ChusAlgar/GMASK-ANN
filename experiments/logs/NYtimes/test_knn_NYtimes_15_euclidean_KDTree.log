@@ -1,0 +1,18 @@
+2024-04-17 16:50:31,152 - root - ------------------------------------------------------------------------
+2024-04-17 16:50:31,153 - root -                           KNN Searching
+2024-04-17 16:50:31,153 - root - ------------------------------------------------------------------------
+
+2024-04-17 16:50:31,153 - root - 
+2024-04-17 16:50:31,153 - root - ---- Searching the 15 nearest neighbors within KDTree over NYtimes dataset using euclidean distance. ----
+2024-04-17 16:50:31,153 - root - Loading train and test set from ./data/NYtimes_train_test_set.hdf5
+
+2024-04-17 16:50:46,927 - root - Building index
+2024-04-17 16:50:46,928 - root - Index time= 15.58098514797166 seconds
+2024-04-17 16:51:00,091 - root - Search time = 13.162987136980519 seconds
+
+2024-04-17 16:51:00,091 - root - Average time spended in searching a single point = 0.1316298713698052
+2024-04-17 16:51:00,091 - root - Speed (points/s) = 7.597059767615877
+
+2024-04-17 16:51:00,093 - root - Neighbors stored at ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_15_euclidean_KDTree.hdf5
+2024-04-17 16:51:00,093 - root - ------------------------------------------------------------------------
+
