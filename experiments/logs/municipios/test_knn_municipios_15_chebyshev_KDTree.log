@@ -1,18 +1,18 @@
-2023-11-01 17:44:52,341 - root - ------------------------------------------------------------------------
-2023-11-01 17:44:52,341 - root -                           KNN Searching
-2023-11-01 17:44:52,342 - root - ------------------------------------------------------------------------
+2024-04-18 16:54:58,171 - root - ------------------------------------------------------------------------
+2024-04-18 16:54:58,171 - root -                           KNN Searching
+2024-04-18 16:54:58,171 - root - ------------------------------------------------------------------------
 
-2023-11-01 17:44:52,342 - root - 
-2023-11-01 17:44:52,342 - root - ---- Searching the 15 nearest neighbors within KDTree over municipios dataset using chebyshev distance. ----
-2023-11-01 17:44:52,342 - root - Loading train and test set from ./data/municipios_train_test_set.hdf5
+2024-04-18 16:54:58,171 - root - 
+2024-04-18 16:54:58,171 - root - ---- Searching the 15 nearest neighbors within KDTree over municipios dataset using chebyshev distance. ----
+2024-04-18 16:54:58,171 - root - Loading train and test set from ./data/municipios_train_test_set.hdf5
 
-2023-11-01 17:44:52,346 - root - Building index
-2023-11-01 17:44:52,347 - root - Index time= 0.0033341259695589542 seconds
-2023-11-01 17:44:52,347 - root - Search time = 0.0004887878894805908 seconds
+2024-04-18 16:54:58,174 - root - Building index
+2024-04-18 16:54:58,175 - root - Index time= 0.0019882250344380736 seconds
+2024-04-18 16:54:58,175 - root - Search time = 0.00043505895882844925 seconds
 
-2023-11-01 17:44:52,347 - root - Average time spended in searching a single point = 4.887878894805908e-06
-2023-11-01 17:44:52,347 - root - Speed (points/s) = 204587.7202609597
+2024-04-18 16:54:58,175 - root - Average time spended in searching a single point = 4.350589588284492e-06
+2024-04-18 16:54:58,175 - root - Speed (points/s) = 229853.90363937226
 
-2023-11-01 17:44:52,348 - root - Neighbors stored at ./experiments/NearestNeighbors/municipios/knn_municipios_15_chebyshev_KDTree.hdf5
-2023-11-01 17:44:52,349 - root - ------------------------------------------------------------------------
+2024-04-18 16:54:58,176 - root - Neighbors stored at ./experiments/NearestNeighbors/municipios/knn_municipios_15_chebyshev_KDTree.hdf5
+2024-04-18 16:54:58,177 - root - ------------------------------------------------------------------------
 

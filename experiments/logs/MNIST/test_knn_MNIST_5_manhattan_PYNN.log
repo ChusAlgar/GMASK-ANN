@@ -1,17 +1,17 @@
-2023-11-04 03:46:27,948 - root - ------------------------------------------------------------------------
-2023-11-04 03:46:27,948 - root -                           KNN Searching
-2023-11-04 03:46:27,948 - root - ------------------------------------------------------------------------
+2024-04-18 22:57:29,621 - root - ------------------------------------------------------------------------
+2024-04-18 22:57:29,621 - root -                           KNN Searching
+2024-04-18 22:57:29,621 - root - ------------------------------------------------------------------------
 
-2023-11-04 03:46:27,948 - root - 
-2023-11-04 03:46:27,948 - root - ---- Searching the 5 nearest neighbors within PYNN over MNIST dataset using manhattan distance. ----
-2023-11-04 03:46:27,949 - root - Loading train and test set from ./data/MNIST_train_test_set.hdf5
+2024-04-18 22:57:29,621 - root - 
+2024-04-18 22:57:29,621 - root - ---- Searching the 5 nearest neighbors within PYNN over MNIST dataset using manhattan distance. ----
+2024-04-18 22:57:29,621 - root - Loading train and test set from ./data/MNIST_train_test_set.hdf5
 
-2023-11-04 03:47:21,680 - root - Index time= 53.48022535070777 seconds
-2023-11-04 03:47:21,776 - root - Search time = 0.0956112528219819 seconds
+2024-04-18 22:58:25,165 - root - Index time= 55.295290417037904 seconds
+2024-04-18 22:58:25,262 - root - Search time = 0.09654314804356545 seconds
 
-2023-11-04 03:47:21,777 - root - Average time spended in searching a single point = 0.0009561125282198191
-2023-11-04 03:47:21,777 - root - Speed (points/s) = 1045.9019942578252
+2024-04-18 22:58:25,262 - root - Average time spended in searching a single point = 0.0009654314804356545
+2024-04-18 22:58:25,262 - root - Speed (points/s) = 1035.8062900007635
 
-2023-11-04 03:47:21,780 - root - Neighbors stored at ./experiments/NearestNeighbors/MNIST/knn_MNIST_5_manhattan_PYNN.hdf5
-2023-11-04 03:47:21,780 - root - ------------------------------------------------------------------------
+2024-04-18 22:58:25,266 - root - Neighbors stored at ./experiments/NearestNeighbors/MNIST/knn_MNIST_5_manhattan_PYNN.hdf5
+2024-04-18 22:58:25,267 - root - ------------------------------------------------------------------------
 

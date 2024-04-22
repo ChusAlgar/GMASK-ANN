@@ -1,19 +1,19 @@
-2023-11-02 19:36:25,447 - root - ------------------------------------------------------------------------
-2023-11-02 19:36:25,447 - root -                           KNN Searching
-2023-11-02 19:36:25,447 - root - ------------------------------------------------------------------------
+2024-04-18 20:05:57,718 - root - ------------------------------------------------------------------------
+2024-04-18 20:05:57,718 - root -                           KNN Searching
+2024-04-18 20:05:57,718 - root - ------------------------------------------------------------------------
 
-2023-11-02 19:36:25,447 - root - 
-2023-11-02 19:36:25,447 - root - ---- Searching the 15 nearest neighbors within MASK over MNIST dataset using euclidean distance. ----
-2023-11-02 19:36:25,447 - root - 
-2023-11-02 19:36:25,447 - root - ---- MASK Parameters - tam_grupo=1000 - n_centroids=500 - radius=80000 - algorithm=kmeans - implementation=kclust ----
-2023-11-02 19:36:25,447 - root - Loading train and test set from ./data/MNIST_train_test_set.hdf5
+2024-04-18 20:05:57,718 - root - 
+2024-04-18 20:05:57,718 - root - ---- Searching the 15 nearest neighbors within MASK over MNIST dataset using euclidean distance. ----
+2024-04-18 20:05:57,718 - root - 
+2024-04-18 20:05:57,718 - root - ---- MASK Parameters - tam_grupo=1000 - n_centroids=500 - radius=80000 - algorithm=kmeans - implementation=kclust ----
+2024-04-18 20:05:57,718 - root - Loading train and test set from ./data/MNIST_train_test_set.hdf5
 
-2023-11-02 20:48:46,082 - mask.KNN_np - tree time=4340.390374425799 seconds
-2023-11-02 20:49:37,368 - root - Search time = 51.281076463870704 seconds
+2024-04-18 21:18:27,563 - mask.KNN_np - tree time=4349.594221548061 seconds
+2024-04-18 21:19:18,891 - root - Search time = 51.32278537203092 seconds
 
-2023-11-02 20:49:37,368 - root - Average time spent in searching a single point = 0.512810764638707
-2023-11-02 20:49:37,368 - root - Speed (points/s) = 1.9500370681659436
+2024-04-18 21:19:18,891 - root - Average time spent in searching a single point = 0.5132278537203092
+2024-04-18 21:19:18,891 - root - Speed (points/s) = 1.9484523155770967
 
-2023-11-02 20:49:37,373 - root - Neighbors stored at ./experiments/NearestNeighbors/MNIST/knn_MNIST_15_euclidean_MASK_tg1000_nc500_r80000_kmeans_kclust.hdf5
-2023-11-02 20:49:37,374 - root - ------------------------------------------------------------------------
+2024-04-18 21:19:18,899 - root - Neighbors stored at ./experiments/NearestNeighbors/MNIST/knn_MNIST_15_euclidean_MASK_tg1000_nc500_r80000_kmeans_kclust.hdf5
+2024-04-18 21:19:18,900 - root - ------------------------------------------------------------------------
 

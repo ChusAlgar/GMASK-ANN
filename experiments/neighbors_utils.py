@@ -164,77 +164,106 @@ def print_recall_graph(dataset, distances, methods, k, recalls):
     plt.show()
 
 # Build a heatmap to show recall results
-def print_recall_heatmap(dataset, distances, methods, k, recalls):
+def print_recall_heatmap(datasets, distances, methods, k, recalls):
+
+    for dataset in datasets:
+        re_ma = np.asarray(recalls.loc[recalls['Distance'] == "manhattan", 'Recall'].tolist())
+        re_eu = np.asarray(recalls.loc[recalls['Distance'] == "euclidean", 'Recall'].tolist())
+        re_ch = np.asarray(recalls.loc[recalls['Distance'] == "chebyshev", 'Recall'].tolist())
+
+        # setting the dimensions of the plot
+        fig, ax = plt.subplots(figsize=(35, 20))
+
+        # Create a mask to hide null (np.nan) values from heatmap
+        mask = [re_ma, re_eu, re_ch] ==np.nan
+
+        # Heatmap
+        #h = sns.heatmap([re_ma, re_eu, re_ch], annot=True, annot_kws={"size": 20}, fmt='.3g', yticklabels=distances, xticklabels=k+k+k, cmap="icefire", mask=mask, vmin=0, vmax=100)
+        h = sns.heatmap([re_ma, re_eu, re_ch], annot=True, annot_kws={"size": 30}, fmt='.3g', yticklabels=distances,
+                        xticklabels=k + k + k + k, cmap="Oranges", mask=mask, vmin=0, vmax=100)
+
+        #Colorbar
+        h.collections[0].colorbar.set_label('Recall (%)', labelpad=30, fontsize=35)
+        h.collections[0].colorbar.ax.tick_params(labelsize=30)
+
+        #Title
+        if dataset=="municipios":
+            dataset="municipalities"
+        h.axes.set_title(str(dataset + " dataset"), fontsize=45, pad=35)
+
+        # Axis x and y (knn and distance)
+        h.set_xlabel("k-nearest neighbors", fontsize=35, labelpad=30)
+        h.set_ylabel("Distance", fontsize=35, labelpad=40)
+        h.tick_params(axis='both', which='major', labelsize=30)
+
+        # Axis twin (method)
+
+        hb = h.twiny()
+        hb.set_xticks(range(len(methods)))
+        #hb.set(xticklabels=methods)
+        hb.set_xticklabels(methods, ha='center')
+        hb.set_aspect(aspect=0.95)
+        hb.set_xlabel("Method", fontsize=35, labelpad=30)
+        hb.tick_params(axis='both', which='major', labelsize=28)
 
 
-    re_ma = np.asarray(list(itertools.chain(*recalls[0])))
-    re_eu = np.asarray(list(itertools.chain(*recalls[1])))
-    re_ch = np.asarray(list(itertools.chain(*recalls[2])))
-
-    # setting the dimensions of the plot
-    fig, ax = plt.subplots(figsize=(16, 10.5))
-
-    # Create a mask to hide null (np.nan) values from heatmap
-    mask = [re_ma, re_eu, re_ch]==np.nan
-
-    # Heatmap
-    #h = sns.heatmap([re_ma, re_eu, re_ch], annot=True, annot_kws={"size": 20}, fmt='.3g', yticklabels=distances, xticklabels=k+k+k, cmap="icefire", mask=mask, vmin=0, vmax=100)
-    h = sns.heatmap([re_ma, re_eu, re_ch], annot=True, annot_kws={"size": 20}, fmt='.3g', yticklabels=distances,
-                    xticklabels=k + k + k, cmap="Oranges", mask=mask, vmin=0, vmax=100)
-
-    #Colorbar
-    h.collections[0].colorbar.set_label('Recall (%)', labelpad=30, fontsize=25)
-    h.collections[0].colorbar.ax.tick_params(labelsize=20)
-
-    #Title
-    if dataset=="municipios":
-        dataset="municipalities"
-    h.axes.set_title(str(dataset + " dataset"), fontsize=30, pad=35)
-
-    # Axis x and y (knn and distance)
-    h.set_xlabel("k-nearest neighbors", fontsize=25, labelpad=30)
-    h.set_ylabel("Distance", fontsize=25, labelpad=40)
-    h.tick_params(axis='both', which='major', labelsize=20)
-
-    # Axis twin (method)
-    hb = h.twiny()
-    hb.set_xticks(range(len(methods)))
-    #hb.set(xticklabels=methods)
-    hb.set_xticklabels(methods, ha='center')
-    hb.set_aspect(aspect=0.75)
-    hb.set_xlabel("Method", fontsize=25, labelpad=30)
-    hb.tick_params(axis='both', which='major', labelsize=20)
-    
-    
+        # Show heatmap
+        plt.show()
 
 
-    # Show heatmap
-    plt.show()
+    # Build a graph to compare recall results
+def print_compare_recall_graph(recalls):
+
+    #recalls = recalls[recalls['k'] == 10] #to keep only knn=10 experiments
+
+    # Adding two columns (dataset n and d) to dataframe in order to get some statistics
+
+    recalls.insert(loc=len(recalls.columns), column='n', value=0)
+    recalls.insert(loc=len(recalls.columns), column='d', value=0)
+
+    datasets = recalls['Dataset'].unique()
+
+    for dataset in datasets:
+        # Regarding the dataset name, set the file name to load the train and test set
+        file_name = "./data/" + str(dataset) + "_train_test_set.hdf5"
+        train_set, test_set = load_train_test_set.load_train_test_h5py(file_name)
+        size = train_set.shape[0] + test_set.shape[0]
+        dim = train_set.shape[1]
+        recalls.loc[recalls['Dataset'] == dataset, 'n'] = size
+        recalls.loc[recalls['Dataset'] == dataset, 'd'] = dim
+
+    # Compare recalls by n and dim
+
+    # Keep only columns refering dataset features & drop duplicates
+    dataset_info = recalls.loc[:, ['Dataset', 'n', 'd']].drop_duplicates()
+
+
+    fig, axes = plt.subplots(1, 2, figsize=(25, 15), sharey=True)
+
+    sns.lineplot(data=recalls, x="n", y="Recall", hue='Method', ax=axes[0])
+    sns.lineplot(data=recalls, x="d", y="Recall", hue='Method', ax=axes[1])
+
+    #for index, row in dataset_info.iterrows():
+    #    axes[0].annotate(text=row['Dataset'], xy=(row['n'], 20), ha='center')
+    #    axes[1].annotate(text=row['Dataset'], xy=(row['d'], 20), ha='center')
+
+    axes[0].set_title("Recall regarding dataset's size", fontsize=35)
+    axes[1].set_title("Recall regarding dataset's dimensionality", fontsize=35)
+
 
     '''
-    fig, ax = plt.subplots()
-    im = ax.imshow([re_ma, re_eu, re_ch])
-
-    # Show all ticks and label them with the respective list entries
-    #ax.set_xticks(np.arange(len(farmers)), labels=farmers)
-    ax.set_yticks(np.arange(len(distances)), labels=distances)
-
-    # Rotate the tick labels and set their alignment.
-    plt.setp(ax.get_xticklabels(), rotation=45, ha="right",
-             rotation_mode="anchor")
+    # Compare recalls by distance
+    fig, axes = plt.subplots(1, 3, figsize=(23, 5), sharey=True)
 
 
-    # Loop over data dimensions and create text annotations.
-    for i in range(len(vegetables)):
-        for j in range(len(farmers)):
-            text = ax.text(j, i, harvest[i, j],
-                           ha="center", va="center", color="w")
-    
-    ax.set_title("Harvest of local farmers (in tons/year)")
-    fig.tight_layout()
-    plt.show()
-    
+    for i, each in enumerate(distances):
+        sns.lineplot(data=recalls.loc[recalls['Distance'] == each], ax=axes[i], x='n', y='Recall', hue='Method')
+
     '''
+
+    plt.show()
+
+
 
 # Error rate
 def error_rate(dataset_name, d, method, knn, same_train_test=False, file_name_le=None, file_name=None):
@@ -295,66 +324,28 @@ def error_rate(dataset_name, d, method, knn, same_train_test=False, file_name_le
 def compare(dataset_name, d, method1, method2, knn, file_name1=None, file_name2=None):
 
     # Load neighbors obtained through first method
-    indices_le, coords_le, dists_le = load_neighbors(file_name1)
+    indices_m1, coords_m1, dists_m1 = load_neighbors(file_name1)
 
     # Load neighbors obtained through the second method choosen
-    indices_mc, coords_mc, dists_mc = load_neighbors(file_name2)
+    indices_m2, coords_m2, dists_m2 = load_neighbors(file_name2)
 
     # Count number of 1-neighbor which are calculated as the same by both methods
-    hit = sum(map(lambda x, y: len(np.intersect1d(x.astype(int), y)), list(indices_mc), list(indices_le)))
+    hit = sum(map(lambda x, y: len(np.intersect1d(x.astype(int), y)), list(indices_m2), list(indices_m1)))
 
 
     # Compare: %  hit returned vs number of points
-    ip = hit/indices_mc.size * 100
+    ip = hit/indices_m2.size * 100
 
     # Show percentage of hit/miss on screen an save information on a log file
     print ("---- Case " + str(knn) + " nn within " + method1 + " and " + method2 + " over " + str(dataset_name) + " dataset using " + str(d) + " distance. ----")
-    print("Same neighbors rate: " + str(hit) + "/" + str(float(indices_mc.size)))
+    print("Same neighbors rate: " + str(hit) + "/" + str(float(indices_m2.size)))
     print("Intersection percentage: " + str(ip) + "%\n\n")
     logging.info("---- Case " + str(knn) + " nn within " + method1 + " and " + method2 + " over " + str(dataset_name) + " dataset using " + str(d) + " distance. ----")
-    logging.info("Same neighbors rate: " + str(hit) + "/" + str(float(indices_mc.size)))
+    logging.info("Same neighbors rate: " + str(hit) + "/" + str(float(indices_m2.size)))
     logging.info("Intersection percentage: " + str(ip) + "%\n\n")
 
     return ip
 
-
-'''
-DEPRECATED
-# Execution time benchmark
-def execution_time(dataset_name, distance, method, k, rep, train_set, test_set):
-
-    if method is 'BruteForce':
-
-        t1 = timeit.Timer(lambda: bruteforce.bruteforce_nn_index(train_set, k, distance, 'brute'))
-        index_time = t1.timeit(rep)/rep
-
-        knn_index = bruteforce.bruteforce_nn_index(train_set, k, distance, 'brute')
-        t2 = timeit.Timer(lambda: bruteforce.bruteforce_nn_search(train_set, test_set, k, distance, 'brute', knn_index))
-        search_time = t2.timeit(rep) / rep
-
-    elif method is 'FLANN':
-
-        t1 = timeit.Timer(lambda: flann.FLANN_nn_index(train_set, 128, distance, 'kmeans'))
-        index_time = t1.timeit(rep) / rep
-
-        t2 = timeit.Timer(lambda: flann.FLANN_nn_search(train_set, test_set, k, distance, 'kmeans'))
-        search_time = t2.timeit(rep) / rep
-
-    elif method is 'PYNN':
-        index_time, search_time = None, None
-
-    elif method is 'LSH':
-        index_time, search_time = None, None
-
-    elif method is 'MASK':
-        index_time, search_time = None, None
-
-    # Show time average on screen:
-    print ("---- Case " + str(k) + " nn applying " + method + " over " + str(dataset_name) + " dataset using " + str(distance) + " distance. ----")
-    print("Index time av: " + str(index_time) + " / Search time av: " + str(search_time))
-
-    return index_time, search_time
-'''
 
 # Build a graph to show execution time results
 def print_execution_time(dataset, distances, methods, k, ex_times):

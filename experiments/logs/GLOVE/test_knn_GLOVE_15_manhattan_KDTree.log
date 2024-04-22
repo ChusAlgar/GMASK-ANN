@@ -1,18 +1,18 @@
-2023-11-07 22:22:11,138 - root - ------------------------------------------------------------------------
-2023-11-07 22:22:11,139 - root -                           KNN Searching
-2023-11-07 22:22:11,139 - root - ------------------------------------------------------------------------
+2024-04-20 11:25:54,562 - root - ------------------------------------------------------------------------
+2024-04-20 11:25:54,562 - root -                           KNN Searching
+2024-04-20 11:25:54,562 - root - ------------------------------------------------------------------------
 
-2023-11-07 22:22:11,139 - root - 
-2023-11-07 22:22:11,139 - root - ---- Searching the 15 nearest neighbors within KDTree over GLOVE dataset using manhattan distance. ----
-2023-11-07 22:22:11,139 - root - Loading train and test set from ./data/GLOVE_train_test_set.hdf5
+2024-04-20 11:25:54,562 - root - 
+2024-04-20 11:25:54,562 - root - ---- Searching the 15 nearest neighbors within KDTree over GLOVE dataset using manhattan distance. ----
+2024-04-20 11:25:54,562 - root - Loading train and test set from ./data/GLOVE_train_test_set.hdf5
 
-2023-11-07 22:22:35,072 - root - Building index
-2023-11-07 22:22:35,072 - root - Index time= 23.597932560369372 seconds
-2023-11-07 22:23:04,884 - root - Search time = 29.811766660772264 seconds
+2024-04-20 11:26:18,500 - root - Building index
+2024-04-20 11:26:18,500 - root - Index time= 23.628567231004126 seconds
+2024-04-20 11:26:48,352 - root - Search time = 29.851589369005524 seconds
 
-2023-11-07 22:23:04,884 - root - Average time spended in searching a single point = 0.29811766660772265
-2023-11-07 22:23:04,884 - root - Speed (points/s) = 3.354380206242012
+2024-04-20 11:26:48,352 - root - Average time spended in searching a single point = 0.2985158936900552
+2024-04-20 11:26:48,352 - root - Speed (points/s) = 3.349905385735627
 
-2023-11-07 22:23:04,886 - root - Neighbors stored at ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_15_manhattan_KDTree.hdf5
-2023-11-07 22:23:04,886 - root - ------------------------------------------------------------------------
+2024-04-20 11:26:48,354 - root - Neighbors stored at ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_15_manhattan_KDTree.hdf5
+2024-04-20 11:26:48,354 - root - ------------------------------------------------------------------------
 

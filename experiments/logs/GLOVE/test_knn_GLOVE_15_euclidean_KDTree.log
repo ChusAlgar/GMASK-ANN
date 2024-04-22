@@ -1,18 +1,18 @@
-2023-11-07 17:08:37,472 - root - ------------------------------------------------------------------------
-2023-11-07 17:08:37,472 - root -                           KNN Searching
-2023-11-07 17:08:37,472 - root - ------------------------------------------------------------------------
+2024-04-20 03:34:36,804 - root - ------------------------------------------------------------------------
+2024-04-20 03:34:36,804 - root -                           KNN Searching
+2024-04-20 03:34:36,804 - root - ------------------------------------------------------------------------
 
-2023-11-07 17:08:37,472 - root - 
-2023-11-07 17:08:37,472 - root - ---- Searching the 15 nearest neighbors within KDTree over GLOVE dataset using euclidean distance. ----
-2023-11-07 17:08:37,473 - root - Loading train and test set from ./data/GLOVE_train_test_set.hdf5
+2024-04-20 03:34:36,804 - root - 
+2024-04-20 03:34:36,804 - root - ---- Searching the 15 nearest neighbors within KDTree over GLOVE dataset using euclidean distance. ----
+2024-04-20 03:34:36,804 - root - Loading train and test set from ./data/GLOVE_train_test_set.hdf5
 
-2023-11-07 17:09:01,440 - root - Building index
-2023-11-07 17:09:01,440 - root - Index time= 23.63059330917895 seconds
-2023-11-07 17:09:30,911 - root - Search time = 29.470460323616862 seconds
+2024-04-20 03:35:00,717 - root - Building index
+2024-04-20 03:35:00,717 - root - Index time= 23.60370022500865 seconds
+2024-04-20 03:35:30,042 - root - Search time = 29.324981592944823 seconds
 
-2023-11-07 17:09:30,911 - root - Average time spended in searching a single point = 0.29470460323616865
-2023-11-07 17:09:30,911 - root - Speed (points/s) = 3.3932283005387123
+2024-04-20 03:35:30,042 - root - Average time spended in searching a single point = 0.2932498159294482
+2024-04-20 03:35:30,042 - root - Speed (points/s) = 3.410061816511373
 
-2023-11-07 17:09:30,913 - root - Neighbors stored at ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_15_euclidean_KDTree.hdf5
-2023-11-07 17:09:30,913 - root - ------------------------------------------------------------------------
+2024-04-20 03:35:30,044 - root - Neighbors stored at ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_15_euclidean_KDTree.hdf5
+2024-04-20 03:35:30,044 - root - ------------------------------------------------------------------------
 

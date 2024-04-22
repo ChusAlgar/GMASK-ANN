@@ -1,0 +1,19 @@
+2024-04-18 16:49:35,429 - root - ------------------------------------------------------------------------
+2024-04-18 16:49:35,429 - root -                           KNN Searching
+2024-04-18 16:49:35,429 - root - ------------------------------------------------------------------------
+
+2024-04-18 16:49:35,429 - root - 
+2024-04-18 16:49:35,429 - root - ---- Searching the 10 nearest neighbors within GMASK over municipios dataset using chebyshev distance. ----
+2024-04-18 16:49:35,429 - root - 
+2024-04-18 16:49:35,429 - root - ---- GMASK Parameters - tam_grupo=60 - n_centroids=30 - radius=40 - algorithm=kmedoids - implementation=sklearnextra ----
+2024-04-18 16:49:35,430 - root - Loading train and test set from ./data/municipios_train_test_set.hdf5
+
+2024-04-18 16:49:36,918 - gmask.KNN_np - tree time=1.4875628979643807 seconds
+2024-04-18 16:49:51,026 - root - Search time = 14.107440485036932 seconds
+
+2024-04-18 16:49:51,026 - root - Average time spent in searching a single point = 0.14107440485036932
+2024-04-18 16:49:51,026 - root - Speed (points/s) = 7.088458044963229
+
+2024-04-18 16:49:51,027 - root - Neighbors stored at ./experiments/NearestNeighbors/municipios/knn_municipios_10_chebyshev_GMASK_tg60_nc30_r40_kmedoids_sklearnextra.hdf5
+2024-04-18 16:49:51,028 - root - ------------------------------------------------------------------------
+

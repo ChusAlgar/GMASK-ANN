@@ -1,18 +1,18 @@
-2023-11-01 17:45:41,911 - root - ------------------------------------------------------------------------
-2023-11-01 17:45:41,911 - root -                           KNN Searching
-2023-11-01 17:45:41,911 - root - ------------------------------------------------------------------------
+2024-04-18 16:50:02,504 - root - ------------------------------------------------------------------------
+2024-04-18 16:50:02,506 - root -                           KNN Searching
+2024-04-18 16:50:02,506 - root - ------------------------------------------------------------------------
 
-2023-11-01 17:45:41,911 - root - 
-2023-11-01 17:45:41,911 - root - ---- Searching the 15 nearest neighbors within FLANN over municipios dataset using euclidean distance. ----
-2023-11-01 17:45:41,912 - root - Loading train and test set from ./data/municipios_train_test_set.hdf5
+2024-04-18 16:50:02,506 - root - 
+2024-04-18 16:50:02,506 - root - ---- Searching the 15 nearest neighbors within FLANN over municipios dataset using euclidean distance. ----
+2024-04-18 16:50:02,506 - root - Loading train and test set from ./data/municipios_train_test_set.hdf5
 
-2023-11-01 17:45:42,197 - root - Saving FLANN index at 'index_'
-2023-11-01 17:45:42,197 - root - Index time= 0.284563064575 seconds
-2023-11-01 17:45:42,205 - root - Search time = 0.00697302818298 seconds
+2024-04-18 16:50:02,826 - root - Saving FLANN index at 'index_'
+2024-04-18 16:50:02,826 - root - Index time= 0.318391084671 seconds
+2024-04-18 16:50:02,833 - root - Search time = 0.00686001777649 seconds
 
-2023-11-01 17:45:42,205 - root - Average time spent in searching a single point = 6.97302818298e-05
-2023-11-01 17:45:42,205 - root - Speed (points/s) = 14340.9717236
+2024-04-18 16:50:02,833 - root - Average time spent in searching a single point = 6.86001777649e-05
+2024-04-18 16:50:02,833 - root - Speed (points/s) = 14577.2217009
 
-2023-11-01 17:45:42,206 - root - Neighbors stored at ./experiments/NearestNeighbors/municipios/knn_municipios_15_euclidean_FLANN.hdf5
-2023-11-01 17:45:42,206 - root - ------------------------------------------------------------------------
+2024-04-18 16:50:02,834 - root - Neighbors stored at ./experiments/NearestNeighbors/municipios/knn_municipios_15_euclidean_FLANN.hdf5
+2024-04-18 16:50:02,834 - root - ------------------------------------------------------------------------
 

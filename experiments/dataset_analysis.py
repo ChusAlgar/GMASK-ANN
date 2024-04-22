@@ -6,8 +6,8 @@ import experiments.load_train_test_set as lts
 
 
 # Set constants for experiments
-dataset = 'LastFM'
-metrics = ['cosine']
+dataset = 'NYtimes'
+metrics = ['manhattan', 'euclidean', 'chebyshev']
 
 
 # Set log configuration
@@ -45,6 +45,10 @@ da_kur = []
 da_asimetrias = []
 da_dist = []
 
+# Uncomment if we don't want to process the complete dataset, only a 1000000 sample
+logging.info("******** Análisis de una muestra aleatoria de 100000 elementos del dataset **********")
+vector_training100000 = np.random.choice(len(vector_training), 100000, replace=False)
+vector_training = vector_training[vector_training100000]
 
 # Explore every dimension of the dataset to get relevant statistics
 for i in range(0, vector_training.shape[1]):
@@ -163,4 +167,4 @@ for m in metrics:
     logging.info("Quantiles:  q1=" + str(q1_distances) + "  -  q2=" + str(q2_distances) + "  -  q3=" + str(q3_distances))
 
 
-
+exit(0)

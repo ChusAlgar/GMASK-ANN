@@ -1,19 +1,19 @@
-2023-11-01 17:41:14,109 - root - ------------------------------------------------------------------------
-2023-11-01 17:41:14,109 - root -                           KNN Searching
-2023-11-01 17:41:14,109 - root - ------------------------------------------------------------------------
+2024-04-18 16:51:25,439 - root - ------------------------------------------------------------------------
+2024-04-18 16:51:25,440 - root -                           KNN Searching
+2024-04-18 16:51:25,440 - root - ------------------------------------------------------------------------
 
-2023-11-01 17:41:14,109 - root - 
-2023-11-01 17:41:14,109 - root - ---- Searching the 10 nearest neighbors within MASK over municipios dataset using euclidean distance. ----
-2023-11-01 17:41:14,109 - root - 
-2023-11-01 17:41:14,109 - root - ---- MASK Parameters - tam_grupo=60 - n_centroids=30 - radius=40 - algorithm=kmeans - implementation=kclust ----
-2023-11-01 17:41:14,109 - root - Loading train and test set from ./data/municipios_train_test_set.hdf5
+2024-04-18 16:51:25,440 - root - 
+2024-04-18 16:51:25,440 - root - ---- Searching the 10 nearest neighbors within MASK over municipios dataset using euclidean distance. ----
+2024-04-18 16:51:25,440 - root - 
+2024-04-18 16:51:25,440 - root - ---- MASK Parameters - tam_grupo=60 - n_centroids=30 - radius=40 - algorithm=kmeans - implementation=kclust ----
+2024-04-18 16:51:25,440 - root - Loading train and test set from ./data/municipios_train_test_set.hdf5
 
-2023-11-01 17:41:58,263 - mask.KNN_np - tree time=44.152217561844736 seconds
-2023-11-01 17:42:00,352 - root - Search time = 2.089068036992103 seconds
+2024-04-18 16:52:09,828 - mask.KNN_np - tree time=44.38700466393493 seconds
+2024-04-18 16:52:11,952 - root - Search time = 2.122970573953353 seconds
 
-2023-11-01 17:42:00,353 - root - Average time spent in searching a single point = 0.02089068036992103
-2023-11-01 17:42:00,353 - root - Speed (points/s) = 47.8682351312898
+2024-04-18 16:52:11,952 - root - Average time spent in searching a single point = 0.02122970573953353
+2024-04-18 16:52:11,952 - root - Speed (points/s) = 47.10380879833959
 
-2023-11-01 17:42:00,354 - root - Neighbors stored at ./experiments/NearestNeighbors/municipios/knn_municipios_10_euclidean_MASK_tg60_nc30_r40_kmeans_kclust.hdf5
-2023-11-01 17:42:00,354 - root - ------------------------------------------------------------------------
+2024-04-18 16:52:11,953 - root - Neighbors stored at ./experiments/NearestNeighbors/municipios/knn_municipios_10_euclidean_MASK_tg60_nc30_r40_kmeans_kclust.hdf5
+2024-04-18 16:52:11,953 - root - ------------------------------------------------------------------------
 

@@ -1,17 +1,17 @@
-2023-11-03 14:54:49,283 - root - ------------------------------------------------------------------------
-2023-11-03 14:54:49,283 - root -                           KNN Searching
-2023-11-03 14:54:49,283 - root - ------------------------------------------------------------------------
+2024-04-18 21:32:00,783 - root - ------------------------------------------------------------------------
+2024-04-18 21:32:00,783 - root -                           KNN Searching
+2024-04-18 21:32:00,783 - root - ------------------------------------------------------------------------
 
-2023-11-03 14:54:49,283 - root - 
-2023-11-03 14:54:49,283 - root - ---- Searching the 5 nearest neighbors within PYNN over MNIST dataset using chebyshev distance. ----
-2023-11-03 14:54:49,284 - root - Loading train and test set from ./data/MNIST_train_test_set.hdf5
+2024-04-18 21:32:00,783 - root - 
+2024-04-18 21:32:00,783 - root - ---- Searching the 5 nearest neighbors within PYNN over MNIST dataset using chebyshev distance. ----
+2024-04-18 21:32:00,784 - root - Loading train and test set from ./data/MNIST_train_test_set.hdf5
 
-2023-11-03 14:55:48,205 - root - Index time= 58.664311945438385 seconds
-2023-11-03 14:55:52,279 - root - Search time = 4.073341849260032 seconds
+2024-04-18 21:33:03,290 - root - Index time= 62.256100111990236 seconds
+2024-04-18 21:33:07,278 - root - Search time = 3.9878368040081114 seconds
 
-2023-11-03 14:55:52,279 - root - Average time spended in searching a single point = 0.04073341849260032
-2023-11-03 14:55:52,280 - root - Speed (points/s) = 24.549866841685805
+2024-04-18 21:33:07,278 - root - Average time spended in searching a single point = 0.039878368040081116
+2024-04-18 21:33:07,278 - root - Speed (points/s) = 25.07625184147245
 
-2023-11-03 14:55:52,283 - root - Neighbors stored at ./experiments/NearestNeighbors/MNIST/knn_MNIST_5_chebyshev_PYNN.hdf5
-2023-11-03 14:55:52,284 - root - ------------------------------------------------------------------------
+2024-04-18 21:33:07,282 - root - Neighbors stored at ./experiments/NearestNeighbors/MNIST/knn_MNIST_5_chebyshev_PYNN.hdf5
+2024-04-18 21:33:07,283 - root - ------------------------------------------------------------------------
 

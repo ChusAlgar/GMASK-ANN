@@ -1,18 +1,18 @@
-2023-11-15 11:37:55,305 - root - ------------------------------------------------------------------------
-2023-11-15 11:37:55,305 - root -                           KNN Searching
-2023-11-15 11:37:55,305 - root - ------------------------------------------------------------------------
+2024-04-18 18:29:44,489 - root - ------------------------------------------------------------------------
+2024-04-18 18:29:44,489 - root -                           KNN Searching
+2024-04-18 18:29:44,489 - root - ------------------------------------------------------------------------
 
-2023-11-15 11:37:55,305 - root - 
-2023-11-15 11:37:55,305 - root - ---- Searching the 10 nearest neighbors within KDTree over MNIST dataset using chebyshev distance. ----
-2023-11-15 11:37:55,307 - root - Loading train and test set from ./data/MNIST_train_test_set.hdf5
+2024-04-18 18:29:44,489 - root - 
+2024-04-18 18:29:44,489 - root - ---- Searching the 10 nearest neighbors within KDTree over MNIST dataset using chebyshev distance. ----
+2024-04-18 18:29:44,489 - root - Loading train and test set from ./data/MNIST_train_test_set.hdf5
 
-2023-11-15 11:37:59,973 - root - Building index
-2023-11-15 11:37:59,973 - root - Index time= 3.971815103 seconds
-2023-11-15 11:38:06,281 - root - Search time = 6.307217183000001 seconds
+2024-04-18 18:29:48,600 - root - Building index
+2024-04-18 18:29:48,601 - root - Index time= 3.8617925809230655 seconds
+2024-04-18 18:29:52,534 - root - Search time = 3.933443521033041 seconds
 
-2023-11-15 11:38:06,281 - root - Average time spended in searching a single point = 0.06307217183000001
-2023-11-15 11:38:06,281 - root - Speed (points/s) = 15.854852797765153
+2024-04-18 18:29:52,535 - root - Average time spended in searching a single point = 0.039334435210330414
+2024-04-18 18:29:52,535 - root - Speed (points/s) = 25.423016617698117
 
-2023-11-15 11:38:06,293 - root - Neighbors stored at ./experiments/NearestNeighbors/MNIST/knn_MNIST_10_chebyshev_KDTree.hdf5
-2023-11-15 11:38:06,328 - root - ------------------------------------------------------------------------
+2024-04-18 18:29:52,540 - root - Neighbors stored at ./experiments/NearestNeighbors/MNIST/knn_MNIST_10_chebyshev_KDTree.hdf5
+2024-04-18 18:29:52,541 - root - ------------------------------------------------------------------------
 

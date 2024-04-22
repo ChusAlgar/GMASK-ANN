@@ -14,12 +14,15 @@
       <sourceFolder url="file://$MODULE_DIR$/other_algorithms/BruteForce" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/experiments" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/mask/clustering_algorithms/python-kmedoids" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/gmask" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/venv" />
       <excludeFolder url="file://$MODULE_DIR$/venv3.7" />
       <excludeFolder url="file://$MODULE_DIR$/venv2.7" />
       <excludeFolder url="file://$MODULE_DIR$/venv3.8" />
+      <excludeFolder url="file://$MODULE_DIR$/venv3" />
+      <excludeFolder url="file://$MODULE_DIR$/venv3.11" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.7 (Kmeans-index)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.11 (Kmeans-index)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="PyDocumentationSettings">

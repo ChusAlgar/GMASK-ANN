@@ -1,179 +1,179 @@
-2023-12-13 13:50:53,125 - root - ------------------------------------------------------------------------
-2023-12-13 13:50:53,125 - root -                        KNN over GLOVE Dataset RECALL
-2023-12-13 13:50:53,125 - root - ------------------------------------------------------------------------
-2023-12-13 13:50:53,125 - root - Search of k neighbors over a choosen dataset, using different methods, benchmark.py
-2023-12-13 13:50:53,125 - root - ------------------------------------------------------------------------
+2024-01-13 19:26:22,030 - root - ------------------------------------------------------------------------
+2024-01-13 19:26:22,030 - root -                        KNN over GLOVE Dataset RECALL
+2024-01-13 19:26:22,031 - root - ------------------------------------------------------------------------
+2024-01-13 19:26:22,031 - root - Search of k neighbors over a choosen dataset, using different methods, benchmark.py
+2024-01-13 19:26:22,031 - root - ------------------------------------------------------------------------
 
-2023-12-13 13:50:53,125 - root - Distances: ['manhattan', 'euclidean', 'chebyshev'] 
-2023-12-13 13:50:53,126 - root - Methods: ['FLANN', 'PYNN', 'MASK']
-2023-12-13 13:50:53,126 - root - KNN: [5, 10, 15]
-2023-12-13 13:50:53,126 - root - MASK params: tg=1000, nc=500, r=250, algorithm=kmedoids, implementation=fastkmedoids
+2024-01-13 19:26:22,031 - root - Distances: ['manhattan', 'euclidean', 'chebyshev'] 
+2024-01-13 19:26:22,031 - root - Methods: ['FLANN', 'PYNN', 'MASK']
+2024-01-13 19:26:22,031 - root - KNN: [5, 10, 15]
+2024-01-13 19:26:22,031 - root - MASK params: tg=1000, nc=500, r=250, algorithm=kmedoids, implementation=fastkmedoids
 
-2023-12-13 13:50:53,126 - root - ------------  manhattan distance  --------------------
+2024-01-13 19:26:22,031 - root - ------------  manhattan distance  --------------------
 
-2023-12-13 13:50:53,126 - root - -- FLANN method --
+2024-01-13 19:26:22,031 - root - -- FLANN method --
 
-2023-12-13 13:50:53,139 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_5_manhattan_KDTree.hdf5
-2023-12-13 13:50:53,149 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_5_manhattan_FLANN.hdf5
-2023-12-13 13:50:53,152 - root - Correct neighbors rate: 31/500.0
-2023-12-13 13:50:53,152 - root - Hit percentage: 6.2%
-
-
-2023-12-13 13:50:53,165 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_10_manhattan_KDTree.hdf5
-2023-12-13 13:50:53,179 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_10_manhattan_FLANN.hdf5
-2023-12-13 13:50:53,182 - root - Correct neighbors rate: 73/1000.0
-2023-12-13 13:50:53,182 - root - Hit percentage: 7.3%
+2024-01-13 19:26:22,043 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_5_manhattan_KDTree.hdf5
+2024-01-13 19:26:22,059 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_5_manhattan_FLANN.hdf5
+2024-01-13 19:26:22,063 - root - Correct neighbors rate: 31/500.0
+2024-01-13 19:26:22,063 - root - Hit percentage: 6.2%
 
 
-2023-12-13 13:50:53,210 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_15_manhattan_KDTree.hdf5
-2023-12-13 13:50:53,230 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_15_manhattan_FLANN.hdf5
-2023-12-13 13:50:53,235 - root - Correct neighbors rate: 87/1500.0
-2023-12-13 13:50:53,235 - root - Hit percentage: 5.800000000000001%
+2024-01-13 19:26:22,075 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_10_manhattan_KDTree.hdf5
+2024-01-13 19:26:22,078 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_10_manhattan_FLANN.hdf5
+2024-01-13 19:26:22,082 - root - Correct neighbors rate: 73/1000.0
+2024-01-13 19:26:22,083 - root - Hit percentage: 7.3%
 
 
-2023-12-13 13:50:53,235 - root - -- PYNN method --
-
-2023-12-13 13:50:53,236 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_5_manhattan_KDTree.hdf5
-2023-12-13 13:50:53,244 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_5_manhattan_PYNN.hdf5
-2023-12-13 13:50:53,248 - root - Correct neighbors rate: 418/500.0
-2023-12-13 13:50:53,248 - root - Hit percentage: 83.6%
+2024-01-13 19:26:22,098 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_15_manhattan_KDTree.hdf5
+2024-01-13 19:26:22,116 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_15_manhattan_FLANN.hdf5
+2024-01-13 19:26:22,121 - root - Correct neighbors rate: 87/1500.0
+2024-01-13 19:26:22,121 - root - Hit percentage: 5.800000000000001%
 
 
-2023-12-13 13:50:53,248 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_10_manhattan_KDTree.hdf5
-2023-12-13 13:50:53,259 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_10_manhattan_PYNN.hdf5
-2023-12-13 13:50:53,263 - root - Correct neighbors rate: 890/1000.0
-2023-12-13 13:50:53,263 - root - Hit percentage: 89.0%
+2024-01-13 19:26:22,121 - root - -- PYNN method --
+
+2024-01-13 19:26:22,121 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_5_manhattan_KDTree.hdf5
+2024-01-13 19:26:22,130 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_5_manhattan_PYNN.hdf5
+2024-01-13 19:26:22,135 - root - Correct neighbors rate: 418/500.0
+2024-01-13 19:26:22,135 - root - Hit percentage: 83.6%
 
 
-2023-12-13 13:50:53,264 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_15_manhattan_KDTree.hdf5
-2023-12-13 13:50:53,281 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_15_manhattan_PYNN.hdf5
-2023-12-13 13:50:53,288 - root - Correct neighbors rate: 1369/1500.0
-2023-12-13 13:50:53,288 - root - Hit percentage: 91.26666666666667%
+2024-01-13 19:26:22,136 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_10_manhattan_KDTree.hdf5
+2024-01-13 19:26:22,147 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_10_manhattan_PYNN.hdf5
+2024-01-13 19:26:22,152 - root - Correct neighbors rate: 890/1000.0
+2024-01-13 19:26:22,152 - root - Hit percentage: 89.0%
 
 
-2023-12-13 13:50:53,288 - root - -- MASK method --
-
-2023-12-13 13:50:53,289 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_5_manhattan_KDTree.hdf5
-2023-12-13 13:50:53,302 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_5_manhattan_MASK_tg1000_nc500_r250_kmedoids_fastkmedoids.hdf5
-2023-12-13 13:50:53,306 - root - Correct neighbors rate: 500/500.0
-2023-12-13 13:50:53,306 - root - Hit percentage: 100.0%
+2024-01-13 19:26:22,152 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_15_manhattan_KDTree.hdf5
+2024-01-13 19:26:22,167 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_15_manhattan_PYNN.hdf5
+2024-01-13 19:26:22,173 - root - Correct neighbors rate: 1369/1500.0
+2024-01-13 19:26:22,173 - root - Hit percentage: 91.26666666666667%
 
 
-2023-12-13 13:50:53,306 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_10_manhattan_KDTree.hdf5
-2023-12-13 13:50:53,326 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_10_manhattan_MASK_tg1000_nc500_r250_kmedoids_fastkmedoids.hdf5
-2023-12-13 13:50:53,330 - root - Correct neighbors rate: 1000/1000.0
-2023-12-13 13:50:53,330 - root - Hit percentage: 100.0%
+2024-01-13 19:26:22,173 - root - -- MASK method --
+
+2024-01-13 19:26:22,174 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_5_manhattan_KDTree.hdf5
+2024-01-13 19:26:22,185 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_5_manhattan_MASK_tg1000_nc500_r250_kmedoids_fastkmedoids.hdf5
+2024-01-13 19:26:22,188 - root - Correct neighbors rate: 500/500.0
+2024-01-13 19:26:22,188 - root - Hit percentage: 100.0%
 
 
-2023-12-13 13:50:53,331 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_15_manhattan_KDTree.hdf5
-2023-12-13 13:50:53,348 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_15_manhattan_MASK_tg1000_nc500_r250_kmedoids_fastkmedoids.hdf5
-2023-12-13 13:50:53,354 - root - Correct neighbors rate: 1500/1500.0
-2023-12-13 13:50:53,354 - root - Hit percentage: 100.0%
+2024-01-13 19:26:22,189 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_10_manhattan_KDTree.hdf5
+2024-01-13 19:26:22,208 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_10_manhattan_MASK_tg1000_nc500_r250_kmedoids_fastkmedoids.hdf5
+2024-01-13 19:26:22,212 - root - Correct neighbors rate: 1000/1000.0
+2024-01-13 19:26:22,212 - root - Hit percentage: 100.0%
 
 
-2023-12-13 13:50:53,354 - root - ------------  euclidean distance  --------------------
-
-2023-12-13 13:50:53,355 - root - -- FLANN method --
-
-2023-12-13 13:50:53,363 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_5_euclidean_KDTree.hdf5
-2023-12-13 13:50:53,384 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_5_euclidean_FLANN.hdf5
-2023-12-13 13:50:53,388 - root - Correct neighbors rate: 60/500.0
-2023-12-13 13:50:53,388 - root - Hit percentage: 12.0%
+2024-01-13 19:26:22,213 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_15_manhattan_KDTree.hdf5
+2024-01-13 19:26:22,229 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_15_manhattan_MASK_tg1000_nc500_r250_kmedoids_fastkmedoids.hdf5
+2024-01-13 19:26:22,234 - root - Correct neighbors rate: 1500/1500.0
+2024-01-13 19:26:22,234 - root - Hit percentage: 100.0%
 
 
-2023-12-13 13:50:53,397 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_10_euclidean_KDTree.hdf5
-2023-12-13 13:50:53,408 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_10_euclidean_FLANN.hdf5
-2023-12-13 13:50:53,411 - root - Correct neighbors rate: 90/1000.0
-2023-12-13 13:50:53,411 - root - Hit percentage: 9.0%
+2024-01-13 19:26:22,235 - root - ------------  euclidean distance  --------------------
+
+2024-01-13 19:26:22,235 - root - -- FLANN method --
+
+2024-01-13 19:26:22,243 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_5_euclidean_KDTree.hdf5
+2024-01-13 19:26:22,245 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_5_euclidean_FLANN.hdf5
+2024-01-13 19:26:22,252 - root - Correct neighbors rate: 60/500.0
+2024-01-13 19:26:22,252 - root - Hit percentage: 12.0%
 
 
-2023-12-13 13:50:53,421 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_15_euclidean_KDTree.hdf5
-2023-12-13 13:50:53,432 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_15_euclidean_FLANN.hdf5
-2023-12-13 13:50:53,436 - root - Correct neighbors rate: 130/1500.0
-2023-12-13 13:50:53,437 - root - Hit percentage: 8.666666666666668%
+2024-01-13 19:26:22,281 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_10_euclidean_KDTree.hdf5
+2024-01-13 19:26:22,303 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_10_euclidean_FLANN.hdf5
+2024-01-13 19:26:22,309 - root - Correct neighbors rate: 90/1000.0
+2024-01-13 19:26:22,309 - root - Hit percentage: 9.0%
 
 
-2023-12-13 13:50:53,437 - root - -- PYNN method --
-
-2023-12-13 13:50:53,437 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_5_euclidean_KDTree.hdf5
-2023-12-13 13:50:53,445 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_5_euclidean_PYNN.hdf5
-2023-12-13 13:50:53,448 - root - Correct neighbors rate: 316/500.0
-2023-12-13 13:50:53,448 - root - Hit percentage: 63.2%
+2024-01-13 19:26:22,321 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_15_euclidean_KDTree.hdf5
+2024-01-13 19:26:22,338 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_15_euclidean_FLANN.hdf5
+2024-01-13 19:26:22,344 - root - Correct neighbors rate: 130/1500.0
+2024-01-13 19:26:22,344 - root - Hit percentage: 8.666666666666668%
 
 
-2023-12-13 13:50:53,449 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_10_euclidean_KDTree.hdf5
-2023-12-13 13:50:53,460 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_10_euclidean_PYNN.hdf5
-2023-12-13 13:50:53,465 - root - Correct neighbors rate: 722/1000.0
-2023-12-13 13:50:53,465 - root - Hit percentage: 72.2%
+2024-01-13 19:26:22,344 - root - -- PYNN method --
+
+2024-01-13 19:26:22,345 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_5_euclidean_KDTree.hdf5
+2024-01-13 19:26:22,358 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_5_euclidean_PYNN.hdf5
+2024-01-13 19:26:22,362 - root - Correct neighbors rate: 316/500.0
+2024-01-13 19:26:22,363 - root - Hit percentage: 63.2%
 
 
-2023-12-13 13:50:53,466 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_15_euclidean_KDTree.hdf5
-2023-12-13 13:50:53,482 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_15_euclidean_PYNN.hdf5
-2023-12-13 13:50:53,487 - root - Correct neighbors rate: 1102/1500.0
-2023-12-13 13:50:53,487 - root - Hit percentage: 73.46666666666667%
+2024-01-13 19:26:22,363 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_10_euclidean_KDTree.hdf5
+2024-01-13 19:26:22,374 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_10_euclidean_PYNN.hdf5
+2024-01-13 19:26:22,378 - root - Correct neighbors rate: 722/1000.0
+2024-01-13 19:26:22,379 - root - Hit percentage: 72.2%
 
 
-2023-12-13 13:50:53,487 - root - -- MASK method --
-
-2023-12-13 13:50:53,488 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_5_euclidean_KDTree.hdf5
-2023-12-13 13:50:53,497 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_5_euclidean_MASK_tg1000_nc500_r250_kmedoids_fastkmedoids.hdf5
-2023-12-13 13:50:53,500 - root - Correct neighbors rate: 500/500.0
-2023-12-13 13:50:53,500 - root - Hit percentage: 100.0%
+2024-01-13 19:26:22,380 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_15_euclidean_KDTree.hdf5
+2024-01-13 19:26:22,397 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_15_euclidean_PYNN.hdf5
+2024-01-13 19:26:22,404 - root - Correct neighbors rate: 1102/1500.0
+2024-01-13 19:26:22,404 - root - Hit percentage: 73.46666666666667%
 
 
-2023-12-13 13:50:53,501 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_10_euclidean_KDTree.hdf5
-2023-12-13 13:50:53,516 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_10_euclidean_MASK_tg1000_nc500_r250_kmedoids_fastkmedoids.hdf5
-2023-12-13 13:50:53,521 - root - Correct neighbors rate: 1000/1000.0
-2023-12-13 13:50:53,521 - root - Hit percentage: 100.0%
+2024-01-13 19:26:22,404 - root - -- MASK method --
+
+2024-01-13 19:26:22,405 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_5_euclidean_KDTree.hdf5
+2024-01-13 19:26:22,407 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_5_euclidean_MASK_tg1000_nc500_r250_kmedoids_fastkmedoids.hdf5
+2024-01-13 19:26:22,412 - root - Correct neighbors rate: 500/500.0
+2024-01-13 19:26:22,413 - root - Hit percentage: 100.0%
 
 
-2023-12-13 13:50:53,522 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_15_euclidean_KDTree.hdf5
-2023-12-13 13:50:53,541 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_15_euclidean_MASK_tg1000_nc500_r250_kmedoids_fastkmedoids.hdf5
-2023-12-13 13:50:53,546 - root - Correct neighbors rate: 1500/1500.0
-2023-12-13 13:50:53,546 - root - Hit percentage: 100.0%
+2024-01-13 19:26:22,413 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_10_euclidean_KDTree.hdf5
+2024-01-13 19:26:22,428 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_10_euclidean_MASK_tg1000_nc500_r250_kmedoids_fastkmedoids.hdf5
+2024-01-13 19:26:22,432 - root - Correct neighbors rate: 1000/1000.0
+2024-01-13 19:26:22,432 - root - Hit percentage: 100.0%
 
 
-2023-12-13 13:50:53,546 - root - ------------  chebyshev distance  --------------------
-
-2023-12-13 13:50:53,546 - root - -- FLANN method --
-
-2023-12-13 13:50:53,546 - root - -- PYNN method --
-
-2023-12-13 13:50:53,555 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_5_chebyshev_KDTree.hdf5
-2023-12-13 13:50:53,563 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_5_chebyshev_PYNN.hdf5
-2023-12-13 13:50:53,567 - root - Correct neighbors rate: 188/500.0
-2023-12-13 13:50:53,567 - root - Hit percentage: 37.6%
+2024-01-13 19:26:22,433 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_15_euclidean_KDTree.hdf5
+2024-01-13 19:26:22,435 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_15_euclidean_MASK_tg1000_nc500_r250_kmedoids_fastkmedoids.hdf5
+2024-01-13 19:26:22,440 - root - Correct neighbors rate: 1500/1500.0
+2024-01-13 19:26:22,440 - root - Hit percentage: 100.0%
 
 
-2023-12-13 13:50:53,580 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_10_chebyshev_KDTree.hdf5
-2023-12-13 13:50:53,593 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_10_chebyshev_PYNN.hdf5
-2023-12-13 13:50:53,597 - root - Correct neighbors rate: 432/1000.0
-2023-12-13 13:50:53,597 - root - Hit percentage: 43.2%
+2024-01-13 19:26:22,440 - root - ------------  chebyshev distance  --------------------
+
+2024-01-13 19:26:22,440 - root - -- FLANN method --
+
+2024-01-13 19:26:22,440 - root - -- PYNN method --
+
+2024-01-13 19:26:22,441 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_5_chebyshev_KDTree.hdf5
+2024-01-13 19:26:22,445 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_5_chebyshev_PYNN.hdf5
+2024-01-13 19:26:22,451 - root - Correct neighbors rate: 188/500.0
+2024-01-13 19:26:22,451 - root - Hit percentage: 37.6%
 
 
-2023-12-13 13:50:53,609 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_15_chebyshev_KDTree.hdf5
-2023-12-13 13:50:53,628 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_15_chebyshev_PYNN.hdf5
-2023-12-13 13:50:53,632 - root - Correct neighbors rate: 732/1500.0
-2023-12-13 13:50:53,632 - root - Hit percentage: 48.8%
+2024-01-13 19:26:22,463 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_10_chebyshev_KDTree.hdf5
+2024-01-13 19:26:22,475 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_10_chebyshev_PYNN.hdf5
+2024-01-13 19:26:22,480 - root - Correct neighbors rate: 432/1000.0
+2024-01-13 19:26:22,480 - root - Hit percentage: 43.2%
 
 
-2023-12-13 13:50:53,633 - root - -- MASK method --
-
-2023-12-13 13:50:53,633 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_5_chebyshev_KDTree.hdf5
-2023-12-13 13:50:53,644 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_5_chebyshev_MASK_tg1000_nc500_r250_kmedoids_fastkmedoids.hdf5
-2023-12-13 13:50:53,647 - root - Correct neighbors rate: 500/500.0
-2023-12-13 13:50:53,647 - root - Hit percentage: 100.0%
+2024-01-13 19:26:22,492 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_15_chebyshev_KDTree.hdf5
+2024-01-13 19:26:22,512 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_15_chebyshev_PYNN.hdf5
+2024-01-13 19:26:22,516 - root - Correct neighbors rate: 732/1500.0
+2024-01-13 19:26:22,516 - root - Hit percentage: 48.8%
 
 
-2023-12-13 13:50:53,648 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_10_chebyshev_KDTree.hdf5
-2023-12-13 13:50:53,666 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_10_chebyshev_MASK_tg1000_nc500_r250_kmedoids_fastkmedoids.hdf5
-2023-12-13 13:50:53,672 - root - Correct neighbors rate: 1000/1000.0
-2023-12-13 13:50:53,672 - root - Hit percentage: 100.0%
+2024-01-13 19:26:22,516 - root - -- MASK method --
+
+2024-01-13 19:26:22,516 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_5_chebyshev_KDTree.hdf5
+2024-01-13 19:26:22,527 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_5_chebyshev_MASK_tg1000_nc500_r250_kmedoids_fastkmedoids.hdf5
+2024-01-13 19:26:22,531 - root - Correct neighbors rate: 500/500.0
+2024-01-13 19:26:22,531 - root - Hit percentage: 100.0%
 
 
-2023-12-13 13:50:53,673 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_15_chebyshev_KDTree.hdf5
-2023-12-13 13:50:53,691 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_15_chebyshev_MASK_tg1000_nc500_r250_kmedoids_fastkmedoids.hdf5
-2023-12-13 13:50:53,696 - root - Correct neighbors rate: 1500/1500.0
-2023-12-13 13:50:53,696 - root - Hit percentage: 100.0%
+2024-01-13 19:26:22,532 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_10_chebyshev_KDTree.hdf5
+2024-01-13 19:26:22,534 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_10_chebyshev_MASK_tg1000_nc500_r250_kmedoids_fastkmedoids.hdf5
+2024-01-13 19:26:22,540 - root - Correct neighbors rate: 1000/1000.0
+2024-01-13 19:26:22,540 - root - Hit percentage: 100.0%
+
+
+2024-01-13 19:26:22,540 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_15_chebyshev_KDTree.hdf5
+2024-01-13 19:26:22,572 - root - Loading neighbors from ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_15_chebyshev_MASK_tg1000_nc500_r250_kmedoids_fastkmedoids.hdf5
+2024-01-13 19:26:22,579 - root - Correct neighbors rate: 1500/1500.0
+2024-01-13 19:26:22,579 - root - Hit percentage: 100.0%
 
 

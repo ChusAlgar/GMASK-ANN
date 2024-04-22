@@ -1,0 +1,19 @@
+2024-04-20 08:42:56,872 - root - ------------------------------------------------------------------------
+2024-04-20 08:42:56,872 - root -                           KNN Searching
+2024-04-20 08:42:56,872 - root - ------------------------------------------------------------------------
+
+2024-04-20 08:42:56,872 - root - 
+2024-04-20 08:42:56,872 - root - ---- Searching the 15 nearest neighbors within GMASK over GLOVE dataset using manhattan distance. ----
+2024-04-20 08:42:56,872 - root - 
+2024-04-20 08:42:56,872 - root - ---- GMASK Parameters - tam_grupo=1000 - n_centroids=500 - radius=250 - algorithm=kmedoids - implementation=fastkmedoids ----
+2024-04-20 08:42:56,873 - root - Loading train and test set from ./data/GLOVE_train_test_set.hdf5
+
+2024-04-20 09:24:21,883 - gmask.KNN_np - tree time=2484.6943030820694 seconds
+2024-04-20 11:25:49,191 - root - Search time = 7287.305372882984 seconds
+
+2024-04-20 11:25:49,191 - root - Average time spent in searching a single point = 72.87305372882983
+2024-04-20 11:25:49,191 - root - Speed (points/s) = 0.013722493416031814
+
+2024-04-20 11:25:49,193 - root - Neighbors stored at ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_15_manhattan_GMASK_tg1000_nc500_r250_kmedoids_fastkmedoids.hdf5
+2024-04-20 11:25:49,194 - root - ------------------------------------------------------------------------
+

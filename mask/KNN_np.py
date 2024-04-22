@@ -11,9 +11,6 @@ import logging
 from scipy.spatial import distance
 
 
-import sklearn_extra.cluster as sklearnnextra_kmedoids
-import kmedoids as fast_kmedoids
-
 
 logger = logging.getLogger(__name__)
 
@@ -97,7 +94,7 @@ def mask_tree(cant_ptos, tam_grupo, n_centroides, metrica, vector_original, dime
     # Parámetros de entrada:
     # tam_grupo = tamaño del grupo para bombardear con los centroides (depende de la capacidad computacional).
     # n_centroides = número de centroides con los que se bombardea cada grupo
-    # metric = métrica a utilizar a la hora de construir el arbol
+    # metric = métrica a utilizar a la hora de construir el arbol. Solo deberia usarse diatncia euclidea
 
     normaliza = False
 
@@ -119,7 +116,7 @@ def mask_tree(cant_ptos, tam_grupo, n_centroides, metrica, vector_original, dime
     puntos_capa, labels_capa, grupos_capa = built_estructuras_capa(cant_ptos, tam_grupo, n_centroides, n_capas, dimensiones)
 
 
-    # Proceso iterativo para aplicar el kmeans o el kmedoids:
+    # Proceso iterativo para aplicar el kmeans:
     #print("INICIO PROCESO CONSTRUCCIÓN")
     for id_capa in range(n_capas):
         #print("id_capa", id_capa)
@@ -206,46 +203,8 @@ def mask_tree(cant_ptos, tam_grupo, n_centroides, metrica, vector_original, dime
 
                     cont_ptos += n_centroides  # 03-03-2021
 
-                elif algorithm == 'kmedoids':
-
-                    if implementation == 'sklearnextra':
-
-                        #precomputed_data=pairwise_distances(vector[inicio:fin], vector[inicio:fin], metric=metrica)
-
-                        kmedoids = sklearnnextra_kmedoids.KMedoids(n_clusters=n_centroides, method='pam', metric=metrica).fit(vector[inicio:fin])
-
-                        #print(kmedoids.labels_)
-                        #print(kmedoids.cluster_centers_)
-
-                        puntos_capa[id_capa][id_grupo] = kmedoids.cluster_centers_
-                        labels_capa[id_capa][id_grupo] = kmedoids.labels_
-
-
-                    elif implementation == 'fastkmedoids':
-
-                        kmedoids = fast_kmedoids.KMedoids(n_clusters=n_centroides, method='fasterpam', metric=metrica).fit(vector[inicio:fin])
-
-                        #print(kmedoids.labels_)
-                        #print(kmedoids.cluster_centers_)
-
-                        puntos_capa[id_capa][id_grupo] = kmedoids.cluster_centers_
-                        labels_capa[id_capa][id_grupo] = kmedoids.labels_
-
-
-                    cont_ptos += n_centroides  # 03-03-2021
-
-                else:   # En principio, nunca se accede
-                    data = vector[inicio:fin]
-                    D = distance.pdist(data, metric=metrica)
-                    M, C = util.kMedoids(D, n_centroides)
-                    list_centroides = []
-                    for point_idx in M:
-                        list_centroides.append(data[point_idx])
-                        # 23-03-2022    puntos_grupo.append(np.array(list_centroides))
-                        puntos_capa[id_capa][id_grupo] = np.array(list_centroides)
-                        cont_ptos += n_centroides  # 03-03-20021
-                        # 23-03-2022    labels_grupo.append(M)
-                        labels_capa[id_capa][id_grupo] = M
+                else:
+                    print("Algorithm not found")
 
             else:
                 # Si los puntos que tenemos en el grupo no es mayor que el número de centroides, no hacemos culster
@@ -736,7 +695,7 @@ def mask_radius_search(n_centroides, punto_buscado, vector_original, k_vecinos, 
                          grupos_capa, puntos_capa, labels_capa, dimensiones, radio):
 
     #ACTUALIZACION 30/09 - A la hora de buscar los mas vecinos más cercanos, se utiliza tambien la métrica
-    # que se pasa como arguymento y que teoricamente debe ser la misma con la que se construyó el arbol,
+    # que se pasa como argumento y que teoricamente debe ser la misma con la que se construyó el arbol,
     # calculando las distancias a traves de la función de scipy cdist(punto, puntos, metrica)
 
     if metrica == 'manhattan':  metrica = 'cityblock'  # SCIPY - cdist (necesario traducir manhattan como cityblock)

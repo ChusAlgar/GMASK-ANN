@@ -1,18 +1,18 @@
-2023-11-06 18:21:59,805 - root - ------------------------------------------------------------------------
-2023-11-06 18:21:59,805 - root -                           KNN Searching
-2023-11-06 18:21:59,805 - root - ------------------------------------------------------------------------
+2024-04-19 09:43:46,893 - root - ------------------------------------------------------------------------
+2024-04-19 09:43:46,894 - root -                           KNN Searching
+2024-04-19 09:43:46,894 - root - ------------------------------------------------------------------------
 
-2023-11-06 18:21:59,805 - root - 
-2023-11-06 18:21:59,805 - root - ---- Searching the 10 nearest neighbors within FLANN over GLOVE dataset using manhattan distance. ----
-2023-11-06 18:21:59,806 - root - Loading train and test set from ./data/GLOVE_train_test_set.hdf5
+2024-04-19 09:43:46,894 - root - 
+2024-04-19 09:43:46,894 - root - ---- Searching the 10 nearest neighbors within FLANN over GLOVE dataset using manhattan distance. ----
+2024-04-19 09:43:46,895 - root - Loading train and test set from ./data/GLOVE_train_test_set.hdf5
 
-2023-11-06 20:02:18,907 - root - Saving FLANN index at 'index_'
-2023-11-06 20:02:18,931 - root - Index time= 6018.82228994 seconds
-2023-11-06 20:02:19,074 - root - Search time = 0.141772985458 seconds
+2024-04-19 11:47:23,927 - root - Saving FLANN index at 'index_'
+2024-04-19 11:47:23,949 - root - Index time= 7416.79138803 seconds
+2024-04-19 11:47:24,114 - root - Search time = 0.163222074509 seconds
 
-2023-11-06 20:02:19,074 - root - Average time spent in searching a single point = 0.00141772985458
-2023-11-06 20:02:19,074 - root - Speed (points/s) = 705.352995683
+2024-04-19 11:47:24,114 - root - Average time spent in searching a single point = 0.00163222074509
+2024-04-19 11:47:24,114 - root - Speed (points/s) = 612.662229058
 
-2023-11-06 20:02:19,077 - root - Neighbors stored at ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_10_manhattan_FLANN.hdf5
-2023-11-06 20:02:19,078 - root - ------------------------------------------------------------------------
+2024-04-19 11:47:24,118 - root - Neighbors stored at ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_10_manhattan_FLANN.hdf5
+2024-04-19 11:47:24,118 - root - ------------------------------------------------------------------------
 

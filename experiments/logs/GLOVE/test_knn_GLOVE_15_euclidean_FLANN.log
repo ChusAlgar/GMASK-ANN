@@ -1,18 +1,18 @@
-2023-11-06 20:02:20,526 - root - ------------------------------------------------------------------------
-2023-11-06 20:02:20,527 - root -                           KNN Searching
-2023-11-06 20:02:20,527 - root - ------------------------------------------------------------------------
+2024-04-19 11:47:26,491 - root - ------------------------------------------------------------------------
+2024-04-19 11:47:26,492 - root -                           KNN Searching
+2024-04-19 11:47:26,492 - root - ------------------------------------------------------------------------
 
-2023-11-06 20:02:20,527 - root - 
-2023-11-06 20:02:20,527 - root - ---- Searching the 15 nearest neighbors within FLANN over GLOVE dataset using euclidean distance. ----
-2023-11-06 20:02:20,527 - root - Loading train and test set from ./data/GLOVE_train_test_set.hdf5
+2024-04-19 11:47:26,492 - root - 
+2024-04-19 11:47:26,493 - root - ---- Searching the 15 nearest neighbors within FLANN over GLOVE dataset using euclidean distance. ----
+2024-04-19 11:47:26,494 - root - Loading train and test set from ./data/GLOVE_train_test_set.hdf5
 
-2023-11-06 21:55:15,398 - root - Saving FLANN index at 'index_'
-2023-11-06 21:55:15,422 - root - Index time= 6774.61051512 seconds
-2023-11-06 21:55:15,563 - root - Search time = 0.139271020889 seconds
+2024-04-19 14:28:09,080 - root - Saving FLANN index at 'index_'
+2024-04-19 14:28:09,103 - root - Index time= 9642.07112789 seconds
+2024-04-19 14:28:09,243 - root - Search time = 0.139461994171 seconds
 
-2023-11-06 21:55:15,563 - root - Average time spent in searching a single point = 0.00139271020889
-2023-11-06 21:55:15,563 - root - Speed (points/s) = 718.024463104
+2024-04-19 14:28:09,243 - root - Average time spent in searching a single point = 0.00139461994171
+2024-04-19 14:28:09,243 - root - Speed (points/s) = 717.041231156
 
-2023-11-06 21:55:15,566 - root - Neighbors stored at ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_15_euclidean_FLANN.hdf5
-2023-11-06 21:55:15,566 - root - ------------------------------------------------------------------------
+2024-04-19 14:28:09,246 - root - Neighbors stored at ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_15_euclidean_FLANN.hdf5
+2024-04-19 14:28:09,247 - root - ------------------------------------------------------------------------
 

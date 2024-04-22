@@ -1,18 +1,18 @@
-2023-11-01 17:45:39,868 - root - ------------------------------------------------------------------------
-2023-11-01 17:45:39,869 - root -                           KNN Searching
-2023-11-01 17:45:39,869 - root - ------------------------------------------------------------------------
+2024-04-18 16:50:00,585 - root - ------------------------------------------------------------------------
+2024-04-18 16:50:00,586 - root -                           KNN Searching
+2024-04-18 16:50:00,586 - root - ------------------------------------------------------------------------
 
-2023-11-01 17:45:39,869 - root - 
-2023-11-01 17:45:39,869 - root - ---- Searching the 10 nearest neighbors within FLANN over municipios dataset using manhattan distance. ----
-2023-11-01 17:45:39,870 - root - Loading train and test set from ./data/municipios_train_test_set.hdf5
+2024-04-18 16:50:00,586 - root - 
+2024-04-18 16:50:00,586 - root - ---- Searching the 10 nearest neighbors within FLANN over municipios dataset using manhattan distance. ----
+2024-04-18 16:50:00,586 - root - Loading train and test set from ./data/municipios_train_test_set.hdf5
 
-2023-11-01 17:45:40,185 - root - Saving FLANN index at 'index_'
-2023-11-01 17:45:40,185 - root - Index time= 0.314060211182 seconds
-2023-11-01 17:45:40,192 - root - Search time = 0.00724411010742 seconds
+2024-04-18 16:50:00,821 - root - Saving FLANN index at 'index_'
+2024-04-18 16:50:00,821 - root - Index time= 0.234145879745 seconds
+2024-04-18 16:50:00,828 - root - Search time = 0.00687599182129 seconds
 
-2023-11-01 17:45:40,192 - root - Average time spent in searching a single point = 7.24411010742e-05
-2023-11-01 17:45:40,192 - root - Speed (points/s) = 13804.3180621
+2024-04-18 16:50:00,828 - root - Average time spent in searching a single point = 6.87599182129e-05
+2024-04-18 16:50:00,829 - root - Speed (points/s) = 14543.3564494
 
-2023-11-01 17:45:40,193 - root - Neighbors stored at ./experiments/NearestNeighbors/municipios/knn_municipios_10_manhattan_FLANN.hdf5
-2023-11-01 17:45:40,194 - root - ------------------------------------------------------------------------
+2024-04-18 16:50:00,830 - root - Neighbors stored at ./experiments/NearestNeighbors/municipios/knn_municipios_10_manhattan_FLANN.hdf5
+2024-04-18 16:50:00,830 - root - ------------------------------------------------------------------------
 

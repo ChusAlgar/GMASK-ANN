@@ -1,17 +1,17 @@
-2023-11-01 17:46:22,782 - root - ------------------------------------------------------------------------
-2023-11-01 17:46:22,782 - root -                           KNN Searching
-2023-11-01 17:46:22,782 - root - ------------------------------------------------------------------------
+2024-04-18 16:55:03,518 - root - ------------------------------------------------------------------------
+2024-04-18 16:55:03,518 - root -                           KNN Searching
+2024-04-18 16:55:03,518 - root - ------------------------------------------------------------------------
 
-2023-11-01 17:46:22,782 - root - 
-2023-11-01 17:46:22,783 - root - ---- Searching the 15 nearest neighbors within PYNN over municipios dataset using chebyshev distance. ----
-2023-11-01 17:46:22,783 - root - Loading train and test set from ./data/municipios_train_test_set.hdf5
+2024-04-18 16:55:03,518 - root - 
+2024-04-18 16:55:03,518 - root - ---- Searching the 15 nearest neighbors within PYNN over municipios dataset using chebyshev distance. ----
+2024-04-18 16:55:03,519 - root - Loading train and test set from ./data/municipios_train_test_set.hdf5
 
-2023-11-01 17:46:50,296 - root - Index time= 27.512067332863808 seconds
-2023-11-01 17:46:50,299 - root - Search time = 0.002458025701344013 seconds
+2024-04-18 16:55:34,799 - root - Index time= 31.27912658196874 seconds
+2024-04-18 16:55:34,802 - root - Search time = 0.002539013046771288 seconds
 
-2023-11-01 17:46:50,299 - root - Average time spended in searching a single point = 2.458025701344013e-05
-2023-11-01 17:46:50,299 - root - Speed (points/s) = 40683.05711584767
+2024-04-18 16:55:34,802 - root - Average time spended in searching a single point = 2.539013046771288e-05
+2024-04-18 16:55:34,802 - root - Speed (points/s) = 39385.3824922893
 
-2023-11-01 17:46:50,301 - root - Neighbors stored at ./experiments/NearestNeighbors/municipios/knn_municipios_15_chebyshev_PYNN.hdf5
-2023-11-01 17:46:50,301 - root - ------------------------------------------------------------------------
+2024-04-18 16:55:34,804 - root - Neighbors stored at ./experiments/NearestNeighbors/municipios/knn_municipios_15_chebyshev_PYNN.hdf5
+2024-04-18 16:55:34,804 - root - ------------------------------------------------------------------------
 

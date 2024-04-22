@@ -1,18 +1,18 @@
-2023-11-07 09:41:58,390 - root - ------------------------------------------------------------------------
-2023-11-07 09:41:58,390 - root -                           KNN Searching
-2023-11-07 09:41:58,390 - root - ------------------------------------------------------------------------
+2024-04-20 00:46:39,651 - root - ------------------------------------------------------------------------
+2024-04-20 00:46:39,651 - root -                           KNN Searching
+2024-04-20 00:46:39,651 - root - ------------------------------------------------------------------------
 
-2023-11-07 09:41:58,390 - root - 
-2023-11-07 09:41:58,390 - root - ---- Searching the 15 nearest neighbors within KDTree over GLOVE dataset using chebyshev distance. ----
-2023-11-07 09:41:58,391 - root - Loading train and test set from ./data/GLOVE_train_test_set.hdf5
+2024-04-20 00:46:39,651 - root - 
+2024-04-20 00:46:39,651 - root - ---- Searching the 15 nearest neighbors within KDTree over GLOVE dataset using chebyshev distance. ----
+2024-04-20 00:46:39,651 - root - Loading train and test set from ./data/GLOVE_train_test_set.hdf5
 
-2023-11-07 09:42:22,300 - root - Building index
-2023-11-07 09:42:22,300 - root - Index time= 23.573652094230056 seconds
-2023-11-07 09:42:41,897 - root - Search time = 19.59600688610226 seconds
+2024-04-20 00:47:03,496 - root - Building index
+2024-04-20 00:47:03,496 - root - Index time= 23.533283898956142 seconds
+2024-04-20 00:47:23,129 - root - Search time = 19.632168787997216 seconds
 
-2023-11-07 09:42:41,897 - root - Average time spended in searching a single point = 0.1959600688610226
-2023-11-07 09:42:41,897 - root - Speed (points/s) = 5.10308046844591
+2024-04-20 00:47:23,129 - root - Average time spended in searching a single point = 0.19632168787997217
+2024-04-20 00:47:23,129 - root - Speed (points/s) = 5.093680737970139
 
-2023-11-07 09:42:41,898 - root - Neighbors stored at ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_15_chebyshev_KDTree.hdf5
-2023-11-07 09:42:41,899 - root - ------------------------------------------------------------------------
+2024-04-20 00:47:23,131 - root - Neighbors stored at ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_15_chebyshev_KDTree.hdf5
+2024-04-20 00:47:23,131 - root - ------------------------------------------------------------------------
 

@@ -1,6 +1,7 @@
 from other_algorithms.BruteForce.main_test_bruteforce_config import BruteForce
 from other_algorithms.KDTree.main_test_KDTree_config import KDTree
 from mask.experiments.test_knn.main_test_knn_radius_config import MASK
+from gmask.experiments.test_knn.main_test_knn_radius_config import GMASK
 from other_algorithms.Pynndescent.main_test_PYNN_config import PYNN
 
 
@@ -49,6 +50,9 @@ def main(args):
 
     elif method == 'MASK':
         MASK(config)
+
+    elif method == 'GMASK':
+        GMASK(config)
 
     elif method == 'FLANN':
         print("Please, use test_launcher_py2")

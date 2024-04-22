@@ -1,18 +1,18 @@
-2023-11-01 17:43:00,462 - root - ------------------------------------------------------------------------
-2023-11-01 17:43:00,462 - root -                           KNN Searching
-2023-11-01 17:43:00,462 - root - ------------------------------------------------------------------------
+2024-04-18 16:53:35,140 - root - ------------------------------------------------------------------------
+2024-04-18 16:53:35,140 - root -                           KNN Searching
+2024-04-18 16:53:35,140 - root - ------------------------------------------------------------------------
 
-2023-11-01 17:43:00,462 - root - 
-2023-11-01 17:43:00,462 - root - ---- Searching the 10 nearest neighbors within KDTree over municipios dataset using manhattan distance. ----
-2023-11-01 17:43:00,463 - root - Loading train and test set from ./data/municipios_train_test_set.hdf5
+2024-04-18 16:53:35,140 - root - 
+2024-04-18 16:53:35,140 - root - ---- Searching the 10 nearest neighbors within KDTree over municipios dataset using manhattan distance. ----
+2024-04-18 16:53:35,141 - root - Loading train and test set from ./data/municipios_train_test_set.hdf5
 
-2023-11-01 17:43:00,466 - root - Building index
-2023-11-01 17:43:00,466 - root - Index time= 0.002061121165752411 seconds
-2023-11-01 17:43:00,467 - root - Search time = 0.0004458380863070488 seconds
+2024-04-18 16:53:35,144 - root - Building index
+2024-04-18 16:53:35,144 - root - Index time= 0.002016456099227071 seconds
+2024-04-18 16:53:35,144 - root - Search time = 0.0005542079452425241 seconds
 
-2023-11-01 17:43:00,467 - root - Average time spended in searching a single point = 4.458380863070488e-06
-2023-11-01 17:43:00,467 - root - Speed (points/s) = 224296.6742216141
+2024-04-18 16:53:35,145 - root - Average time spended in searching a single point = 5.542079452425241e-06
+2024-04-18 16:53:35,145 - root - Speed (points/s) = 180437.68743921473
 
-2023-11-01 17:43:00,468 - root - Neighbors stored at ./experiments/NearestNeighbors/municipios/knn_municipios_10_manhattan_KDTree.hdf5
-2023-11-01 17:43:00,468 - root - ------------------------------------------------------------------------
+2024-04-18 16:53:35,146 - root - Neighbors stored at ./experiments/NearestNeighbors/municipios/knn_municipios_10_manhattan_KDTree.hdf5
+2024-04-18 16:53:35,146 - root - ------------------------------------------------------------------------
 

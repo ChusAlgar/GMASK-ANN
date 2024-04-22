@@ -1,7 +1,5 @@
 import logging
-# import mask.kmeans_tree_npdist_modulado as ktd
 import mask.KNN_np as knn
-# import mask.data_test as dt
 import numpy as np
 from timeit import default_timer as timer
 import experiments.load_train_test_set as lts
@@ -18,8 +16,9 @@ def MASK(config):
     tam_grupo = config.getint('method', 'tg')
     n_centroides = config.getint('method', 'nc')
     radio = config.get('method', 'r')
-    algorithm = config.get('method', 'algorithm') # Possible values kmeans, kmedoids
-    implementation = config.get('method', 'implementation')  # Possible values: pyclustering (elkan), sklearn (elkan), hammerly, kclust (?)
+    algorithm = config.get('method', 'algorithm') # Possible values: kmeans
+    implementation = config.get('method', 'implementation')  # Possible values:
+                                                             # pyclustering (elkan), sklearn (elkan), hammerly, kclust (?)
 
 
     # Set log configuration

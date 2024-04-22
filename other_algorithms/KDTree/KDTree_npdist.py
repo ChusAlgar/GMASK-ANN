@@ -4,6 +4,7 @@ import numpy as np
 import logging
 
 # Using sklearn.neighbors.KDTree, build the index of nearest neighbors using the distance metric choosen
+# Valid metrics (KDTree.valid_metrics): 'euclidean', 'l2', 'minkowski', 'p', 'manhattan', 'cityblock', 'l1', 'chebyshev', 'infinity'
 def KDTree_nn_index(train_set, metric):
 
     # Determine the knn of each element on the trainset

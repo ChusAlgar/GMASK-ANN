@@ -1,17 +1,17 @@
-2023-11-03 21:08:06,343 - root - ------------------------------------------------------------------------
-2023-11-03 21:08:06,343 - root -                           KNN Searching
-2023-11-03 21:08:06,343 - root - ------------------------------------------------------------------------
+2024-04-18 22:50:36,840 - root - ------------------------------------------------------------------------
+2024-04-18 22:50:36,840 - root -                           KNN Searching
+2024-04-18 22:50:36,840 - root - ------------------------------------------------------------------------
 
-2023-11-03 21:08:06,343 - root - 
-2023-11-03 21:08:06,343 - root - ---- Searching the 5 nearest neighbors within PYNN over MNIST dataset using euclidean distance. ----
-2023-11-03 21:08:06,344 - root - Loading train and test set from ./data/MNIST_train_test_set.hdf5
+2024-04-18 22:50:36,840 - root - 
+2024-04-18 22:50:36,840 - root - ---- Searching the 5 nearest neighbors within PYNN over MNIST dataset using euclidean distance. ----
+2024-04-18 22:50:36,841 - root - Loading train and test set from ./data/MNIST_train_test_set.hdf5
 
-2023-11-03 21:08:57,683 - root - Index time= 51.07582111656666 seconds
-2023-11-03 21:08:57,777 - root - Search time = 0.09314924944192171 seconds
+2024-04-18 22:51:31,310 - root - Index time= 54.22367114305962 seconds
+2024-04-18 22:51:31,320 - root - Search time = 0.009699692018330097 seconds
 
-2023-11-03 21:08:57,777 - root - Average time spended in searching a single point = 0.0009314924944192171
-2023-11-03 21:08:57,777 - root - Speed (points/s) = 1073.5459555404116
+2024-04-18 22:51:31,320 - root - Average time spended in searching a single point = 9.699692018330097e-05
+2024-04-18 22:51:31,321 - root - Speed (points/s) = 10309.605687585125
 
-2023-11-03 21:08:57,780 - root - Neighbors stored at ./experiments/NearestNeighbors/MNIST/knn_MNIST_5_euclidean_PYNN.hdf5
-2023-11-03 21:08:57,781 - root - ------------------------------------------------------------------------
+2024-04-18 22:51:31,324 - root - Neighbors stored at ./experiments/NearestNeighbors/MNIST/knn_MNIST_5_euclidean_PYNN.hdf5
+2024-04-18 22:51:31,324 - root - ------------------------------------------------------------------------
 
