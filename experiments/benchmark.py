@@ -1,23 +1,138 @@
 from experiments.neighbors_utils import *
 import logging
+import pandas as pd
 
 # Set var for experiments:
-datasets = ['municipios']
-distances = ['euclidean']
-methods = ['FLANN', 'PYNN', 'MASK']
+#datasets = ['wdbc', 'municipios', 'MNIST', 'NYtimes', 'GLOVE']
+datasets = ['GLOVE']
+distances = ['manhattan', 'euclidean', 'chebyshev']
+methods = ['FLANN', 'PYNN', 'MASK', 'GMASK']
 baseline = 'KDTree'
-knn = [5]
-tg = 1000
-nc = 800
-r = 25
+knn = [5, 10, 15]
+
+mask_algorithm = 'kmeans'
+mask_implementation = 'kclust'
+
+gmask_algorithm = 'kmedoids'
+gmask_implementation = 'fastkmedoids'
 
 
-def benchmark_recall():
+def benchmark_error_rate():
 
     for da in datasets:
 
-        # Set loging info
-        logging.basicConfig(filename='./experiments/logs/' + da + '_knn_recall.log',
+        # MASK & GMASK configurations
+        if da == 'NYtimes':
+            tg = 1000
+            nc = 500
+            r = 30
+
+        elif da == 'GLOVE':
+            tg = 1000
+            nc = 500
+            r = 250
+
+        elif da == 'MNIST':
+            tg = 1000
+            nc = 500
+            r = 80000
+
+        elif da == 'municipios':
+            tg = 60
+            nc = 30
+            r = 40
+
+        elif da == 'wdbc':
+            tg = 50
+            nc = 25
+            r = 7500
+
+        # Set logging info
+        logging.basicConfig(
+            filename='./experiments/logs/' + da + '/' + da + "_tg" + str(tg) + "_nc" + str(nc) + "_r" + str(r) + "_" + str(mask_algorithm) + "" + str(mask_implementation) + "_" + str(gmask_algorithm) + "" + str(gmask_implementation) + '_errorrate.log',
+            filemode='w', format='%(asctime)s - %(name)s - %(message)s', level=logging.INFO)
+        logging.info('------------------------------------------------------------------------')
+        logging.info('                       KNN over %s Dataset ERROR RATE', da)
+        logging.info('------------------------------------------------------------------------')
+        logging.info('Search of k neighbors over a choosen dataset, using different methods, benchmark.py')
+        logging.info('------------------------------------------------------------------------\n')
+
+        logging.info('Distances: %s ', distances)
+        logging.info('Methods: %s', methods)
+        logging.info('KNN: %s', knn)
+        logging.info('MASK params: tg=%s, nc=%s, r=%s, algorithm=%s, implementation=%s\n', tg, nc, r, mask_algorithm, mask_implementation)
+        logging.info('GMASK params: tg=%s, nc=%s, r=%s, algorithm=%s, implementation=%s\n', tg, nc, r, gmask_algorithm, gmask_implementation)
+
+        # From a chosen dataset, calculate recalls, store them and print graph
+        da_error_rate = []
+        for di in distances:
+            logging.info('------------  %s distance  --------------------', di)
+            di_error_rate = []
+            for method in methods:
+                m_error_rate = []
+
+                logging.info('')
+                logging.info('-- %s method --', method)
+                logging.info('')
+
+                for k in knn:
+
+                    file_name_le = "./experiments/NearestNeighbors/" + da + "/knn_" + da + "_" + str(k) + "_" + di + "_" + baseline + ".hdf5"
+
+                    if method == 'MASK':
+                        file_name = "./experiments/NearestNeighbors/" + da + "/knn_" + da + "_" + str(
+                            k) + "_" + di + "_" + method + "_tg" + str(tg) + "_nc" + str(nc) + "_r" + str(
+                            r) + "_" + str(mask_algorithm) + "_" + str(mask_implementation) + ".hdf5"
+
+                    elif method == 'GMASK':
+                        file_name = "./experiments/NearestNeighbors/" + da + "/knn_" + da + "_" + str(
+                            k) + "_" + di + "_" + method + "_tg" + str(tg) + "_nc" + str(nc) + "_r" + str(
+                            r) + "_" + str(gmask_algorithm) + "_" + str(gmask_implementation) + ".hdf5"
+
+                    else:
+                        file_name = "./experiments/NearestNeighbors/" + da + "/knn_" + da + "_" + str(k) + "_" + di + "_" + method + ".hdf5"
+
+                    er = error_rate(da, di, method, k, False, file_name_le, file_name)
+
+                    m_error_rate.append(er)
+
+                di_error_rate.append(m_error_rate)
+            da_error_rate.append(di_error_rate)
+
+def benchmark_recall():
+
+    recalls = pd.DataFrame(columns=['Dataset', 'k', 'Distance', 'Method', 'Recall'])
+
+    for da in datasets:
+
+        # MASK & GMASK configurations
+        if da == 'NYtimes':
+            tg = 1000
+            nc = 500
+            r = 30
+
+        elif da == 'GLOVE':
+            tg = 1000
+            nc = 500
+            r = 250
+
+        elif da == 'MNIST':
+            tg = 1000
+            nc = 500
+            r = 80000
+
+        elif da == 'municipios':
+            tg = 60
+            nc = 30
+            r = 40
+
+        elif da == 'wdbc':
+            tg = 50
+            nc = 25
+            r = 7500
+
+        # Set logging info
+        logging.basicConfig(filename='./experiments/logs/' + da + '/' + da + "_tg" + str(tg) + "_nc" + str(nc) + "_r" + str(r) + "_" + "MASK" + "." + str(mask_implementation) + "_" + "GMASK" + "." + str(gmask_implementation) +'_recall.log',
                             filemode='w', format='%(asctime)s - %(name)s - %(message)s', level=logging.INFO)
         logging.info('------------------------------------------------------------------------')
         logging.info('                       KNN over %s Dataset RECALL', da)
@@ -28,119 +143,45 @@ def benchmark_recall():
         logging.info('Distances: %s ', distances)
         logging.info('Methods: %s', methods)
         logging.info('KNN: %s', knn)
-        logging.info('MASK params: tg=%s, nc=%s, r=%s\n', tg, nc, r)
+        logging.info('MASK params: tg=%s, nc=%s, r=%s, algorithm=%s, implementation=%s', tg, nc, r, mask_algorithm, mask_implementation)
+        logging.info('GMASK params: tg=%s, nc=%s, r=%s, algorithm=%s, implementation=%s\n', tg, nc, r, gmask_algorithm, gmask_implementation)
 
         # From a chosen dataset, calculate recalls, store them and print graph
-        da_recalls = []
         for di in distances:
             logging.info('------------  %s distance  --------------------\n', di)
-            di_recall = []
-            for m in methods:
-                m_recall = []
+            for method in methods:
 
-                logging.info('-- %s method --\n', m)
+                logging.info('-- %s method --\n', method)
 
                 for k in knn:
 
                     file_name_le = "./experiments/NearestNeighbors/" + da + "/knn_" + da + "_" + str(
                         k) + "_" + di + "_" + baseline + ".hdf5"
 
-                    if m == 'MASK':
+                    if method == 'MASK':
                         file_name = "./experiments/NearestNeighbors/" + da + "/knn_" + da + "_" + str(
-                            k) + "_" + di + "_" + m + "_tg" + str(tg) + "_nc" + str(nc) + "_r" + str(r) + ".hdf5"
+                            k) + "_" + di + "_" + method + "_tg" + str(tg) + "_nc" + str(nc) + "_r" + str(r) + "_" + str(mask_algorithm) + "_" + str(mask_implementation) + ".hdf5"
+
+                    elif method == 'GMASK':
+                        file_name = "./experiments/NearestNeighbors/" + da + "/knn_" + da + "_" + str(
+                            k) + "_" + di + "_" + method + "_tg" + str(tg) + "_nc" + str(nc) + "_r" + str(r) + "_" + str(gmask_algorithm) + "_" + str(gmask_implementation) + ".hdf5"
                     else:
                         file_name = "./experiments/NearestNeighbors/" + da + "/knn_" + da + "_" + str(
-                            k) + "_" + di + "_" + m + ".hdf5"
+                            k) + "_" + di + "_" + method + ".hdf5"
 
-                    re = recall(da, di, m, k, False, file_name_le, file_name)
-                    m_recall.append(re)
-
-                di_recall.append(m_recall)
-            da_recalls.append(di_recall)
-
-        # Show results on a graph
-        print_recall(da, distances, methods, knn, da_recalls)
-
-
-def benchmark_error_rate():
-
-    for da in datasets:
-
-        # Set loging info
-        logging.basicConfig(filename='./experiments/logs/' + da + '_knn_error_rate.log',
-                            filemode='w', format='%(asctime)s - %(name)s - %(message)s', level=logging.INFO)
-        logging.info('------------------------------------------------------------------------')
-        logging.info('                       KNN over %s Dataset ERROR RATE', da)
-        logging.info('------------------------------------------------------------------------')
-        logging.info('Search of k neighbors over a choosen dataset, using different methods, benchmark.py')
-        logging.info('------------------------------------------------------------------------\n')
-
-        logging.info('Distances: %s ', distances)
-        logging.info('Methods: %s', methods)
-        logging.info('KNN: %s', knn)
-        logging.info('MASK params: tg=%s, nc=%s, r=%s\n', tg, nc, r)
-
-        # From a chosen dataset, calculate recalls, store them and print graph
-        da_error_rate = []
-        for di in distances:
-            logging.info('------------  %s distance  --------------------', di)
-            di_error_rate = []
-            for m in methods:
-                m_error_rate = []
-
-                logging.info('')
-                logging.info('-- %s method --', m)
-                logging.info('')
-
-                for k in knn:
-
-                    file_name_le = "./experiments/NearestNeighbors/" + da + "/knn_" + da + "_" + str(k) + "_" + di + "_" + baseline + ".hdf5"
-
-                    if m == 'MASK':
-                        file_name = "./experiments/NearestNeighbors/" + da + "/knn_" + da + "_" + str(k) + "_" + di + "_" + m + "_tg" + str(tg) + "_nc" + str(nc) + "_r" + str(r) + ".hdf5"
+                    if not os.path.isfile(file_name):
+                        re = np.nan
                     else:
-                        file_name = "./experiments/NearestNeighbors/" + da + "/knn_" + da + "_" + str(k) + "_" + di + "_" + m + ".hdf5"
+                        re = recall(da, di, method, k, False, file_name_le, file_name)
 
-                    er = error_rate(da, di, m, k, False, file_name_le, file_name)
-
-                    m_error_rate.append(er)
-
-                di_error_rate.append(m_error_rate)
-            da_error_rate.append(di_error_rate)
+                    recalls = pd.concat([recalls, pd.DataFrame([{'Dataset': da, 'k': k, 'Distance': di, 'Method': method, 'Recall': re}])], ignore_index=True)
 
 
-'''
+    # Show results on a graph
+    #print_compare_recall_graph(recalls)
+    print_recall_heatmap(datasets, distances, methods, knn, recalls)
+    #print(da_recalls)
 
-DEPRECATED
+benchmark_recall()
 
-def benchmark_execution_time():
-
-    # For each dataset, calculate execution time averages, store them and print graph
-    for da in datasets:
-        da_ex_times = []
-        train_set, test_set = load_train_test_set.load_train_test_h5py(da)
-        for di in distances:
-            di_ex_times = []
-            for m in methods:
-                m_ex_times = []
-                for k in knn:
-                    et = execution_time(da, di, m, k, 1, train_set, test_set)
-                    m_ex_times.append(et)
-
-                di_ex_times.append(m_ex_times)
-            da_ex_times.append(di_ex_times)
-
-        # Show results on a graph
-        print_execution_time(da, distances, methods, knn, da_ex_times)
-
-'''
-'''
-indices_le, coords_le, dists_le = get_neighbors('gaussian', 'euclidean', 'BruteForce', 5)
-indices_mc, coords_mc, dists_mc = get_neighbors('gaussian', 'euclidean', 'MASK', 5)
-
-print(coords_le)
-print("cambio-------------------------------------")
-print(coords_mc)
-'''
-
-benchmark_error_rate()
+exit(0)

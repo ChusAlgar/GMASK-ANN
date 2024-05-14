@@ -1,0 +1,18 @@
+2024-04-16 16:26:46,124 - root - ------------------------------------------------------------------------
+2024-04-16 16:26:46,125 - root -                           KNN Searching
+2024-04-16 16:26:46,125 - root - ------------------------------------------------------------------------
+
+2024-04-16 16:26:46,125 - root - 
+2024-04-16 16:26:46,125 - root - ---- Searching the 10 nearest neighbors within KDTree over wdbc dataset using manhattan distance. ----
+2024-04-16 16:26:46,125 - root - Loading train and test set from ./data/wdbc_train_test_set.hdf5
+
+2024-04-16 16:26:46,127 - root - Building index
+2024-04-16 16:26:46,127 - root - Index time= 0.0006809160113334656 seconds
+2024-04-16 16:26:46,128 - root - Search time = 0.0008242750191129744 seconds
+
+2024-04-16 16:26:46,128 - root - Average time spended in searching a single point = 8.242750191129744e-06
+2024-04-16 16:26:46,128 - root - Speed (points/s) = 121318.73183250515
+
+2024-04-16 16:26:46,129 - root - Neighbors stored at ./experiments/NearestNeighbors/wdbc/knn_wdbc_10_manhattan_KDTree.hdf5
+2024-04-16 16:26:46,129 - root - ------------------------------------------------------------------------
+

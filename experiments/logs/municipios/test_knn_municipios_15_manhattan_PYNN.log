@@ -1,0 +1,17 @@
+2024-04-18 16:58:43,622 - root - ------------------------------------------------------------------------
+2024-04-18 16:58:43,622 - root -                           KNN Searching
+2024-04-18 16:58:43,623 - root - ------------------------------------------------------------------------
+
+2024-04-18 16:58:43,623 - root - 
+2024-04-18 16:58:43,623 - root - ---- Searching the 15 nearest neighbors within PYNN over municipios dataset using manhattan distance. ----
+2024-04-18 16:58:43,623 - root - Loading train and test set from ./data/municipios_train_test_set.hdf5
+
+2024-04-18 16:59:15,109 - root - Index time= 31.48514020908624 seconds
+2024-04-18 16:59:15,112 - root - Search time = 0.002289971918798983 seconds
+
+2024-04-18 16:59:15,112 - root - Average time spended in searching a single point = 2.289971918798983e-05
+2024-04-18 16:59:15,112 - root - Speed (points/s) = 43668.657759107715
+
+2024-04-18 16:59:15,113 - root - Neighbors stored at ./experiments/NearestNeighbors/municipios/knn_municipios_15_manhattan_PYNN.hdf5
+2024-04-18 16:59:15,113 - root - ------------------------------------------------------------------------
+

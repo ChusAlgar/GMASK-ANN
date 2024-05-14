@@ -1,0 +1,18 @@
+2024-04-16 16:31:46,161 - root - ------------------------------------------------------------------------
+2024-04-16 16:31:46,162 - root -                           KNN Searching
+2024-04-16 16:31:46,162 - root - ------------------------------------------------------------------------
+
+2024-04-16 16:31:46,162 - root - 
+2024-04-16 16:31:46,162 - root - ---- Searching the 5 nearest neighbors within FLANN over wdbc dataset using euclidean distance. ----
+2024-04-16 16:31:46,162 - root - Loading train and test set from ./data/wdbc_train_test_set.hdf5
+
+2024-04-16 16:31:46,174 - root - Saving FLANN index at 'index_'
+2024-04-16 16:31:46,174 - root - Index time= 0.010705947876 seconds
+2024-04-16 16:31:46,181 - root - Search time = 0.00673413276672 seconds
+
+2024-04-16 16:31:46,181 - root - Average time spent in searching a single point = 6.73413276672e-05
+2024-04-16 16:31:46,181 - root - Speed (points/s) = 14849.7220747
+
+2024-04-16 16:31:46,183 - root - Neighbors stored at ./experiments/NearestNeighbors/wdbc/knn_wdbc_5_euclidean_FLANN.hdf5
+2024-04-16 16:31:46,183 - root - ------------------------------------------------------------------------
+

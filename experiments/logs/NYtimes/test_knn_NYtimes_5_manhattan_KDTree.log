@@ -1,0 +1,18 @@
+2024-04-17 17:23:56,077 - root - ------------------------------------------------------------------------
+2024-04-17 17:23:56,077 - root -                           KNN Searching
+2024-04-17 17:23:56,077 - root - ------------------------------------------------------------------------
+
+2024-04-17 17:23:56,077 - root - 
+2024-04-17 17:23:56,077 - root - ---- Searching the 5 nearest neighbors within KDTree over NYtimes dataset using manhattan distance. ----
+2024-04-17 17:23:56,078 - root - Loading train and test set from ./data/NYtimes_train_test_set.hdf5
+
+2024-04-17 17:24:11,888 - root - Building index
+2024-04-17 17:24:11,888 - root - Index time= 15.60511211398989 seconds
+2024-04-17 17:24:24,287 - root - Search time = 12.398535196029115 seconds
+
+2024-04-17 17:24:24,287 - root - Average time spended in searching a single point = 0.12398535196029116
+2024-04-17 17:24:24,287 - root - Speed (points/s) = 8.065468897650671
+
+2024-04-17 17:24:24,289 - root - Neighbors stored at ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_5_manhattan_KDTree.hdf5
+2024-04-17 17:24:24,290 - root - ------------------------------------------------------------------------
+

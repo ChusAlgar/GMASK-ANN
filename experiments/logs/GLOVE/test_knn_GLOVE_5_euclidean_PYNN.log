@@ -1,0 +1,17 @@
+2024-04-20 22:11:13,004 - root - ------------------------------------------------------------------------
+2024-04-20 22:11:13,004 - root -                           KNN Searching
+2024-04-20 22:11:13,004 - root - ------------------------------------------------------------------------
+
+2024-04-20 22:11:13,004 - root - 
+2024-04-20 22:11:13,004 - root - ---- Searching the 5 nearest neighbors within PYNN over GLOVE dataset using euclidean distance. ----
+2024-04-20 22:11:13,005 - root - Loading train and test set from ./data/GLOVE_train_test_set.hdf5
+
+2024-04-20 22:19:42,755 - root - Index time= 509.44624100695364 seconds
+2024-04-20 22:19:42,771 - root - Search time = 0.01548485504463315 seconds
+
+2024-04-20 22:19:42,771 - root - Average time spended in searching a single point = 0.0001548485504463315
+2024-04-20 22:19:42,771 - root - Speed (points/s) = 6457.92290026368
+
+2024-04-20 22:19:42,773 - root - Neighbors stored at ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_5_euclidean_PYNN.hdf5
+2024-04-20 22:19:42,773 - root - ------------------------------------------------------------------------
+

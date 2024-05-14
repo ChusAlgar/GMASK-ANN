@@ -1,0 +1,18 @@
+2024-04-18 16:49:56,332 - root - ------------------------------------------------------------------------
+2024-04-18 16:49:56,332 - root -                           KNN Searching
+2024-04-18 16:49:56,332 - root - ------------------------------------------------------------------------
+
+2024-04-18 16:49:56,332 - root - 
+2024-04-18 16:49:56,332 - root - ---- Searching the 10 nearest neighbors within KDTree over municipios dataset using chebyshev distance. ----
+2024-04-18 16:49:56,333 - root - Loading train and test set from ./data/municipios_train_test_set.hdf5
+
+2024-04-18 16:49:56,335 - root - Building index
+2024-04-18 16:49:56,335 - root - Index time= 0.001992149045690894 seconds
+2024-04-18 16:49:56,336 - root - Search time = 0.00036882003769278526 seconds
+
+2024-04-18 16:49:56,336 - root - Average time spended in searching a single point = 3.688200376927853e-06
+2024-04-18 16:49:56,336 - root - Speed (points/s) = 271134.94327902177
+
+2024-04-18 16:49:56,337 - root - Neighbors stored at ./experiments/NearestNeighbors/municipios/knn_municipios_10_chebyshev_KDTree.hdf5
+2024-04-18 16:49:56,337 - root - ------------------------------------------------------------------------
+

@@ -1,0 +1,18 @@
+2024-04-18 21:31:47,412 - root - ------------------------------------------------------------------------
+2024-04-18 21:31:47,412 - root -                           KNN Searching
+2024-04-18 21:31:47,412 - root - ------------------------------------------------------------------------
+
+2024-04-18 21:31:47,412 - root - 
+2024-04-18 21:31:47,412 - root - ---- Searching the 5 nearest neighbors within KDTree over MNIST dataset using chebyshev distance. ----
+2024-04-18 21:31:47,413 - root - Loading train and test set from ./data/MNIST_train_test_set.hdf5
+
+2024-04-18 21:31:51,524 - root - Building index
+2024-04-18 21:31:51,524 - root - Index time= 3.867228976916522 seconds
+2024-04-18 21:31:55,419 - root - Search time = 3.894675288000144 seconds
+
+2024-04-18 21:31:55,419 - root - Average time spended in searching a single point = 0.03894675288000144
+2024-04-18 21:31:55,419 - root - Speed (points/s) = 25.67608147156947
+
+2024-04-18 21:31:55,423 - root - Neighbors stored at ./experiments/NearestNeighbors/MNIST/knn_MNIST_5_chebyshev_KDTree.hdf5
+2024-04-18 21:31:55,424 - root - ------------------------------------------------------------------------
+

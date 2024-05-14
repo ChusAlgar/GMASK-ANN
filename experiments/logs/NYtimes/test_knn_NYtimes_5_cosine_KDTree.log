@@ -1,0 +1,8 @@
+2024-04-17 17:36:18,666 - root - ------------------------------------------------------------------------
+2024-04-17 17:36:18,666 - root -                           KNN Searching
+2024-04-17 17:36:18,666 - root - ------------------------------------------------------------------------
+
+2024-04-17 17:36:18,666 - root - 
+2024-04-17 17:36:18,666 - root - ---- Searching the 5 nearest neighbors within KDTree over NYtimes dataset using cosine distance. ----
+2024-04-17 17:36:18,666 - root - Loading train and test set from ./data/NYtimes_train_test_set.hdf5
+

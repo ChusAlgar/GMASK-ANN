@@ -1,0 +1,19 @@
+2023-11-01 17:49:45,147 - root - ------------------------------------------------------------------------
+2023-11-01 17:49:45,147 - root -                           KNN Searching
+2023-11-01 17:49:45,147 - root - ------------------------------------------------------------------------
+
+2023-11-01 17:49:45,147 - root - 
+2023-11-01 17:49:45,147 - root - ---- Searching the 15 nearest neighbors within MASK over municipios dataset using manhattan distance. ----
+2023-11-01 17:49:45,147 - root - 
+2023-11-01 17:49:45,147 - root - ---- MASK Parameters - tam_grupo=60 - n_centroids=30 - radius=40 - algorithm=kmedoids - implementation=sklearnextra ----
+2023-11-01 17:49:45,147 - root - Loading train and test set from ./data/municipios_train_test_set.hdf5
+
+2023-11-01 17:49:46,611 - mask.KNN_np - tree time=1.4626153311692178 seconds
+2023-11-01 17:50:00,760 - root - Search time = 14.148855539038777 seconds
+
+2023-11-01 17:50:00,760 - root - Average time spent in searching a single point = 0.14148855539038777
+2023-11-01 17:50:00,760 - root - Speed (points/s) = 7.06770945000359
+
+2023-11-01 17:50:00,762 - root - Neighbors stored at ./experiments/NearestNeighbors/municipios/knn_municipios_15_manhattan_MASK_tg60_nc30_r40_kmedoids_sklearnextra.hdf5
+2023-11-01 17:50:00,762 - root - ------------------------------------------------------------------------
+

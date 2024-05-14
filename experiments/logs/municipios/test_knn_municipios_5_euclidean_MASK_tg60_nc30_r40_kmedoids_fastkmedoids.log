@@ -1,0 +1,19 @@
+2023-11-14 19:53:38,238 - root - ------------------------------------------------------------------------
+2023-11-14 19:53:38,239 - root -                           KNN Searching
+2023-11-14 19:53:38,239 - root - ------------------------------------------------------------------------
+
+2023-11-14 19:53:38,239 - root - 
+2023-11-14 19:53:38,239 - root - ---- Searching the 5 nearest neighbors within MASK over municipios dataset using euclidean distance. ----
+2023-11-14 19:53:38,239 - root - 
+2023-11-14 19:53:38,239 - root - ---- MASK Parameters - tam_grupo=60 - n_centroids=30 - radius=40 - algorithm=kmedoids - implementation=fastkmedoids ----
+2023-11-14 19:53:38,240 - root - Loading train and test set from ./data/municipios_train_test_set.hdf5
+
+2023-11-14 19:53:38,553 - mask.KNN_np - tree time=0.3120532613247633 seconds
+2023-11-14 19:54:04,042 - root - Search time = 25.48805972095579 seconds
+
+2023-11-14 19:54:04,043 - root - Average time spent in searching a single point = 0.2548805972095579
+2023-11-14 19:54:04,043 - root - Speed (points/s) = 3.9234057474285473
+
+2023-11-14 19:54:04,044 - root - Neighbors stored at ./experiments/NearestNeighbors/municipios/knn_municipios_5_euclidean_MASK_tg60_nc30_r40_kmedoids_fastkmedoids.hdf5
+2023-11-14 19:54:04,045 - root - ------------------------------------------------------------------------
+

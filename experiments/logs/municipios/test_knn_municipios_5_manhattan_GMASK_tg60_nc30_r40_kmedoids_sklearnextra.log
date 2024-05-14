@@ -1,0 +1,19 @@
+2024-04-18 17:03:22,510 - root - ------------------------------------------------------------------------
+2024-04-18 17:03:22,510 - root -                           KNN Searching
+2024-04-18 17:03:22,510 - root - ------------------------------------------------------------------------
+
+2024-04-18 17:03:22,510 - root - 
+2024-04-18 17:03:22,510 - root - ---- Searching the 5 nearest neighbors within GMASK over municipios dataset using manhattan distance. ----
+2024-04-18 17:03:22,510 - root - 
+2024-04-18 17:03:22,510 - root - ---- GMASK Parameters - tam_grupo=60 - n_centroids=30 - radius=40 - algorithm=kmedoids - implementation=sklearnextra ----
+2024-04-18 17:03:22,511 - root - Loading train and test set from ./data/municipios_train_test_set.hdf5
+
+2024-04-18 17:03:23,973 - gmask.KNN_np - tree time=1.461390262003988 seconds
+2024-04-18 17:03:38,353 - root - Search time = 14.379012580960989 seconds
+
+2024-04-18 17:03:38,353 - root - Average time spent in searching a single point = 0.1437901258096099
+2024-04-18 17:03:38,353 - root - Speed (points/s) = 6.954580464892863
+
+2024-04-18 17:03:38,354 - root - Neighbors stored at ./experiments/NearestNeighbors/municipios/knn_municipios_5_manhattan_GMASK_tg60_nc30_r40_kmedoids_sklearnextra.hdf5
+2024-04-18 17:03:38,355 - root - ------------------------------------------------------------------------
+

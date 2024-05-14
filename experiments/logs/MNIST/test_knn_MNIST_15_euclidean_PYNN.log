@@ -1,0 +1,17 @@
+2024-04-18 21:19:24,272 - root - ------------------------------------------------------------------------
+2024-04-18 21:19:24,273 - root -                           KNN Searching
+2024-04-18 21:19:24,273 - root - ------------------------------------------------------------------------
+
+2024-04-18 21:19:24,273 - root - 
+2024-04-18 21:19:24,273 - root - ---- Searching the 15 nearest neighbors within PYNN over MNIST dataset using euclidean distance. ----
+2024-04-18 21:19:24,273 - root - Loading train and test set from ./data/MNIST_train_test_set.hdf5
+
+2024-04-18 21:20:18,736 - root - Index time= 54.208162417053245 seconds
+2024-04-18 21:20:18,845 - root - Search time = 0.10829888610169291 seconds
+
+2024-04-18 21:20:18,845 - root - Average time spended in searching a single point = 0.0010829888610169292
+2024-04-18 21:20:18,845 - root - Speed (points/s) = 923.3705313099874
+
+2024-04-18 21:20:18,853 - root - Neighbors stored at ./experiments/NearestNeighbors/MNIST/knn_MNIST_15_euclidean_PYNN.hdf5
+2024-04-18 21:20:18,855 - root - ------------------------------------------------------------------------
+

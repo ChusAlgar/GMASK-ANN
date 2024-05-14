@@ -1,0 +1,17 @@
+2024-04-16 16:29:13,615 - root - ------------------------------------------------------------------------
+2024-04-16 16:29:13,615 - root -                           KNN Searching
+2024-04-16 16:29:13,615 - root - ------------------------------------------------------------------------
+
+2024-04-16 16:29:13,615 - root - 
+2024-04-16 16:29:13,615 - root - ---- Searching the 15 nearest neighbors within PYNN over wdbc dataset using manhattan distance. ----
+2024-04-16 16:29:13,615 - root - Loading train and test set from ./data/wdbc_train_test_set.hdf5
+
+2024-04-16 16:29:41,776 - root - Index time= 28.159967621963006 seconds
+2024-04-16 16:29:41,779 - root - Search time = 0.0023414120078086853 seconds
+
+2024-04-16 16:29:41,779 - root - Average time spended in searching a single point = 2.3414120078086854e-05
+2024-04-16 16:29:41,779 - root - Speed (points/s) = 42709.27101530903
+
+2024-04-16 16:29:41,780 - root - Neighbors stored at ./experiments/NearestNeighbors/wdbc/knn_wdbc_15_manhattan_PYNN.hdf5
+2024-04-16 16:29:41,781 - root - ------------------------------------------------------------------------
+

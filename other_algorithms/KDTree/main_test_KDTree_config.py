@@ -14,7 +14,6 @@ def KDTree(config):
                                  # From scikit-learn: ['cityblock', 'cosine', 'euclidean', 'l1', 'l2', 'manhattan']. These metrics support sparse matrix inputs. ['nan_euclidean'] but it does not yet support sparse matrices
                                  # From scipy.spatial.distance: ['braycurtis', 'canberra', 'chebyshev', 'correlation', 'dice', 'hamming', 'jaccard', 'kulsinski', 'mahalanobis', 'minkowski', 'rogerstanimoto', 'russellrao', 'seuclidean', 'sokalmichener', 'sokalsneath', 'sqeuclidean', 'yule']bThese metrics do not support sparse matrix inputs.
     method = config.get('test', 'method')
-    algorithm = config.get('method', 'algorithm')  # Possible values 'auto', 'ball_tree', 'kd_tree', 'brute'
 
 
 
@@ -40,7 +39,7 @@ def KDTree(config):
 
     # Using KDTree Algorithm, build the index of nearest neighbors
     start_time_i = timer()
-    knn_index = KDTree_nn_index(train_set, k, distance, algorithm)
+    knn_index = KDTree_nn_index(train_set, distance)
     end_time_i = timer()
     logging.info('Index time= %s seconds', end_time_i - start_time_i)
 
@@ -50,7 +49,7 @@ def KDTree(config):
 
     # Using KDTree Algorithm and the index built, find the k nearest neighbors
     start_time_s = timer()
-    indices, coords, dists = KDTree_nn_search(train_set, test_set, k, distance, algorithm, knn_index)
+    indices, coords, dists = KDTree_nn_search(train_set, test_set, k, knn_index)
     end_time_s = timer()
     logging.info('Search time = %s seconds\n', end_time_s - start_time_s)
     logging.info('Average time spended in searching a single point = %s',

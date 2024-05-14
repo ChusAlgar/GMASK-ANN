@@ -1,0 +1,19 @@
+2024-04-20 11:35:35,689 - root - ------------------------------------------------------------------------
+2024-04-20 11:35:35,689 - root -                           KNN Searching
+2024-04-20 11:35:35,689 - root - ------------------------------------------------------------------------
+
+2024-04-20 11:35:35,689 - root - 
+2024-04-20 11:35:35,689 - root - ---- Searching the 5 nearest neighbors within GMASK over GLOVE dataset using chebyshev distance. ----
+2024-04-20 11:35:35,689 - root - 
+2024-04-20 11:35:35,689 - root - ---- GMASK Parameters - tam_grupo=1000 - n_centroids=500 - radius=250 - algorithm=kmedoids - implementation=fastkmedoids ----
+2024-04-20 11:35:35,690 - root - Loading train and test set from ./data/GLOVE_train_test_set.hdf5
+
+2024-04-20 12:23:09,434 - gmask.KNN_np - tree time=2853.4287259099074 seconds
+2024-04-20 14:22:45,977 - root - Search time = 7176.541953476961 seconds
+
+2024-04-20 14:22:45,978 - root - Average time spent in searching a single point = 71.7654195347696
+2024-04-20 14:22:45,978 - root - Speed (points/s) = 0.013934287662256475
+
+2024-04-20 14:22:45,979 - root - Neighbors stored at ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_5_chebyshev_GMASK_tg1000_nc500_r250_kmedoids_fastkmedoids.hdf5
+2024-04-20 14:22:45,980 - root - ------------------------------------------------------------------------
+

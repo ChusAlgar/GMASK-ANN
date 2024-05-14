@@ -1,0 +1,18 @@
+2024-04-18 17:01:26,146 - root - ------------------------------------------------------------------------
+2024-04-18 17:01:26,146 - root -                           KNN Searching
+2024-04-18 17:01:26,146 - root - ------------------------------------------------------------------------
+
+2024-04-18 17:01:26,146 - root - 
+2024-04-18 17:01:26,146 - root - ---- Searching the 5 nearest neighbors within KDTree over municipios dataset using euclidean distance. ----
+2024-04-18 17:01:26,146 - root - Loading train and test set from ./data/municipios_train_test_set.hdf5
+
+2024-04-18 17:01:26,149 - root - Building index
+2024-04-18 17:01:26,149 - root - Index time= 0.002134441980160773 seconds
+2024-04-18 17:01:26,150 - root - Search time = 0.0003226189874112606 seconds
+
+2024-04-18 17:01:26,150 - root - Average time spended in searching a single point = 3.226189874112606e-06
+2024-04-18 17:01:26,150 - root - Speed (points/s) = 309963.1574769168
+
+2024-04-18 17:01:26,151 - root - Neighbors stored at ./experiments/NearestNeighbors/municipios/knn_municipios_5_euclidean_KDTree.hdf5
+2024-04-18 17:01:26,151 - root - ------------------------------------------------------------------------
+

@@ -1,0 +1,19 @@
+2024-04-16 16:27:25,068 - root - ------------------------------------------------------------------------
+2024-04-16 16:27:25,068 - root -                           KNN Searching
+2024-04-16 16:27:25,068 - root - ------------------------------------------------------------------------
+
+2024-04-16 16:27:25,069 - root - 
+2024-04-16 16:27:25,069 - root - ---- Searching the 15 nearest neighbors within GMASK over wdbc dataset using chebyshev distance. ----
+2024-04-16 16:27:25,069 - root - 
+2024-04-16 16:27:25,069 - root - ---- GMASK Parameters - tam_grupo=50 - n_centroids=25 - radius=7500 - algorithm=kmedoids - implementation=fastkmedoids ----
+2024-04-16 16:27:25,069 - root - Loading train and test set from ./data/wdbc_train_test_set.hdf5
+
+2024-04-16 16:27:25,076 - gmask.KNN_np - tree time=0.0064412670326419175 seconds
+2024-04-16 16:27:25,721 - root - Search time = 0.6438943730317988 seconds
+
+2024-04-16 16:27:25,721 - root - Average time spent in searching a single point = 0.006438943730317987
+2024-04-16 16:27:25,721 - root - Speed (points/s) = 155.30497576667204
+
+2024-04-16 16:27:25,723 - root - Neighbors stored at ./experiments/NearestNeighbors/wdbc/knn_wdbc_15_chebyshev_GMASK_tg50_nc25_r7500_kmedoids_fastkmedoids.hdf5
+2024-04-16 16:27:25,723 - root - ------------------------------------------------------------------------
+

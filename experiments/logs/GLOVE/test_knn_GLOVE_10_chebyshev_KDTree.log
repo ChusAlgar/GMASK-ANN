@@ -1,0 +1,18 @@
+2024-04-19 11:15:47,603 - root - ------------------------------------------------------------------------
+2024-04-19 11:15:47,603 - root -                           KNN Searching
+2024-04-19 11:15:47,603 - root - ------------------------------------------------------------------------
+
+2024-04-19 11:15:47,603 - root - 
+2024-04-19 11:15:47,603 - root - ---- Searching the 10 nearest neighbors within KDTree over GLOVE dataset using chebyshev distance. ----
+2024-04-19 11:15:47,604 - root - Loading train and test set from ./data/GLOVE_train_test_set.hdf5
+
+2024-04-19 11:16:11,426 - root - Building index
+2024-04-19 11:16:11,426 - root - Index time= 23.52068771107588 seconds
+2024-04-19 11:16:30,623 - root - Search time = 19.196494717965834 seconds
+
+2024-04-19 11:16:30,623 - root - Average time spended in searching a single point = 0.19196494717965834
+2024-04-19 11:16:30,623 - root - Speed (points/s) = 5.209284375569403
+
+2024-04-19 11:16:30,625 - root - Neighbors stored at ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_10_chebyshev_KDTree.hdf5
+2024-04-19 11:16:30,625 - root - ------------------------------------------------------------------------
+

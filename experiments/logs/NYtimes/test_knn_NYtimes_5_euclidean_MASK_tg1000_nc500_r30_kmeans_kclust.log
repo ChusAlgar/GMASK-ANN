@@ -1,0 +1,19 @@
+2024-04-18 10:28:37,587 - root - ------------------------------------------------------------------------
+2024-04-18 10:28:37,587 - root -                           KNN Searching
+2024-04-18 10:28:37,587 - root - ------------------------------------------------------------------------
+
+2024-04-18 10:28:37,587 - root - 
+2024-04-18 10:28:37,587 - root - ---- Searching the 5 nearest neighbors within MASK over NYtimes dataset using euclidean distance. ----
+2024-04-18 10:28:37,587 - root - 
+2024-04-18 10:28:37,587 - root - ---- MASK Parameters - tam_grupo=1000 - n_centroids=500 - radius=30 - algorithm=kmeans - implementation=kclust ----
+2024-04-18 10:28:37,588 - root - Loading train and test set from ./data/NYtimes_train_test_set.hdf5
+
+2024-04-18 12:46:05,951 - mask.KNN_np - tree time=8248.166819904 seconds
+2024-04-18 12:48:19,270 - root - Search time = 133.31614326999988 seconds
+
+2024-04-18 12:48:19,270 - root - Average time spent in searching a single point = 1.3331614326999988
+2024-04-18 12:48:19,270 - root - Speed (points/s) = 0.7500967065741917
+
+2024-04-18 12:48:19,271 - root - Neighbors stored at ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_5_euclidean_MASK_tg1000_nc500_r30_kmeans_kclust.hdf5
+2024-04-18 12:48:19,272 - root - ------------------------------------------------------------------------
+

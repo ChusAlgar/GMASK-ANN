@@ -50,6 +50,9 @@ def main(args):
     elif method == 'MASK':
         print("Please, use test_launcher_py3")
 
+    elif method == 'GMASK':
+        print("Please, use test_launcher_py3")
+
     elif method == 'FLANN':
         FLANN(config)
 

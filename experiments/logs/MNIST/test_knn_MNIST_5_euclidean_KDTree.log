@@ -1,0 +1,18 @@
+2024-04-18 21:36:37,474 - root - ------------------------------------------------------------------------
+2024-04-18 21:36:37,474 - root -                           KNN Searching
+2024-04-18 21:36:37,474 - root - ------------------------------------------------------------------------
+
+2024-04-18 21:36:37,474 - root - 
+2024-04-18 21:36:37,474 - root - ---- Searching the 5 nearest neighbors within KDTree over MNIST dataset using euclidean distance. ----
+2024-04-18 21:36:37,475 - root - Loading train and test set from ./data/MNIST_train_test_set.hdf5
+
+2024-04-18 21:36:41,613 - root - Building index
+2024-04-18 21:36:41,613 - root - Index time= 3.884347183047794 seconds
+2024-04-18 21:36:47,783 - root - Search time = 6.169749857042916 seconds
+
+2024-04-18 21:36:47,783 - root - Average time spended in searching a single point = 0.06169749857042916
+2024-04-18 21:36:47,783 - root - Speed (points/s) = 16.20811253568856
+
+2024-04-18 21:36:47,786 - root - Neighbors stored at ./experiments/NearestNeighbors/MNIST/knn_MNIST_5_euclidean_KDTree.hdf5
+2024-04-18 21:36:47,787 - root - ------------------------------------------------------------------------
+

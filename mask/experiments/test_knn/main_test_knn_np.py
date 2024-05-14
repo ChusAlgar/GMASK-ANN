@@ -51,7 +51,7 @@ copia_vector_original = vector_original
 
 
 # 2º Generamos el árbol
-n_capas, grupos_capa, puntos_capa, labels_capa = knn.kmeans_tree(cant_ptos, tam_grupo, n_centroides,
+n_capas, grupos_capa, puntos_capa, labels_capa = knn.mask_tree(cant_ptos, tam_grupo, n_centroides,
 #                                                                   metrica, copia_vector_original)
                                                                  metrica, vector_training)
 
@@ -73,7 +73,7 @@ for i in range(len(vector_testing)):
     while n < k_vecinos:
         start_time_iter = timer()
         # almacenado = knn.kmeans_search(n_capas, n_centroides, punto, np.array(vector_original), vecinos,
-        almacenado = knn.kmeans_search(n_capas, n_centroides, punto, vector_training, vecinos,
+        almacenado = knn.mask_search(n_capas, n_centroides, punto, vector_training, vecinos,
                                        centroides_examinados, n, metrica, grupos_capa, puntos_capa, labels_capa)
 
         end_time_iter = timer()

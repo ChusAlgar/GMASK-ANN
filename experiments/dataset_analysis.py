@@ -6,13 +6,14 @@ import experiments.load_train_test_set as lts
 
 
 # Set constants for experiments
-dataset = 'gaussian_clouds_npc200_True'
+dataset = 'NYtimes'
+metrics = ['manhattan', 'euclidean', 'chebyshev']
 
 
 # Set log configuration
 logging.basicConfig(filename="./experiments/logs/" + dataset + "/analisis_descriptivo_" + dataset + ".log", filemode='w', format='%(asctime)s - %(name)s - %(message)s', level=logging.INFO)
 logging.info('------------------------------------------------------------------------')
-logging.info('            ' + dataset + " Dataset Descriptive Analysis ")
+logging.info('             %s Dataset Descriptive Analysis ', dataset)
 logging.info('------------------------------------------------------------------------\n')
 logging.info("")
 
@@ -43,6 +44,11 @@ da_cv = []
 da_kur = []
 da_asimetrias = []
 da_dist = []
+
+# Uncomment if we don't want to process the complete dataset, only a 1000000 sample
+logging.info("******** Análisis de una muestra aleatoria de 100000 elementos del dataset **********")
+vector_training100000 = np.random.choice(len(vector_training), 100000, replace=False)
+vector_training = vector_training[vector_training100000]
 
 # Explore every dimension of the dataset to get relevant statistics
 for i in range(0, vector_training.shape[1]):
@@ -99,11 +105,14 @@ for i in range(0, vector_training.shape[1]):
     '''
 
     # Get distance between the point values in an specific dimension
+    # As it's a 1-d analysis, distance choosen has no impact. We use euclidean for simplicity
     # Calculation using scipy
     # dist = distance_matrix(dimension, np.transpose(dimension), p=2)
     dist = distance.pdist(dimension.reshape(-1, 1), metric='euclidean')
     mean_dist = np.sum(dist)/dist.size
     da_dist.append(mean_dist)
+
+
 
 logging.info("------- Descriptive analysis for each dimension of the dataset-------")
 logging.info("")
@@ -124,29 +133,38 @@ logging.info("")
 logging.info("Mean distance between points (1-d): " + str(da_dist))
 logging.info("")
 
-
-# Distance matrix
-
-# Distance Matrix - distance between every point in the dataset. Calculation using scipy
-distances = distance.cdist(vector_training, vector_training, metric='euclidean')
-
-# Min and max distance between points (calculated over a flattened version of the distances matrix)
-minmax = (np.min(distances), np.max(distances))
-
-# Mean distance between points
-mean_dist = np.sum(distances)/distances.size
-
-# Quantiles of distances between points
-q1 = np.quantile(distances, 0.25)
-q2 = np.quantile(distances, 0.5)
-q3 = np.quantile(distances, 0.75)
+# Analysis of the dataset distances for every choosen distance metric
 
 logging.info("")
-logging.info("------------ Distance Matrix-----------")
+logging.info("------------ Distance Matrixes (built using several distance metrics)-----------")
 logging.info("")
-logging.info("MinMax distance: " + str(minmax))
-logging.info("")
-logging.info("Mean distance between points (all-d): " + str(mean_dist))
-logging.info("")
-logging.info("Quantiles:  q1=" + str(q1) + "  -  q2=" + str(q2) + "  -  q3=" + str(q3))
-logging.info("")
+
+for m in metrics:
+
+    if m == 'manhattan':  m = 'cityblock'
+
+    # Distance Matrix - distance between every point in the dataset. Calculation using scipy
+    distances = np.array(distance.pdist(vector_training, metric=m))
+
+    # Min and max distance between points (calculated over a flattened version of the distances matrix)
+    minmax_distances = (np.min(distances), np.max(distances))
+
+    # Mean distance between points
+    mean_dist_distances = np.sum(distances)/distances.size
+
+    # Quantiles
+    q1_distances = np.quantile(distances, 0.25)
+    q2_distances = np.quantile(distances, 0.5)
+    q3_distances = np.quantile(distances, 0.75)
+
+
+    logging.info("\n-------- %s distance --------", m)
+    logging.info("")
+    logging.info("MinMax distance: " + str(minmax_distances))
+    logging.info("")
+    logging.info("Mean distance between points (all-d): " + str(mean_dist_distances))
+    logging.info("")
+    logging.info("Quantiles:  q1=" + str(q1_distances) + "  -  q2=" + str(q2_distances) + "  -  q3=" + str(q3_distances))
+
+
+exit(0)

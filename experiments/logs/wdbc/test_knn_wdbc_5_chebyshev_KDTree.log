@@ -1,0 +1,18 @@
+2024-04-16 16:29:53,317 - root - ------------------------------------------------------------------------
+2024-04-16 16:29:53,317 - root -                           KNN Searching
+2024-04-16 16:29:53,317 - root - ------------------------------------------------------------------------
+
+2024-04-16 16:29:53,317 - root - 
+2024-04-16 16:29:53,317 - root - ---- Searching the 5 nearest neighbors within KDTree over wdbc dataset using chebyshev distance. ----
+2024-04-16 16:29:53,317 - root - Loading train and test set from ./data/wdbc_train_test_set.hdf5
+
+2024-04-16 16:29:53,319 - root - Building index
+2024-04-16 16:29:53,319 - root - Index time= 0.0006731270113959908 seconds
+2024-04-16 16:29:53,319 - root - Search time = 0.00045342399971559644 seconds
+
+2024-04-16 16:29:53,319 - root - Average time spended in searching a single point = 4.534239997155964e-06
+2024-04-16 16:29:53,319 - root - Speed (points/s) = 220544.12660715697
+
+2024-04-16 16:29:53,321 - root - Neighbors stored at ./experiments/NearestNeighbors/wdbc/knn_wdbc_5_chebyshev_KDTree.hdf5
+2024-04-16 16:29:53,321 - root - ------------------------------------------------------------------------
+

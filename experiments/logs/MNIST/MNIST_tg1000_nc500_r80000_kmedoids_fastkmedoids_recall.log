@@ -1,0 +1,179 @@
+2024-01-13 19:28:58,802 - root - ------------------------------------------------------------------------
+2024-01-13 19:28:58,802 - root -                        KNN over MNIST Dataset RECALL
+2024-01-13 19:28:58,807 - root - ------------------------------------------------------------------------
+2024-01-13 19:28:58,807 - root - Search of k neighbors over a choosen dataset, using different methods, benchmark.py
+2024-01-13 19:28:58,807 - root - ------------------------------------------------------------------------
+
+2024-01-13 19:28:58,807 - root - Distances: ['manhattan', 'euclidean', 'chebyshev'] 
+2024-01-13 19:28:58,807 - root - Methods: ['FLANN', 'PYNN', 'MASK']
+2024-01-13 19:28:58,807 - root - KNN: [5, 10, 15]
+2024-01-13 19:28:58,807 - root - MASK params: tg=1000, nc=500, r=80000, algorithm=kmedoids, implementation=fastkmedoids
+
+2024-01-13 19:28:58,808 - root - ------------  manhattan distance  --------------------
+
+2024-01-13 19:28:58,808 - root - -- FLANN method --
+
+2024-01-13 19:28:58,849 - root - Loading neighbors from ./experiments/NearestNeighbors/MNIST/knn_MNIST_5_manhattan_KDTree.hdf5
+2024-01-13 19:28:58,879 - root - Loading neighbors from ./experiments/NearestNeighbors/MNIST/knn_MNIST_5_manhattan_FLANN.hdf5
+2024-01-13 19:28:58,885 - root - Correct neighbors rate: 244/500.0
+2024-01-13 19:28:58,885 - root - Hit percentage: 48.8%
+
+
+2024-01-13 19:28:58,928 - root - Loading neighbors from ./experiments/NearestNeighbors/MNIST/knn_MNIST_10_manhattan_KDTree.hdf5
+2024-01-13 19:28:58,979 - root - Loading neighbors from ./experiments/NearestNeighbors/MNIST/knn_MNIST_10_manhattan_FLANN.hdf5
+2024-01-13 19:28:58,991 - root - Correct neighbors rate: 448/1000.0
+2024-01-13 19:28:58,991 - root - Hit percentage: 44.800000000000004%
+
+
+2024-01-13 19:28:59,041 - root - Loading neighbors from ./experiments/NearestNeighbors/MNIST/knn_MNIST_15_manhattan_KDTree.hdf5
+2024-01-13 19:28:59,125 - root - Loading neighbors from ./experiments/NearestNeighbors/MNIST/knn_MNIST_15_manhattan_FLANN.hdf5
+2024-01-13 19:28:59,145 - root - Correct neighbors rate: 610/1500.0
+2024-01-13 19:28:59,145 - root - Hit percentage: 40.666666666666664%
+
+
+2024-01-13 19:28:59,147 - root - -- PYNN method --
+
+2024-01-13 19:28:59,147 - root - Loading neighbors from ./experiments/NearestNeighbors/MNIST/knn_MNIST_5_manhattan_KDTree.hdf5
+2024-01-13 19:28:59,179 - root - Loading neighbors from ./experiments/NearestNeighbors/MNIST/knn_MNIST_5_manhattan_PYNN.hdf5
+2024-01-13 19:28:59,184 - root - Correct neighbors rate: 486/500.0
+2024-01-13 19:28:59,184 - root - Hit percentage: 97.2%
+
+
+2024-01-13 19:28:59,185 - root - Loading neighbors from ./experiments/NearestNeighbors/MNIST/knn_MNIST_10_manhattan_KDTree.hdf5
+2024-01-13 19:28:59,191 - root - Loading neighbors from ./experiments/NearestNeighbors/MNIST/knn_MNIST_10_manhattan_PYNN.hdf5
+2024-01-13 19:28:59,201 - root - Correct neighbors rate: 989/1000.0
+2024-01-13 19:28:59,201 - root - Hit percentage: 98.9%
+
+
+2024-01-13 19:28:59,203 - root - Loading neighbors from ./experiments/NearestNeighbors/MNIST/knn_MNIST_15_manhattan_KDTree.hdf5
+2024-01-13 19:28:59,267 - root - Loading neighbors from ./experiments/NearestNeighbors/MNIST/knn_MNIST_15_manhattan_PYNN.hdf5
+2024-01-13 19:28:59,278 - root - Correct neighbors rate: 1483/1500.0
+2024-01-13 19:28:59,278 - root - Hit percentage: 98.86666666666667%
+
+
+2024-01-13 19:28:59,281 - root - -- MASK method --
+
+2024-01-13 19:28:59,282 - root - Loading neighbors from ./experiments/NearestNeighbors/MNIST/knn_MNIST_5_manhattan_KDTree.hdf5
+2024-01-13 19:28:59,311 - root - Loading neighbors from ./experiments/NearestNeighbors/MNIST/knn_MNIST_5_manhattan_MASK_tg1000_nc500_r80000_kmedoids_fastkmedoids.hdf5
+2024-01-13 19:28:59,315 - root - Correct neighbors rate: 500/500.0
+2024-01-13 19:28:59,315 - root - Hit percentage: 100.0%
+
+
+2024-01-13 19:28:59,316 - root - Loading neighbors from ./experiments/NearestNeighbors/MNIST/knn_MNIST_10_manhattan_KDTree.hdf5
+2024-01-13 19:28:59,388 - root - Loading neighbors from ./experiments/NearestNeighbors/MNIST/knn_MNIST_10_manhattan_MASK_tg1000_nc500_r80000_kmedoids_fastkmedoids.hdf5
+2024-01-13 19:28:59,476 - root - Correct neighbors rate: 999/1000.0
+2024-01-13 19:28:59,476 - root - Hit percentage: 99.9%
+
+
+2024-01-13 19:28:59,478 - root - Loading neighbors from ./experiments/NearestNeighbors/MNIST/knn_MNIST_15_manhattan_KDTree.hdf5
+2024-01-13 19:28:59,535 - root - Loading neighbors from ./experiments/NearestNeighbors/MNIST/knn_MNIST_15_manhattan_MASK_tg1000_nc500_r80000_kmedoids_fastkmedoids.hdf5
+2024-01-13 19:28:59,544 - root - Correct neighbors rate: 1499/1500.0
+2024-01-13 19:28:59,544 - root - Hit percentage: 99.93333333333332%
+
+
+2024-01-13 19:28:59,546 - root - ------------  euclidean distance  --------------------
+
+2024-01-13 19:28:59,546 - root - -- FLANN method --
+
+2024-01-13 19:28:59,572 - root - Loading neighbors from ./experiments/NearestNeighbors/MNIST/knn_MNIST_5_euclidean_KDTree.hdf5
+2024-01-13 19:28:59,608 - root - Loading neighbors from ./experiments/NearestNeighbors/MNIST/knn_MNIST_5_euclidean_FLANN.hdf5
+2024-01-13 19:28:59,612 - root - Correct neighbors rate: 331/500.0
+2024-01-13 19:28:59,612 - root - Hit percentage: 66.2%
+
+
+2024-01-13 19:28:59,684 - root - Loading neighbors from ./experiments/NearestNeighbors/MNIST/knn_MNIST_10_euclidean_KDTree.hdf5
+2024-01-13 19:28:59,798 - root - Loading neighbors from ./experiments/NearestNeighbors/MNIST/knn_MNIST_10_euclidean_FLANN.hdf5
+2024-01-13 19:28:59,806 - root - Correct neighbors rate: 537/1000.0
+2024-01-13 19:28:59,806 - root - Hit percentage: 53.7%
+
+
+2024-01-13 19:28:59,887 - root - Loading neighbors from ./experiments/NearestNeighbors/MNIST/knn_MNIST_15_euclidean_KDTree.hdf5
+2024-01-13 19:28:59,969 - root - Loading neighbors from ./experiments/NearestNeighbors/MNIST/knn_MNIST_15_euclidean_FLANN.hdf5
+2024-01-13 19:28:59,978 - root - Correct neighbors rate: 710/1500.0
+2024-01-13 19:28:59,978 - root - Hit percentage: 47.333333333333336%
+
+
+2024-01-13 19:28:59,979 - root - -- PYNN method --
+
+2024-01-13 19:28:59,980 - root - Loading neighbors from ./experiments/NearestNeighbors/MNIST/knn_MNIST_5_euclidean_KDTree.hdf5
+2024-01-13 19:29:00,022 - root - Loading neighbors from ./experiments/NearestNeighbors/MNIST/knn_MNIST_5_euclidean_PYNN.hdf5
+2024-01-13 19:29:00,029 - root - Correct neighbors rate: 471/500.0
+2024-01-13 19:29:00,029 - root - Hit percentage: 94.19999999999999%
+
+
+2024-01-13 19:29:00,030 - root - Loading neighbors from ./experiments/NearestNeighbors/MNIST/knn_MNIST_10_euclidean_KDTree.hdf5
+2024-01-13 19:29:00,036 - root - Loading neighbors from ./experiments/NearestNeighbors/MNIST/knn_MNIST_10_euclidean_PYNN.hdf5
+2024-01-13 19:29:00,045 - root - Correct neighbors rate: 971/1000.0
+2024-01-13 19:29:00,045 - root - Hit percentage: 97.1%
+
+
+2024-01-13 19:29:00,047 - root - Loading neighbors from ./experiments/NearestNeighbors/MNIST/knn_MNIST_15_euclidean_KDTree.hdf5
+2024-01-13 19:29:00,120 - root - Loading neighbors from ./experiments/NearestNeighbors/MNIST/knn_MNIST_15_euclidean_PYNN.hdf5
+2024-01-13 19:29:00,129 - root - Correct neighbors rate: 1467/1500.0
+2024-01-13 19:29:00,129 - root - Hit percentage: 97.8%
+
+
+2024-01-13 19:29:00,131 - root - -- MASK method --
+
+2024-01-13 19:29:00,131 - root - Loading neighbors from ./experiments/NearestNeighbors/MNIST/knn_MNIST_5_euclidean_KDTree.hdf5
+2024-01-13 19:29:00,168 - root - Loading neighbors from ./experiments/NearestNeighbors/MNIST/knn_MNIST_5_euclidean_MASK_tg1000_nc500_r80000_kmedoids_fastkmedoids.hdf5
+2024-01-13 19:29:00,173 - root - Correct neighbors rate: 500/500.0
+2024-01-13 19:29:00,173 - root - Hit percentage: 100.0%
+
+
+2024-01-13 19:29:00,174 - root - Loading neighbors from ./experiments/NearestNeighbors/MNIST/knn_MNIST_10_euclidean_KDTree.hdf5
+2024-01-13 19:29:00,256 - root - Loading neighbors from ./experiments/NearestNeighbors/MNIST/knn_MNIST_10_euclidean_MASK_tg1000_nc500_r80000_kmedoids_fastkmedoids.hdf5
+2024-01-13 19:29:00,266 - root - Correct neighbors rate: 1000/1000.0
+2024-01-13 19:29:00,267 - root - Hit percentage: 100.0%
+
+
+2024-01-13 19:29:00,268 - root - Loading neighbors from ./experiments/NearestNeighbors/MNIST/knn_MNIST_15_euclidean_KDTree.hdf5
+2024-01-13 19:29:00,339 - root - Loading neighbors from ./experiments/NearestNeighbors/MNIST/knn_MNIST_15_euclidean_MASK_tg1000_nc500_r80000_kmedoids_fastkmedoids.hdf5
+2024-01-13 19:29:00,350 - root - Correct neighbors rate: 1500/1500.0
+2024-01-13 19:29:00,351 - root - Hit percentage: 100.0%
+
+
+2024-01-13 19:29:00,353 - root - ------------  chebyshev distance  --------------------
+
+2024-01-13 19:29:00,353 - root - -- FLANN method --
+
+2024-01-13 19:29:00,353 - root - -- PYNN method --
+
+2024-01-13 19:29:00,413 - root - Loading neighbors from ./experiments/NearestNeighbors/MNIST/knn_MNIST_5_chebyshev_KDTree.hdf5
+2024-01-13 19:29:00,445 - root - Loading neighbors from ./experiments/NearestNeighbors/MNIST/knn_MNIST_5_chebyshev_PYNN.hdf5
+2024-01-13 19:29:00,451 - root - Correct neighbors rate: 330/500.0
+2024-01-13 19:29:00,451 - root - Hit percentage: 66.0%
+
+
+2024-01-13 19:29:00,552 - root - Loading neighbors from ./experiments/NearestNeighbors/MNIST/knn_MNIST_10_chebyshev_KDTree.hdf5
+2024-01-13 19:29:00,631 - root - Loading neighbors from ./experiments/NearestNeighbors/MNIST/knn_MNIST_10_chebyshev_PYNN.hdf5
+2024-01-13 19:29:00,639 - root - Correct neighbors rate: 607/1000.0
+2024-01-13 19:29:00,639 - root - Hit percentage: 60.699999999999996%
+
+
+2024-01-13 19:29:00,695 - root - Loading neighbors from ./experiments/NearestNeighbors/MNIST/knn_MNIST_15_chebyshev_KDTree.hdf5
+2024-01-13 19:29:00,779 - root - Loading neighbors from ./experiments/NearestNeighbors/MNIST/knn_MNIST_15_chebyshev_PYNN.hdf5
+2024-01-13 19:29:00,788 - root - Correct neighbors rate: 898/1500.0
+2024-01-13 19:29:00,788 - root - Hit percentage: 59.86666666666667%
+
+
+2024-01-13 19:29:00,789 - root - -- MASK method --
+
+2024-01-13 19:29:00,790 - root - Loading neighbors from ./experiments/NearestNeighbors/MNIST/knn_MNIST_5_chebyshev_KDTree.hdf5
+2024-01-13 19:29:00,826 - root - Loading neighbors from ./experiments/NearestNeighbors/MNIST/knn_MNIST_5_chebyshev_MASK_tg1000_nc500_r80000_kmedoids_fastkmedoids.hdf5
+2024-01-13 19:29:00,831 - root - Correct neighbors rate: 331/500.0
+2024-01-13 19:29:00,831 - root - Hit percentage: 66.2%
+
+
+2024-01-13 19:29:00,831 - root - Loading neighbors from ./experiments/NearestNeighbors/MNIST/knn_MNIST_10_chebyshev_KDTree.hdf5
+2024-01-13 19:29:00,838 - root - Loading neighbors from ./experiments/NearestNeighbors/MNIST/knn_MNIST_10_chebyshev_MASK_tg1000_nc500_r80000_kmedoids_fastkmedoids.hdf5
+2024-01-13 19:29:00,847 - root - Correct neighbors rate: 615/1000.0
+2024-01-13 19:29:00,847 - root - Hit percentage: 61.5%
+
+
+2024-01-13 19:29:00,848 - root - Loading neighbors from ./experiments/NearestNeighbors/MNIST/knn_MNIST_15_chebyshev_KDTree.hdf5
+2024-01-13 19:29:00,940 - root - Loading neighbors from ./experiments/NearestNeighbors/MNIST/knn_MNIST_15_chebyshev_MASK_tg1000_nc500_r80000_kmedoids_fastkmedoids.hdf5
+2024-01-13 19:29:00,950 - root - Correct neighbors rate: 892/1500.0
+2024-01-13 19:29:00,950 - root - Hit percentage: 59.46666666666667%
+
+

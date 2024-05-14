@@ -1,0 +1,19 @@
+2024-04-18 17:01:04,381 - root - ------------------------------------------------------------------------
+2024-04-18 17:01:04,381 - root -                           KNN Searching
+2024-04-18 17:01:04,381 - root - ------------------------------------------------------------------------
+
+2024-04-18 17:01:04,381 - root - 
+2024-04-18 17:01:04,381 - root - ---- Searching the 5 nearest neighbors within GMASK over municipios dataset using euclidean distance. ----
+2024-04-18 17:01:04,382 - root - 
+2024-04-18 17:01:04,382 - root - ---- GMASK Parameters - tam_grupo=60 - n_centroids=30 - radius=40 - algorithm=kmedoids - implementation=sklearnextra ----
+2024-04-18 17:01:04,382 - root - Loading train and test set from ./data/municipios_train_test_set.hdf5
+
+2024-04-18 17:01:06,528 - gmask.KNN_np - tree time=2.144499493064359 seconds
+2024-04-18 17:01:20,573 - root - Search time = 14.040499333990738 seconds
+
+2024-04-18 17:01:20,573 - root - Average time spent in searching a single point = 0.14040499333990739
+2024-04-18 17:01:20,573 - root - Speed (points/s) = 7.122253818844557
+
+2024-04-18 17:01:20,576 - root - Neighbors stored at ./experiments/NearestNeighbors/municipios/knn_municipios_5_euclidean_GMASK_tg60_nc30_r40_kmedoids_sklearnextra.hdf5
+2024-04-18 17:01:20,577 - root - ------------------------------------------------------------------------
+

@@ -1,0 +1,18 @@
+2024-04-17 18:24:50,182 - root - ------------------------------------------------------------------------
+2024-04-17 18:24:50,182 - root -                           KNN Searching
+2024-04-17 18:24:50,182 - root - ------------------------------------------------------------------------
+
+2024-04-17 18:24:50,182 - root - 
+2024-04-17 18:24:50,182 - root - ---- Searching the 5 nearest neighbors within FLANN over NYtimes dataset using euclidean distance. ----
+2024-04-17 18:24:50,183 - root - Loading train and test set from ./data/NYtimes_train_test_set.hdf5
+
+2024-04-17 18:44:55,335 - root - Saving FLANN index at 'index_'
+2024-04-17 18:44:55,340 - root - Index time= 1204.96122098 seconds
+2024-04-17 18:44:55,398 - root - Search time = 0.0575339794159 seconds
+
+2024-04-17 18:44:55,398 - root - Average time spent in searching a single point = 0.000575339794159
+2024-04-17 18:44:55,398 - root - Speed (points/s) = 1738.10330895
+
+2024-04-17 18:44:55,400 - root - Neighbors stored at ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_5_euclidean_FLANN.hdf5
+2024-04-17 18:44:55,400 - root - ------------------------------------------------------------------------
+

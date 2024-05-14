@@ -1,0 +1,179 @@
+2023-11-04 19:36:32,522 - root - ------------------------------------------------------------------------
+2023-11-04 19:36:32,522 - root -                        KNN over municipios Dataset RECALL
+2023-11-04 19:36:32,523 - root - ------------------------------------------------------------------------
+2023-11-04 19:36:32,523 - root - Search of k neighbors over a choosen dataset, using different methods, benchmark.py
+2023-11-04 19:36:32,523 - root - ------------------------------------------------------------------------
+
+2023-11-04 19:36:32,523 - root - Distances: ['manhattan', 'euclidean', 'chebyshev'] 
+2023-11-04 19:36:32,523 - root - Methods: ['FLANN', 'PYNN', 'MASK']
+2023-11-04 19:36:32,523 - root - KNN: [5, 10, 15]
+2023-11-04 19:36:32,523 - root - MASK params: tg=60, nc=30, r=40, algorithm=kmedoids, implementation=sklearnextra
+
+2023-11-04 19:36:32,523 - root - ------------  manhattan distance  --------------------
+
+2023-11-04 19:36:32,523 - root - -- FLANN method --
+
+2023-11-04 19:36:32,525 - root - Loading neighbors from ./experiments/NearestNeighbors/municipios/knn_municipios_5_manhattan_KDTree.hdf5
+2023-11-04 19:36:32,529 - root - Loading neighbors from ./experiments/NearestNeighbors/municipios/knn_municipios_5_manhattan_FLANN.hdf5
+2023-11-04 19:36:32,533 - root - Correct neighbors rate: 480/500.0
+2023-11-04 19:36:32,534 - root - Hit percentage: 96.0%
+
+
+2023-11-04 19:36:32,535 - root - Loading neighbors from ./experiments/NearestNeighbors/municipios/knn_municipios_10_manhattan_KDTree.hdf5
+2023-11-04 19:36:32,538 - root - Loading neighbors from ./experiments/NearestNeighbors/municipios/knn_municipios_10_manhattan_FLANN.hdf5
+2023-11-04 19:36:32,543 - root - Correct neighbors rate: 900/1000.0
+2023-11-04 19:36:32,543 - root - Hit percentage: 90.0%
+
+
+2023-11-04 19:36:32,544 - root - Loading neighbors from ./experiments/NearestNeighbors/municipios/knn_municipios_15_manhattan_KDTree.hdf5
+2023-11-04 19:36:32,548 - root - Loading neighbors from ./experiments/NearestNeighbors/municipios/knn_municipios_15_manhattan_FLANN.hdf5
+2023-11-04 19:36:32,552 - root - Correct neighbors rate: 1302/1500.0
+2023-11-04 19:36:32,552 - root - Hit percentage: 86.8%
+
+
+2023-11-04 19:36:32,552 - root - -- PYNN method --
+
+2023-11-04 19:36:32,552 - root - Loading neighbors from ./experiments/NearestNeighbors/municipios/knn_municipios_5_manhattan_KDTree.hdf5
+2023-11-04 19:36:32,554 - root - Loading neighbors from ./experiments/NearestNeighbors/municipios/knn_municipios_5_manhattan_PYNN.hdf5
+2023-11-04 19:36:32,558 - root - Correct neighbors rate: 499/500.0
+2023-11-04 19:36:32,558 - root - Hit percentage: 99.8%
+
+
+2023-11-04 19:36:32,559 - root - Loading neighbors from ./experiments/NearestNeighbors/municipios/knn_municipios_10_manhattan_KDTree.hdf5
+2023-11-04 19:36:32,561 - root - Loading neighbors from ./experiments/NearestNeighbors/municipios/knn_municipios_10_manhattan_PYNN.hdf5
+2023-11-04 19:36:32,565 - root - Correct neighbors rate: 1000/1000.0
+2023-11-04 19:36:32,565 - root - Hit percentage: 100.0%
+
+
+2023-11-04 19:36:32,565 - root - Loading neighbors from ./experiments/NearestNeighbors/municipios/knn_municipios_15_manhattan_KDTree.hdf5
+2023-11-04 19:36:32,567 - root - Loading neighbors from ./experiments/NearestNeighbors/municipios/knn_municipios_15_manhattan_PYNN.hdf5
+2023-11-04 19:36:32,571 - root - Correct neighbors rate: 1499/1500.0
+2023-11-04 19:36:32,571 - root - Hit percentage: 99.93333333333332%
+
+
+2023-11-04 19:36:32,571 - root - -- MASK method --
+
+2023-11-04 19:36:32,571 - root - Loading neighbors from ./experiments/NearestNeighbors/municipios/knn_municipios_5_manhattan_KDTree.hdf5
+2023-11-04 19:36:32,573 - root - Loading neighbors from ./experiments/NearestNeighbors/municipios/knn_municipios_5_manhattan_MASK_tg60_nc30_r40_kmedoids_sklearnextra.hdf5
+2023-11-04 19:36:32,577 - root - Correct neighbors rate: 500/500.0
+2023-11-04 19:36:32,577 - root - Hit percentage: 100.0%
+
+
+2023-11-04 19:36:32,577 - root - Loading neighbors from ./experiments/NearestNeighbors/municipios/knn_municipios_10_manhattan_KDTree.hdf5
+2023-11-04 19:36:32,579 - root - Loading neighbors from ./experiments/NearestNeighbors/municipios/knn_municipios_10_manhattan_MASK_tg60_nc30_r40_kmedoids_sklearnextra.hdf5
+2023-11-04 19:36:32,583 - root - Correct neighbors rate: 1000/1000.0
+2023-11-04 19:36:32,583 - root - Hit percentage: 100.0%
+
+
+2023-11-04 19:36:32,584 - root - Loading neighbors from ./experiments/NearestNeighbors/municipios/knn_municipios_15_manhattan_KDTree.hdf5
+2023-11-04 19:36:32,586 - root - Loading neighbors from ./experiments/NearestNeighbors/municipios/knn_municipios_15_manhattan_MASK_tg60_nc30_r40_kmedoids_sklearnextra.hdf5
+2023-11-04 19:36:32,590 - root - Correct neighbors rate: 1500/1500.0
+2023-11-04 19:36:32,590 - root - Hit percentage: 100.0%
+
+
+2023-11-04 19:36:32,590 - root - ------------  euclidean distance  --------------------
+
+2023-11-04 19:36:32,590 - root - -- FLANN method --
+
+2023-11-04 19:36:32,591 - root - Loading neighbors from ./experiments/NearestNeighbors/municipios/knn_municipios_5_euclidean_KDTree.hdf5
+2023-11-04 19:36:32,594 - root - Loading neighbors from ./experiments/NearestNeighbors/municipios/knn_municipios_5_euclidean_FLANN.hdf5
+2023-11-04 19:36:32,598 - root - Correct neighbors rate: 485/500.0
+2023-11-04 19:36:32,598 - root - Hit percentage: 97.0%
+
+
+2023-11-04 19:36:32,599 - root - Loading neighbors from ./experiments/NearestNeighbors/municipios/knn_municipios_10_euclidean_KDTree.hdf5
+2023-11-04 19:36:32,602 - root - Loading neighbors from ./experiments/NearestNeighbors/municipios/knn_municipios_10_euclidean_FLANN.hdf5
+2023-11-04 19:36:32,606 - root - Correct neighbors rate: 894/1000.0
+2023-11-04 19:36:32,606 - root - Hit percentage: 89.4%
+
+
+2023-11-04 19:36:32,607 - root - Loading neighbors from ./experiments/NearestNeighbors/municipios/knn_municipios_15_euclidean_KDTree.hdf5
+2023-11-04 19:36:32,612 - root - Loading neighbors from ./experiments/NearestNeighbors/municipios/knn_municipios_15_euclidean_FLANN.hdf5
+2023-11-04 19:36:32,616 - root - Correct neighbors rate: 1266/1500.0
+2023-11-04 19:36:32,616 - root - Hit percentage: 84.39999999999999%
+
+
+2023-11-04 19:36:32,616 - root - -- PYNN method --
+
+2023-11-04 19:36:32,616 - root - Loading neighbors from ./experiments/NearestNeighbors/municipios/knn_municipios_5_euclidean_KDTree.hdf5
+2023-11-04 19:36:32,619 - root - Loading neighbors from ./experiments/NearestNeighbors/municipios/knn_municipios_5_euclidean_PYNN.hdf5
+2023-11-04 19:36:32,622 - root - Correct neighbors rate: 500/500.0
+2023-11-04 19:36:32,622 - root - Hit percentage: 100.0%
+
+
+2023-11-04 19:36:32,623 - root - Loading neighbors from ./experiments/NearestNeighbors/municipios/knn_municipios_10_euclidean_KDTree.hdf5
+2023-11-04 19:36:32,624 - root - Loading neighbors from ./experiments/NearestNeighbors/municipios/knn_municipios_10_euclidean_PYNN.hdf5
+2023-11-04 19:36:32,628 - root - Correct neighbors rate: 1000/1000.0
+2023-11-04 19:36:32,629 - root - Hit percentage: 100.0%
+
+
+2023-11-04 19:36:32,629 - root - Loading neighbors from ./experiments/NearestNeighbors/municipios/knn_municipios_15_euclidean_KDTree.hdf5
+2023-11-04 19:36:32,631 - root - Loading neighbors from ./experiments/NearestNeighbors/municipios/knn_municipios_15_euclidean_PYNN.hdf5
+2023-11-04 19:36:32,635 - root - Correct neighbors rate: 1500/1500.0
+2023-11-04 19:36:32,635 - root - Hit percentage: 100.0%
+
+
+2023-11-04 19:36:32,636 - root - -- MASK method --
+
+2023-11-04 19:36:32,636 - root - Loading neighbors from ./experiments/NearestNeighbors/municipios/knn_municipios_5_euclidean_KDTree.hdf5
+2023-11-04 19:36:32,638 - root - Loading neighbors from ./experiments/NearestNeighbors/municipios/knn_municipios_5_euclidean_MASK_tg60_nc30_r40_kmedoids_sklearnextra.hdf5
+2023-11-04 19:36:32,642 - root - Correct neighbors rate: 500/500.0
+2023-11-04 19:36:32,642 - root - Hit percentage: 100.0%
+
+
+2023-11-04 19:36:32,643 - root - Loading neighbors from ./experiments/NearestNeighbors/municipios/knn_municipios_10_euclidean_KDTree.hdf5
+2023-11-04 19:36:32,645 - root - Loading neighbors from ./experiments/NearestNeighbors/municipios/knn_municipios_10_euclidean_MASK_tg60_nc30_r40_kmedoids_sklearnextra.hdf5
+2023-11-04 19:36:32,648 - root - Correct neighbors rate: 1000/1000.0
+2023-11-04 19:36:32,649 - root - Hit percentage: 100.0%
+
+
+2023-11-04 19:36:32,649 - root - Loading neighbors from ./experiments/NearestNeighbors/municipios/knn_municipios_15_euclidean_KDTree.hdf5
+2023-11-04 19:36:32,651 - root - Loading neighbors from ./experiments/NearestNeighbors/municipios/knn_municipios_15_euclidean_MASK_tg60_nc30_r40_kmedoids_sklearnextra.hdf5
+2023-11-04 19:36:32,656 - root - Correct neighbors rate: 1500/1500.0
+2023-11-04 19:36:32,656 - root - Hit percentage: 100.0%
+
+
+2023-11-04 19:36:32,656 - root - ------------  chebyshev distance  --------------------
+
+2023-11-04 19:36:32,656 - root - -- FLANN method --
+
+2023-11-04 19:36:32,656 - root - -- PYNN method --
+
+2023-11-04 19:36:32,657 - root - Loading neighbors from ./experiments/NearestNeighbors/municipios/knn_municipios_5_chebyshev_KDTree.hdf5
+2023-11-04 19:36:32,659 - root - Loading neighbors from ./experiments/NearestNeighbors/municipios/knn_municipios_5_chebyshev_PYNN.hdf5
+2023-11-04 19:36:32,663 - root - Correct neighbors rate: 499/500.0
+2023-11-04 19:36:32,663 - root - Hit percentage: 99.8%
+
+
+2023-11-04 19:36:32,664 - root - Loading neighbors from ./experiments/NearestNeighbors/municipios/knn_municipios_10_chebyshev_KDTree.hdf5
+2023-11-04 19:36:32,667 - root - Loading neighbors from ./experiments/NearestNeighbors/municipios/knn_municipios_10_chebyshev_PYNN.hdf5
+2023-11-04 19:36:32,671 - root - Correct neighbors rate: 1000/1000.0
+2023-11-04 19:36:32,671 - root - Hit percentage: 100.0%
+
+
+2023-11-04 19:36:32,672 - root - Loading neighbors from ./experiments/NearestNeighbors/municipios/knn_municipios_15_chebyshev_KDTree.hdf5
+2023-11-04 19:36:32,674 - root - Loading neighbors from ./experiments/NearestNeighbors/municipios/knn_municipios_15_chebyshev_PYNN.hdf5
+2023-11-04 19:36:32,678 - root - Correct neighbors rate: 1500/1500.0
+2023-11-04 19:36:32,678 - root - Hit percentage: 100.0%
+
+
+2023-11-04 19:36:32,678 - root - -- MASK method --
+
+2023-11-04 19:36:32,679 - root - Loading neighbors from ./experiments/NearestNeighbors/municipios/knn_municipios_5_chebyshev_KDTree.hdf5
+2023-11-04 19:36:32,680 - root - Loading neighbors from ./experiments/NearestNeighbors/municipios/knn_municipios_5_chebyshev_MASK_tg60_nc30_r40_kmedoids_sklearnextra.hdf5
+2023-11-04 19:36:32,684 - root - Correct neighbors rate: 500/500.0
+2023-11-04 19:36:32,684 - root - Hit percentage: 100.0%
+
+
+2023-11-04 19:36:32,684 - root - Loading neighbors from ./experiments/NearestNeighbors/municipios/knn_municipios_10_chebyshev_KDTree.hdf5
+2023-11-04 19:36:32,686 - root - Loading neighbors from ./experiments/NearestNeighbors/municipios/knn_municipios_10_chebyshev_MASK_tg60_nc30_r40_kmedoids_sklearnextra.hdf5
+2023-11-04 19:36:32,691 - root - Correct neighbors rate: 1000/1000.0
+2023-11-04 19:36:32,691 - root - Hit percentage: 100.0%
+
+
+2023-11-04 19:36:32,692 - root - Loading neighbors from ./experiments/NearestNeighbors/municipios/knn_municipios_15_chebyshev_KDTree.hdf5
+2023-11-04 19:36:32,694 - root - Loading neighbors from ./experiments/NearestNeighbors/municipios/knn_municipios_15_chebyshev_MASK_tg60_nc30_r40_kmedoids_sklearnextra.hdf5
+2023-11-04 19:36:32,699 - root - Correct neighbors rate: 1500/1500.0
+2023-11-04 19:36:32,699 - root - Hit percentage: 100.0%
+
+

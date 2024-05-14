@@ -1,0 +1,17 @@
+2024-04-18 21:26:17,322 - root - ------------------------------------------------------------------------
+2024-04-18 21:26:17,323 - root -                           KNN Searching
+2024-04-18 21:26:17,323 - root - ------------------------------------------------------------------------
+
+2024-04-18 21:26:17,323 - root - 
+2024-04-18 21:26:17,323 - root - ---- Searching the 15 nearest neighbors within PYNN over MNIST dataset using manhattan distance. ----
+2024-04-18 21:26:17,323 - root - Loading train and test set from ./data/MNIST_train_test_set.hdf5
+
+2024-04-18 21:27:12,676 - root - Index time= 55.09998802701011 seconds
+2024-04-18 21:27:12,792 - root - Search time = 0.11623553792014718 seconds
+
+2024-04-18 21:27:12,793 - root - Average time spended in searching a single point = 0.0011623553792014718
+2024-04-18 21:27:12,793 - root - Speed (points/s) = 860.3220821217272
+
+2024-04-18 21:27:12,800 - root - Neighbors stored at ./experiments/NearestNeighbors/MNIST/knn_MNIST_15_manhattan_PYNN.hdf5
+2024-04-18 21:27:12,802 - root - ------------------------------------------------------------------------
+

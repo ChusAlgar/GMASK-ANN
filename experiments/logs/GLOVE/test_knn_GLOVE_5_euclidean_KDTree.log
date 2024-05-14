@@ -1,0 +1,18 @@
+2024-04-20 17:10:56,117 - root - ------------------------------------------------------------------------
+2024-04-20 17:10:56,117 - root -                           KNN Searching
+2024-04-20 17:10:56,117 - root - ------------------------------------------------------------------------
+
+2024-04-20 17:10:56,117 - root - 
+2024-04-20 17:10:56,117 - root - ---- Searching the 5 nearest neighbors within KDTree over GLOVE dataset using euclidean distance. ----
+2024-04-20 17:10:56,118 - root - Loading train and test set from ./data/GLOVE_train_test_set.hdf5
+
+2024-04-20 17:11:20,071 - root - Building index
+2024-04-20 17:11:20,071 - root - Index time= 23.640913304989226 seconds
+2024-04-20 17:11:49,625 - root - Search time = 29.55447820900008 seconds
+
+2024-04-20 17:11:49,626 - root - Average time spended in searching a single point = 0.2955447820900008
+2024-04-20 17:11:49,626 - root - Speed (points/s) = 3.383581983509609
+
+2024-04-20 17:11:49,628 - root - Neighbors stored at ./experiments/NearestNeighbors/GLOVE/knn_GLOVE_5_euclidean_KDTree.hdf5
+2024-04-20 17:11:49,628 - root - ------------------------------------------------------------------------
+

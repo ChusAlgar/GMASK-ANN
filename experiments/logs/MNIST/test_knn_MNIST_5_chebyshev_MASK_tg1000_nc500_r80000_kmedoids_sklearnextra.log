@@ -1,0 +1,19 @@
+2023-11-03 09:55:59,898 - root - ------------------------------------------------------------------------
+2023-11-03 09:55:59,898 - root -                           KNN Searching
+2023-11-03 09:55:59,898 - root - ------------------------------------------------------------------------
+
+2023-11-03 09:55:59,898 - root - 
+2023-11-03 09:55:59,898 - root - ---- Searching the 5 nearest neighbors within MASK over MNIST dataset using chebyshev distance. ----
+2023-11-03 09:55:59,898 - root - 
+2023-11-03 09:55:59,898 - root - ---- MASK Parameters - tam_grupo=1000 - n_centroids=500 - radius=80000 - algorithm=kmedoids - implementation=sklearnextra ----
+2023-11-03 09:55:59,899 - root - Loading train and test set from ./data/MNIST_train_test_set.hdf5
+
+2023-11-03 14:52:32,262 - mask.KNN_np - tree time=17792.113715700805 seconds
+2023-11-03 14:54:43,734 - root - Search time = 131.47006805799901 seconds
+
+2023-11-03 14:54:43,734 - root - Average time spent in searching a single point = 1.3147006805799901
+2023-11-03 14:54:43,734 - root - Speed (points/s) = 0.7606294077210354
+
+2023-11-03 14:54:43,737 - root - Neighbors stored at ./experiments/NearestNeighbors/MNIST/knn_MNIST_5_chebyshev_MASK_tg1000_nc500_r80000_kmedoids_sklearnextra.hdf5
+2023-11-03 14:54:43,738 - root - ------------------------------------------------------------------------
+
