@@ -1,14 +1,12 @@
-# MASK - Multilevel Approximate Similarity Search with *k*-means
+# GMASK - Generalised Multilevel Approximate Similarity Search with *k*-medoids
 
 ## Description
 
-MASK is an algorithm to solve the approximate nearest neighbours (ANN) search problem with an unconventional application of the
-*k*-means clustering algorithm.
+GMASK is a generalised algorithm to solve the approximate nearest neighbours (ANN) search problem for distributed data that accepts any arbitrary distance function by employing data partitioning algorithms that induce Voronoi regions in a dataset and yield a representative element, such as *k*-medoids.
 
-The initial version of this algorithm is based on *k*-means and it only supports the Euclidean distance function. The project is 
-currently under development to achieve several improvements:
+The project is currently under development to achieve several improvements:
 
-- Generalizing MASK to accept arbitrary distance functions: Minkowski distances (e.g. Manhattan, Chebyshev), cosine similarity, Jaccard, etc.
+- Integrating distance functions beyond Minkowski, such as pseudo-metrics (Minkowski distances with *p* < 1) or non-metric dissimilarities.
 - Accelerating code execution:
     - Exploring [Numba](https://numba.pydata.org/) to seep up calculations involving arrays and matrices.
     - Parallel/multithreading code execution.
