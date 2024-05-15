@@ -16,4 +16,3 @@ The project is currently under development to achieve several improvements:
 
 - Ortega, F., Algar, M. J., de Diego, I. M., & Moguerza, J. M. (2023). Unconventional application of k-means for distributed approximate similarity search.
 *Information Sciences, 619*, 208-234. [[HTML] sciencedirect.com](https://www.sciencedirect.com/science/article/pii/S0020025522013056).
-- [Pre-print article (arXiv)](https://arxiv.org/abs/2208.02734).

@@ -172,47 +172,102 @@ def print_recall_heatmap(datasets, distances, methods, k, recalls):
         re_ch = np.asarray(recalls.loc[recalls['Distance'] == "chebyshev", 'Recall'].tolist())
 
         # setting the dimensions of the plot
-        fig, ax = plt.subplots(figsize=(35, 20))
+        fig, ax = plt.subplots(figsize=(16, 10.5))
 
         # Create a mask to hide null (np.nan) values from heatmap
-        mask = [re_ma, re_eu, re_ch] ==np.nan
+        mask = [re_ma, re_eu, re_ch] == np.nan
 
         # Heatmap
-        #h = sns.heatmap([re_ma, re_eu, re_ch], annot=True, annot_kws={"size": 20}, fmt='.3g', yticklabels=distances, xticklabels=k+k+k, cmap="icefire", mask=mask, vmin=0, vmax=100)
-        h = sns.heatmap([re_ma, re_eu, re_ch], annot=True, annot_kws={"size": 30}, fmt='.3g', yticklabels=distances,
-                        xticklabels=k + k + k + k, cmap="Oranges", mask=mask, vmin=0, vmax=100)
+        # h = sns.heatmap([re_ma, re_eu, re_ch], annot=True, annot_kws={"size": 20}, fmt='.3g', yticklabels=distances, xticklabels=k+k+k, cmap="icefire", mask=mask, vmin=0, vmax=100)
+        h = sns.heatmap([re_ma, re_eu, re_ch], annot=True, annot_kws={"size": 20}, fmt='.3g', yticklabels=distances,
+                        xticklabels=k + k + k, cmap="Oranges", mask=mask, vmin=0, vmax=100)
 
-        #Colorbar
-        h.collections[0].colorbar.set_label('Recall (%)', labelpad=30, fontsize=35)
-        h.collections[0].colorbar.ax.tick_params(labelsize=30)
+        # Colorbar
+        h.collections[0].colorbar.set_label('Recall (%)', labelpad=30, fontsize=25)
+        h.collections[0].colorbar.ax.tick_params(labelsize=20)
 
-        #Title
-        if dataset=="municipios":
-            dataset="municipalities"
-        h.axes.set_title(str(dataset + " dataset"), fontsize=45, pad=35)
+        # Title
+        if dataset == "municipios":
+            dataset = "municipalities"
+        h.axes.set_title(str(dataset + " dataset"), fontsize=30, pad=35)
 
         # Axis x and y (knn and distance)
-        h.set_xlabel("k-nearest neighbors", fontsize=35, labelpad=30)
-        h.set_ylabel("Distance", fontsize=35, labelpad=40)
-        h.tick_params(axis='both', which='major', labelsize=30)
+        h.set_xlabel("k-nearest neighbors", fontsize=25, labelpad=30)
+        h.set_ylabel("Distance", fontsize=25, labelpad=40)
+        h.tick_params(axis='both', which='major', labelsize=20)
 
         # Axis twin (method)
-
         hb = h.twiny()
         hb.set_xticks(range(len(methods)))
-        #hb.set(xticklabels=methods)
+        # hb.set(xticklabels=methods)
         hb.set_xticklabels(methods, ha='center')
-        hb.set_aspect(aspect=0.95)
-        hb.set_xlabel("Method", fontsize=35, labelpad=30)
-        hb.tick_params(axis='both', which='major', labelsize=28)
-
+        hb.set_aspect(aspect=0.75)
+        hb.set_xlabel("Method", fontsize=25, labelpad=30)
+        hb.tick_params(axis='both', which='major', labelsize=20)
 
         # Show heatmap
         plt.show()
 
 
-    # Build a graph to compare recall results
+# Build a graph to compare recall results
 def print_compare_recall_graph(recalls):
+
+    #recalls = recalls[recalls['k'] == 10] #to keep only knn=10 experiments
+
+    # Adding three columns (dataset n and d) to dataframe in order to get some statistics
+
+    recalls.insert(loc=len(recalls.columns), column='n', value=0)
+    recalls.insert(loc=len(recalls.columns), column='d', value=0)
+    recalls.insert(loc=len(recalls.columns), column='n/d', value=0)
+
+    datasets = recalls['Dataset'].unique()
+
+    for dataset in datasets:
+        # Regarding the dataset name, set the file name to load the train and test set
+        file_name = "./data/" + str(dataset) + "_train_test_set.hdf5"
+        train_set, test_set = load_train_test_set.load_train_test_h5py(file_name)
+        size = train_set.shape[0] + test_set.shape[0]
+        dim = train_set.shape[1]
+        recalls.loc[recalls['Dataset'] == dataset, 'n'] = size
+        recalls.loc[recalls['Dataset'] == dataset, 'd'] = dim
+        recalls.loc[recalls['Dataset'] == dataset, 'n/d'] = size/dim
+
+    # Compare recalls by n and dim
+
+    # Keep only columns refering dataset features & drop duplicates
+    dataset_info = recalls.loc[:, ['Dataset', 'n', 'd', 'n/d']].drop_duplicates()
+
+
+    fig, axes = plt.subplots(1, 3, figsize=(35, 15), sharey=True)
+
+    sns.lineplot(data=recalls, x="n", y="Recall", hue='Method', ax=axes[0], palette=['lightblue', 'orange', 'r'])
+    sns.lineplot(data=recalls, x="d", y="Recall", hue='Method', ax=axes[1], palette=['lightblue', 'orange', 'r'])
+    sns.lineplot(data=recalls, x="n/d", y="Recall", hue='Method', ax=axes[2], palette=['lightblue', 'orange', 'r'])
+
+    #for index, row in dataset_info.iterrows():
+    #    axes[0].annotate(text=row['Dataset'], xy=(row['n'], 20), ha='center')
+    #    axes[1].annotate(text=row['Dataset'], xy=(row['d'], 20), ha='center')
+
+    axes[0].set_title("Recall regarding dataset's size", fontsize=25)
+    axes[1].set_title("Recall regarding dataset's dimensionality", fontsize=25)
+    axes[2].set_title("Recall regarding dataset's ratio size-dimensionality", fontsize=25)
+
+
+    '''
+    # Compare recalls by distance
+    fig, axes = plt.subplots(1, 3, figsize=(23, 5), sharey=True)
+
+
+    for i, each in enumerate(distances):
+        sns.lineplot(data=recalls.loc[recalls['Distance'] == each], ax=axes[i], x='n', y='Recall', hue='Method')
+
+    '''
+
+    plt.show()
+
+
+# Build a boxplots graph to compare recall results
+def print_compare_recall_boxplots(recalls):
 
     #recalls = recalls[recalls['k'] == 10] #to keep only knn=10 experiments
 
@@ -221,6 +276,7 @@ def print_compare_recall_graph(recalls):
     recalls.insert(loc=len(recalls.columns), column='n', value=0)
     recalls.insert(loc=len(recalls.columns), column='d', value=0)
 
+    # Get only datasets name for the graph
     datasets = recalls['Dataset'].unique()
 
     for dataset in datasets:
@@ -240,8 +296,8 @@ def print_compare_recall_graph(recalls):
 
     fig, axes = plt.subplots(1, 2, figsize=(25, 15), sharey=True)
 
-    sns.lineplot(data=recalls, x="n", y="Recall", hue='Method', ax=axes[0])
-    sns.lineplot(data=recalls, x="d", y="Recall", hue='Method', ax=axes[1])
+    sns.boxplot(data=recalls, x="n", y="Recall", hue='Method', ax=axes[0], palette=['lightblue', 'orange', 'r'])
+    sns.swarmplot(data=recalls, x="d", y="Recall", hue='Method', ax=axes[1], palette=['lightblue', 'orange', 'r'])
 
     #for index, row in dataset_info.iterrows():
     #    axes[0].annotate(text=row['Dataset'], xy=(row['n'], 20), ha='center')
@@ -250,20 +306,7 @@ def print_compare_recall_graph(recalls):
     axes[0].set_title("Recall regarding dataset's size", fontsize=35)
     axes[1].set_title("Recall regarding dataset's dimensionality", fontsize=35)
 
-
-    '''
-    # Compare recalls by distance
-    fig, axes = plt.subplots(1, 3, figsize=(23, 5), sharey=True)
-
-
-    for i, each in enumerate(distances):
-        sns.lineplot(data=recalls.loc[recalls['Distance'] == each], ax=axes[i], x='n', y='Recall', hue='Method')
-
-    '''
-
     plt.show()
-
-
 
 # Error rate
 def error_rate(dataset_name, d, method, knn, same_train_test=False, file_name_le=None, file_name=None):

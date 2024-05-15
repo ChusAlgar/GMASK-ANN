@@ -1,204 +1,180 @@
-2024-04-18 19:08:29,889 - root - ------------------------------------------------------------------------
-2024-04-18 19:08:29,889 - root -                        KNN over NYtimes Dataset RECALL
-2024-04-18 19:08:29,889 - root - ------------------------------------------------------------------------
-2024-04-18 19:08:29,889 - root - Search of k neighbors over a choosen dataset, using different methods, benchmark.py
-2024-04-18 19:08:29,889 - root - ------------------------------------------------------------------------
+2024-04-24 09:36:21,015 - root - ------------------------------------------------------------------------
+2024-04-24 09:36:21,015 - root -                        KNN over NYtimes Dataset RECALL
+2024-04-24 09:36:21,015 - root - ------------------------------------------------------------------------
+2024-04-24 09:36:21,015 - root - Search of k neighbors over a choosen dataset, using different methods, benchmark.py
+2024-04-24 09:36:21,015 - root - ------------------------------------------------------------------------
 
-2024-04-18 19:08:29,889 - root - Distances: ['manhattan', 'euclidean', 'chebyshev'] 
-2024-04-18 19:08:29,889 - root - Methods: ['FLANN', 'PYNN', 'MASK', 'GMASK']
-2024-04-18 19:08:29,889 - root - KNN: [5, 10, 15]
-2024-04-18 19:08:29,889 - root - MASK params: tg=1000, nc=500, r=30, algorithm=kmeans, implementation=kclust
-2024-04-18 19:08:29,889 - root - GMASK params: tg=1000, nc=500, r=30, algorithm=kmedoids, implementation=fastkmedoids
+2024-04-24 09:36:21,015 - root - Distances: ['manhattan', 'euclidean', 'chebyshev'] 
+2024-04-24 09:36:21,015 - root - Methods: ['FLANN', 'PYNN', 'GMASK']
+2024-04-24 09:36:21,015 - root - KNN: [5, 10, 15]
+2024-04-24 09:36:21,015 - root - MASK params: tg=1000, nc=500, r=30, algorithm=kmeans, implementation=kclust
+2024-04-24 09:36:21,015 - root - GMASK params: tg=1000, nc=500, r=30, algorithm=kmedoids, implementation=fastkmedoids
 
-2024-04-18 19:08:29,889 - root - ------------  manhattan distance  --------------------
+2024-04-24 09:36:21,015 - root - ------------  manhattan distance  --------------------
 
-2024-04-18 19:08:29,889 - root - -- FLANN method --
+2024-04-24 09:36:21,015 - root - -- FLANN method --
 
-2024-04-18 19:08:29,890 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_5_manhattan_KDTree.hdf5
-2024-04-18 19:08:29,891 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_5_manhattan_FLANN.hdf5
-2024-04-18 19:08:29,892 - root - Correct neighbors rate: 112/500.0
-2024-04-18 19:08:29,892 - root - Hit percentage: 22.400000000000002%
+2024-04-24 09:36:21,016 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_5_manhattan_KDTree.hdf5
+2024-04-24 09:36:21,017 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_5_manhattan_FLANN.hdf5
+2024-04-24 09:36:21,018 - root - Correct neighbors rate: 112/500.0
+2024-04-24 09:36:21,018 - root - Hit percentage: 22.400000000000002%
 
 
-2024-04-18 19:08:29,907 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_10_manhattan_KDTree.hdf5
-2024-04-18 19:08:29,908 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_10_manhattan_FLANN.hdf5
-2024-04-18 19:08:29,910 - root - Correct neighbors rate: 162/1000.0
-2024-04-18 19:08:29,910 - root - Hit percentage: 16.2%
+2024-04-24 09:36:21,019 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_10_manhattan_KDTree.hdf5
+2024-04-24 09:36:21,020 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_10_manhattan_FLANN.hdf5
+2024-04-24 09:36:21,021 - root - Correct neighbors rate: 162/1000.0
+2024-04-24 09:36:21,021 - root - Hit percentage: 16.2%
 
 
-2024-04-18 19:08:29,911 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_15_manhattan_KDTree.hdf5
-2024-04-18 19:08:29,912 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_15_manhattan_FLANN.hdf5
-2024-04-18 19:08:29,913 - root - Correct neighbors rate: 188/1500.0
-2024-04-18 19:08:29,914 - root - Hit percentage: 12.533333333333333%
+2024-04-24 09:36:21,022 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_15_manhattan_KDTree.hdf5
+2024-04-24 09:36:21,023 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_15_manhattan_FLANN.hdf5
+2024-04-24 09:36:21,024 - root - Correct neighbors rate: 188/1500.0
+2024-04-24 09:36:21,024 - root - Hit percentage: 12.533333333333333%
 
 
-2024-04-18 19:08:29,914 - root - -- PYNN method --
+2024-04-24 09:36:21,024 - root - -- PYNN method --
 
-2024-04-18 19:08:29,914 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_5_manhattan_KDTree.hdf5
-2024-04-18 19:08:29,915 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_5_manhattan_PYNN.hdf5
-2024-04-18 19:08:29,916 - root - Correct neighbors rate: 176/500.0
-2024-04-18 19:08:29,916 - root - Hit percentage: 35.199999999999996%
+2024-04-24 09:36:21,025 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_5_manhattan_KDTree.hdf5
+2024-04-24 09:36:21,025 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_5_manhattan_PYNN.hdf5
+2024-04-24 09:36:21,026 - root - Correct neighbors rate: 176/500.0
+2024-04-24 09:36:21,026 - root - Hit percentage: 35.199999999999996%
 
 
-2024-04-18 19:08:29,926 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_10_manhattan_KDTree.hdf5
-2024-04-18 19:08:29,927 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_10_manhattan_PYNN.hdf5
-2024-04-18 19:08:29,928 - root - Correct neighbors rate: 297/1000.0
-2024-04-18 19:08:29,928 - root - Hit percentage: 29.7%
+2024-04-24 09:36:21,027 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_10_manhattan_KDTree.hdf5
+2024-04-24 09:36:21,028 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_10_manhattan_PYNN.hdf5
+2024-04-24 09:36:21,029 - root - Correct neighbors rate: 297/1000.0
+2024-04-24 09:36:21,029 - root - Hit percentage: 29.7%
 
 
-2024-04-18 19:08:29,929 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_15_manhattan_KDTree.hdf5
-2024-04-18 19:08:29,930 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_15_manhattan_PYNN.hdf5
-2024-04-18 19:08:29,931 - root - Correct neighbors rate: 404/1500.0
-2024-04-18 19:08:29,931 - root - Hit percentage: 26.93333333333333%
+2024-04-24 09:36:21,029 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_15_manhattan_KDTree.hdf5
+2024-04-24 09:36:21,030 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_15_manhattan_PYNN.hdf5
+2024-04-24 09:36:21,031 - root - Correct neighbors rate: 404/1500.0
+2024-04-24 09:36:21,032 - root - Hit percentage: 26.93333333333333%
 
 
-2024-04-18 19:08:29,932 - root - -- MASK method --
+2024-04-24 09:36:21,032 - root - -- GMASK method --
 
-2024-04-18 19:08:29,933 - root - -- GMASK method --
+2024-04-24 09:36:21,032 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_5_manhattan_KDTree.hdf5
+2024-04-24 09:36:21,033 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_5_manhattan_GMASK_tg1000_nc500_r30_kmedoids_fastkmedoids.hdf5
+2024-04-24 09:36:21,034 - root - Correct neighbors rate: 254/500.0
+2024-04-24 09:36:21,034 - root - Hit percentage: 50.8%
 
-2024-04-18 19:08:29,933 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_5_manhattan_KDTree.hdf5
-2024-04-18 19:08:29,942 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_5_manhattan_GMASK_tg1000_nc500_r30_kmedoids_fastkmedoids.hdf5
-2024-04-18 19:08:29,944 - root - Correct neighbors rate: 254/500.0
-2024-04-18 19:08:29,944 - root - Hit percentage: 50.8%
 
+2024-04-24 09:36:21,034 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_10_manhattan_KDTree.hdf5
+2024-04-24 09:36:21,035 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_10_manhattan_GMASK_tg1000_nc500_r30_kmedoids_fastkmedoids.hdf5
+2024-04-24 09:36:21,037 - root - Correct neighbors rate: 431/1000.0
+2024-04-24 09:36:21,037 - root - Hit percentage: 43.1%
 
-2024-04-18 19:08:29,951 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_10_manhattan_KDTree.hdf5
-2024-04-18 19:08:29,960 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_10_manhattan_GMASK_tg1000_nc500_r30_kmedoids_fastkmedoids.hdf5
-2024-04-18 19:08:29,961 - root - Correct neighbors rate: 431/1000.0
-2024-04-18 19:08:29,962 - root - Hit percentage: 43.1%
 
+2024-04-24 09:36:21,037 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_15_manhattan_KDTree.hdf5
+2024-04-24 09:36:21,038 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_15_manhattan_GMASK_tg1000_nc500_r30_kmedoids_fastkmedoids.hdf5
+2024-04-24 09:36:21,040 - root - Correct neighbors rate: 606/1500.0
+2024-04-24 09:36:21,040 - root - Hit percentage: 40.400000000000006%
 
-2024-04-18 19:08:29,962 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_15_manhattan_KDTree.hdf5
-2024-04-18 19:08:29,973 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_15_manhattan_GMASK_tg1000_nc500_r30_kmedoids_fastkmedoids.hdf5
-2024-04-18 19:08:29,975 - root - Correct neighbors rate: 606/1500.0
-2024-04-18 19:08:29,975 - root - Hit percentage: 40.400000000000006%
 
+2024-04-24 09:36:21,040 - root - ------------  euclidean distance  --------------------
 
-2024-04-18 19:08:29,976 - root - ------------  euclidean distance  --------------------
+2024-04-24 09:36:21,040 - root - -- FLANN method --
 
-2024-04-18 19:08:29,976 - root - -- FLANN method --
+2024-04-24 09:36:21,041 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_5_euclidean_KDTree.hdf5
+2024-04-24 09:36:21,041 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_5_euclidean_FLANN.hdf5
+2024-04-24 09:36:21,042 - root - Correct neighbors rate: 140/500.0
+2024-04-24 09:36:21,042 - root - Hit percentage: 28.000000000000004%
 
-2024-04-18 19:08:29,976 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_5_euclidean_KDTree.hdf5
-2024-04-18 19:08:29,985 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_5_euclidean_FLANN.hdf5
-2024-04-18 19:08:29,986 - root - Correct neighbors rate: 140/500.0
-2024-04-18 19:08:29,986 - root - Hit percentage: 28.000000000000004%
 
+2024-04-24 09:36:21,043 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_10_euclidean_KDTree.hdf5
+2024-04-24 09:36:21,043 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_10_euclidean_FLANN.hdf5
+2024-04-24 09:36:21,045 - root - Correct neighbors rate: 207/1000.0
+2024-04-24 09:36:21,045 - root - Hit percentage: 20.7%
 
-2024-04-18 19:08:29,986 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_10_euclidean_KDTree.hdf5
-2024-04-18 19:08:29,987 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_10_euclidean_FLANN.hdf5
-2024-04-18 19:08:29,988 - root - Correct neighbors rate: 207/1000.0
-2024-04-18 19:08:29,988 - root - Hit percentage: 20.7%
 
+2024-04-24 09:36:21,045 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_15_euclidean_KDTree.hdf5
+2024-04-24 09:36:21,046 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_15_euclidean_FLANN.hdf5
+2024-04-24 09:36:21,047 - root - Correct neighbors rate: 246/1500.0
+2024-04-24 09:36:21,047 - root - Hit percentage: 16.400000000000002%
 
-2024-04-18 19:08:29,989 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_15_euclidean_KDTree.hdf5
-2024-04-18 19:08:29,990 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_15_euclidean_FLANN.hdf5
-2024-04-18 19:08:29,991 - root - Correct neighbors rate: 246/1500.0
-2024-04-18 19:08:29,991 - root - Hit percentage: 16.400000000000002%
 
+2024-04-24 09:36:21,048 - root - -- PYNN method --
 
-2024-04-18 19:08:29,992 - root - -- PYNN method --
+2024-04-24 09:36:21,048 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_5_euclidean_KDTree.hdf5
+2024-04-24 09:36:21,049 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_5_euclidean_PYNN.hdf5
+2024-04-24 09:36:21,050 - root - Correct neighbors rate: 161/500.0
+2024-04-24 09:36:21,050 - root - Hit percentage: 32.2%
 
-2024-04-18 19:08:29,992 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_5_euclidean_KDTree.hdf5
-2024-04-18 19:08:29,997 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_5_euclidean_PYNN.hdf5
-2024-04-18 19:08:29,999 - root - Correct neighbors rate: 161/500.0
-2024-04-18 19:08:29,999 - root - Hit percentage: 32.2%
 
+2024-04-24 09:36:21,050 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_10_euclidean_KDTree.hdf5
+2024-04-24 09:36:21,051 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_10_euclidean_PYNN.hdf5
+2024-04-24 09:36:21,052 - root - Correct neighbors rate: 297/1000.0
+2024-04-24 09:36:21,052 - root - Hit percentage: 29.7%
 
-2024-04-18 19:08:29,999 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_10_euclidean_KDTree.hdf5
-2024-04-18 19:08:30,000 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_10_euclidean_PYNN.hdf5
-2024-04-18 19:08:30,002 - root - Correct neighbors rate: 297/1000.0
-2024-04-18 19:08:30,002 - root - Hit percentage: 29.7%
 
+2024-04-24 09:36:21,053 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_15_euclidean_KDTree.hdf5
+2024-04-24 09:36:21,054 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_15_euclidean_PYNN.hdf5
+2024-04-24 09:36:21,055 - root - Correct neighbors rate: 415/1500.0
+2024-04-24 09:36:21,055 - root - Hit percentage: 27.666666666666668%
 
-2024-04-18 19:08:30,002 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_15_euclidean_KDTree.hdf5
-2024-04-18 19:08:30,003 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_15_euclidean_PYNN.hdf5
-2024-04-18 19:08:30,005 - root - Correct neighbors rate: 415/1500.0
-2024-04-18 19:08:30,005 - root - Hit percentage: 27.666666666666668%
 
+2024-04-24 09:36:21,056 - root - -- GMASK method --
 
-2024-04-18 19:08:30,005 - root - -- MASK method --
+2024-04-24 09:36:21,056 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_5_euclidean_KDTree.hdf5
+2024-04-24 09:36:21,057 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_5_euclidean_GMASK_tg1000_nc500_r30_kmedoids_fastkmedoids.hdf5
+2024-04-24 09:36:21,058 - root - Correct neighbors rate: 257/500.0
+2024-04-24 09:36:21,058 - root - Hit percentage: 51.4%
 
-2024-04-18 19:08:30,005 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_5_euclidean_KDTree.hdf5
-2024-04-18 19:08:30,014 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_5_euclidean_MASK_tg1000_nc500_r30_kmeans_kclust.hdf5
-2024-04-18 19:08:30,015 - root - Correct neighbors rate: 254/500.0
-2024-04-18 19:08:30,015 - root - Hit percentage: 50.8%
 
+2024-04-24 09:36:21,058 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_10_euclidean_KDTree.hdf5
+2024-04-24 09:36:21,059 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_10_euclidean_GMASK_tg1000_nc500_r30_kmedoids_fastkmedoids.hdf5
+2024-04-24 09:36:21,061 - root - Correct neighbors rate: 430/1000.0
+2024-04-24 09:36:21,061 - root - Hit percentage: 43.0%
 
-2024-04-18 19:08:30,016 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_10_euclidean_KDTree.hdf5
-2024-04-18 19:08:30,025 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_10_euclidean_MASK_tg1000_nc500_r30_kmeans_kclust.hdf5
-2024-04-18 19:08:30,027 - root - Correct neighbors rate: 438/1000.0
-2024-04-18 19:08:30,027 - root - Hit percentage: 43.8%
 
+2024-04-24 09:36:21,061 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_15_euclidean_KDTree.hdf5
+2024-04-24 09:36:21,062 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_15_euclidean_GMASK_tg1000_nc500_r30_kmedoids_fastkmedoids.hdf5
+2024-04-24 09:36:21,064 - root - Correct neighbors rate: 602/1500.0
+2024-04-24 09:36:21,064 - root - Hit percentage: 40.13333333333333%
 
-2024-04-18 19:08:30,027 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_15_euclidean_KDTree.hdf5
-2024-04-18 19:08:30,037 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_15_euclidean_MASK_tg1000_nc500_r30_kmeans_kclust.hdf5
-2024-04-18 19:08:30,040 - root - Correct neighbors rate: 597/1500.0
-2024-04-18 19:08:30,040 - root - Hit percentage: 39.800000000000004%
 
+2024-04-24 09:36:21,064 - root - ------------  chebyshev distance  --------------------
 
-2024-04-18 19:08:30,040 - root - -- GMASK method --
+2024-04-24 09:36:21,064 - root - -- FLANN method --
 
-2024-04-18 19:08:30,040 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_5_euclidean_KDTree.hdf5
-2024-04-18 19:08:30,041 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_5_euclidean_GMASK_tg1000_nc500_r30_kmedoids_fastkmedoids.hdf5
-2024-04-18 19:08:30,043 - root - Correct neighbors rate: 257/500.0
-2024-04-18 19:08:30,043 - root - Hit percentage: 51.4%
+2024-04-24 09:36:21,065 - root - -- PYNN method --
 
+2024-04-24 09:36:21,065 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_5_chebyshev_KDTree.hdf5
+2024-04-24 09:36:21,066 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_5_chebyshev_PYNN.hdf5
+2024-04-24 09:36:21,067 - root - Correct neighbors rate: 177/500.0
+2024-04-24 09:36:21,067 - root - Hit percentage: 35.4%
 
-2024-04-18 19:08:30,043 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_10_euclidean_KDTree.hdf5
-2024-04-18 19:08:30,044 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_10_euclidean_GMASK_tg1000_nc500_r30_kmedoids_fastkmedoids.hdf5
-2024-04-18 19:08:30,045 - root - Correct neighbors rate: 430/1000.0
-2024-04-18 19:08:30,045 - root - Hit percentage: 43.0%
 
+2024-04-24 09:36:21,068 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_10_chebyshev_KDTree.hdf5
+2024-04-24 09:36:21,069 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_10_chebyshev_PYNN.hdf5
+2024-04-24 09:36:21,070 - root - Correct neighbors rate: 424/1000.0
+2024-04-24 09:36:21,070 - root - Hit percentage: 42.4%
 
-2024-04-18 19:08:30,046 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_15_euclidean_KDTree.hdf5
-2024-04-18 19:08:30,047 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_15_euclidean_GMASK_tg1000_nc500_r30_kmedoids_fastkmedoids.hdf5
-2024-04-18 19:08:30,049 - root - Correct neighbors rate: 602/1500.0
-2024-04-18 19:08:30,049 - root - Hit percentage: 40.13333333333333%
 
+2024-04-24 09:36:21,071 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_15_chebyshev_KDTree.hdf5
+2024-04-24 09:36:21,072 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_15_chebyshev_PYNN.hdf5
+2024-04-24 09:36:21,073 - root - Correct neighbors rate: 557/1500.0
+2024-04-24 09:36:21,073 - root - Hit percentage: 37.13333333333333%
 
-2024-04-18 19:08:30,049 - root - ------------  chebyshev distance  --------------------
 
-2024-04-18 19:08:30,049 - root - -- FLANN method --
+2024-04-24 09:36:21,073 - root - -- GMASK method --
 
-2024-04-18 19:08:30,050 - root - -- PYNN method --
+2024-04-24 09:36:21,074 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_5_chebyshev_KDTree.hdf5
+2024-04-24 09:36:21,074 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_5_chebyshev_GMASK_tg1000_nc500_r30_kmedoids_fastkmedoids.hdf5
+2024-04-24 09:36:21,075 - root - Correct neighbors rate: 410/500.0
+2024-04-24 09:36:21,075 - root - Hit percentage: 82.0%
 
-2024-04-18 19:08:30,050 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_5_chebyshev_KDTree.hdf5
-2024-04-18 19:08:30,051 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_5_chebyshev_PYNN.hdf5
-2024-04-18 19:08:30,052 - root - Correct neighbors rate: 177/500.0
-2024-04-18 19:08:30,052 - root - Hit percentage: 35.4%
 
+2024-04-24 09:36:21,076 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_10_chebyshev_KDTree.hdf5
+2024-04-24 09:36:21,077 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_10_chebyshev_GMASK_tg1000_nc500_r30_kmedoids_fastkmedoids.hdf5
+2024-04-24 09:36:21,078 - root - Correct neighbors rate: 788/1000.0
+2024-04-24 09:36:21,078 - root - Hit percentage: 78.8%
 
-2024-04-18 19:08:30,053 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_10_chebyshev_KDTree.hdf5
-2024-04-18 19:08:30,053 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_10_chebyshev_PYNN.hdf5
-2024-04-18 19:08:30,054 - root - Correct neighbors rate: 424/1000.0
-2024-04-18 19:08:30,054 - root - Hit percentage: 42.4%
 
-
-2024-04-18 19:08:30,055 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_15_chebyshev_KDTree.hdf5
-2024-04-18 19:08:30,056 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_15_chebyshev_PYNN.hdf5
-2024-04-18 19:08:30,057 - root - Correct neighbors rate: 557/1500.0
-2024-04-18 19:08:30,057 - root - Hit percentage: 37.13333333333333%
-
-
-2024-04-18 19:08:30,058 - root - -- MASK method --
-
-2024-04-18 19:08:30,058 - root - -- GMASK method --
-
-2024-04-18 19:08:30,059 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_5_chebyshev_KDTree.hdf5
-2024-04-18 19:08:30,069 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_5_chebyshev_GMASK_tg1000_nc500_r30_kmedoids_fastkmedoids.hdf5
-2024-04-18 19:08:30,070 - root - Correct neighbors rate: 410/500.0
-2024-04-18 19:08:30,070 - root - Hit percentage: 82.0%
-
-
-2024-04-18 19:08:30,070 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_10_chebyshev_KDTree.hdf5
-2024-04-18 19:08:30,071 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_10_chebyshev_GMASK_tg1000_nc500_r30_kmedoids_fastkmedoids.hdf5
-2024-04-18 19:08:30,073 - root - Correct neighbors rate: 788/1000.0
-2024-04-18 19:08:30,073 - root - Hit percentage: 78.8%
-
-
-2024-04-18 19:08:30,073 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_15_chebyshev_KDTree.hdf5
-2024-04-18 19:08:30,080 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_15_chebyshev_GMASK_tg1000_nc500_r30_kmedoids_fastkmedoids.hdf5
-2024-04-18 19:08:30,082 - root - Correct neighbors rate: 1153/1500.0
-2024-04-18 19:08:30,082 - root - Hit percentage: 76.86666666666667%
+2024-04-24 09:36:21,079 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_15_chebyshev_KDTree.hdf5
+2024-04-24 09:36:21,079 - root - Loading neighbors from ./experiments/NearestNeighbors/NYtimes/knn_NYtimes_15_chebyshev_GMASK_tg1000_nc500_r30_kmedoids_fastkmedoids.hdf5
+2024-04-24 09:36:21,081 - root - Correct neighbors rate: 1153/1500.0
+2024-04-24 09:36:21,081 - root - Hit percentage: 76.86666666666667%
 
 

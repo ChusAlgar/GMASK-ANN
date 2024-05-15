@@ -3,10 +3,10 @@ import logging
 import pandas as pd
 
 # Set var for experiments:
-#datasets = ['wdbc', 'municipios', 'MNIST', 'NYtimes', 'GLOVE']
-datasets = ['GLOVE']
+datasets = ['municipios', 'MNIST', 'NYtimes', 'GLOVE']
+#datasets = ['NYtimes']
 distances = ['manhattan', 'euclidean', 'chebyshev']
-methods = ['FLANN', 'PYNN', 'MASK', 'GMASK']
+methods = ['FLANN', 'PYNN', 'GMASK']
 baseline = 'KDTree'
 knn = [5, 10, 15]
 
@@ -179,7 +179,8 @@ def benchmark_recall():
 
     # Show results on a graph
     #print_compare_recall_graph(recalls)
-    print_recall_heatmap(datasets, distances, methods, knn, recalls)
+    print_compare_recall_boxplots(recalls)
+    #print_recall_heatmap(datasets, distances, methods, knn, recalls)
     #print(da_recalls)
 
 benchmark_recall()
